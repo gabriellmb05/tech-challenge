@@ -1,7 +1,5 @@
 package br.com.on.fiap.domain;
 
-import br.com.on.fiap.controller.ClientesController;
-
 import java.time.LocalDate;
 
 public class Cliente {
