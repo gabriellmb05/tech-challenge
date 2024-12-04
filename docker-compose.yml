@@ -24,3 +24,12 @@ services:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SERVER_PORT: ${SERVER_PORT}
+
+  mercadopago_fake:
+    image: 'fiap/mercadopago_fake:v1'
+    build: ../mercadopago_fake
+    ports:
+      - "8081:8081"
+    environment:
+      SERVER_PORT: "8081"

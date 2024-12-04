@@ -4,3 +4,56 @@
 3. Para validar se a aplicação e banco de dados subiram correramente você pode acessar no browser os endpoints abaixo. O endpoint `/clientes` realiza um consulta no banco de dados. 
    - `localhost:8080/hello-world`
    - `localhost:8080/clientes`
+
+## Estrutura de pastas
+`├── postgres
+
+├── src
+
+│   ├── main
+
+│   │   ├── java
+
+│   │   │   └── br
+
+│   │   │       └── com
+
+│   │   │           └── on
+
+│   │   │               └── fiap
+
+│   │   │                   ├── aplicacao
+
+│   │   │                   │   └── adaptadores
+
+│   │   │   │                   │       ├── controladores
+
+│   │   │   │                   │       └── dtos
+
+│   │   │                   ├── dominio
+
+│   │   │                   │   ├── adaptadores
+
+│   │   │                   │   └── portas
+
+│   │   │                   │       ├── interfaces
+
+│   │   │                   │       └── repositorios
+
+│   │   │                   └── infraestrutura
+
+│   │   │                       ├── adaptadores
+
+│   │   │                       │   └── repositorios
+
+│   │   │                       └── configuracao
+
+│   │   └── resources
+
+│   │       └── application.properties
+
+`
+
+
+
+

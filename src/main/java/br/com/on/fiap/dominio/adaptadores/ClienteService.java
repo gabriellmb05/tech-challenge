@@ -1,7 +1,7 @@
-package br.com.on.fiap.service.impl;
+package br.com.on.fiap.dominio.adaptadores;
 
-import br.com.on.fiap.domain.Cliente;
-import br.com.on.fiap.service.spec.IClienteService;
+import br.com.on.fiap.dominio.Cliente;
+import br.com.on.fiap.dominio.portas.interfaces.IClienteService;
 
 public class ClienteService implements IClienteService {
     /**

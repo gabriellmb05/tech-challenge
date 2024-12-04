@@ -1,6 +1,6 @@
-package br.com.on.fiap.service.spec;
+package br.com.on.fiap.dominio.portas.interfaces;
 
-import br.com.on.fiap.domain.Cliente;
+import br.com.on.fiap.dominio.Cliente;
 
 public interface IClienteService {
     Cliente findById(Long Id);
