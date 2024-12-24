@@ -34,4 +34,9 @@ public class PersistenciaProdutoAdapter implements PersisteProdutoPortaSaida {
         return produtoRepositorio.findByNome(nome)
                 .map(ProdutoEntidadeMapeador::produtoEntidadeParaProduto);
     }
+
+    @Override
+    public void deletaProdutoPorId(Long id) {
+        produtoRepositorio.deleteById(id);
+    }
 }

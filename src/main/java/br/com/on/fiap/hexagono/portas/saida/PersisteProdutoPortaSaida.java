@@ -9,5 +9,6 @@ public interface PersisteProdutoPortaSaida {
     public Optional<Produto> buscaProdutoPorId(Long id);
     public Produto salvaProduto(Produto produto);
     public Optional<Produto> buscaProdutoPorNome(String nome);
+    public void deletaProdutoPorId(Long id);
 
 }

@@ -16,9 +16,9 @@ public class ProdutoMapeador {
     }
 
     public static Produto produtoDTOParaProduto(ProdutoDTO produtoDTO){
-        Categoria categoria = Categoria.valueOf(produtoDTO.getCategoria().name());
-        return new Produto(produtoDTO.getNome(),
+        Categoria categoria = Categoria.valueOf(produtoDTO.categoria().name());
+        return new Produto(produtoDTO.nome(),
                 categoria,
-                produtoDTO.getPreco());
+                produtoDTO.preco());
     }
 }
