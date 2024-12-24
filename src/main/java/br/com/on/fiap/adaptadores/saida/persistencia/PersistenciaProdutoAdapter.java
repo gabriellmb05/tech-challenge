@@ -18,10 +18,8 @@ public class PersistenciaProdutoAdapter implements PersisteProdutoPortaSaida {
 
     @Override
     public Optional<Produto> buscaProdutoPorId(Long id) {
-        Optional<ProdutoEntidade> produtoEntidadePorId = produtoRepositorio.findById(id);
-        if(produtoEntidadePorId.isEmpty()) return Optional.empty();
-        Produto produto = ProdutoEntidadeMapeador.produtoEntidadeParaProduto(produtoEntidadePorId.get());
-        return Optional.of(produto);
+        return produtoRepositorio.findById(id)
+                .map(ProdutoEntidadeMapeador::produtoEntidadeParaProduto);
     }
 
     @Override
@@ -33,9 +31,7 @@ public class PersistenciaProdutoAdapter implements PersisteProdutoPortaSaida {
 
     @Override
     public Optional<Produto> buscaProdutoPorNome(String nome) {
-        Optional<ProdutoEntidade> produtoEntidadePorId = produtoRepositorio.findByNome(nome);
-        if(produtoEntidadePorId.isEmpty()) return Optional.empty();
-        Produto produto = ProdutoEntidadeMapeador.produtoEntidadeParaProduto(produtoEntidadePorId.get());
-        return Optional.of(produto);
+        return produtoRepositorio.findByNome(nome)
+                .map(ProdutoEntidadeMapeador::produtoEntidadeParaProduto);
     }
 }
