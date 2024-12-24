@@ -1,4 +1,4 @@
-package br.com.on.fiap.hexagono.casosdeuso.excecoes;
+package br.com.on.fiap.hexagono.casosdeuso.excecao;
 
 public class ProdutoExistenteExcecao extends RuntimeException{
 

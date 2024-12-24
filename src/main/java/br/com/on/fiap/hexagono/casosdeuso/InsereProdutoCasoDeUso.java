@@ -1,6 +1,6 @@
 package br.com.on.fiap.hexagono.casosdeuso;
 
-import br.com.on.fiap.hexagono.casosdeuso.excecoes.ProdutoExistenteExcecao;
+import br.com.on.fiap.hexagono.casosdeuso.excecao.ProdutoExistenteExcecao;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.portas.entrada.InsereProdutoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.saida.PersisteProdutoPortaSaida;
@@ -20,7 +20,8 @@ public class InsereProdutoCasoDeUso implements InsereProdutoPortaEntrada {
     @Override
     public Produto inserir(Produto produto) {
         Optional<Produto> produtoBancoDados = persisteProdutoPortaSaida.buscaProdutoPorNome(produto.getNome());
-        if(produtoBancoDados.isPresent()) throw new ProdutoExistenteExcecao("Produto " + produto.getNome() + " já cadastrado");
-        return persisteProdutoPortaSaida.salvaProduto(produto);
+        Produto produtoExistente = produtoBancoDados.
+                orElseThrow(() -> new ProdutoExistenteExcecao(String.format("Produto (%s) já cadastrado", produto.getNome())));
+        return persisteProdutoPortaSaida.salvaProduto(produtoExistente);
     }
 }

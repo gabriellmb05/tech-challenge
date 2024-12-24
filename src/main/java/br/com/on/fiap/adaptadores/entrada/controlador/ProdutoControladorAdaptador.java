@@ -5,6 +5,7 @@ import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoMapeador;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.portas.entrada.BuscaProdutoPorIdPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.InsereProdutoPortaEntrada;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +16,15 @@ import org.springframework.web.bind.annotation.*;
 public class ProdutoControladorAdaptador {
 
 
-    @Autowired
-    private BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada;
+    private final BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada;
+
+    private final InsereProdutoPortaEntrada insereProdutoPortaEntrada;
 
     @Autowired
-    private InsereProdutoPortaEntrada insereProdutoPortaEntrada;
+    public ProdutoControladorAdaptador(BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada, InsereProdutoPortaEntrada insereProdutoPortaEntrada){
+        this.buscaProdutoPorIdPortaEntrada = buscaProdutoPorIdPortaEntrada;
+        this.insereProdutoPortaEntrada = insereProdutoPortaEntrada;
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoDTO> buscaProdutoPorId(@PathVariable("id") long id){
@@ -28,8 +33,8 @@ public class ProdutoControladorAdaptador {
         return new ResponseEntity<ProdutoDTO>(produtoDTO, HttpStatus.OK);
     }
 
-    @PostMapping()
-    public ResponseEntity<ProdutoDTO> InsereProduto(@RequestBody ProdutoDTO produtoDTO) {
+    @PostMapping
+    public ResponseEntity<ProdutoDTO> InsereProduto(@Valid @RequestBody ProdutoDTO produtoDTO) {
         Produto produto = ProdutoMapeador.produtoDTOParaProduto(produtoDTO);
         Produto produtoPersistido = insereProdutoPortaEntrada.inserir(produto);
         ProdutoDTO produtoPersistidoDTO = ProdutoMapeador.produtoParaProdutoDTO(produtoPersistido);
