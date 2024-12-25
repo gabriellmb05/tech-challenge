@@ -1,12 +1,12 @@
-CREATE TABLE Clientes (
-  Id SERIAL PRIMARY KEY,
-  Nome VARCHAR (256) NOT NULL,
-  Cpf VARCHAR(14) NOT NULL,
-  Email VARCHAR(100) NOT NULL,
-  DataNascimento VARCHAR(20)
+CREATE TABLE clientes (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR (256) NOT NULL,
+  cpf VARCHAR(14) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  dataNascimento VARCHAR(20)
 );
 
-INSERT INTO Clientes (Nome, Cpf, Email, DataNascimento)
+INSERT INTO clientes (nome, cpf, email, dataNascimento)
 VALUES
   ('Elmo Cameron','433166526-16','lectus@yahoo.edu','2025-03-28'),
   ('Phelan Vang','473747385-23','ut.molestie@google.edu','2024-07-14'),
@@ -19,15 +19,15 @@ VALUES
   ('Hilda Shaffer','472836288-27','et.commodo@aol.ca','2024-12-15'),
   ('Len Frank','518679432-59','eu.enim.etiam@protonmail.net','2024-08-29');
 
-CREATE TABLE Produtos (
-  Id SERIAL PRIMARY KEY,
-  Nome TEXT NOT NULL,
-  Categoria TEXT NOT NULL,
-  Preco varchar(100) NOT NULL,
-  Ingredientes TEXT NULL
+CREATE TABLE produtos (
+  id SERIAL PRIMARY KEY,
+  nome TEXT NOT NULL,
+  categoria TEXT NOT NULL,
+  preco varchar(100) NOT NULL,
+  ingredientes TEXT NULL
 );
 
-INSERT INTO Produtos (Nome,Categoria,Preco,Ingredientes)
+INSERT INTO produtos (nome,categoria,preco,ingredientes)
 VALUES
   ('diam.','Acompanhamento','84','nec ligula consectetuer rhoncus. Nullam velit dui, semper et,'),
   ('erat. Sed','Acompanhamento','91','mi. Aliquam gravida mauris'),
@@ -39,7 +39,7 @@ VALUES
   ('erat','Lanche','41','magna tellus'),
   ('magnis dis parturient','Lanche','17','Mauris magna. Duis dignissim tempor arcu.'),
   ('quam vel','Acompanhamento','84','vitae, sodales at, velit. Pellentesque');
-INSERT INTO Produtos (Nome,Categoria,Preco,Ingredientes)
+INSERT INTO Produtos (nome,categoria,preco,ingredientes)
 VALUES
   ('Sed nunc est,','Acompanhamento','11','Suspendisse tristique neque venenatis lacus.'),
   ('varius orci,','Acompanhamento','73','velit. Aliquam nisl. Nulla eu'),
@@ -51,7 +51,7 @@ VALUES
   ('mattis ornare,','Acompanhamento','68','Duis ac arcu. Nunc mauris. Morbi non sapien'),
   ('hendrerit a, arcu.','Acompanhamento','18','lacus vestibulum'),
   ('lorem, sit','Lanche','52','Integer vitae nibh. Donec est mauris,');
-INSERT INTO Produtos (Nome,Categoria,Preco,Ingredientes)
+INSERT INTO Produtos (nome,categoria,preco,ingredientes)
 VALUES
   ('Integer vitae nibh.','Bebida','89','Phasellus libero mauris, aliquam eu, accumsan sed,'),
   ('Quisque tincidunt','Lanche','62','primis in faucibus orci luctus'),
