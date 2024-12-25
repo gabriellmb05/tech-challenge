@@ -15,23 +15,27 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeanConfiguracao {
 
-    @Bean
-    public BuscaProdutoPorIdPortaEntrada buscaProduto(PersistenciaProdutoAdapter persistenciaProdutoAdapter) {
-        return new BuscaProdutoCasoDeUso(persistenciaProdutoAdapter);
-    }
+  @Bean
+  public BuscaProdutoPorIdPortaEntrada buscaProduto(
+      PersistenciaProdutoAdapter persistenciaProdutoAdapter) {
+    return new BuscaProdutoCasoDeUso(persistenciaProdutoAdapter);
+  }
 
-    @Bean
-    public InsereProdutoPortaEntrada insereProduto(PersistenciaProdutoAdapter persistenciaProdutoAdapter) {
-        return new InsereProdutoCasoDeUso(persistenciaProdutoAdapter);
-    }
+  @Bean
+  public InsereProdutoPortaEntrada insereProduto(
+      PersistenciaProdutoAdapter persistenciaProdutoAdapter) {
+    return new InsereProdutoCasoDeUso(persistenciaProdutoAdapter);
+  }
 
-    @Bean
-    public AlteraProdutoPortaEntrada alteraProduto(PersistenciaProdutoAdapter persistenciaProdutoAdapter) {
-        return new AlteraProdutoCasoDeUso(persistenciaProdutoAdapter);
-    }
+  @Bean
+  public AlteraProdutoPortaEntrada alteraProduto(
+      PersistenciaProdutoAdapter persistenciaProdutoAdapter) {
+    return new AlteraProdutoCasoDeUso(persistenciaProdutoAdapter);
+  }
 
-    @Bean
-    public DeletaProdutoPortaEntrada deletaProduto(PersistenciaProdutoAdapter persistenciaProdutoAdapter) {
-        return new DeletaProdutoCasoDeUso(persistenciaProdutoAdapter);
-    }
+  @Bean
+  public DeletaProdutoPortaEntrada deletaProduto(
+      PersistenciaProdutoAdapter persistenciaProdutoAdapter) {
+    return new DeletaProdutoCasoDeUso(persistenciaProdutoAdapter);
+  }
 }
