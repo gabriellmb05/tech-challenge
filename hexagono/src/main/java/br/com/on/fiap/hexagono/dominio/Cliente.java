@@ -9,11 +9,22 @@ public class Cliente {
   private String email;
   private LocalDate dataNascimento;
 
-  public Cliente(String cpf, String nome, LocalDate dataNascimento, String email) {
+  public Cliente() {}
+
+  public Cliente(Long id, String cpf, String nome, String email, LocalDate dataNascimento) {
+    this.id = id;
     this.cpf = cpf;
     this.nome = nome;
-    this.dataNascimento = dataNascimento;
     this.email = email;
+    this.dataNascimento = dataNascimento;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getCpf() {
@@ -46,13 +57,5 @@ public class Cliente {
 
   public void setDataNascimento(LocalDate dataNascimento) {
     this.dataNascimento = dataNascimento;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
   }
 }

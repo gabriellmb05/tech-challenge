@@ -1,6 +1,6 @@
 package br.com.on.fiap.adaptadores.saida.persistencia;
 
-import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.ProdutoEntidadeMapeador;
+import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.ProdutoSaidaMapeador;
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.ProdutoRepositorio;
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.entidade.ProdutoEntidade;
 import br.com.on.fiap.hexagono.dominio.Produto;
@@ -9,31 +9,32 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersistenciaProdutoAdapter implements PersisteProdutoPortaSaida {
+public class PersistenciaProdutoAdaptador implements PersisteProdutoPortaSaida {
 
   private final ProdutoRepositorio produtoRepositorio;
+  private final ProdutoSaidaMapeador produtoSaidaMapeador;
 
-  public PersistenciaProdutoAdapter(ProdutoRepositorio produtoRepositorio) {
+  public PersistenciaProdutoAdaptador(
+      ProdutoRepositorio produtoRepositorio, ProdutoSaidaMapeador produtoSaidaMapeador) {
     this.produtoRepositorio = produtoRepositorio;
+    this.produtoSaidaMapeador = produtoSaidaMapeador;
   }
 
   @Override
   public Optional<Produto> buscaProdutoPorId(Long id) {
-    return produtoRepositorio.findById(id).map(ProdutoEntidadeMapeador::produtoEntidadeParaProduto);
+    return produtoRepositorio.findById(id).map(produtoSaidaMapeador::paraProduto);
   }
 
   @Override
   public Produto salvaProduto(Produto produto) {
-    ProdutoEntidade produtoEntidade = ProdutoEntidadeMapeador.produtoParaProdutoEntidade(produto);
+    ProdutoEntidade produtoEntidade = produtoSaidaMapeador.paraEntidade(produto);
     ProdutoEntidade produtoPersistido = produtoRepositorio.save(produtoEntidade);
-    return ProdutoEntidadeMapeador.produtoEntidadeParaProduto(produtoPersistido);
+    return produtoSaidaMapeador.paraProduto(produtoPersistido);
   }
 
   @Override
   public Optional<Produto> buscaProdutoPorNome(String nome) {
-    return produtoRepositorio
-        .findByNome(nome)
-        .map(ProdutoEntidadeMapeador::produtoEntidadeParaProduto);
+    return produtoRepositorio.findByNome(nome).map(produtoSaidaMapeador::paraProduto);
   }
 
   @Override

@@ -8,6 +8,8 @@ public class Produto {
   private Categoria categoria;
   private BigDecimal preco;
 
+  public Produto() {}
+
   public Produto(Long id, String nome, Categoria categoria, BigDecimal preco) {
     this.id = id;
     this.nome = nome;

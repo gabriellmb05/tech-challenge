@@ -14,33 +14,26 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ManipuladorExcecaoGlobal extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(ProdutoExistenteExcecao.class)
-  public ResponseEntity<?> manipulaProdutoExistenteExcecao(
+  public ResponseEntity<ProblemDetail> manipulaProdutoExistenteExcecao(
       ProdutoExistenteExcecao ex, WebRequest request) {
     ProblemDetail detalheProblema =
-        this.createProblemDetail(
-            ex, HttpStatus.BAD_REQUEST, ex.getMessage(), (String) null, (Object[]) null, request);
-    return new ResponseEntity<>(detalheProblema, HttpStatus.BAD_REQUEST);
+        this.createProblemDetail(ex, HttpStatus.BAD_REQUEST, ex.getMessage(), null, null, request);
+    return ResponseEntity.badRequest().body(detalheProblema);
   }
 
   @ExceptionHandler(ProdutoNaoEncontratoExcecao.class)
-  public ResponseEntity<?> manipulaProdutoNaoEncontradoExcecao(
+  public ResponseEntity<ProblemDetail> manipulaProdutoNaoEncontradoExcecao(
       ProdutoNaoEncontratoExcecao ex, WebRequest request) {
     ProblemDetail detalheProblema =
-        this.createProblemDetail(
-            ex, HttpStatus.NOT_FOUND, ex.getMessage(), (String) null, (Object[]) null, request);
+        this.createProblemDetail(ex, HttpStatus.NOT_FOUND, ex.getMessage(), null, null, request);
     return new ResponseEntity<>(detalheProblema, HttpStatus.NOT_FOUND);
   }
 
   @ExceptionHandler(Exception.class)
-  public ResponseEntity<?> handleGlobalException(Exception ex, WebRequest request) {
+  public ResponseEntity<ProblemDetail> handleGlobalException(Exception ex, WebRequest request) {
     ProblemDetail detalheProblema =
         this.createProblemDetail(
-            ex,
-            HttpStatus.INTERNAL_SERVER_ERROR,
-            "Erro interno da aplicação",
-            (String) null,
-            (Object[]) null,
-            request);
-    return new ResponseEntity<>(detalheProblema, HttpStatus.INTERNAL_SERVER_ERROR);
+            ex, HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno da aplicação", null, null, request);
+    return ResponseEntity.internalServerError().body(detalheProblema);
   }
 }
