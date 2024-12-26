@@ -1,10 +1,28 @@
 spring:
+  application:
+    name: srv-produto
+  output:
+    ansi:
+      enabled: ALWAYS
   datasource:
-    url: ${POSTGRES_DB_URL}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
-    driver-class-name: org.postgresql.Driver
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: ${DB_DRIVER_CLASS_NAME}
   jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    open-in-view: false
+springdoc:
+  swagger-ui:
+    path: /api-docs.html
+  api-docs:
+    path: /api-docs
+info:
+  application:
+    name: srv-produto
+    description: Serviço de Produto
+    version: 1.0
+flyway:
+  enabled: false
