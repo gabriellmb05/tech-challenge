@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/produtos")
-public class ProdutoControladorAdaptador {
+public class ProdutoControlador implements ProdutoControladorSwagger {
   private final BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada;
   private final InsereProdutoPortaEntrada insereProdutoPortaEntrada;
   private final AlteraProdutoPortaEntrada alteraProdutoPortaEntrada;
   private final DeletaProdutoPortaEntrada deletaProdutoPortaEntrada;
   private final ProdutoEntradaMapeador produtoEntradaMapeador;
 
-  public ProdutoControladorAdaptador(
+  public ProdutoControlador(
       BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada,
       InsereProdutoPortaEntrada insereProdutoPortaEntrada,
       AlteraProdutoPortaEntrada alteraProdutoPortaEntrada,
@@ -34,32 +34,36 @@ public class ProdutoControladorAdaptador {
     this.produtoEntradaMapeador = produtoEntradaMapeador;
   }
 
+  @Override
   @GetMapping("/{id}")
-  public ResponseEntity<ProdutoDTO> buscaProdutoPorId(@PathVariable("id") long id) {
+  public ResponseEntity<ProdutoDTO> buscaProdutoPorId(@PathVariable("id") Long id) {
     Produto produto = buscaProdutoPorIdPortaEntrada.buscar(id);
     ProdutoDTO produtoDTO = produtoEntradaMapeador.paraProdutoDTO(produto);
     return ResponseEntity.ok().body(produtoDTO);
   }
 
+  @Override
   @PostMapping
-  public ResponseEntity<ProdutoDTO> InsereProduto(@Valid @RequestBody ProdutoDTO produtoDTO) {
+  public ResponseEntity<ProdutoDTO> insereProduto(@Valid @RequestBody ProdutoDTO produtoDTO) {
     Produto produto = produtoEntradaMapeador.paraProduto(produtoDTO);
     Produto produtoPersistido = insereProdutoPortaEntrada.inserir(produto);
     ProdutoDTO produtoPersistidoDTO = produtoEntradaMapeador.paraProdutoDTO(produtoPersistido);
     return ResponseEntity.status(HttpStatus.CREATED).body(produtoPersistidoDTO);
   }
 
+  @Override
   @PutMapping("/{id}")
   public ResponseEntity<ProdutoDTO> alteraProduto(
-      @PathVariable("id") long id, @Valid @RequestBody ProdutoDTO produtoDTO) {
+      @PathVariable("id") Long id, @Valid @RequestBody ProdutoDTO produtoDTO) {
     Produto produto = produtoEntradaMapeador.paraProduto(produtoDTO);
     Produto produtoPersistido = alteraProdutoPortaEntrada.alterar(id, produto);
     ProdutoDTO produtoPersistidoDTO = produtoEntradaMapeador.paraProdutoDTO(produtoPersistido);
     return ResponseEntity.ok().body(produtoPersistidoDTO);
   }
 
+  @Override
   @DeleteMapping("/{id}")
-  public ResponseEntity<ProdutoDTO> deletaProduto(@PathVariable("id") long id) {
+  public ResponseEntity<ProdutoDTO> deletaProduto(@PathVariable("id") Long id) {
     deletaProdutoPortaEntrada.deleta(id);
     return ResponseEntity.noContent().build();
   }
