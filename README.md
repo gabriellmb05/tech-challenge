@@ -1,59 +1,23 @@
-### Para subir a aplicação java e o banco de dados são necessários apenas dois passos:
-1. Alterar o arquivo .env adicionando os valores para as variáveis `POSTGRES_PASSWORD` e `POSTGRES_ROOT_PASSWORD`;
-2. Executar o comando `docker compose up --build`;
-3. Para validar se a aplicação e banco de dados subiram correramente você pode acessar no browser os endpoints abaixo. O endpoint `/clientes` realiza um consulta no banco de dados. 
-   - `localhost:8080/hello-world`
-   - `localhost:8080/clientes`
+# Tech Challenge 01
 
-## Estrutura de pastas
-`├── postgres
+## Visão Geral
 
-├── src
+Este projeto é uma aplicação baseada em Java que utiliza Maven para gerenciamento de dependências. A aplicação segue uma arquitetura hexagonal e inclui vários módulos e serviços.
 
-│   ├── main
+## Estrutura do Projeto
 
-│   │   ├── java
+- `tech-challenge-01`: Projeto pai
+- `hexagono`: Módulo que contém a lógica de negócio e interfaces
+- `srv-produto`: Módulo de serviço para gerenciamento de produtos
 
-│   │   │   └── br
+## Pré-requisitos
 
-│   │   │       └── com
+- Java 21
+- Maven 3.9.9
 
-│   │   │           └── on
+## Construindo o Projeto
 
-│   │   │               └── fiap
+Para construir o projeto, execute o seguinte comando a partir do diretório raiz:
 
-│   │   │                   ├── aplicacao
-
-│   │   │                   │   └── adaptadores
-
-│   │   │   │                   │       ├── controladores
-
-│   │   │   │                   │       └── dtos
-
-│   │   │                   ├── dominio
-
-│   │   │                   │   ├── adaptadores
-
-│   │   │                   │   └── portas
-
-│   │   │                   │       ├── interfaces
-
-│   │   │                   │       └── repositorios
-
-│   │   │                   └── infraestrutura
-
-│   │   │                       ├── adaptadores
-
-│   │   │                       │   └── repositorios
-
-│   │   │                       └── configuracao
-
-│   │   └── resources
-
-│   │       └── application.properties
-
-`
-
-
-
-
+```sh
+mvn clean package
