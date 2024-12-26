@@ -1,6 +1,6 @@
 package br.com.on.fiap.configuracao;
 
-import br.com.on.fiap.adaptadores.saida.persistencia.PersistenciaProdutoAdaptador;
+import br.com.on.fiap.adaptadores.saida.servico.PersistenciaProdutoAdaptador;
 import br.com.on.fiap.hexagono.casosdeuso.AlteraProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.BuscaProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.DeletaProdutoCasoDeUso;

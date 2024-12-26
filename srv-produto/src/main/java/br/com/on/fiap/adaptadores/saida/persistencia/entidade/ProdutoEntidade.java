@@ -1,4 +1,4 @@
-package br.com.on.fiap.adaptadores.saida.persistencia.repositorio.entidade;
+package br.com.on.fiap.adaptadores.saida.persistencia.entidade;
 
 import br.com.on.fiap.hexagono.dominio.Categoria;
 import jakarta.persistence.*;

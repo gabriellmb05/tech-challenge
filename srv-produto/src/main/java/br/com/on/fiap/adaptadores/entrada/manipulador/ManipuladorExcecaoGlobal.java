@@ -1,4 +1,4 @@
-package br.com.on.fiap.adaptadores.entrada.controlador;
+package br.com.on.fiap.adaptadores.entrada.manipulador;
 
 import br.com.on.fiap.hexagono.excecao.ProdutoExistenteExcecao;
 import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontratoExcecao;
