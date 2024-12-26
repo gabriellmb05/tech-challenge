@@ -77,15 +77,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <artifactId>flyway-core</artifactId>
-            <groupId>org.flywaydb</groupId>
-            <version>${flyway.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-database-postgresql</artifactId>
-            <version>${flyway.version}</version>
-            <scope>runtime</scope>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase-core.version}</version>
         </dependency>
     </dependencies>
     <parent>
@@ -103,7 +97,7 @@
         <postgresql.version>42.7.4</postgresql.version>
         <springdoc-openapi-starter-webmvc-ui.version>2.7.0</springdoc-openapi-starter-webmvc-ui.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
-        <flyway.version>10.22.0</flyway.version>
+        <liquibase-core.version>4.30.0</liquibase-core.version>
     </properties>
 
     <!-- Build Settings -->

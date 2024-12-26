@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Tiago
+      changes:
+        - createTable:
+            tableName: produtos
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: nome
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: categoria
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: preco
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ingredientes
+                  type: TEXT

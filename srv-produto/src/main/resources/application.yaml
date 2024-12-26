@@ -14,15 +14,15 @@ spring:
       ddl-auto: none
     show-sql: false
     open-in-view: false
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
 springdoc:
   swagger-ui:
-    path: /api-docs.html
+    path: /documentacao.html
   api-docs:
-    path: /api-docs
+    path: /documentacao
 info:
   application:
     name: srv-produto
     description: Serviço de Produto
     version: 1.0
-flyway:
-  enabled: false
