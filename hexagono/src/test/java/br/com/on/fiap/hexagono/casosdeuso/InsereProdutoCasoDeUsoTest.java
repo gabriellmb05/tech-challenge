@@ -24,7 +24,7 @@ class InsereProdutoCasoDeUsoTest {
 
   @Test
   @DisplayName("Dado um produto novo, quando inserir o produto, então ele deve ser salvo")
-  void givenNewProduct_whenInsertingProduct_thenItShouldBeSaved() {
+  void dadoProdutoNovo_quandoInserirProduto_entaoDeveSerSalvo() {
     Produto produto = new Produto();
     produto.setNome("Produto Teste");
     when(persisteProdutoPortaSaida.buscaProdutoPorNome(produto.getNome()))
@@ -40,7 +40,7 @@ class InsereProdutoCasoDeUsoTest {
 
   @Test
   @DisplayName("Dado um produto existente, quando inserir o produto, então deve lançar uma exceção")
-  void givenExistingProduct_whenInsertingProduct_thenItShouldThrowException() {
+  void dadoProdutoExistente_quandoInserirProduto_entaoDeveLancarExcecao() {
     Produto produto = new Produto();
     produto.setNome("Produto Teste");
     when(persisteProdutoPortaSaida.buscaProdutoPorNome(produto.getNome()))

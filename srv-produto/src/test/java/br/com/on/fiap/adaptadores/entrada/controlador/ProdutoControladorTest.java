@@ -48,7 +48,7 @@ class ProdutoControladorTest {
   @ParameterizedTest
   @MethodSource("produtoDTOProvider")
   @DisplayName("Dado um produto existente, quando buscar o produto, então ele deve ser retornado")
-  void givenExistingProduct_whenSearchingProduct_thenItShouldBeReturned(ProdutoDTO produtoDTO) {
+  void dadoProdutoExistente_quandoBuscarProduto_entaoDeveSerRetornado(ProdutoDTO produtoDTO) {
     Long id = produtoDTO.id();
     Produto produto = new Produto();
     when(buscaProdutoPorIdPortaEntrada.buscar(id)).thenReturn(produto);
@@ -65,7 +65,7 @@ class ProdutoControladorTest {
   @ParameterizedTest
   @MethodSource("produtoDTOProvider")
   @DisplayName("Dado um produto novo, quando inserir o produto, então ele deve ser salvo")
-  void givenNewProduct_whenInsertingProduct_thenItShouldBeSaved(ProdutoDTO produtoDTO) {
+  void dadoProdutoNovo_quandoInserirProduto_entaoDeveSerSalvo(ProdutoDTO produtoDTO) {
     Produto produto = new Produto();
     Produto produtoPersistido = new Produto();
     ProdutoDTO produtoPersistidoDTO =
@@ -87,7 +87,7 @@ class ProdutoControladorTest {
   @ParameterizedTest
   @MethodSource("produtoDTOProvider")
   @DisplayName("Dado um produto existente, quando alterar o produto, então ele deve ser atualizado")
-  void givenExistingProduct_whenAlteringProduct_thenItShouldBeUpdated(ProdutoDTO produtoDTO) {
+  void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado(ProdutoDTO produtoDTO) {
     Long id = produtoDTO.id();
     Produto produto = new Produto();
     Produto produtoPersistido = new Produto();
@@ -110,7 +110,7 @@ class ProdutoControladorTest {
   @ParameterizedTest
   @MethodSource("produtoDTOProvider")
   @DisplayName("Dado um produto existente, quando deletar o produto, então ele deve ser removido")
-  void givenExistingProduct_whenDeletingProduct_thenItShouldBeRemoved(ProdutoDTO produtoDTO) {
+  void dadoProdutoExistente_quandoDeletarProduto_entaoDeveSerRemovido(ProdutoDTO produtoDTO) {
     Long id = produtoDTO.id();
 
     ResponseEntity<ProdutoDTO> response = produtoControlador.deletaProduto(id);

@@ -25,7 +25,7 @@ class ManipuladorExcecaoGlobalTest {
   @Test
   @DisplayName(
       "Dado uma exceção ProdutoExistenteExcecao, quando manipulada, então deve retornar BAD_REQUEST")
-  void givenProdutoExistenteExcecao_whenHandled_thenShouldReturnBadRequest() {
+  void dadoProdutoExistenteExcecao_quandoManipulada_entaoDeveRetornarBadRequest() {
     ProdutoExistenteExcecao ex = new ProdutoExistenteExcecao("Produto já existe");
 
     ResponseEntity<ProblemDetail> response =
@@ -38,7 +38,7 @@ class ManipuladorExcecaoGlobalTest {
   @Test
   @DisplayName(
       "Dado uma exceção ProdutoNaoEncontratoExcecao, quando manipulada, então deve retornar NOT_FOUND")
-  void givenProdutoNaoEncontratoExcecao_whenHandled_thenShouldReturnNotFound() {
+  void dadoProdutoNaoEncontratoExcecao_quandoManipulada_entaoDeveRetornarNotFound() {
     ProdutoNaoEncontratoExcecao ex = new ProdutoNaoEncontratoExcecao("Produto não encontrado");
 
     ResponseEntity<ProblemDetail> response =
@@ -51,7 +51,7 @@ class ManipuladorExcecaoGlobalTest {
   @Test
   @DisplayName(
       "Dado uma exceção genérica, quando manipulada, então deve retornar INTERNAL_SERVER_ERROR")
-  void givenGenericException_whenHandled_thenShouldReturnInternalServerError() {
+  void dadoExcecaoGenerica_quandoManipulada_entaoDeveRetornarInternalServerError() {
     Exception ex = new Exception("Erro interno da aplicação");
 
     ResponseEntity<ProblemDetail> response =

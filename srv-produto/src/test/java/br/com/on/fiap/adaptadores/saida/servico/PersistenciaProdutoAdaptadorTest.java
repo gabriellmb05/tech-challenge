@@ -28,7 +28,7 @@ class PersistenciaProdutoAdaptadorTest {
 
   @Test
   @DisplayName("Dado um produto existente, quando buscar por ID, então ele deve ser retornado")
-  void givenExistingProduct_whenSearchingById_thenItShouldBeReturned() {
+  void dadoProdutoExistente_quandoBuscarPorId_entaoDeveSerRetornado() {
     Long id = 1L;
     ProdutoEntidade produtoEntidade = new ProdutoEntidade();
     Produto produto = new Produto();
@@ -45,7 +45,7 @@ class PersistenciaProdutoAdaptadorTest {
 
   @Test
   @DisplayName("Dado um produto novo, quando salvar, então ele deve ser persistido")
-  void givenNewProduct_whenSaving_thenItShouldBePersisted() {
+  void dadoProdutoNovo_quandoSalvar_entaoDeveSerPersistido() {
     Produto produto = new Produto();
     ProdutoEntidade produtoEntidade = new ProdutoEntidade();
     ProdutoEntidade produtoPersistidoEntidade = new ProdutoEntidade();
@@ -64,7 +64,7 @@ class PersistenciaProdutoAdaptadorTest {
 
   @Test
   @DisplayName("Dado um produto existente, quando buscar por nome, então ele deve ser retornado")
-  void givenExistingProduct_whenSearchingByName_thenItShouldBeReturned() {
+  void dadoProdutoExistente_quandoBuscarPorNome_entaoDeveSerRetornado() {
     String nome = "Produto Teste";
     ProdutoEntidade produtoEntidade = new ProdutoEntidade();
     Produto produto = new Produto();
@@ -81,7 +81,7 @@ class PersistenciaProdutoAdaptadorTest {
 
   @Test
   @DisplayName("Dado um produto existente, quando deletar por ID, então ele deve ser removido")
-  void givenExistingProduct_whenDeletingById_thenItShouldBeRemoved() {
+  void dadoProdutoExistente_quandoDeletarPorId_entaoDeveSerRemovido() {
     Long id = 1L;
 
     persistenciaProdutoAdaptador.deletaProdutoPorId(id);

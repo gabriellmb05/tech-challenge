@@ -23,7 +23,7 @@ class AlteraProdutoCasoDeUsoTest {
 
   @Test
   @DisplayName("Dado um produto existente, quando alterar o produto, então ele deve ser atualizado")
-  void givenExistingProduct_whenAlteringProduct_thenItShouldBeUpdated() {
+  void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado() {
     Long id = 1L;
     Produto produto = new Produto();
     produto.setNome("Produto Teste");
@@ -43,7 +43,7 @@ class AlteraProdutoCasoDeUsoTest {
   @Test
   @DisplayName(
       "Dado um produto não existente, quando alterar o produto, então deve lançar uma exceção")
-  void givenNonExistingProduct_whenAlteringProduct_thenItShouldThrowException() {
+  void dadoProdutoNaoExistente_quandoAlterarProduto_entaoDeveLancarExcecao() {
     Long id = 1L;
     Produto produto = new Produto();
 

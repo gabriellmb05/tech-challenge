@@ -34,7 +34,7 @@ class ProdutoBeanConfiguracaoTest {
   @Test
   @DisplayName(
       "Dado a configuração de beans, quando buscar ProdutoPorId, então deve retornar a instância correta")
-  void givenBeanConfiguration_whenGetBuscaProdutoPorId_thenShouldReturnCorrectInstance() {
+  void dadoConfiguracaoDeBeans_quandoBuscarProdutoPorId_entaoDeveRetornarInstanciaCorreta() {
     AnnotationConfigApplicationContext context =
         new AnnotationConfigApplicationContext(TestConfig.class);
     BuscaProdutoPorIdPortaEntrada bean = context.getBean(BuscaProdutoPorIdPortaEntrada.class);
@@ -46,7 +46,7 @@ class ProdutoBeanConfiguracaoTest {
   @Test
   @DisplayName(
       "Dado a configuração de beans, quando inserir Produto, então deve retornar a instância correta")
-  void givenBeanConfiguration_whenGetInsereProduto_thenShouldReturnCorrectInstance() {
+  void dadoConfiguracaoDeBeans_quandoInserirProduto_entaoDeveRetornarInstanciaCorreta() {
     AnnotationConfigApplicationContext context =
         new AnnotationConfigApplicationContext(TestConfig.class);
     InsereProdutoPortaEntrada bean = context.getBean(InsereProdutoPortaEntrada.class);
@@ -58,7 +58,7 @@ class ProdutoBeanConfiguracaoTest {
   @Test
   @DisplayName(
       "Dado a configuração de beans, quando alterar Produto, então deve retornar a instância correta")
-  void givenBeanConfiguration_whenGetAlteraProduto_thenShouldReturnCorrectInstance() {
+  void dadoConfiguracaoDeBeans_quandoAlterarProduto_entaoDeveRetornarInstanciaCorreta() {
     AnnotationConfigApplicationContext context =
         new AnnotationConfigApplicationContext(TestConfig.class);
     AlteraProdutoPortaEntrada bean = context.getBean(AlteraProdutoPortaEntrada.class);
@@ -70,7 +70,7 @@ class ProdutoBeanConfiguracaoTest {
   @Test
   @DisplayName(
       "Dado a configuração de beans, quando deletar Produto, então deve retornar a instância correta")
-  void givenBeanConfiguration_whenGetDeletaProduto_thenShouldReturnCorrectInstance() {
+  void dadoConfiguracaoDeBeans_quandoDeletarProduto_entaoDeveRetornarInstanciaCorreta() {
     AnnotationConfigApplicationContext context =
         new AnnotationConfigApplicationContext(TestConfig.class);
     DeletaProdutoPortaEntrada bean = context.getBean(DeletaProdutoPortaEntrada.class);

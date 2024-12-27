@@ -23,7 +23,7 @@ class DeletaProdutoCasoDeUsoTest {
 
   @Test
   @DisplayName("Dado um produto existente, quando deletar o produto, então ele deve ser removido")
-  void givenExistingProduct_whenDeletingProduct_thenItShouldBeRemoved() {
+  void dadoProdutoExistente_quandoDeletarProduto_entaoDeveSerRemovido() {
     Long id = 1L;
     when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.of(new Produto()));
 
@@ -36,7 +36,7 @@ class DeletaProdutoCasoDeUsoTest {
   @Test
   @DisplayName(
       "Dado um produto não existente, quando deletar o produto, então deve lançar uma exceção")
-  void givenNonExistingProduct_whenDeletingProduct_thenItShouldThrowException() {
+  void dadoProdutoNaoExistente_quandoDeletarProduto_entaoDeveLancarExcecao() {
     Long id = 1L;
     when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.empty());
 
