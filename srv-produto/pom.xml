@@ -86,7 +86,6 @@
         <groupId>br.com.on.fiap</groupId>
         <artifactId>tech-challenge-01</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/>
     </parent>
     <properties>
         <spring.version>3.4.1</spring.version>
@@ -96,6 +95,7 @@
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <liquibase-core.version>4.30.0</liquibase-core.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
     </properties>
 
     <!-- Build Settings -->
@@ -105,6 +105,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -120,6 +127,19 @@
                             <version>${org.mapstruct.version}</version>
                         </path>
                     </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <mainClass>br.com.on.fiap.SrvProdutoAplicacao</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
