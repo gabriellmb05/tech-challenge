@@ -2,16 +2,20 @@ package br.com.on.fiap.adaptadores.entrada.controlador;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoMapeador;
+import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.portas.entrada.AlteraProdutoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.BuscaProdutoPorIdPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.DeletaProdutoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.InsereProdutoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.ListarProdutoPortaEntrada;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/produtos")
@@ -26,15 +30,19 @@ public class ProdutoControladorAdaptador {
 
     private final DeletaProdutoPortaEntrada deletaProdutoPortaEntrada;
 
+    private final ListarProdutoPortaEntrada listarProdutoPortaEntrada;
+
     @Autowired
     public ProdutoControladorAdaptador(BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada,
                                        InsereProdutoPortaEntrada insereProdutoPortaEntrada,
                                        AlteraProdutoPortaEntrada alteraProdutoPortaEntrada,
-                                       DeletaProdutoPortaEntrada deletaProdutoPortaEntrada){
+                                       DeletaProdutoPortaEntrada deletaProdutoPortaEntrada,
+                                       ListarProdutoPortaEntrada listarProdutoPortaEntrada){
         this.buscaProdutoPorIdPortaEntrada = buscaProdutoPorIdPortaEntrada;
         this.insereProdutoPortaEntrada = insereProdutoPortaEntrada;
         this.alteraProdutoPortaEntrada = alteraProdutoPortaEntrada;
         this.deletaProdutoPortaEntrada = deletaProdutoPortaEntrada;
+        this.listarProdutoPortaEntrada = listarProdutoPortaEntrada;
     }
 
     @GetMapping("/{id}")
@@ -42,6 +50,24 @@ public class ProdutoControladorAdaptador {
         Produto produto = buscaProdutoPorIdPortaEntrada.buscar(id);
         ProdutoDTO produtoDTO = ProdutoMapeador.produtoParaProdutoDTO(produto);
         return ResponseEntity.ok().body(produtoDTO);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<Produto>> listarProdutos(){
+        List<Produto> produtos = listarProdutoPortaEntrada.listarTodosProdutos();
+        if (produtos.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return ResponseEntity.ok().body(produtos);
+    }
+
+    @GetMapping(value = "/categoria/{categoria}")
+    public ResponseEntity<List<Produto>> listarProdutosPorCategoria(@PathVariable("categoria") String categoria){
+        List<Produto> produtos = listarProdutoPortaEntrada.listarPorCategoria(Categoria.buscaCategoria(categoria));
+        if (produtos.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return ResponseEntity.ok().body(produtos);
     }
 
     @PostMapping
