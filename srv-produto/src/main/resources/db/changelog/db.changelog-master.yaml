@@ -1,31 +1,7 @@
 databaseChangeLog:
-  - changeSet:
-      id: 1
-      author: Tiago
-      changes:
-        - createTable:
-            tableName: produtos
-            columns:
-              - column:
-                  name: id
-                  type: SERIAL
-                  constraints:
-                    primaryKey: true
-              - column:
-                  name: nome
-                  type: TEXT
-                  constraints:
-                    nullable: false
-              - column:
-                  name: categoria
-                  type: TEXT
-                  constraints:
-                    nullable: false
-              - column:
-                  name: preco
-                  type: VARCHAR(100)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: ingredientes
-                  type: TEXT
+  - include:
+      file: classpath:/db/changelog/db.changelog-1.yaml
+      labels: "Create table produtos"
+  - include:
+      file: classpath:/db/changelog/db.changelog-2.yaml
+      labels: "Insert data into produtos"

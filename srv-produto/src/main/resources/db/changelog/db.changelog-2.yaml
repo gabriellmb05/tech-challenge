@@ -1,0 +1,80 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Tiago
+      changes:
+        - insert:
+            tableName: produtos
+            columns:
+              - column:
+                  name: nome
+                  value: "Pizza Margherita"
+              - column:
+                  name: categoria
+                  value: "Pizza"
+              - column:
+                  name: preco
+                  value: "25.00"
+              - column:
+                  name: ingredientes
+                  value: "Tomato, Mozzarella, Basil"
+        - insert:
+            tableName: produtos
+            columns:
+              - column:
+                  name: nome
+                  value: "Cheeseburger"
+              - column:
+                  name: categoria
+                  value: "Sandwich"
+              - column:
+                  name: preco
+                  value: "15.00"
+              - column:
+                  name: ingredientes
+                  value: "Beef, Cheese, Lettuce, Tomato, Bun"
+        - insert:
+            tableName: produtos
+            columns:
+              - column:
+                  name: nome
+                  value: "Caesar Salad"
+              - column:
+                  name: categoria
+                  value: "Salad"
+              - column:
+                  name: preco
+                  value: "12.00"
+              - column:
+                  name: ingredientes
+                  value: "Romaine, Parmesan, Croutons, Caesar Dressing"
+        - insert:
+            tableName: produtos
+            columns:
+              - column:
+                  name: nome
+                  value: "Spaghetti Carbonara"
+              - column:
+                  name: categoria
+                  value: "Pasta"
+              - column:
+                  name: preco
+                  value: "18.00"
+              - column:
+                  name: ingredientes
+                  value: "Spaghetti, Eggs, Pancetta, Parmesan, Black Pepper"
+        - insert:
+            tableName: produtos
+            columns:
+              - column:
+                  name: nome
+                  value: "Chocolate Cake"
+              - column:
+                  name: categoria
+                  value: "Dessert"
+              - column:
+                  name: preco
+                  value: "8.00"
+              - column:
+                  name: ingredientes
+                  value: "Flour, Sugar, Cocoa, Baking Powder, Eggs, Milk, Butter"
