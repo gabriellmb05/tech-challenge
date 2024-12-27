@@ -3,6 +3,8 @@ package br.com.on.fiap.adaptadores.saida.persistencia.mapeador;
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.entidade.ProdutoEntidade;
 import br.com.on.fiap.hexagono.dominio.Produto;
 
+import java.util.List;
+
 public class ProdutoEntidadeMapeador {
 
 
