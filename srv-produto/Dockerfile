@@ -1,4 +1,4 @@
-FROM parent:0.0.1 AS SRV_PRODUTO_BUILD
+FROM parent:0.0.1 AS srv_produto_build
 
 WORKDIR /app
 
@@ -12,7 +12,7 @@ FROM openjdk:21-slim
 
 WORKDIR /opt/app
 
-COPY --from=SRV_PRODUTO_BUILD /app/srv-produto/target/*.jar /app.jar
+COPY --from=srv_produto_build /app/srv-produto/target/*.jar /app.jar
 
 EXPOSE 8080
 
