@@ -39,7 +39,7 @@ class ManipuladorExcecaoGlobalTest {
   @DisplayName(
       "Dado uma exceção ProdutoNaoEncontratoExcecao, quando manipulada, então deve retornar NOT_FOUND")
   void dadoProdutoNaoEncontratoExcecao_quandoManipulada_entaoDeveRetornarNotFound() {
-    ProdutoNaoEncontratoExcecao ex = new ProdutoNaoEncontratoExcecao("Produto não encontrado");
+    ProdutoNaoEncontratoExcecao ex = new ProdutoNaoEncontratoExcecao(0L);
 
     ResponseEntity<ProblemDetail> response =
         manipuladorExcecaoGlobal.manipulaProdutoNaoEncontradoExcecao(ex, request);

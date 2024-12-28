@@ -19,8 +19,7 @@ public class DeletaProdutoCasoDeUso implements DeletaProdutoPortaEntrada {
         .ifPresentOrElse(
             produto -> persisteProdutoPortaSaida.deletaProdutoPorId(id),
             () -> {
-              throw new ProdutoNaoEncontratoExcecao(
-                  String.format("Produto (%d) não encontrado", id));
+              throw new ProdutoNaoEncontratoExcecao(id);
             });
   }
 }

@@ -17,9 +17,6 @@ public class BuscaProdutoCasoDeUso implements BuscaProdutoPorIdPortaEntrada {
   @Override
   public Produto buscar(Long id) {
     Optional<Produto> produtoBancoDados = persisteProdutoPortaSaida.buscaProdutoPorId(id);
-    return produtoBancoDados.orElseThrow(
-        () ->
-            new ProdutoNaoEncontratoExcecao(
-                String.format("Produto de id (%d) não encontrado", id)));
+    return produtoBancoDados.orElseThrow(() -> new ProdutoNaoEncontratoExcecao(id));
   }
 }

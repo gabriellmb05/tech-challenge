@@ -17,9 +17,7 @@ public class AlteraProdutoCasoDeUso implements AlteraProdutoPortaEntrada {
   public Produto alterar(Long id, Produto produto) {
     persisteProdutoPortaSaida
         .buscaProdutoPorId(id)
-        .orElseThrow(
-            () ->
-                new ProdutoNaoEncontratoExcecao(String.format("Produto (%d) não encontrado", id)));
+        .orElseThrow(() -> new ProdutoNaoEncontratoExcecao(id));
     produto.setId(id);
     return persisteProdutoPortaSaida.salvaProduto(produto);
   }

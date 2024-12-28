@@ -20,8 +20,7 @@ public class InsereProdutoCasoDeUso implements InsereProdutoPortaEntrada {
         persisteProdutoPortaSaida.buscaProdutoPorNome(produto.getNome());
     produtoBancoDados.ifPresent(
         p -> {
-          throw new ProdutoExistenteExcecao(
-              String.format("Produto (%s) já cadastrado", p.getNome()));
+          throw new ProdutoExistenteExcecao(p.getNome());
         });
     return persisteProdutoPortaSaida.salvaProduto(produto);
   }
