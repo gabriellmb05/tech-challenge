@@ -11,10 +11,10 @@ databaseChangeLog:
                   value: "Pizza Margherita"
               - column:
                   name: categoria
-                  value: "Pizza"
+                  value: "LANCHE"
               - column:
                   name: preco
-                  value: "25.00"
+                  valueNumeric: 25.00
               - column:
                   name: ingredientes
                   value: "Tomato, Mozzarella, Basil"
@@ -26,10 +26,10 @@ databaseChangeLog:
                   value: "Cheeseburger"
               - column:
                   name: categoria
-                  value: "Sandwich"
+                  value: "LANCHE"
               - column:
                   name: preco
-                  value: "15.00"
+                  valueNumeric: 15.00
               - column:
                   name: ingredientes
                   value: "Beef, Cheese, Lettuce, Tomato, Bun"
@@ -41,10 +41,10 @@ databaseChangeLog:
                   value: "Caesar Salad"
               - column:
                   name: categoria
-                  value: "Salad"
+                  value: "ACOMPANHAMENTO"
               - column:
                   name: preco
-                  value: "12.00"
+                  valueNumeric: 12.00
               - column:
                   name: ingredientes
                   value: "Romaine, Parmesan, Croutons, Caesar Dressing"
@@ -56,10 +56,10 @@ databaseChangeLog:
                   value: "Spaghetti Carbonara"
               - column:
                   name: categoria
-                  value: "Pasta"
+                  value: "ACOMPANHAMENTO"
               - column:
                   name: preco
-                  value: "18.00"
+                  valueNumeric: 18.00
               - column:
                   name: ingredientes
                   value: "Spaghetti, Eggs, Pancetta, Parmesan, Black Pepper"
@@ -71,10 +71,10 @@ databaseChangeLog:
                   value: "Chocolate Cake"
               - column:
                   name: categoria
-                  value: "Dessert"
+                  value: "SOBREMESA"
               - column:
                   name: preco
-                  value: "8.00"
+                  valueNumeric: 8.00
               - column:
                   name: ingredientes
                   value: "Flour, Sugar, Cocoa, Baking Powder, Eggs, Milk, Butter"

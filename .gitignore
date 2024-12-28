@@ -12,7 +12,8 @@ target/
 *.iws
 *.iml
 *.ipr
-.env
+.env.local
+.env.docker
 
 ### Eclipse ###
 .apt_generated

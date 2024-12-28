@@ -1,10 +1,10 @@
 package br.com.on.fiap.hexagono.dominio;
 
 public enum Categoria {
-  Lanche,
-  Acompanhamento,
-  Bebida,
-  Sobremesa;
+  LANCHE,
+  ACOMPANHAMENTO,
+  BEBIDA,
+  SOBREMESA;
 
   public static Categoria buscaCategoria(String categoria) {
     return Categoria.valueOf(categoria);
