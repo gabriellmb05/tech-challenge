@@ -12,7 +12,7 @@ services:
     restart: always
     shm_size: 128mb
     env_file:
-      - .env.docker
+      - .env
     ports:
       - "5432:5432"
     networks:
@@ -28,7 +28,7 @@ services:
       dockerfile: Dockerfile
     image: srv-produto:0.0.1
     env_file:
-      - .env.docker
+      - .env
     ports:
       - "8080:8080"
     networks:

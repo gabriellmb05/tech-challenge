@@ -2,10 +2,6 @@ FROM parent:0.0.1 AS srv_produto_build
 
 WORKDIR /app
 
-COPY --from=parent:0.0.1 /app/pom.xml .
-COPY --from=parent:0.0.1 /app/srv-produto/pom.xml ./srv-produto/
-COPY --from=parent:0.0.1 /app/srv-produto/src ./srv-produto/src/
-
 RUN mvn spotless:apply && mvn -B -e clean install -DskipTests
 
 FROM openjdk:21-slim

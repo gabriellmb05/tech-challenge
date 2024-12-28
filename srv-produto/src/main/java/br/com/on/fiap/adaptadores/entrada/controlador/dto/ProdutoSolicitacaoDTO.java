@@ -8,6 +8,7 @@ public record ProdutoSolicitacaoDTO(
     @NotNull(message = "O atributo categoria é obrigatório") String categoria,
     @NotNull(message = "O atributo preço é obrigatório") BigDecimal preco)
     implements ProdutoBaseDTO {
+
   @Override
   public String getNome() {
     return nome;
