@@ -1,6 +1,7 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.mapeador;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import org.mapstruct.Mapper;
@@ -11,10 +12,10 @@ import org.mapstruct.Named;
 public interface ProdutoEntradaMapeador {
 
   @Mapping(target = "categoria", expression = "java(produto.getCategoria().name())")
-  ProdutoDTO paraProdutoDTO(Produto produto);
+  ProdutoRespostaDTO paraProdutoDTO(Produto produto);
 
   @Mapping(target = "categoria", qualifiedByName = "getCategoria")
-  Produto paraProduto(ProdutoDTO produtoDTO);
+  Produto paraProduto(ProdutoSolicitacaoDTO produtoSolicitacaoDTO);
 
   @Named("getCategoria")
   default Categoria getCategoria(String categoria) {

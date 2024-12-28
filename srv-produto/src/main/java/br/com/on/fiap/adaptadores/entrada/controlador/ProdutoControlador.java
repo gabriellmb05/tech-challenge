@@ -1,6 +1,7 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.portas.entrada.AlteraProdutoPortaEntrada;
@@ -36,34 +37,38 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
 
   @Override
   @GetMapping("/{id}")
-  public ResponseEntity<ProdutoDTO> buscaProdutoPorId(@PathVariable("id") Long id) {
+  public ResponseEntity<ProdutoRespostaDTO> buscaProdutoPorId(@PathVariable("id") Long id) {
     Produto produto = buscaProdutoPorIdPortaEntrada.buscar(id);
-    ProdutoDTO produtoDTO = produtoEntradaMapeador.paraProdutoDTO(produto);
-    return ResponseEntity.ok().body(produtoDTO);
+    ProdutoRespostaDTO produtoRespostaDTO = produtoEntradaMapeador.paraProdutoDTO(produto);
+    return ResponseEntity.ok().body(produtoRespostaDTO);
   }
 
   @Override
   @PostMapping
-  public ResponseEntity<ProdutoDTO> insereProduto(@Valid @RequestBody ProdutoDTO produtoDTO) {
-    Produto produto = produtoEntradaMapeador.paraProduto(produtoDTO);
+  public ResponseEntity<ProdutoRespostaDTO> insereProduto(
+      @Valid @RequestBody ProdutoSolicitacaoDTO produtoSolicitacaoDTO) {
+    Produto produto = produtoEntradaMapeador.paraProduto(produtoSolicitacaoDTO);
     Produto produtoPersistido = insereProdutoPortaEntrada.inserir(produto);
-    ProdutoDTO produtoPersistidoDTO = produtoEntradaMapeador.paraProdutoDTO(produtoPersistido);
+    ProdutoRespostaDTO produtoPersistidoDTO =
+        produtoEntradaMapeador.paraProdutoDTO(produtoPersistido);
     return ResponseEntity.status(HttpStatus.CREATED).body(produtoPersistidoDTO);
   }
 
   @Override
   @PutMapping("/{id}")
-  public ResponseEntity<ProdutoDTO> alteraProduto(
-      @PathVariable("id") Long id, @Valid @RequestBody ProdutoDTO produtoDTO) {
-    Produto produto = produtoEntradaMapeador.paraProduto(produtoDTO);
+  public ResponseEntity<ProdutoRespostaDTO> alteraProduto(
+      @PathVariable("id") Long id,
+      @Valid @RequestBody ProdutoSolicitacaoDTO produtoSolicitacaoDTO) {
+    Produto produto = produtoEntradaMapeador.paraProduto(produtoSolicitacaoDTO);
     Produto produtoPersistido = alteraProdutoPortaEntrada.alterar(id, produto);
-    ProdutoDTO produtoPersistidoDTO = produtoEntradaMapeador.paraProdutoDTO(produtoPersistido);
+    ProdutoRespostaDTO produtoPersistidoDTO =
+        produtoEntradaMapeador.paraProdutoDTO(produtoPersistido);
     return ResponseEntity.ok().body(produtoPersistidoDTO);
   }
 
   @Override
   @DeleteMapping("/{id}")
-  public ResponseEntity<ProdutoDTO> deletaProduto(@PathVariable("id") Long id) {
+  public ResponseEntity<Void> deletaProduto(@PathVariable("id") Long id) {
     deletaProdutoPortaEntrada.deleta(id);
     return ResponseEntity.noContent().build();
   }

@@ -1,6 +1,7 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -21,7 +22,7 @@ public interface ProdutoControladorSwagger {
         @ApiResponse(responseCode = "404", description = "Produto não encontrado")
       })
   @GetMapping("/{id}")
-  ResponseEntity<ProdutoDTO> buscaProdutoPorId(Long id);
+  ResponseEntity<ProdutoRespostaDTO> buscaProdutoPorId(Long id);
 
   @Operation(summary = "Insere um novo produto", description = "Insere um novo produto no sistema")
   @ApiResponses(
@@ -30,7 +31,7 @@ public interface ProdutoControladorSwagger {
         @ApiResponse(responseCode = "400", description = "Dados inválidos")
       })
   @PostMapping
-  ResponseEntity<ProdutoDTO> insereProduto(ProdutoDTO produtoDTO);
+  ResponseEntity<ProdutoRespostaDTO> insereProduto(ProdutoSolicitacaoDTO produtoSolicitacaoDTO);
 
   @Operation(summary = "Altera um produto", description = "Altera um produto existente no sistema")
   @ApiResponses(
@@ -39,7 +40,8 @@ public interface ProdutoControladorSwagger {
         @ApiResponse(responseCode = "404", description = "Produto não encontrado")
       })
   @PutMapping("/{id}")
-  ResponseEntity<ProdutoDTO> alteraProduto(Long id, ProdutoDTO produtoDTO);
+  ResponseEntity<ProdutoRespostaDTO> alteraProduto(
+      Long id, ProdutoSolicitacaoDTO produtoSolicitacaoDTO);
 
   @Operation(summary = "Deleta um produto", description = "Deleta um produto existente no sistema")
   @ApiResponses(
@@ -48,5 +50,5 @@ public interface ProdutoControladorSwagger {
         @ApiResponse(responseCode = "404", description = "Produto não encontrado")
       })
   @DeleteMapping("/{id}")
-  ResponseEntity<ProdutoDTO> deletaProduto(Long id);
+  ResponseEntity<Void> deletaProduto(Long id);
 }
