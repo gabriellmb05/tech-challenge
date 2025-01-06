@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 2
+      id: cliente-2
       author: Max
       changes:
         - insert:

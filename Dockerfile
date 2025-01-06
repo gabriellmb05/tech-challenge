@@ -1,14 +1,23 @@
-FROM maven:3.9.9-amazoncorretto-21-debian-bookworm AS parent_build
+FROM maven:3.9.9-amazoncorretto-21-debian-bookworm AS builder
 
 WORKDIR /app
 
-COPY pom.xml .
+COPY . /app/
 
-COPY hexagono/pom.xml ./hexagono/
-COPY hexagono/src ./hexagono/src/
+RUN mvn spotless:apply && mvn -B -e clean install -DskipTests
 
-#COPY srv-produto/pom.xml ./srv-produto/
-#COPY srv-produto/src ./srv-produto/src/
+FROM openjdk:21-slim AS srv_cliente_builder
 
-COPY srv-cliente/pom.xml ./srv-cliente/
-COPY srv-cliente/src ./srv-cliente/src/
+WORKDIR /opt/app
+COPY --from=builder /app/srv-cliente/target/*.jar /srv-cliente.jar
+
+EXPOSE 8081
+ENTRYPOINT ["java", "-jar", "/srv-cliente.jar"]
+
+FROM openjdk:21-slim AS srv_produto_builder
+
+WORKDIR /opt/app
+COPY --from=builder /app/srv-produto/target/*.jar /srv-produto.jar
+
+EXPOSE 8082
+ENTRYPOINT ["java", "-jar", "/srv-produto.jar"]

@@ -1,12 +1,4 @@
 services:
-  parent:
-    build:
-      context: ../.
-      dockerfile: Dockerfile
-    image: parent:0.0.1
-    networks:
-      - app-network
-
   db:
     image: postgres
     restart: always
@@ -22,20 +14,33 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
 
-  app:
+  srv_cliente:
     build:
       context: .
       dockerfile: Dockerfile
-    image: srv-produto:0.0.1
+      target: srv_cliente_builder
     env_file:
       - .env
     ports:
-      - "8082:8082"
+      - "8081:8080"
     networks:
       - app-network
     depends_on:
       - db
-      - parent
+
+  srv_produto:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: srv_produto_builder
+    env_file:
+      - .env
+    ports:
+      - "8082:8080"
+    networks:
+      - app-network
+    depends_on:
+      - db
 
 networks:
   app-network:
