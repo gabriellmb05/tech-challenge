@@ -5,11 +5,11 @@ import java.util.Optional;
 
 public interface PersisteProdutoPortaSaida {
 
-  Optional<Produto> buscaProdutoPorId(Long id);
+	Optional<Produto> buscaProdutoPorId(Long id);
 
-  Produto salvaProduto(Produto produto);
+	Produto salvaProduto(Produto produto);
 
-  Optional<Produto> buscaProdutoPorNome(String nome);
+	Optional<Produto> buscaProdutoPorNome(String nome);
 
-  void deletaProdutoPorId(Long id);
+	void deletaProdutoPorId(Long id);
 }

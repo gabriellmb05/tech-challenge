@@ -13,21 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Tag(name = "Cliente", description = "APIs relacionadas a clientes")
 public interface ClienteControladorSwagger {
 
-  @Operation(summary = "Insere um novo cliente", description = "Insere um novo cliente no sistema")
-  @ApiResponses(
-      value = {
-        @ApiResponse(responseCode = "201", description = "Cliente criado"),
-        @ApiResponse(responseCode = "400", description = "Dados inválidos")
-      })
-  @PostMapping
-  ResponseEntity<ClienteRespostaDTO> insereCliente(ClienteSolicitacaoDTO clienteSolicitacaoDTO);
+	@Operation(summary = "Insere um novo cliente", description = "Insere um novo cliente no sistema")
+	@ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Cliente criado"),
+			@ApiResponse(responseCode = "400", description = "Dados inválidos")})
+	@PostMapping
+	ResponseEntity<ClienteRespostaDTO> insereCliente(ClienteSolicitacaoDTO clienteSolicitacaoDTO);
 
-  @Operation(summary = "Busca cliente por CPF", description = "Retorna um cliente pelo seu CPF")
-  @ApiResponses(
-      value = {
-        @ApiResponse(responseCode = "200", description = "Cliente encontrado"),
-        @ApiResponse(responseCode = "404", description = "Cliente não encontrado")
-      })
-  @GetMapping("/{cpf}")
-  ResponseEntity<ClienteRespostaDTO> buscaClientePorCpf(String cpf);
+	@Operation(summary = "Busca cliente por CPF", description = "Retorna um cliente pelo seu CPF")
+	@ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Cliente encontrado"),
+			@ApiResponse(responseCode = "404", description = "Cliente não encontrado")})
+	@GetMapping("/{cpf}")
+	ResponseEntity<ClienteRespostaDTO> buscaClientePorCpf(String cpf);
 }

@@ -11,27 +11,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersistenciaClienteAdaptador implements PersisteClientePortaSaida {
 
-  private final ClienteRepositorio clienteRepositorio;
-  private final ClienteSaidaMapeador clienteSaidaMapeador;
+	private final ClienteRepositorio clienteRepositorio;
+	private final ClienteSaidaMapeador clienteSaidaMapeador;
 
-  public PersistenciaClienteAdaptador(
-      ClienteRepositorio produtoRepositorio,
-      ClienteSaidaMapeador produtoSaidaMapeador,
-      ClienteRepositorio clienteRepositorio,
-      ClienteSaidaMapeador clienteSaidaMapeador) {
-    this.clienteRepositorio = clienteRepositorio;
-    this.clienteSaidaMapeador = clienteSaidaMapeador;
-  }
+	public PersistenciaClienteAdaptador(ClienteRepositorio produtoRepositorio,
+			ClienteSaidaMapeador produtoSaidaMapeador, ClienteRepositorio clienteRepositorio,
+			ClienteSaidaMapeador clienteSaidaMapeador) {
+		this.clienteRepositorio = clienteRepositorio;
+		this.clienteSaidaMapeador = clienteSaidaMapeador;
+	}
 
-  @Override
-  public Optional<Cliente> buscaClientePorCpf(String cpf) {
-    return clienteRepositorio.findByCpf(cpf).map(clienteSaidaMapeador::paraCliente);
-  }
+	@Override
+	public Optional<Cliente> buscaClientePorCpf(String cpf) {
+		return clienteRepositorio.findByCpf(cpf).map(clienteSaidaMapeador::paraCliente);
+	}
 
-  @Override
-  public Cliente salvaCliente(Cliente cliente) {
-    ClienteEntidade clienteEntidade = clienteSaidaMapeador.paraEntidade(cliente);
-    ClienteEntidade clientePersistido = clienteRepositorio.save(clienteEntidade);
-    return clienteSaidaMapeador.paraCliente(clientePersistido);
-  }
+	@Override
+	public Cliente salvaCliente(Cliente cliente) {
+		ClienteEntidade clienteEntidade = clienteSaidaMapeador.paraEntidade(cliente);
+		ClienteEntidade clientePersistido = clienteRepositorio.save(clienteEntidade);
+		return clienteSaidaMapeador.paraCliente(clientePersistido);
+	}
 }

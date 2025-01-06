@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ClienteSaidaMapeador {
 
-  Cliente paraCliente(ClienteEntidade clienteEntidade);
+	Cliente paraCliente(ClienteEntidade clienteEntidade);
 
-  ClienteEntidade paraEntidade(Cliente cliente);
+	ClienteEntidade paraEntidade(Cliente cliente);
 }

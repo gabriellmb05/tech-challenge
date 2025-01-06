@@ -16,7 +16,7 @@ databaseChangeLog:
                   name: email
                   value: "lectus@yahoo.edu"
               - column:
-                  name: dataNascimento
+                  name: data_nascimento
                   value: 2025-03-28
         - insert:
             tableName: clientes
@@ -31,7 +31,7 @@ databaseChangeLog:
                   name: email
                   value: "ut.molestie@google.edu"
               - column:
-                  name: dataNascimento
+                  name: data_nascimento
                   value: 2024-07-14
         - insert:
             tableName: clientes
@@ -46,7 +46,7 @@ databaseChangeLog:
                   name: email
                   value: "ullamcorper@icloud.com"
               - column:
-                  name: dataNascimento
+                  name: data_nascimento
                   value: 2025-05-11
         - insert:
             tableName: clientes
@@ -61,7 +61,7 @@ databaseChangeLog:
                   name: email
                   value: "luctus@icloud.couk"
               - column:
-                  name: dataNascimento
+                  name: data_nascimento
                   value: 2024-05-13
         - insert:
             tableName: clientes
@@ -76,7 +76,7 @@ databaseChangeLog:
                   name: email
                   value: "viverra@hotmail.ca"
               - column:
-                  name: dataNascimento
+                  name: data_nascimento
                   value: 2025-06-25
         - insert:
             tableName: clientes
@@ -91,7 +91,7 @@ databaseChangeLog:
                   name: email
                   value: "amet.consectetuer@yahoo.org"
               - column:
-                  name: dataNascimento
+                  name: data_nascimento
                   value: 2025-06-16
         - insert:
             tableName: clientes
@@ -106,7 +106,7 @@ databaseChangeLog:
                   name: email
                   value: "pharetra.nam@hotmail.edu"
               - column:
-                  name: dataNascimento
+                  name: data_nascimento
                   value: 2025-08-02
         - insert:
             tableName: clientes
@@ -121,7 +121,7 @@ databaseChangeLog:
                   name: email
                   value: "magna.et@icloud.couk"
               - column:
-                  name: dataNascimento
+                  name: data_nascimento
                   value: 2024-08-19
         - insert:
             tableName: clientes
@@ -136,7 +136,7 @@ databaseChangeLog:
                   name: email
                   value: "et.commodo@aol.ca"
               - column:
-                  name: dataNascimento
+                  name: data_nascimento
                   value: 2024-12-15
         - insert:
             tableName: clientes
@@ -151,5 +151,5 @@ databaseChangeLog:
                   name: email
                   value: "eu.enim.etiam@protonmail.net"
               - column:
-                  name: dataNascimento
+                  name: data_nascimento
                   value: 2024-08-29

@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 public interface ClienteBaseDTO {
 
-  String getNome();
+	String getNome();
 
-  String getCpf();
+	String getCpf();
 
-  String getEmail();
+	String getEmail();
 
-  LocalDate getDataNascimento();
+	LocalDate getDataNascimento();
 }
