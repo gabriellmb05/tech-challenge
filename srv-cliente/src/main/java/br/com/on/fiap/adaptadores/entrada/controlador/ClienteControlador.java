@@ -33,15 +33,13 @@ public class ClienteControlador implements ClienteControladorSwagger {
 			@Valid @RequestBody ClienteSolicitacaoDTO clienteSolicitacaoDTO) {
 		Cliente cliente = clienteEntradaMapeador.paraCliente(clienteSolicitacaoDTO);
 		Cliente clientePersistido = insereClientePortaEntrada.inserir(cliente);
-		ClienteRespostaDTO clienteRespostaDTO = clienteEntradaMapeador.paraClienteDTO(clientePersistido);
-		return ResponseEntity.status(HttpStatus.CREATED).body(clienteRespostaDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).body(clienteEntradaMapeador.paraClienteDTO(clientePersistido));
 	}
 
 	@Override
 	@GetMapping("/{cpf}")
 	public ResponseEntity<ClienteRespostaDTO> buscaClientePorCpf(@PathVariable("cpf") String cpf) {
 		Cliente cliente = buscaClientePorCpfPortaEntrada.buscar(cpf);
-		ClienteRespostaDTO clienteRespostaDTO = clienteEntradaMapeador.paraClienteDTO(cliente);
-		return ResponseEntity.ok().body(clienteRespostaDTO);
+		return ResponseEntity.ok().body(clienteEntradaMapeador.paraClienteDTO(cliente));
 	}
 }

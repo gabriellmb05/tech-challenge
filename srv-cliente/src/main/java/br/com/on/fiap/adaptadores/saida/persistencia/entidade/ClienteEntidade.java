@@ -22,6 +22,7 @@ public class ClienteEntidade {
 	private LocalDate dataNascimento;
 
 	public ClienteEntidade() {
+
 	}
 
 	public ClienteEntidade(Long id, String nome, String cpf, String email, LocalDate dataNascimento) {

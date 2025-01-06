@@ -17,8 +17,7 @@ public class BuscaClienteCasoDeUso implements BuscaClientePorCpfPortaEntrada {
 
 	@Override
 	public Cliente buscar(String cpf) {
-		Optional<Cliente> cliente = persisteClientePortaSaida.buscaClientePorCpf(cpf);
-		return cliente.orElseThrow(
+		return persisteClientePortaSaida.buscaClientePorCpf(cpf).orElseThrow(
 				() -> new ApplicationExcecaoPadrao(MessageError.MSG_ERRO_CLIENTE_NAO_CADASTRADO.getMensagem(), cpf));
 	}
 }

@@ -11,4 +11,5 @@ public interface ClienteEntradaMapeador {
 	ClienteRespostaDTO paraClienteDTO(Cliente cliente);
 
 	Cliente paraCliente(ClienteSolicitacaoDTO clienteSolicitacaoDTO);
+
 }

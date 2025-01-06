@@ -26,3 +26,6 @@ info:
     name: srv-cliente
     description: Serviço de Cliente
     version: 1.0
+logging:
+  level:
+    root: DEBUG

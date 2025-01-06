@@ -17,11 +17,14 @@ public class InsereClienteCasoDeUso implements InsereClientePortaEntrada {
 
 	@Override
 	public Cliente inserir(Cliente cliente) {
-		Optional<Cliente> clienteBancoDados = persisteClientePortaSaida.buscaClientePorCpf(cliente.getCpf());
-		clienteBancoDados.ifPresent(p -> {
-			throw new ApplicationExcecaoPadrao(MessageError.MSG_ERRO_CLIENTE_JA_CADASTRADO.getMensagem(),
-					cliente.getCpf());
+		persisteClientePortaSaida.buscaClientePorCpfOuEmail(cliente.getCpf(), cliente.getEmail()).ifPresent(p -> {
+			String text = p.getCpf().equals(cliente.getCpf()) ? "CPF" : "E-mail";
+			String valor = p.getCpf().equals(cliente.getCpf()) ? cliente.getCpf() : cliente.getEmail();
+			throw new ApplicationExcecaoPadrao(MessageError.MSG_ERRO_CPF_OU_EMAIL_JA_CADASTRADO.getMensagem(), text,
+					valor);
 		});
+
 		return persisteClientePortaSaida.salvaCliente(cliente);
 	}
+
 }
