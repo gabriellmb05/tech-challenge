@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
+import br.com.on.fiap.hexagono.casosdeuso.produto.InsereProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.excecao.ProdutoExistenteExcecao;
 import br.com.on.fiap.hexagono.portas.saida.PersisteProdutoPortaSaida;

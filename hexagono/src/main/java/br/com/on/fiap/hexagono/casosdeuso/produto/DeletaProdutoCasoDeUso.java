@@ -1,4 +1,4 @@
-package br.com.on.fiap.hexagono.casosdeuso;
+package br.com.on.fiap.hexagono.casosdeuso.produto;
 
 import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontratoExcecao;
 import br.com.on.fiap.hexagono.portas.entrada.DeletaProdutoPortaEntrada;

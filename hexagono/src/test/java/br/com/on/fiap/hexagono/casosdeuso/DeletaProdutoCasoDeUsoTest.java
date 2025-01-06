@@ -3,6 +3,7 @@ package br.com.on.fiap.hexagono.casosdeuso;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
+import br.com.on.fiap.hexagono.casosdeuso.produto.DeletaProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontratoExcecao;
 import br.com.on.fiap.hexagono.portas.saida.PersisteProdutoPortaSaida;
