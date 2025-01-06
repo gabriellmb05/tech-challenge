@@ -8,8 +8,4 @@ public interface PersisteClientePortaSaida {
   Optional<Cliente> buscaClientePorCpf(String cpf);
 
   Cliente salvaCliente(Cliente cliente);
-
-  Optional<Cliente> buscaClientePorNome(String nome);
-
-  void deletaClientePorId(Long id);
 }

@@ -18,7 +18,7 @@ public class InsereClienteCasoDeUso implements InsereClientePortaEntrada {
   @Override
   public Cliente inserir(Cliente cliente) {
     Optional<Cliente> clienteBancoDados =
-        persisteClientePortaSaida.buscaClientePorNome(cliente.getNome());
+        persisteClientePortaSaida.buscaClientePorCpf(cliente.getNome());
     clienteBancoDados.ifPresent(
         p -> {
           throw new ApplicationExcecaoPadrao(

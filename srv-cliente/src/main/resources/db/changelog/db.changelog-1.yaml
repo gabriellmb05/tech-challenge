@@ -27,5 +27,5 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: dataNascimento
+                  name: data_nascimento
                   type: DATE

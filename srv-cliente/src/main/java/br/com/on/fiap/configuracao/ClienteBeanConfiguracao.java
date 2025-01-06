@@ -1,8 +1,10 @@
 package br.com.on.fiap.configuracao;
 
+import br.com.on.fiap.adaptadores.saida.servico.PersistenciaClienteAdaptador;
 import br.com.on.fiap.hexagono.casosdeuso.BuscaClienteCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.InsereClienteCasoDeUso;
-import br.com.on.fiap.hexagono.portas.saida.PersisteClientePortaSaida;
+import br.com.on.fiap.hexagono.portas.entrada.BuscaClientePorCpfPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.InsereClientePortaEntrada;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,12 +12,14 @@ import org.springframework.context.annotation.Configuration;
 public class ClienteBeanConfiguracao {
 
   @Bean
-  public BuscaClienteCasoDeUso buscaCliente(PersisteClientePortaSaida persisteClientePortaSaida) {
-    return new BuscaClienteCasoDeUso(persisteClientePortaSaida);
+  public BuscaClientePorCpfPortaEntrada buscaCliente(
+      PersistenciaClienteAdaptador persistenciaClienteAdaptador) {
+    return new BuscaClienteCasoDeUso(persistenciaClienteAdaptador);
   }
 
   @Bean
-  public InsereClienteCasoDeUso insereCliente(PersisteClientePortaSaida persisteClientePortaSaida) {
-    return new InsereClienteCasoDeUso(persisteClientePortaSaida);
+  public InsereClientePortaEntrada insereCliente(
+      PersistenciaClienteAdaptador persistenciaClienteAdaptador) {
+    return new InsereClienteCasoDeUso(persistenciaClienteAdaptador);
   }
 }

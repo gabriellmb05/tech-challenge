@@ -7,7 +7,7 @@ public record ClienteSolicitacaoDTO(
     @NotNull(message = "O atributo nome é obrigatório") String nome,
     @NotNull(message = "O atributo cpf é obrigatório") String cpf,
     @NotNull(message = "O atributo email é obrigatório") String email,
-    @NotNull(message = "O atributo data nascimento é obrigatório") LocalDate dataNascimento)
+    LocalDate dataNascimento)
     implements ClienteBaseDTO {
 
   @Override
