@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ClienteEntradaMapeador {
 
-  ClienteRespostaDTO paraClienteDTO(Cliente cliente);
+	ClienteRespostaDTO paraClienteDTO(Cliente cliente);
 
-  Cliente paraCliente(ClienteSolicitacaoDTO clienteSolicitacaoDTO);
+	Cliente paraCliente(ClienteSolicitacaoDTO clienteSolicitacaoDTO);
 }

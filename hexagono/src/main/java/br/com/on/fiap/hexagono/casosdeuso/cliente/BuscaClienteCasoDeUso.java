@@ -9,18 +9,16 @@ import java.util.Optional;
 
 public class BuscaClienteCasoDeUso implements BuscaClientePorCpfPortaEntrada {
 
-  private final PersisteClientePortaSaida persisteClientePortaSaida;
+	private final PersisteClientePortaSaida persisteClientePortaSaida;
 
-  public BuscaClienteCasoDeUso(PersisteClientePortaSaida persisteClientePortaSaida) {
-    this.persisteClientePortaSaida = persisteClientePortaSaida;
-  }
+	public BuscaClienteCasoDeUso(PersisteClientePortaSaida persisteClientePortaSaida) {
+		this.persisteClientePortaSaida = persisteClientePortaSaida;
+	}
 
-  @Override
-  public Cliente buscar(String cpf) {
-    Optional<Cliente> cliente = persisteClientePortaSaida.buscaClientePorCpf(cpf);
-    return cliente.orElseThrow(
-        () ->
-            new ApplicationExcecaoPadrao(
-                MessageError.MSG_ERR_CLIENTE_NAO_CADASTRADO.getMensagem(), cpf));
-  }
+	@Override
+	public Cliente buscar(String cpf) {
+		Optional<Cliente> cliente = persisteClientePortaSaida.buscaClientePorCpf(cpf);
+		return cliente.orElseThrow(
+				() -> new ApplicationExcecaoPadrao(MessageError.MSG_ERR_CLIENTE_NAO_CADASTRADO.getMensagem(), cpf));
+	}
 }

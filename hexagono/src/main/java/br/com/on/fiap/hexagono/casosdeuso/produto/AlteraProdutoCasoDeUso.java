@@ -7,18 +7,16 @@ import br.com.on.fiap.hexagono.portas.saida.PersisteProdutoPortaSaida;
 
 public class AlteraProdutoCasoDeUso implements AlteraProdutoPortaEntrada {
 
-  private final PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+	private final PersisteProdutoPortaSaida persisteProdutoPortaSaida;
 
-  public AlteraProdutoCasoDeUso(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
-    this.persisteProdutoPortaSaida = persisteProdutoPortaSaida;
-  }
+	public AlteraProdutoCasoDeUso(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+		this.persisteProdutoPortaSaida = persisteProdutoPortaSaida;
+	}
 
-  @Override
-  public Produto alterar(Long id, Produto produto) {
-    persisteProdutoPortaSaida
-        .buscaProdutoPorId(id)
-        .orElseThrow(() -> new ProdutoNaoEncontratoExcecao(id));
-    produto.setId(id);
-    return persisteProdutoPortaSaida.salvaProduto(produto);
-  }
+	@Override
+	public Produto alterar(Long id, Produto produto) {
+		persisteProdutoPortaSaida.buscaProdutoPorId(id).orElseThrow(() -> new ProdutoNaoEncontratoExcecao(id));
+		produto.setId(id);
+		return persisteProdutoPortaSaida.salvaProduto(produto);
+	}
 }

@@ -14,35 +14,33 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/clientes")
 public class ClienteControlador implements ClienteControladorSwagger {
 
-  private final InsereClientePortaEntrada insereClientePortaEntrada;
-  private final ClienteEntradaMapeador clienteEntradaMapeador;
-  private final BuscaClientePorCpfPortaEntrada buscaClientePorCpfPortaEntrada;
+	private final InsereClientePortaEntrada insereClientePortaEntrada;
+	private final ClienteEntradaMapeador clienteEntradaMapeador;
+	private final BuscaClientePorCpfPortaEntrada buscaClientePorCpfPortaEntrada;
 
-  public ClienteControlador(
-      InsereClientePortaEntrada insereClientePortaEntrada,
-      ClienteEntradaMapeador clienteEntradaMapeador,
-      BuscaClientePorCpfPortaEntrada buscaClientePorCpfPortaEntrada) {
-    this.insereClientePortaEntrada = insereClientePortaEntrada;
-    this.clienteEntradaMapeador = clienteEntradaMapeador;
-    this.buscaClientePorCpfPortaEntrada = buscaClientePorCpfPortaEntrada;
-  }
+	public ClienteControlador(InsereClientePortaEntrada insereClientePortaEntrada,
+			ClienteEntradaMapeador clienteEntradaMapeador,
+			BuscaClientePorCpfPortaEntrada buscaClientePorCpfPortaEntrada) {
+		this.insereClientePortaEntrada = insereClientePortaEntrada;
+		this.clienteEntradaMapeador = clienteEntradaMapeador;
+		this.buscaClientePorCpfPortaEntrada = buscaClientePorCpfPortaEntrada;
+	}
 
-  @Override
-  @PostMapping
-  public ResponseEntity<ClienteRespostaDTO> insereCliente(
-      @Valid @RequestBody ClienteSolicitacaoDTO clienteSolicitacaoDTO) {
-    Cliente cliente = clienteEntradaMapeador.paraCliente(clienteSolicitacaoDTO);
-    Cliente clientePersistido = insereClientePortaEntrada.inserir(cliente);
-    ClienteRespostaDTO clienteRespostaDTO =
-        clienteEntradaMapeador.paraClienteDTO(clientePersistido);
-    return ResponseEntity.status(HttpStatus.CREATED).body(clienteRespostaDTO);
-  }
+	@Override
+	@PostMapping
+	public ResponseEntity<ClienteRespostaDTO> insereCliente(
+			@Valid @RequestBody ClienteSolicitacaoDTO clienteSolicitacaoDTO) {
+		Cliente cliente = clienteEntradaMapeador.paraCliente(clienteSolicitacaoDTO);
+		Cliente clientePersistido = insereClientePortaEntrada.inserir(cliente);
+		ClienteRespostaDTO clienteRespostaDTO = clienteEntradaMapeador.paraClienteDTO(clientePersistido);
+		return ResponseEntity.status(HttpStatus.CREATED).body(clienteRespostaDTO);
+	}
 
-  @Override
-  @GetMapping("/{cpf}")
-  public ResponseEntity<ClienteRespostaDTO> buscaClientePorCpf(@PathVariable("cpf") String cpf) {
-    Cliente cliente = buscaClientePorCpfPortaEntrada.buscar(cpf);
-    ClienteRespostaDTO clienteRespostaDTO = clienteEntradaMapeador.paraClienteDTO(cliente);
-    return ResponseEntity.ok().body(clienteRespostaDTO);
-  }
+	@Override
+	@GetMapping("/{cpf}")
+	public ResponseEntity<ClienteRespostaDTO> buscaClientePorCpf(@PathVariable("cpf") String cpf) {
+		Cliente cliente = buscaClientePorCpfPortaEntrada.buscar(cpf);
+		ClienteRespostaDTO clienteRespostaDTO = clienteEntradaMapeador.paraClienteDTO(cliente);
+		return ResponseEntity.ok().body(clienteRespostaDTO);
+	}
 }
