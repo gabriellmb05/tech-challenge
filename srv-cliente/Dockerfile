@@ -1,4 +1,4 @@
-FROM parent:0.0.1 AS srv_produto_build
+FROM parent:0.0.1 AS srv_cliente_build
 
 WORKDIR /app
 
@@ -8,8 +8,8 @@ FROM openjdk:21-slim
 
 WORKDIR /opt/app
 
-COPY --from=srv_produto_build /app/srv-produto/target/*.jar /app.jar
+COPY --from=srv_cliente_build /app/srv-cliente/target/*.jar /app.jar
 
-EXPOSE 8082
+EXPOSE 8081
 
 ENTRYPOINT ["java", "-jar", "/app.jar"]

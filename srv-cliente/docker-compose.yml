@@ -26,11 +26,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: srv-produto:0.0.1
+    image: srv-cliente:0.0.1
     env_file:
       - .env
     ports:
-      - "8082:8082"
+      - "8081:8081"
     networks:
       - app-network
     depends_on:
