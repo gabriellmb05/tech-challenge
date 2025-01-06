@@ -4,7 +4,7 @@ import br.com.on.fiap.adaptadores.saida.persistencia.entidade.ProdutoEntidade;
 import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.ProdutoSaidaMapeador;
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.ProdutoRepositorio;
 import br.com.on.fiap.hexagono.dominio.Produto;
-import br.com.on.fiap.hexagono.portas.saida.PersisteProdutoPortaSaida;
+import br.com.on.fiap.hexagono.portas.saida.produto.PersisteProdutoPortaSaida;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 

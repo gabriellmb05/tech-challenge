@@ -3,8 +3,8 @@ package br.com.on.fiap.configuracao;
 import br.com.on.fiap.adaptadores.saida.servico.PersistenciaClienteAdaptador;
 import br.com.on.fiap.hexagono.casosdeuso.cliente.BuscaClienteCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.cliente.InsereClienteCasoDeUso;
-import br.com.on.fiap.hexagono.portas.entrada.BuscaClientePorCpfPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.InsereClientePortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.cliente.BuscaClientePorCpfPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.cliente.InsereClientePortaEntrada;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -5,10 +5,10 @@ import br.com.on.fiap.hexagono.casosdeuso.produto.AlteraProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.produto.BuscaProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.produto.DeletaProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.produto.InsereProdutoCasoDeUso;
-import br.com.on.fiap.hexagono.portas.entrada.AlteraProdutoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.BuscaProdutoPorIdPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.DeletaProdutoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.InsereProdutoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.produto.AlteraProdutoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.produto.BuscaProdutoPorIdPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.produto.DeletaProdutoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.produto.InsereProdutoPortaEntrada;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

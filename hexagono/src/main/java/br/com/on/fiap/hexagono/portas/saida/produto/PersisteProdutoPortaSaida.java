@@ -1,4 +1,4 @@
-package br.com.on.fiap.hexagono.portas.saida;
+package br.com.on.fiap.hexagono.portas.saida.produto;
 
 import br.com.on.fiap.hexagono.dominio.Produto;
 import java.util.Optional;

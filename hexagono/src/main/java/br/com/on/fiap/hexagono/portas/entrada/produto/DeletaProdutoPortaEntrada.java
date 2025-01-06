@@ -1,4 +1,4 @@
-package br.com.on.fiap.hexagono.portas.entrada;
+package br.com.on.fiap.hexagono.portas.entrada.produto;
 
 public interface DeletaProdutoPortaEntrada {
 
