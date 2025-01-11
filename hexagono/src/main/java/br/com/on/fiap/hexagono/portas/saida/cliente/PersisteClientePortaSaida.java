@@ -7,7 +7,7 @@ public interface PersisteClientePortaSaida {
 
 	Optional<Cliente> buscaClientePorCpf(String cpf);
 
-	Optional<Cliente> buscaClientePorCpfOuEmail(String cpf, String email);
+	Optional<Cliente> buscaClientePorEmail(String email);
 
 	Cliente salvaCliente(Cliente cliente);
 }

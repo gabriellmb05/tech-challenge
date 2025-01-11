@@ -5,7 +5,6 @@ import br.com.on.fiap.hexagono.excecao.ApplicationExcecaoPadrao;
 import br.com.on.fiap.hexagono.excecao.message.MessageError;
 import br.com.on.fiap.hexagono.portas.entrada.cliente.InsereClientePortaEntrada;
 import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
-import java.util.Optional;
 
 public class InsereClienteCasoDeUso implements InsereClientePortaEntrada {
 
@@ -17,11 +16,13 @@ public class InsereClienteCasoDeUso implements InsereClientePortaEntrada {
 
 	@Override
 	public Cliente inserir(Cliente cliente) {
-		persisteClientePortaSaida.buscaClientePorCpfOuEmail(cliente.getCpf(), cliente.getEmail()).ifPresent(p -> {
-			String text = p.getCpf().equals(cliente.getCpf()) ? "CPF" : "E-mail";
-			String valor = p.getCpf().equals(cliente.getCpf()) ? cliente.getCpf() : cliente.getEmail();
-			throw new ApplicationExcecaoPadrao(MessageError.MSG_ERRO_CPF_OU_EMAIL_JA_CADASTRADO.getMensagem(), text,
-					valor);
+		persisteClientePortaSaida.buscaClientePorCpf(cliente.getCpf()).ifPresent(p -> {
+			throw new ApplicationExcecaoPadrao(MessageError.MSG_ERRO_CPF_JA_CADASTRADO.getMensagem(), cliente.getCpf());
+		});
+
+		persisteClientePortaSaida.buscaClientePorEmail(cliente.getEmail()).ifPresent(p -> {
+			throw new ApplicationExcecaoPadrao(MessageError.MSG_ERRO_EMAIL_JA_CADASTRADO.getMensagem(),
+					cliente.getEmail());
 		});
 
 		return persisteClientePortaSaida.salvaCliente(cliente);

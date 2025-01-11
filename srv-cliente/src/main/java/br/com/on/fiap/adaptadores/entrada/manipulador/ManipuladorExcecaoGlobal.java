@@ -1,35 +1,46 @@
 package br.com.on.fiap.adaptadores.entrada.manipulador;
 
 import br.com.on.fiap.hexagono.excecao.ApplicationExcecaoPadrao;
-import br.com.on.fiap.hexagono.excecao.ProdutoExistenteExcecao;
-import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontratoExcecao;
-import jakarta.validation.ConstraintViolationException;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
-public class ManipuladorExcecaoGlobal extends ResponseEntityExceptionHandler {
+public class ManipuladorExcecaoGlobal {
 
 	@ExceptionHandler(ApplicationExcecaoPadrao.class)
-	public ResponseEntity<ProblemDetail> applicationExcecaoPadrao(ApplicationExcecaoPadrao ex, WebRequest request) {
+	public ResponseEntity<DetalhesErrosGerais> applicationExcecaoPadrao(ApplicationExcecaoPadrao ex,
+			WebRequest request) {
 		return ResponseEntity.badRequest()
-				.body(createProblemDetail(ex, HttpStatus.BAD_REQUEST, ex.getMessage(), null, null, request));
+				.body(DetalhesErrosGerais.builder().statusCode(HttpStatus.BAD_REQUEST.value())
+						.timestamp(LocalDateTime.now()).details(request.getDescription(false))
+						.errors(Collections.singletonList(ex.getMessage())).build());
 	}
 
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ProblemDetail> handleGlobalException(Exception ex, WebRequest request) {
-		return ResponseEntity.internalServerError().body(createProblemDetail(ex, HttpStatus.INTERNAL_SERVER_ERROR,
-				"Erro interno da aplicação", null, null, request));
+	public ResponseEntity<DetalhesErrosGerais> handleGlobalException(Exception ex, WebRequest request) {
+		return ResponseEntity.badRequest()
+				.body(DetalhesErrosGerais.builder().statusCode(HttpStatus.BAD_REQUEST.value())
+						.timestamp(LocalDateTime.now()).details(request.getDescription(false))
+						.errors(Collections.singletonList(ex.getMessage())).build());
 	}
 
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<DetalhesErrosGerais> handleValidationExceptions(MethodArgumentNotValidException ex,
+			WebRequest request) {
+		return ResponseEntity.internalServerError()
+				.body(DetalhesErrosGerais.builder().statusCode(HttpStatus.BAD_REQUEST.value())
+						.timestamp(LocalDateTime.now()).details(request.getDescription(false))
+						.errors(ex.getBindingResult().getFieldErrors().stream()
+								.map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toList()))
+						.build());
+	}
 }
