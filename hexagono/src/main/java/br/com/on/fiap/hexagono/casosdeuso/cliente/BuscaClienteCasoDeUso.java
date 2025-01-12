@@ -8,17 +8,15 @@ import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
 
 public class BuscaClienteCasoDeUso implements BuscaClientePorCpfPortaEntrada {
 
-  private final PersisteClientePortaSaida persisteClientePortaSaida;
+	private final PersisteClientePortaSaida persisteClientePortaSaida;
 
-  public BuscaClienteCasoDeUso(PersisteClientePortaSaida persisteClientePortaSaida) {
-    this.persisteClientePortaSaida = persisteClientePortaSaida;
-  }
+	public BuscaClienteCasoDeUso(PersisteClientePortaSaida persisteClientePortaSaida) {
+		this.persisteClientePortaSaida = persisteClientePortaSaida;
+	}
 
-  @Override
-  public Cliente buscar(String cpf) {
-    return persisteClientePortaSaida.buscaClientePorCpf(cpf)
-        .orElseThrow(
-            () -> new ApplicationExcecaoPadrao(
-                MessageError.MSG_ERRO_CLIENTE_NAO_CADASTRADO.getMensagem(), cpf));
-  }
+	@Override
+	public Cliente buscar(String cpf) {
+		return persisteClientePortaSaida.buscaClientePorCpf(cpf).orElseThrow(
+				() -> new ApplicationExcecaoPadrao(MessageError.MSG_ERRO_CLIENTE_NAO_CADASTRADO.getMensagem(), cpf));
+	}
 }
