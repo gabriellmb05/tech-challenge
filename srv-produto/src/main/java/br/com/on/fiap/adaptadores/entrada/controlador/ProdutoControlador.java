@@ -2,14 +2,14 @@ package br.com.on.fiap.adaptadores.entrada.controlador;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.PaginacaoMapeador;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
-import br.com.on.fiap.hexagono.dominio.Categoria;
-import br.com.on.fiap.hexagono.dominio.Produto;
-import br.com.on.fiap.hexagono.portas.entrada.*;
+import br.com.on.fiap.dominio.Categoria;
+import br.com.on.fiap.dominio.Produto;
+import br.com.on.fiap.portas.entrada.*;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,40 +45,20 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
     return ResponseEntity.ok().body(produtoRespostaDTO);
   }
 
-  @GetMapping()
-  public ResponseEntity<Page<Produto>> listarProdutos(
-          @RequestParam(name = "page", defaultValue = "0") int page,
-          @RequestParam(name = "size", defaultValue = "10") int size) {
-    try {
-      Pageable pageable = PageRequest.of(page, size);
-      Page<Produto> produtos = listarProdutoPortaEntrada.listarTodosProdutos(pageable);
-      if (produtos.isEmpty()) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-      }
-      return ResponseEntity.ok().body(produtos);
-    } catch (Exception ex) {
-    ex.printStackTrace();
-    ;return null;
-  }
-  }
-
   @Override
-  @GetMapping(value = "/categoria/{categoria}")
-  public ResponseEntity<Page<Produto>> listarProdutosPorCategoria(
-             @PathVariable("categoria") String categoria,
-          @RequestParam(name = "page", defaultValue = "0") int page,
-          @RequestParam(name = "size", defaultValue = "10") int size) {
-    try {
-      Pageable pageable = PageRequest.of(page, size);
-      Page<Produto> produtos = listarProdutoPortaEntrada.listarPorCategoria(Categoria.buscaCategoria(categoria), pageable);
-      if (produtos.isEmpty()) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  @GetMapping
+  public ResponseEntity<Page<ProdutoRespostaDTO>> listarProdutosPorCategoria(
+          @RequestParam(value = "categoria", required = false) String categoria,
+          @RequestParam(name = "page", required = false, defaultValue = "0") int page,
+          @RequestParam(name = "size", required = false, defaultValue = "10") int size) {
+      Page<Produto> produtos = null;
+      if(categoria == null){
+        produtos = listarProdutoPortaEntrada.listarTodosProdutos(PageRequest.of(page, size));
+      }else{
+        produtos = listarProdutoPortaEntrada.listarPorCategoria(Categoria.buscaCategoria(categoria), PageRequest.of(page, size));
       }
-      return ResponseEntity.ok().body(produtos);
-    } catch (Exception ex) {
-      ex.printStackTrace();
-      ;return null;
-    }
+      Page<ProdutoRespostaDTO> produtoRespostaDTOS = PaginacaoMapeador.paraPageProdutoRespostaDTO(produtos, produtoEntradaMapeador);
+      return ResponseEntity.ok().body(produtoRespostaDTOS);
   }
 
   @Override

@@ -1,9 +1,9 @@
-package br.com.on.fiap.hexagono.casosdeuso;
+package br.com.on.fiap.casosdeuso;
 
-import br.com.on.fiap.hexagono.dominio.Categoria;
-import br.com.on.fiap.hexagono.dominio.Produto;
-import br.com.on.fiap.hexagono.portas.entrada.ListarProdutoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.saida.PersisteProdutoPortaSaida;
+import br.com.on.fiap.dominio.Categoria;
+import br.com.on.fiap.dominio.Produto;
+import br.com.on.fiap.portas.entrada.ListarProdutoPortaEntrada;
+import br.com.on.fiap.portas.saida.PersisteProdutoPortaSaida;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

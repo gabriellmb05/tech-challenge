@@ -1,8 +1,8 @@
 package br.com.on.fiap.configuracao;
 
 import br.com.on.fiap.adaptadores.saida.servico.PersistenciaProdutoAdaptador;
-import br.com.on.fiap.hexagono.casosdeuso.*;
-import br.com.on.fiap.hexagono.portas.entrada.*;
+import br.com.on.fiap.casosdeuso.*;
+import br.com.on.fiap.portas.entrada.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

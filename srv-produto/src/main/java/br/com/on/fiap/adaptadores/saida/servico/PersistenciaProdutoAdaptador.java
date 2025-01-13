@@ -3,12 +3,15 @@ package br.com.on.fiap.adaptadores.saida.servico;
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.ProdutoEntidade;
 import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.ProdutoSaidaMapeador;
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.ProdutoRepositorio;
-import br.com.on.fiap.hexagono.dominio.Categoria;
-import br.com.on.fiap.hexagono.dominio.Produto;
-import br.com.on.fiap.hexagono.portas.saida.PersisteProdutoPortaSaida;
+import br.com.on.fiap.dominio.Categoria;
+import br.com.on.fiap.dominio.Produto;
+import br.com.on.fiap.portas.saida.PersisteProdutoPortaSaida;
+
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +23,7 @@ public class PersistenciaProdutoAdaptador implements PersisteProdutoPortaSaida {
   private final ProdutoRepositorio produtoRepositorio;
   private final ProdutoSaidaMapeador produtoSaidaMapeador;
 
+  @Autowired
   public PersistenciaProdutoAdaptador(
       ProdutoRepositorio produtoRepositorio, ProdutoSaidaMapeador produtoSaidaMapeador) {
     this.produtoRepositorio = produtoRepositorio;
@@ -50,25 +54,21 @@ public class PersistenciaProdutoAdaptador implements PersisteProdutoPortaSaida {
 
   @Override
   public Page<Produto> listarTodosProdutos(Pageable page) {
-    var produtos =  produtoRepositorio
-            .findAll()
+    List<Produto> produtos = produtoRepositorio
+            .findAll(page)
             .stream()
             .map(produtoSaidaMapeador::paraProduto)
             .collect(Collectors.toList());
-    int start = (int) page.getOffset();
-    int end = Math.min((start + page.getPageSize()), produtos.size());
-    return new PageImpl<>(produtos.subList(start, end), page, produtos.size());
+    return new PageImpl<>(produtos, page, produtos.size());
   }
 
   @Override
   public Page<Produto> listarProdutosPorCategoria(Categoria categoria, Pageable page) {
-    var produtos = produtoRepositorio
-            .findByCategoria(categoria)
+    List<Produto> produtos = produtoRepositorio
+            .findByCategoria(categoria, page)
             .stream()
             .map(produtoSaidaMapeador::paraProduto)
             .collect(Collectors.toList());
-    int start = (int) page.getOffset();
-    int end = Math.min((start + page.getPageSize()), produtos.size());
-    return new PageImpl<>(produtos.subList(start, end), page, produtos.size());
+    return new PageImpl<>(produtos, page, produtos.size());
   }
 }

@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-import br.com.on.fiap.hexagono.dominio.Produto;
-import br.com.on.fiap.hexagono.excecao.ProdutoExistenteExcecao;
-import br.com.on.fiap.hexagono.portas.saida.PersisteProdutoPortaSaida;
+import br.com.on.fiap.casosdeuso.InsereProdutoCasoDeUso;
+import br.com.on.fiap.dominio.Produto;
+import br.com.on.fiap.excecao.ProdutoExistenteExcecao;
+import br.com.on.fiap.portas.saida.PersisteProdutoPortaSaida;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

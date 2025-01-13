@@ -2,7 +2,6 @@ package br.com.on.fiap.adaptadores.entrada.controlador;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
-import br.com.on.fiap.hexagono.dominio.Produto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -22,23 +21,15 @@ public interface ProdutoControladorSwagger {
       })
   @GetMapping("/{id}")
   ResponseEntity<ProdutoRespostaDTO> buscaProdutoPorId(Long id);
-    @Operation(summary = "Listar produtos", description = "Retorna uma lista de produtos")
-    @ApiResponses(
-            value = {
-                    @ApiResponse(responseCode = "200", description = "Produtos encontrados"),
-                    @ApiResponse(responseCode = "404", description = "Produtos não encontrados")
-            })
-    @GetMapping("")
-  ResponseEntity<Page<Produto>> listarProdutos(int page, int size);
 
-  @Operation(summary = "Listar produtos por categoria", description = "Retorna uma lista de produtos filtrando por sua categoria")
+  @Operation(summary = "Busca produtos", description = "Retorna uma lista de produtos de forma paginada e permite filtrar por categoria")
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "Produtos encontrados"),
                     @ApiResponse(responseCode = "404", description = "Produtos não encontrados")
             })
-    @GetMapping(value = "/categoria/{categoria}")
-    public ResponseEntity<Page<Produto>> listarProdutosPorCategoria( String categoria, int page, int size);
+    @GetMapping
+    public ResponseEntity<Page<ProdutoRespostaDTO>> listarProdutosPorCategoria( String categoria, int page, int size);
 
   @Operation(summary = "Insere um novo produto", description = "Insere um novo produto no sistema")
   @ApiResponses(
