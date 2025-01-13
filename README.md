@@ -10,6 +10,7 @@ arquitetura hexagonal e inclui vários módulos e serviços.
 - `tech-challenge-01`: Projeto pai
 - `hexagono`: Módulo que contém a lógica de negócio e interfaces
 - `srv-produto`: Módulo de serviço para gerenciamento de produtos
+- `srv-cliente`: Módulo de cliente para gerenciamento de produtos
 
 ## Pré-requisitos
 
