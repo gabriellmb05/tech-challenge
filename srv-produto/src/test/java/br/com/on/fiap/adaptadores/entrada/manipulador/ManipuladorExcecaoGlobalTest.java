@@ -32,7 +32,7 @@ class ManipuladorExcecaoGlobalTest {
 		ResponseEntity<ProblemDetail> response = manipuladorExcecaoGlobal.manipulaProdutoExistenteExcecao(ex, request);
 
 		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-		assertEquals("Produto já existe", response.getBody().getDetail());
+		assertEquals("Produto (Produto já existe) já cadastrado", response.getBody().getDetail());
 	}
 
 	@Test
@@ -44,7 +44,7 @@ class ManipuladorExcecaoGlobalTest {
 				request);
 
 		assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-		assertEquals("Produto não encontrado", response.getBody().getDetail());
+		assertEquals("Produto (0) não encontrado", response.getBody().getDetail());
 	}
 
 	@Test
