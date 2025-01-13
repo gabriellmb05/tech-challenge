@@ -1,0 +1,8 @@
+-- CREATE TABLE CLIENTE
+CREATE TABLE clientes (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(256) NOT NULL,
+    cpf VARCHAR(14) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    data_nascimento DATE
+);
