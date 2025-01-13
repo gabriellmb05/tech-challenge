@@ -7,11 +7,13 @@ import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.portas.saida.PersisteProdutoPortaSaida;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,20 +47,26 @@ public class PersistenciaProdutoAdapter implements PersisteProdutoPortaSaida {
     }
 
     @Override
-    public List<Produto> listarTodosProdutos() {
-        return produtoRepositorio
+    public Page<Produto> listarTodosProdutos(Pageable page) {
+        var produtos =  produtoRepositorio
                 .findAll()
                 .stream()
                 .map(ProdutoEntidadeMapeador::produtoEntidadeParaProduto)
                 .collect(Collectors.toList());
+        int start = (int) page.getOffset();
+        int end = Math.min((start + page.getPageSize()), produtos.size());
+        return new PageImpl<>(produtos.subList(start, end), page, produtos.size());
     }
 
     @Override
-    public List<Produto> listarProdutosPorCategoria(Categoria categoria) {
-        return produtoRepositorio
+    public Page<Produto> listarProdutosPorCategoria(Categoria categoria, Pageable page) {
+        var produtos = produtoRepositorio
                 .findByCategoria(categoria)
                 .stream()
                 .map(ProdutoEntidadeMapeador::produtoEntidadeParaProduto)
                 .collect(Collectors.toList());
+        int start = (int) page.getOffset();
+        int end = Math.min((start + page.getPageSize()), produtos.size());
+        return new PageImpl<>(produtos.subList(start, end), page, produtos.size());
     }
 }

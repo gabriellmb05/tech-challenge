@@ -4,7 +4,8 @@ import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.portas.entrada.ListarProdutoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.saida.PersisteProdutoPortaSaida;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public class ListarProdutoCasoDeUso implements ListarProdutoPortaEntrada {
 
@@ -15,12 +16,12 @@ public class ListarProdutoCasoDeUso implements ListarProdutoPortaEntrada {
     }
 
     @Override
-    public List<Produto> listarTodosProdutos() {
-        return this.persisteProdutoPortaSaida.listarTodosProdutos();
+    public Page<Produto> listarTodosProdutos(Pageable page) {
+        return this.persisteProdutoPortaSaida.listarTodosProdutos(page);
     }
 
     @Override
-    public List<Produto> listarPorCategoria(Categoria categoria) {
-        return this.persisteProdutoPortaSaida.listarProdutosPorCategoria(categoria);
+    public Page<Produto> listarPorCategoria(Categoria categoria, Pageable page) {
+        return this.persisteProdutoPortaSaida.listarProdutosPorCategoria(categoria, page);
     }
 }

@@ -11,6 +11,9 @@ import br.com.on.fiap.hexagono.portas.entrada.InsereProdutoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.ListarProdutoPortaEntrada;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,8 +56,11 @@ public class ProdutoControladorAdaptador {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Produto>> listarProdutos(){
-        List<Produto> produtos = listarProdutoPortaEntrada.listarTodosProdutos();
+    public ResponseEntity<Page<Produto>> listarProdutos(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Produto> produtos = listarProdutoPortaEntrada.listarTodosProdutos(pageable);
         if (produtos.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -62,8 +68,12 @@ public class ProdutoControladorAdaptador {
     }
 
     @GetMapping(value = "/categoria/{categoria}")
-    public ResponseEntity<List<Produto>> listarProdutosPorCategoria(@PathVariable("categoria") String categoria){
-        List<Produto> produtos = listarProdutoPortaEntrada.listarPorCategoria(Categoria.buscaCategoria(categoria));
+    public ResponseEntity<Page<Produto>> listarProdutosPorCategoria(
+            @PathVariable("categoria") String categoria,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Produto> produtos = listarProdutoPortaEntrada.listarPorCategoria(Categoria.buscaCategoria(categoria), pageable);
         if (produtos.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
