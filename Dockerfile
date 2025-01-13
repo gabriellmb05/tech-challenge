@@ -1,7 +1,11 @@
-FROM openjdk:21-slim
+FROM maven:3.9.9-amazoncorretto-21-debian-bookworm AS parent_build
 
-ARG JAR_FILE=target/*.jar
+WORKDIR /app
 
-COPY ${JAR_FILE} tech-challenge-01-1.0-SNAPSHOT.jar
+COPY pom.xml .
 
-ENTRYPOINT ["java", "-jar", "/tech-challenge-01-1.0-SNAPSHOT.jar"]
+COPY hexagono/pom.xml ./hexagono/
+COPY hexagono/src ./hexagono/src/
+
+COPY srv-produto/pom.xml ./srv-produto/
+COPY srv-produto/src ./srv-produto/src/

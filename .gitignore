@@ -12,7 +12,7 @@ target/
 *.iws
 *.iml
 *.ipr
-.env
+srv-produto/.env
 
 ### Eclipse ###
 .apt_generated
