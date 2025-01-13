@@ -14,8 +14,7 @@ public class PersistenciaClienteAdaptador implements PersisteClientePortaSaida {
 	private final ClienteRepositorio clienteRepositorio;
 	private final ClienteSaidaMapeador clienteSaidaMapeador;
 
-	public PersistenciaClienteAdaptador(ClienteRepositorio produtoRepositorio,
-			ClienteSaidaMapeador produtoSaidaMapeador, ClienteRepositorio clienteRepositorio,
+	public PersistenciaClienteAdaptador(ClienteRepositorio clienteRepositorio,
 			ClienteSaidaMapeador clienteSaidaMapeador) {
 		this.clienteRepositorio = clienteRepositorio;
 		this.clienteSaidaMapeador = clienteSaidaMapeador;

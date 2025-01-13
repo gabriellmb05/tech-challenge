@@ -1,6 +1,9 @@
 package br.com.on.fiap.adaptadores.entrada.manipulador;
 
 import br.com.on.fiap.hexagono.excecao.ApplicationExcecaoPadrao;
+import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.stream.Collectors;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,10 +11,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
-
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ManipuladorExcecaoGlobal {
@@ -36,7 +35,7 @@ public class ManipuladorExcecaoGlobal {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<DetalhesErrosGerais> handleValidationExceptions(MethodArgumentNotValidException ex,
 			WebRequest request) {
-		return ResponseEntity.internalServerError()
+		return ResponseEntity.badRequest()
 				.body(DetalhesErrosGerais.builder().statusCode(HttpStatus.BAD_REQUEST.value())
 						.timestamp(LocalDateTime.now()).details(request.getDescription(false))
 						.errors(ex.getBindingResult().getFieldErrors().stream()

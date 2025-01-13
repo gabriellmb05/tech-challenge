@@ -7,5 +7,4 @@ public class ApplicationExcecaoPadrao extends RuntimeException {
 	public ApplicationExcecaoPadrao(String chave, Object... args) {
 		super(MessageManager.getMessage(chave, args));
 	}
-
 }
