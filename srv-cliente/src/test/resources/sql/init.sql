@@ -7,9 +7,12 @@ CREATE TABLE clientes (
     data_nascimento DATE
 );
 
--- INSERTS
-INSERT INTO clientes (nome, cpf, email, data_nascimento)
-VALUES ('Elmo Cameron', '43316652616', 'lectus@yahoo.edu', '2025-03-28');
+-- CREATE SEQUENCE
+CREATE SEQUENCE CLIENTES_ID_SEQ START WITH 1 INCREMENT BY 1;
 
-INSERT INTO clientes (nome, cpf, email, data_nascimento)
-VALUES ('Phelan Vang', '47374738523', 'ut.molestie@google.edu', '2024-07-14');
+-- INSERTS
+INSERT INTO clientes (id, nome, cpf, email, data_nascimento)
+VALUES (NEXTVAL('CLIENTES_ID_SEQ'), 'Elmo Cameron', '43316652616', 'lectus@yahoo.edu', '2025-03-28');
+
+INSERT INTO clientes (id, nome, cpf, email, data_nascimento)
+VALUES (NEXTVAL('CLIENTES_ID_SEQ'), 'Phelan Vang', '47374738523', 'ut.molestie@google.edu', '2024-07-14');
