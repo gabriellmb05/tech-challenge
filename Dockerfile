@@ -1,10 +1,10 @@
 FROM maven:3.9.9-amazoncorretto-21-debian-bookworm AS builder
-
+ENV MAVEN_OPTS="-Dfile.encoding=UTF-8"
 WORKDIR /app
 
 COPY . /app/
 
-RUN mvn spotless:apply && mvn -B -e clean install -DskipTests
+RUN mvn dependency:go-offline && mvn clean install -DskipTests
 
 FROM openjdk:21-slim AS srv_cliente_builder
 

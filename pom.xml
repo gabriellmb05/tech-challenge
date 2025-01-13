@@ -32,15 +32,16 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>apply</goal>
                             <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
                     <java>
-                        <removeUnusedImports/>
                         <eclipse/>
+                        <removeUnusedImports/>
+                        <trimTrailingWhitespace/>
+                        <lineEndings>UNIX</lineEndings>
                     </java>
                 </configuration>
             </plugin>
