@@ -1,4 +1,4 @@
-package br.com.on.fiap.hexagono.dominio;
+package br.com.on.fiap.dominio;
 
 import java.math.BigDecimal;
 

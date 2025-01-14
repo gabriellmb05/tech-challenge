@@ -2,8 +2,8 @@ package br.com.on.fiap.adaptadores.entrada.controlador.mapeador;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
-import br.com.on.fiap.hexagono.dominio.Categoria;
-import br.com.on.fiap.hexagono.dominio.Produto;
+import br.com.on.fiap.dominio.Categoria;
+import br.com.on.fiap.dominio.Produto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -19,6 +19,6 @@ public interface ProdutoEntradaMapeador {
 
   @Named("getCategoria")
   default Categoria getCategoria(String categoria) {
-    return Categoria.buscaCategoria(categoria);
+    return Categoria.buscaCategoria(categoria.toUpperCase());
   }
 }

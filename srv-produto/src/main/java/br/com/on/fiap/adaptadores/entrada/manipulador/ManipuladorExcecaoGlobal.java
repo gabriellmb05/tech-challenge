@@ -1,7 +1,8 @@
 package br.com.on.fiap.adaptadores.entrada.manipulador;
 
-import br.com.on.fiap.hexagono.excecao.ProdutoExistenteExcecao;
-import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontratoExcecao;
+import br.com.on.fiap.excecao.CategoriaNaoEncontradaExcecao;
+import br.com.on.fiap.excecao.ProdutoExistenteExcecao;
+import br.com.on.fiap.excecao.ProdutoNaoEncontratoExcecao;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,14 @@ public class ManipuladorExcecaoGlobal extends ResponseEntityExceptionHandler {
     ProblemDetail detalheProblema =
         this.createProblemDetail(ex, HttpStatus.NOT_FOUND, ex.getMessage(), null, null, request);
     return new ResponseEntity<>(detalheProblema, HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler(CategoriaNaoEncontradaExcecao.class)
+  public ResponseEntity<ProblemDetail> manipulaCategoriaNaoEncontradaExcecao(
+      CategoriaNaoEncontradaExcecao ex, WebRequest request) {
+    ProblemDetail detalheProblema =
+        this.createProblemDetail(ex, HttpStatus.BAD_REQUEST, ex.getMessage(), null, null, request);
+    return new ResponseEntity<>(detalheProblema, HttpStatus.BAD_REQUEST);
   }
 
   @ExceptionHandler(Exception.class)

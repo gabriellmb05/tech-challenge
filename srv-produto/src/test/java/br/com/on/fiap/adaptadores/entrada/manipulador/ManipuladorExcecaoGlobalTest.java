@@ -2,8 +2,8 @@ package br.com.on.fiap.adaptadores.entrada.manipulador;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import br.com.on.fiap.hexagono.excecao.ProdutoExistenteExcecao;
-import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontratoExcecao;
+import br.com.on.fiap.excecao.ProdutoExistenteExcecao;
+import br.com.on.fiap.excecao.ProdutoNaoEncontratoExcecao;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

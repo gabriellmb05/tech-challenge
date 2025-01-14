@@ -3,36 +3,52 @@ package br.com.on.fiap.adaptadores.entrada.controlador;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
-import br.com.on.fiap.hexagono.dominio.Produto;
-import br.com.on.fiap.hexagono.portas.entrada.AlteraProdutoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.BuscaProdutoPorIdPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.DeletaProdutoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.InsereProdutoPortaEntrada;
+import br.com.on.fiap.dominio.Produto;
+import br.com.on.fiap.dominio.ProdutoFiltro;
+import br.com.on.fiap.portas.entrada.AlteraProdutoPortaEntrada;
+import br.com.on.fiap.portas.entrada.BuscaProdutoPorIdPortaEntrada;
+import br.com.on.fiap.portas.entrada.DeletaProdutoPortaEntrada;
+import br.com.on.fiap.portas.entrada.InsereProdutoPortaEntrada;
+import br.com.on.fiap.portas.entrada.ListarProdutoPortaEntrada;
 import jakarta.validation.Valid;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoControlador implements ProdutoControladorSwagger {
+
   private final BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada;
   private final InsereProdutoPortaEntrada insereProdutoPortaEntrada;
   private final AlteraProdutoPortaEntrada alteraProdutoPortaEntrada;
   private final DeletaProdutoPortaEntrada deletaProdutoPortaEntrada;
   private final ProdutoEntradaMapeador produtoEntradaMapeador;
+  private final ListarProdutoPortaEntrada listarProdutoPortaEntrada;
 
   public ProdutoControlador(
       BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada,
       InsereProdutoPortaEntrada insereProdutoPortaEntrada,
       AlteraProdutoPortaEntrada alteraProdutoPortaEntrada,
       DeletaProdutoPortaEntrada deletaProdutoPortaEntrada,
-      ProdutoEntradaMapeador produtoEntradaMapeador) {
+      ProdutoEntradaMapeador produtoEntradaMapeador,
+      ListarProdutoPortaEntrada listarProdutoPortaEntrada) {
     this.buscaProdutoPorIdPortaEntrada = buscaProdutoPorIdPortaEntrada;
     this.insereProdutoPortaEntrada = insereProdutoPortaEntrada;
     this.alteraProdutoPortaEntrada = alteraProdutoPortaEntrada;
     this.deletaProdutoPortaEntrada = deletaProdutoPortaEntrada;
     this.produtoEntradaMapeador = produtoEntradaMapeador;
+    this.listarProdutoPortaEntrada = listarProdutoPortaEntrada;
   }
 
   @Override
@@ -41,6 +57,17 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
     Produto produto = buscaProdutoPorIdPortaEntrada.buscar(id);
     ProdutoRespostaDTO produtoRespostaDTO = produtoEntradaMapeador.paraProdutoDTO(produto);
     return ResponseEntity.ok().body(produtoRespostaDTO);
+  }
+
+  @Override
+  @GetMapping
+  public ResponseEntity<Page<ProdutoRespostaDTO>> listarProdutosComFiltro(
+      @ParameterObject ProdutoFiltro filtro, Pageable pageable) {
+    Page<ProdutoRespostaDTO> produtos =
+        listarProdutoPortaEntrada
+            .listarComFiltro(filtro, pageable)
+            .map(produtoEntradaMapeador::paraProdutoDTO);
+    return ResponseEntity.ok().body(produtos);
   }
 
   @Override

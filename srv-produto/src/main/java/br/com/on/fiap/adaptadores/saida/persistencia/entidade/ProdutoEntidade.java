@@ -1,6 +1,6 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.entidade;
 
-import br.com.on.fiap.hexagono.dominio.Categoria;
+import br.com.on.fiap.dominio.Categoria;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 
