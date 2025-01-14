@@ -1,8 +1,8 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoFiltroDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
-import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -28,7 +28,7 @@ public interface ProdutoControladorSwagger {
 	@ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Produtos encontrados"),
 			@ApiResponse(responseCode = "404", description = "Produtos não encontrados")})
 	@GetMapping
-	ResponseEntity<Page<ProdutoRespostaDTO>> listarProdutosComFiltro(ProdutoFiltro filtro, Pageable pageable);
+	ResponseEntity<Page<ProdutoRespostaDTO>> listarProdutosComFiltro(ProdutoFiltroDTO filtro, Pageable pageable);
 
 	@Operation(summary = "Insere um novo produto", description = "Insere um novo produto no sistema")
 	@ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Produto criado"),
