@@ -9,6 +9,16 @@ import br.com.on.fiap.hexagono.portas.entrada.produto.AlteraProdutoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.produto.BuscaProdutoPorIdPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.produto.DeletaProdutoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.produto.InsereProdutoPortaEntrada;
+import br.com.on.fiap.hexagono.casosdeuso.AlteraProdutoCasoDeUso;
+import br.com.on.fiap.hexagono.casosdeuso.BuscaProdutoCasoDeUso;
+import br.com.on.fiap.hexagono.casosdeuso.DeletaProdutoCasoDeUso;
+import br.com.on.fiap.hexagono.casosdeuso.InsereProdutoCasoDeUso;
+import br.com.on.fiap.hexagono.casosdeuso.ListarProdutoCasoDeUso;
+import br.com.on.fiap.hexagono.portas.entrada.AlteraProdutoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.BuscaProdutoPorIdPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.DeletaProdutoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.InsereProdutoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.ListarProdutoPortaEntrada;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -30,8 +40,15 @@ public class ProdutoBeanConfiguracao {
 		return new AlteraProdutoCasoDeUso(persistenciaProdutoAdaptador);
 	}
 
-	@Bean
-	public DeletaProdutoPortaEntrada deletaProduto(PersistenciaProdutoAdaptador persistenciaProdutoAdaptador) {
-		return new DeletaProdutoCasoDeUso(persistenciaProdutoAdaptador);
-	}
+  @Bean
+  public DeletaProdutoPortaEntrada deletaProduto(
+      PersistenciaProdutoAdaptador persistenciaProdutoAdaptador) {
+    return new DeletaProdutoCasoDeUso(persistenciaProdutoAdaptador);
+  }
+
+  @Bean
+  public ListarProdutoPortaEntrada listarProduto(
+      PersistenciaProdutoAdaptador persistenciaProdutoAdapter) {
+    return new ListarProdutoCasoDeUso(persistenciaProdutoAdapter);
+  }
 }

@@ -5,7 +5,12 @@ import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.ProdutoSaidaMapead
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.ProdutoRepositorio;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.portas.saida.produto.PersisteProdutoPortaSaida;
+import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
+import br.com.on.fiap.hexagono.portas.saida.PersisteProdutoPortaSaida;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,11 +19,12 @@ public class PersistenciaProdutoAdaptador implements PersisteProdutoPortaSaida {
 	private final ProdutoRepositorio produtoRepositorio;
 	private final ProdutoSaidaMapeador produtoSaidaMapeador;
 
-	public PersistenciaProdutoAdaptador(ProdutoRepositorio produtoRepositorio,
-			ProdutoSaidaMapeador produtoSaidaMapeador) {
-		this.produtoRepositorio = produtoRepositorio;
-		this.produtoSaidaMapeador = produtoSaidaMapeador;
-	}
+  @Autowired
+  public PersistenciaProdutoAdaptador(
+      ProdutoRepositorio produtoRepositorio, ProdutoSaidaMapeador produtoSaidaMapeador) {
+    this.produtoRepositorio = produtoRepositorio;
+    this.produtoSaidaMapeador = produtoSaidaMapeador;
+  }
 
 	@Override
 	public Optional<Produto> buscaProdutoPorId(Long id) {
@@ -37,8 +43,13 @@ public class PersistenciaProdutoAdaptador implements PersisteProdutoPortaSaida {
 		return produtoRepositorio.findByNome(nome).map(produtoSaidaMapeador::paraProduto);
 	}
 
-	@Override
-	public void deletaProdutoPorId(Long id) {
-		produtoRepositorio.deleteById(id);
-	}
+  @Override
+  public void deletaProdutoPorId(Long id) {
+    produtoRepositorio.deleteById(id);
+  }
+
+  @Override
+  public Page<Produto> listarComFiltros(ProdutoFiltro filtro, Pageable page) {
+    return produtoRepositorio.buscarComFiltro(filtro, page).map(produtoSaidaMapeador::paraProduto);
+  }
 }

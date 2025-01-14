@@ -1,5 +1,6 @@
 package br.com.on.fiap.adaptadores.entrada.manipulador;
 
+import br.com.on.fiap.hexagono.excecao.CategoriaNaoEncontradaExcecao;
 import br.com.on.fiap.hexagono.excecao.ProdutoExistenteExcecao;
 import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontratoExcecao;
 import org.springframework.http.HttpStatus;
@@ -29,10 +30,19 @@ public class ManipuladorExcecaoGlobal extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(detalheProblema, HttpStatus.NOT_FOUND);
 	}
 
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ProblemDetail> handleGlobalException(Exception ex, WebRequest request) {
-		ProblemDetail detalheProblema = this.createProblemDetail(ex, HttpStatus.INTERNAL_SERVER_ERROR,
-				"Erro interno da aplicação", null, null, request);
-		return ResponseEntity.internalServerError().body(detalheProblema);
-	}
+  @ExceptionHandler(CategoriaNaoEncontradaExcecao.class)
+  public ResponseEntity<ProblemDetail> manipulaCategoriaNaoEncontradaExcecao(
+      CategoriaNaoEncontradaExcecao ex, WebRequest request) {
+    ProblemDetail detalheProblema =
+        this.createProblemDetail(ex, HttpStatus.BAD_REQUEST, ex.getMessage(), null, null, request);
+    return new ResponseEntity<>(detalheProblema, HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(Exception.class)
+  public ResponseEntity<ProblemDetail> handleGlobalException(Exception ex, WebRequest request) {
+    ProblemDetail detalheProblema =
+        this.createProblemDetail(
+            ex, HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno da aplicação", null, null, request);
+    return ResponseEntity.internalServerError().body(detalheProblema);
+  }
 }
