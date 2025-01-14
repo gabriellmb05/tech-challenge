@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: srv-pagamento
+springdoc:
+  swagger-ui:
+    path: /documentacao.html
+  api-docs:
+    path: /documentacao
