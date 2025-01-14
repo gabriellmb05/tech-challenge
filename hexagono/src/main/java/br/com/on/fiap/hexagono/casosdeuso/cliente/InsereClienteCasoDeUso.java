@@ -24,8 +24,6 @@ public class InsereClienteCasoDeUso implements InsereClientePortaEntrada {
 			throw new ApplicationExcecaoPadrao(MessageError.MSG_ERRO_EMAIL_JA_CADASTRADO.getMensagem(),
 					cliente.getEmail());
 		});
-
 		return persisteClientePortaSaida.salvaCliente(cliente);
 	}
-
 }

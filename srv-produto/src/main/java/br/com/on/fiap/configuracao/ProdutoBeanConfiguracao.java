@@ -6,7 +6,7 @@ import br.com.on.fiap.hexagono.casosdeuso.produto.BuscaProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.produto.DeletaProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.produto.InsereProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.produto.ListarProdutoCasoDeUso;
-import br.com.on.fiap.hexagono.portas.entrada.ListarProdutoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.produto.ListarProdutoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.produto.AlteraProdutoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.produto.BuscaProdutoPorIdPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.produto.DeletaProdutoPortaEntrada;

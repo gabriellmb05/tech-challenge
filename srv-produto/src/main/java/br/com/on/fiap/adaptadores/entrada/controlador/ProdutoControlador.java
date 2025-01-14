@@ -9,7 +9,7 @@ import br.com.on.fiap.hexagono.portas.entrada.produto.BuscaProdutoPorIdPortaEntr
 import br.com.on.fiap.hexagono.portas.entrada.produto.DeletaProdutoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.produto.InsereProdutoPortaEntrada;
 import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
-import br.com.on.fiap.hexagono.portas.entrada.ListarProdutoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.produto.ListarProdutoPortaEntrada;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
