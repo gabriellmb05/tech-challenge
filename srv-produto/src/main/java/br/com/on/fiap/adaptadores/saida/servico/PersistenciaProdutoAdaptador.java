@@ -3,17 +3,12 @@ package br.com.on.fiap.adaptadores.saida.servico;
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.ProdutoEntidade;
 import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.ProdutoSaidaMapeador;
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.ProdutoRepositorio;
-import br.com.on.fiap.dominio.Categoria;
 import br.com.on.fiap.dominio.Produto;
+import br.com.on.fiap.dominio.ProdutoFiltro;
 import br.com.on.fiap.portas.saida.PersisteProdutoPortaSaida;
-
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -53,22 +48,7 @@ public class PersistenciaProdutoAdaptador implements PersisteProdutoPortaSaida {
   }
 
   @Override
-  public Page<Produto> listarTodosProdutos(Pageable page) {
-    List<Produto> produtos = produtoRepositorio
-            .findAll(page)
-            .stream()
-            .map(produtoSaidaMapeador::paraProduto)
-            .collect(Collectors.toList());
-    return new PageImpl<>(produtos, page, produtos.size());
-  }
-
-  @Override
-  public Page<Produto> listarProdutosPorCategoria(Categoria categoria, Pageable page) {
-    List<Produto> produtos = produtoRepositorio
-            .findByCategoria(categoria, page)
-            .stream()
-            .map(produtoSaidaMapeador::paraProduto)
-            .collect(Collectors.toList());
-    return new PageImpl<>(produtos, page, produtos.size());
+  public Page<Produto> listarComFiltros(ProdutoFiltro filtro, Pageable page) {
+    return produtoRepositorio.buscarComFiltro(filtro, page).map(produtoSaidaMapeador::paraProduto);
   }
 }

@@ -1,11 +1,10 @@
 package br.com.on.fiap.portas.saida;
 
-import br.com.on.fiap.dominio.Categoria;
 import br.com.on.fiap.dominio.Produto;
+import br.com.on.fiap.dominio.ProdutoFiltro;
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.Optional;
 
 public interface PersisteProdutoPortaSaida {
 
@@ -17,7 +16,5 @@ public interface PersisteProdutoPortaSaida {
 
   void deletaProdutoPorId(Long id);
 
-  Page<Produto> listarTodosProdutos(Pageable page);
-
-  Page<Produto> listarProdutosPorCategoria(Categoria categoria, Pageable page);
+  Page<Produto> listarComFiltros(ProdutoFiltro filtro, Pageable page);
 }

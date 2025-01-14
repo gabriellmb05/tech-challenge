@@ -6,8 +6,8 @@ import org.springframework.data.domain.Page;
 
 public class PaginacaoMapeador {
 
-    public static Page<ProdutoRespostaDTO> paraPageProdutoRespostaDTO(Page<Produto> paginacao, ProdutoEntradaMapeador produtoEntradaMapeador){
-        return paginacao
-                .map(produtoEntradaMapeador::paraProdutoDTO);
-    }
+  public static Page<ProdutoRespostaDTO> paraPageProdutoRespostaDTO(
+      Page<Produto> paginacao, ProdutoEntradaMapeador produtoEntradaMapeador) {
+    return paginacao.map(produtoEntradaMapeador::paraProdutoDTO);
+  }
 }

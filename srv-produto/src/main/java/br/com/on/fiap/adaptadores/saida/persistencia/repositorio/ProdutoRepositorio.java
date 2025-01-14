@@ -1,20 +1,26 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.repositorio;
 
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.ProdutoEntidade;
+import br.com.on.fiap.dominio.ProdutoFiltro;
 import java.util.Optional;
-import br.com.on.fiap.dominio.Categoria;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface ProdutoRepositorio extends JpaRepository<ProdutoEntidade, Long> {
 
-    Optional<ProdutoEntidade> findByNome(String nome);
-    List<ProdutoEntidade> findAll();
-    List<ProdutoEntidade> findByCategoria(Categoria categoria, Pageable paginacao);
-    List<ProdutoEntidade> findByNomeContaining(String nome);
+  Optional<ProdutoEntidade> findByNome(String nome);
+
+  @Query(
+      """
+          SELECT p FROM ProdutoEntidade p
+          WHERE (:#{#filtro.nome} IS NULL OR p.nome = :#{#filtro.nome})
+          AND (:#{#filtro.categoria} IS NULL OR p.categoria = :#{#filtro.categoria})
+      """)
+  Page<ProdutoEntidade> buscarComFiltro(
+      @Param(value = "filtro") ProdutoFiltro filtro, Pageable page);
 }

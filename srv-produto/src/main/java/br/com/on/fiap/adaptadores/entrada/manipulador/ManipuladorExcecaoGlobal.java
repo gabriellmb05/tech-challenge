@@ -32,9 +32,9 @@ public class ManipuladorExcecaoGlobal extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(CategoriaNaoEncontradaExcecao.class)
   public ResponseEntity<ProblemDetail> manipulaCategoriaNaoEncontradaExcecao(
-          CategoriaNaoEncontradaExcecao ex, WebRequest request) {
+      CategoriaNaoEncontradaExcecao ex, WebRequest request) {
     ProblemDetail detalheProblema =
-            this.createProblemDetail(ex, HttpStatus.BAD_REQUEST, ex.getMessage(), null, null, request);
+        this.createProblemDetail(ex, HttpStatus.BAD_REQUEST, ex.getMessage(), null, null, request);
     return new ResponseEntity<>(detalheProblema, HttpStatus.BAD_REQUEST);
   }
 

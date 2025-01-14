@@ -34,7 +34,8 @@ public class ProdutoBeanConfiguracao {
   }
 
   @Bean
-  public ListarProdutoPortaEntrada listarProduto(PersistenciaProdutoAdaptador persistenciaProdutoAdapter){
+  public ListarProdutoPortaEntrada listarProduto(
+      PersistenciaProdutoAdaptador persistenciaProdutoAdapter) {
     return new ListarProdutoCasoDeUso(persistenciaProdutoAdapter);
   }
 }

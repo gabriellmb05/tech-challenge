@@ -2,13 +2,18 @@ package br.com.on.fiap.adaptadores.entrada.controlador;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
+import br.com.on.fiap.dominio.ProdutoFiltro;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Tag(name = "Produto", description = "APIs relacionadas a produtos")
 public interface ProdutoControladorSwagger {
@@ -22,14 +27,18 @@ public interface ProdutoControladorSwagger {
   @GetMapping("/{id}")
   ResponseEntity<ProdutoRespostaDTO> buscaProdutoPorId(Long id);
 
-  @Operation(summary = "Busca produtos", description = "Retorna uma lista de produtos de forma paginada e permite filtrar por categoria")
-    @ApiResponses(
-            value = {
-                    @ApiResponse(responseCode = "200", description = "Produtos encontrados"),
-                    @ApiResponse(responseCode = "404", description = "Produtos não encontrados")
-            })
-    @GetMapping
-    public ResponseEntity<Page<ProdutoRespostaDTO>> listarProdutosPorCategoria( String categoria, int page, int size);
+  @Operation(
+      summary = "Busca produtos",
+      description =
+          "Retorna uma lista de produtos de forma paginada e permite filtrar por categoria e/ou nome")
+  @ApiResponses(
+      value = {
+        @ApiResponse(responseCode = "200", description = "Produtos encontrados"),
+        @ApiResponse(responseCode = "404", description = "Produtos não encontrados")
+      })
+  @GetMapping
+  ResponseEntity<Page<ProdutoRespostaDTO>> listarProdutosComFiltro(
+      ProdutoFiltro filtro, Pageable pageable);
 
   @Operation(summary = "Insere um novo produto", description = "Insere um novo produto no sistema")
   @ApiResponses(
