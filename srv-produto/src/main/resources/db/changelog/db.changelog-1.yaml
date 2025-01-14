@@ -23,7 +23,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: preco
-                  type: VARCHAR(100)
+                  type: NUMERIC
                   constraints:
                     nullable: false
               - column:

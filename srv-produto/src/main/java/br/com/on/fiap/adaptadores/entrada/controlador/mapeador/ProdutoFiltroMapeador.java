@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
+import java.util.stream.Stream;
+
 @Mapper(componentModel = "spring")
 public interface ProdutoFiltroMapeador {
 
@@ -15,6 +17,6 @@ public interface ProdutoFiltroMapeador {
 
 	@Named("getCategoria")
 	default Categoria getCategoria(String categoria) {
-		return Categoria.buscaCategoria(categoria.toUpperCase());
+		return Stream.of(Categoria.values()).filter(c -> c.name().equals(categoria)).findFirst().orElse(null);
 	}
 }

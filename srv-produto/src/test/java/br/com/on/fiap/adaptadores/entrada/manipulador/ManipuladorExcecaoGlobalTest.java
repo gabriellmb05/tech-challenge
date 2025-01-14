@@ -59,14 +59,15 @@ class ManipuladorExcecaoGlobalTest {
 		assertEquals("Erro interno da aplicação", response.getBody().getDetail());
 	}
 
-    @Test
-    @DisplayName("Dado uma exceção CategoriaNaoEncontradaExcecao, quando manipulada, então deve retornar BAD_REQUEST")
-    void dadoCategoriaNaoEncontradaExcecao_quandoManipulada_entaoDeveRetornarBadRequest() {
-        CategoriaNaoEncontradaExcecao ex = new CategoriaNaoEncontradaExcecao("teste");
+	@Test
+	@DisplayName("Dado uma exceção CategoriaNaoEncontradaExcecao, quando manipulada, então deve retornar BAD_REQUEST")
+	void dadoCategoriaNaoEncontradaExcecao_quandoManipulada_entaoDeveRetornarBadRequest() {
+		CategoriaNaoEncontradaExcecao ex = new CategoriaNaoEncontradaExcecao("teste");
 
-        ResponseEntity<ProblemDetail> response = manipuladorExcecaoGlobal.manipulaCategoriaNaoEncontradaExcecao(ex, request);
+		ResponseEntity<ProblemDetail> response = manipuladorExcecaoGlobal.manipulaCategoriaNaoEncontradaExcecao(ex,
+				request);
 
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertEquals("Categoria (teste) não encontrada", response.getBody().getDetail());
-    }
+		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+		assertEquals("Categoria (teste) não encontrada", response.getBody().getDetail());
+	}
 }
