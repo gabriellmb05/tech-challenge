@@ -17,8 +17,8 @@ public interface ProdutoEntradaMapeador {
 	@Mapping(target = "categoria", qualifiedByName = "getCategoria")
 	Produto paraProduto(ProdutoSolicitacaoDTO produtoSolicitacaoDTO);
 
-  @Named("getCategoria")
-  default Categoria getCategoria(String categoria) {
-    return Categoria.buscaCategoria(categoria.toUpperCase());
-  }
+	@Named("getCategoria")
+	default Categoria getCategoria(String categoria) {
+		return Categoria.buscaCategoria(categoria.toUpperCase());
+	}
 }

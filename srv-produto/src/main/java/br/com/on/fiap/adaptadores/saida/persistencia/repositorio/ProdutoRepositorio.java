@@ -13,14 +13,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProdutoRepositorio extends JpaRepository<ProdutoEntidade, Long> {
 
-  Optional<ProdutoEntidade> findByNome(String nome);
+	Optional<ProdutoEntidade> findByNome(String nome);
 
-  @Query(
-      """
-          SELECT p FROM ProdutoEntidade p
-          WHERE (:#{#filtro.nome} IS NULL OR p.nome = :#{#filtro.nome})
-          AND (:#{#filtro.categoria} IS NULL OR p.categoria = :#{#filtro.categoria})
-      """)
-  Page<ProdutoEntidade> buscarComFiltro(
-      @Param(value = "filtro") ProdutoFiltro filtro, Pageable page);
+	@Query("""
+			    SELECT p FROM ProdutoEntidade p
+			    WHERE (:#{#filtro.nome} IS NULL OR p.nome = :#{#filtro.nome})
+			    AND (:#{#filtro.categoria} IS NULL OR p.categoria = :#{#filtro.categoria})
+			""")
+	Page<ProdutoEntidade> buscarComFiltro(@Param(value = "filtro") ProdutoFiltro filtro, Pageable page);
 }

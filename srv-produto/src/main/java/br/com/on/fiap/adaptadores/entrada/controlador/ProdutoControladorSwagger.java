@@ -24,27 +24,17 @@ public interface ProdutoControladorSwagger {
 	@GetMapping("/{id}")
 	ResponseEntity<ProdutoRespostaDTO> buscaProdutoPorId(Long id);
 
-  @Operation(
-      summary = "Busca produtos",
-      description =
-          "Retorna uma lista de produtos de forma paginada e permite filtrar por categoria e/ou nome")
-  @ApiResponses(
-      value = {
-        @ApiResponse(responseCode = "200", description = "Produtos encontrados"),
-        @ApiResponse(responseCode = "404", description = "Produtos não encontrados")
-      })
-  @GetMapping
-  ResponseEntity<Page<ProdutoRespostaDTO>> listarProdutosComFiltro(
-      ProdutoFiltro filtro, Pageable pageable);
+	@Operation(summary = "Busca produtos", description = "Retorna uma lista de produtos de forma paginada e permite filtrar por categoria e/ou nome")
+	@ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Produtos encontrados"),
+			@ApiResponse(responseCode = "404", description = "Produtos não encontrados")})
+	@GetMapping
+	ResponseEntity<Page<ProdutoRespostaDTO>> listarProdutosComFiltro(ProdutoFiltro filtro, Pageable pageable);
 
-  @Operation(summary = "Insere um novo produto", description = "Insere um novo produto no sistema")
-  @ApiResponses(
-      value = {
-        @ApiResponse(responseCode = "201", description = "Produto criado"),
-        @ApiResponse(responseCode = "400", description = "Dados inválidos")
-      })
-  @PostMapping
-  ResponseEntity<ProdutoRespostaDTO> insereProduto(ProdutoSolicitacaoDTO produtoSolicitacaoDTO);
+	@Operation(summary = "Insere um novo produto", description = "Insere um novo produto no sistema")
+	@ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Produto criado"),
+			@ApiResponse(responseCode = "400", description = "Dados inválidos")})
+	@PostMapping
+	ResponseEntity<ProdutoRespostaDTO> insereProduto(ProdutoSolicitacaoDTO produtoSolicitacaoDTO);
 
 	@Operation(summary = "Altera um produto", description = "Altera um produto existente no sistema")
 	@ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Produto alterado"),
