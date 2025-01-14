@@ -1,4 +1,4 @@
-package br.com.on.fiap.dominio;
+package br.com.on.fiap.hexagono.dominio;
 
 public interface ProdutoFiltro {
 

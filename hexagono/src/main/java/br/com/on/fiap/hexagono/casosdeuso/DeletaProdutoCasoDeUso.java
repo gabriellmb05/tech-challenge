@@ -1,8 +1,8 @@
-package br.com.on.fiap.casosdeuso;
+package br.com.on.fiap.hexagono.casosdeuso;
 
-import br.com.on.fiap.excecao.ProdutoNaoEncontratoExcecao;
-import br.com.on.fiap.portas.entrada.DeletaProdutoPortaEntrada;
-import br.com.on.fiap.portas.saida.PersisteProdutoPortaSaida;
+import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontratoExcecao;
+import br.com.on.fiap.hexagono.portas.entrada.DeletaProdutoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.saida.PersisteProdutoPortaSaida;
 
 public class DeletaProdutoCasoDeUso implements DeletaProdutoPortaEntrada {
 

@@ -1,6 +1,6 @@
-package br.com.on.fiap.portas.entrada;
+package br.com.on.fiap.hexagono.portas.entrada;
 
-import br.com.on.fiap.dominio.Produto;
+import br.com.on.fiap.hexagono.dominio.Produto;
 
 public interface AlteraProdutoPortaEntrada {
 

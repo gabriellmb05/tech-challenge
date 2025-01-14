@@ -1,7 +1,7 @@
-package br.com.on.fiap.portas.saida;
+package br.com.on.fiap.hexagono.portas.saida;
 
-import br.com.on.fiap.dominio.Produto;
-import br.com.on.fiap.dominio.ProdutoFiltro;
+import br.com.on.fiap.hexagono.dominio.Produto;
+import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
