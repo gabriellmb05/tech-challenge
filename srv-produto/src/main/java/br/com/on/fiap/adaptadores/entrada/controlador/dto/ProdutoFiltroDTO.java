@@ -1,7 +1,7 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.dto;
 
-import br.com.on.fiap.dominio.Categoria;
-import br.com.on.fiap.dominio.ProdutoFiltro;
+import br.com.on.fiap.hexagono.dominio.Categoria;
+import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
 
 public class ProdutoFiltroDTO implements ProdutoFiltro {
 

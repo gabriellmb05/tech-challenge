@@ -1,8 +1,8 @@
 package br.com.on.fiap.adaptadores.entrada.manipulador;
 
-import br.com.on.fiap.excecao.CategoriaNaoEncontradaExcecao;
-import br.com.on.fiap.excecao.ProdutoExistenteExcecao;
-import br.com.on.fiap.excecao.ProdutoNaoEncontratoExcecao;
+import br.com.on.fiap.hexagono.excecao.CategoriaNaoEncontradaExcecao;
+import br.com.on.fiap.hexagono.excecao.ProdutoExistenteExcecao;
+import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontratoExcecao;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;

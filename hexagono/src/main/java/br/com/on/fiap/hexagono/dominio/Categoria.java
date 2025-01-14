@@ -1,6 +1,6 @@
-package br.com.on.fiap.dominio;
+package br.com.on.fiap.hexagono.dominio;
 
-import br.com.on.fiap.excecao.CategoriaNaoEncontradaExcecao;
+import br.com.on.fiap.hexagono.excecao.CategoriaNaoEncontradaExcecao;
 import java.util.stream.Stream;
 
 public enum Categoria {

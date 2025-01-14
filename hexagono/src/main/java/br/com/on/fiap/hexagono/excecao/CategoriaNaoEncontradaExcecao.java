@@ -1,4 +1,4 @@
-package br.com.on.fiap.excecao;
+package br.com.on.fiap.hexagono.excecao;
 
 import java.text.MessageFormat;
 
