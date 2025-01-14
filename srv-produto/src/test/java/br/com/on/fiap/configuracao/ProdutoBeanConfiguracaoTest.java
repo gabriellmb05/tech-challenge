@@ -70,15 +70,15 @@ class ProdutoBeanConfiguracaoTest {
 		assertInstanceOf(DeletaProdutoCasoDeUso.class, bean);
 	}
 
-    @Test
-    @DisplayName("Dado a configuração de beans, quando listar Produtos, então deve retornar a instância correta")
-    void dadoConfiguracaoDeBeans_quandoListarProdutos_entaoDeveRetornarInstanciaCorreta() {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-        ListarProdutoPortaEntrada bean = context.getBean(ListarProdutoPortaEntrada.class);
+	@Test
+	@DisplayName("Dado a configuração de beans, quando listar Produtos, então deve retornar a instância correta")
+	void dadoConfiguracaoDeBeans_quandoListarProdutos_entaoDeveRetornarInstanciaCorreta() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
+		ListarProdutoPortaEntrada bean = context.getBean(ListarProdutoPortaEntrada.class);
 
-        assertNotNull(bean);
-        assertInstanceOf(ListarProdutoPortaEntrada.class, bean);
-    }
+		assertNotNull(bean);
+		assertInstanceOf(ListarProdutoPortaEntrada.class, bean);
+	}
 
 	@Configuration
 	static class TestConfig extends ProdutoBeanConfiguracao {

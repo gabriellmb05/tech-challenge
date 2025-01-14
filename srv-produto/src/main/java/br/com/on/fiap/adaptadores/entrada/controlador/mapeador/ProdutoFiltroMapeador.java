@@ -13,8 +13,8 @@ public interface ProdutoFiltroMapeador {
 	@Mapping(target = "categoria", qualifiedByName = "getCategoria")
 	ProdutoFiltro paraProdutoFiltro(ProdutoFiltroDTO produtoFiltroDTO);
 
-    @Named("getCategoria")
-    default Categoria getCategoria(String categoria) {
-        return Categoria.buscaCategoria(categoria.toUpperCase());
-    }
+	@Named("getCategoria")
+	default Categoria getCategoria(String categoria) {
+		return Categoria.buscaCategoria(categoria.toUpperCase());
+	}
 }
