@@ -14,35 +14,34 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 public class ManipuladorExcecaoGlobal extends ResponseEntityExceptionHandler {
 
-  @ExceptionHandler(ProdutoExistenteExcecao.class)
-  public ResponseEntity<ProblemDetail> manipulaProdutoExistenteExcecao(
-      ProdutoExistenteExcecao ex, WebRequest request) {
-    ProblemDetail detalheProblema =
-        this.createProblemDetail(ex, HttpStatus.BAD_REQUEST, ex.getMessage(), null, null, request);
-    return ResponseEntity.badRequest().body(detalheProblema);
-  }
+	@ExceptionHandler(ProdutoExistenteExcecao.class)
+	public ResponseEntity<ProblemDetail> manipulaProdutoExistenteExcecao(ProdutoExistenteExcecao ex,
+			WebRequest request) {
+		ProblemDetail detalheProblema = this.createProblemDetail(ex, HttpStatus.BAD_REQUEST, ex.getMessage(), null,
+				null, request);
+		return ResponseEntity.badRequest().body(detalheProblema);
+	}
 
-  @ExceptionHandler(ProdutoNaoEncontratoExcecao.class)
-  public ResponseEntity<ProblemDetail> manipulaProdutoNaoEncontradoExcecao(
-      ProdutoNaoEncontratoExcecao ex, WebRequest request) {
-    ProblemDetail detalheProblema =
-        this.createProblemDetail(ex, HttpStatus.NOT_FOUND, ex.getMessage(), null, null, request);
-    return new ResponseEntity<>(detalheProblema, HttpStatus.NOT_FOUND);
-  }
+	@ExceptionHandler(ProdutoNaoEncontratoExcecao.class)
+	public ResponseEntity<ProblemDetail> manipulaProdutoNaoEncontradoExcecao(ProdutoNaoEncontratoExcecao ex,
+			WebRequest request) {
+		ProblemDetail detalheProblema = this.createProblemDetail(ex, HttpStatus.NOT_FOUND, ex.getMessage(), null, null,
+				request);
+		return new ResponseEntity<>(detalheProblema, HttpStatus.NOT_FOUND);
+	}
 
-  @ExceptionHandler(CategoriaNaoEncontradaExcecao.class)
-  public ResponseEntity<ProblemDetail> manipulaCategoriaNaoEncontradaExcecao(
-      CategoriaNaoEncontradaExcecao ex, WebRequest request) {
-    ProblemDetail detalheProblema =
-        this.createProblemDetail(ex, HttpStatus.BAD_REQUEST, ex.getMessage(), null, null, request);
-    return new ResponseEntity<>(detalheProblema, HttpStatus.BAD_REQUEST);
-  }
+	@ExceptionHandler(CategoriaNaoEncontradaExcecao.class)
+	public ResponseEntity<ProblemDetail> manipulaCategoriaNaoEncontradaExcecao(CategoriaNaoEncontradaExcecao ex,
+			WebRequest request) {
+		ProblemDetail detalheProblema = this.createProblemDetail(ex, HttpStatus.BAD_REQUEST, ex.getMessage(), null,
+				null, request);
+		return new ResponseEntity<>(detalheProblema, HttpStatus.BAD_REQUEST);
+	}
 
-  @ExceptionHandler(Exception.class)
-  public ResponseEntity<ProblemDetail> handleGlobalException(Exception ex, WebRequest request) {
-    ProblemDetail detalheProblema =
-        this.createProblemDetail(
-            ex, HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno da aplicação", null, null, request);
-    return ResponseEntity.internalServerError().body(detalheProblema);
-  }
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<ProblemDetail> handleGlobalException(Exception ex, WebRequest request) {
+		ProblemDetail detalheProblema = this.createProblemDetail(ex, HttpStatus.INTERNAL_SERVER_ERROR,
+				"Erro interno da aplicação", null, null, request);
+		return ResponseEntity.internalServerError().body(detalheProblema);
+	}
 }

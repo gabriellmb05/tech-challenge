@@ -18,46 +18,43 @@ import org.springframework.web.context.request.WebRequest;
 @ExtendWith(MockitoExtension.class)
 class ManipuladorExcecaoGlobalTest {
 
-  @Mock private WebRequest request;
+	@Mock
+	private WebRequest request;
 
-  @InjectMocks private ManipuladorExcecaoGlobal manipuladorExcecaoGlobal;
+	@InjectMocks
+	private ManipuladorExcecaoGlobal manipuladorExcecaoGlobal;
 
-  @Test
-  @DisplayName(
-      "Dado uma exceção ProdutoExistenteExcecao, quando manipulada, então deve retornar BAD_REQUEST")
-  void dadoProdutoExistenteExcecao_quandoManipulada_entaoDeveRetornarBadRequest() {
-    ProdutoExistenteExcecao ex = new ProdutoExistenteExcecao("Produto já existe");
+	@Test
+	@DisplayName("Dado uma exceção ProdutoExistenteExcecao, quando manipulada, então deve retornar BAD_REQUEST")
+	void dadoProdutoExistenteExcecao_quandoManipulada_entaoDeveRetornarBadRequest() {
+		ProdutoExistenteExcecao ex = new ProdutoExistenteExcecao("Produto já existe");
 
-    ResponseEntity<ProblemDetail> response =
-        manipuladorExcecaoGlobal.manipulaProdutoExistenteExcecao(ex, request);
+		ResponseEntity<ProblemDetail> response = manipuladorExcecaoGlobal.manipulaProdutoExistenteExcecao(ex, request);
 
-    assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-    assertEquals("Produto já existe", response.getBody().getDetail());
-  }
+		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+		assertEquals("Produto (Produto já existe) já cadastrado", response.getBody().getDetail());
+	}
 
-  @Test
-  @DisplayName(
-      "Dado uma exceção ProdutoNaoEncontratoExcecao, quando manipulada, então deve retornar NOT_FOUND")
-  void dadoProdutoNaoEncontratoExcecao_quandoManipulada_entaoDeveRetornarNotFound() {
-    ProdutoNaoEncontratoExcecao ex = new ProdutoNaoEncontratoExcecao(0L);
+	@Test
+	@DisplayName("Dado uma exceção ProdutoNaoEncontratoExcecao, quando manipulada, então deve retornar NOT_FOUND")
+	void dadoProdutoNaoEncontratoExcecao_quandoManipulada_entaoDeveRetornarNotFound() {
+		ProdutoNaoEncontratoExcecao ex = new ProdutoNaoEncontratoExcecao(0L);
 
-    ResponseEntity<ProblemDetail> response =
-        manipuladorExcecaoGlobal.manipulaProdutoNaoEncontradoExcecao(ex, request);
+		ResponseEntity<ProblemDetail> response = manipuladorExcecaoGlobal.manipulaProdutoNaoEncontradoExcecao(ex,
+				request);
 
-    assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-    assertEquals("Produto não encontrado", response.getBody().getDetail());
-  }
+		assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+		assertEquals("Produto (0) não encontrado", response.getBody().getDetail());
+	}
 
-  @Test
-  @DisplayName(
-      "Dado uma exceção genérica, quando manipulada, então deve retornar INTERNAL_SERVER_ERROR")
-  void dadoExcecaoGenerica_quandoManipulada_entaoDeveRetornarInternalServerError() {
-    Exception ex = new Exception("Erro interno da aplicação");
+	@Test
+	@DisplayName("Dado uma exceção genérica, quando manipulada, então deve retornar INTERNAL_SERVER_ERROR")
+	void dadoExcecaoGenerica_quandoManipulada_entaoDeveRetornarInternalServerError() {
+		Exception ex = new Exception("Erro interno da aplicação");
 
-    ResponseEntity<ProblemDetail> response =
-        manipuladorExcecaoGlobal.handleGlobalException(ex, request);
+		ResponseEntity<ProblemDetail> response = manipuladorExcecaoGlobal.handleGlobalException(ex, request);
 
-    assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-    assertEquals("Erro interno da aplicação", response.getBody().getDetail());
-  }
+		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+		assertEquals("Erro interno da aplicação", response.getBody().getDetail());
+	}
 }

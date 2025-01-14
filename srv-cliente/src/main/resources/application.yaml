@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: srv-cliente
+  output:
+    ansi:
+      enabled: ALWAYS
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: ${DB_DRIVER_CLASS_NAME}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    open-in-view: false
+  liquibase:
+    enabled: ${LIQUIBASE_ENABLED:false}
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+springdoc:
+  swagger-ui:
+    path: /documentacao.html
+  api-docs:
+    path: /documentacao
+info:
+  application:
+    name: srv-cliente
+    description: Serviço de Cliente
+    version: 1.0
+logging:
+  level:
+    root: DEBUG

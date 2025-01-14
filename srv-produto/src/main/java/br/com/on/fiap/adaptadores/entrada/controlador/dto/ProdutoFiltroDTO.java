@@ -5,29 +5,30 @@ import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
 
 public class ProdutoFiltroDTO implements ProdutoFiltro {
 
-  private Categoria categoria;
-  private String nome;
+	private Categoria categoria;
+	private String nome;
 
-  public ProdutoFiltroDTO() {}
+	public ProdutoFiltroDTO() {
+	}
 
-  public ProdutoFiltroDTO(Categoria categoria, String nome) {
-    this.categoria = categoria;
-    this.nome = nome;
-  }
+	public ProdutoFiltroDTO(Categoria categoria, String nome) {
+		this.categoria = categoria;
+		this.nome = nome;
+	}
 
-  public Categoria getCategoria() {
-    return categoria;
-  }
+	public Categoria getCategoria() {
+		return categoria;
+	}
 
-  public void setCategoria(Categoria categoria) {
-    this.categoria = categoria;
-  }
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 
-  public String getNome() {
-    return nome;
-  }
+	public String getNome() {
+		return nome;
+	}
 
-  public void setNome(String nome) {
-    this.nome = nome;
-  }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 }

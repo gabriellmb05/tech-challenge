@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 2
+      id: produto-2
       author: Tiago
       changes:
         - insert:

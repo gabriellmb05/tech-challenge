@@ -2,7 +2,7 @@ package br.com.on.fiap.hexagono.dominio;
 
 public interface ProdutoFiltro {
 
-  Categoria getCategoria();
+	Categoria getCategoria();
 
-  String getNome();
+	String getNome();
 }
