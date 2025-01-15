@@ -16,7 +16,7 @@ public class PaymentService {
 				.build();
 
 		AdditionalInfo additionalInfo = AdditionalInfo.builder()
-				.externalReference("someone-reference-from-your-application").printOnTerminal(true).build();
+				.externalReference(request.getAdditionalInfo().getExternalReference()).printOnTerminal(true).build();
 		return PaymentResponse.builder().id(UUID.randomUUID().toString()).deviceId("PAX_A910__SMARTPOS1234345545")
 				.amount(request.getAmount()).description(request.getDescription()).payment(payment)
 				.additionalInfo(additionalInfo).build();

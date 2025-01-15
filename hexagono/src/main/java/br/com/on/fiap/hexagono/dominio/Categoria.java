@@ -6,18 +6,18 @@ import java.util.stream.Stream;
 public enum Categoria {
 	LANCHE("LANCHE"), ACOMPANHAMENTO("ACOMPANHAMENTO"), BEBIDA("BEBIDA"), SOBREMESA("SOBREMESA");
 
-    private String nome;
+	private String nome;
 
-    private Categoria(String nome) {
-        this.nome = nome;
-    }
+	private Categoria(String nome) {
+		this.nome = nome;
+	}
 
-    public String getNome() {
-        return this.nome;
-    }
+	public String getNome() {
+		return this.nome;
+	}
 
-    public static Categoria buscaCategoria(String categoria) {
-        return Stream.of(Categoria.values()).filter(c -> c.nome.equals(categoria)).findFirst()
-                .orElseThrow(() -> new CategoriaNaoEncontradaExcecao(categoria));
-    }
+	public static Categoria buscaCategoria(String categoria) {
+		return Stream.of(Categoria.values()).filter(c -> c.nome.equals(categoria)).findFirst()
+				.orElseThrow(() -> new CategoriaNaoEncontradaExcecao(categoria));
+	}
 }
