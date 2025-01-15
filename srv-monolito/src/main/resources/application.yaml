@@ -14,9 +14,8 @@ spring:
       ddl-auto: none
     show-sql: false
     open-in-view: false
-  liquibase:
-    enabled: ${LIQUIBASE_ENABLED:false}
-    change-log: classpath:/db/changelog/db.changelog-master.yaml
+  flyway:
+    enabled: ${FLYWAY_ENABLE:false}
 springdoc:
   swagger-ui:
     path: /documentacao.html
@@ -29,4 +28,4 @@ info:
     version: 1.0
 logging:
   level:
-    root: DEBUG
+    root: ${LOG_LEVEL_ROOT:INFO}

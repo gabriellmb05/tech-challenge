@@ -14,6 +14,7 @@ import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -58,11 +59,11 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
 
 	@Override
 	@GetMapping
-	public ResponseEntity<Page<ProdutoRespostaDTO>> listarProdutosComFiltro(@ParameterObject ProdutoFiltro filtro,
+	public ResponseEntity<PagedModel<ProdutoRespostaDTO>> listarProdutosComFiltro(@ParameterObject ProdutoFiltro filtro,
 			Pageable pageable) {
 		Page<ProdutoRespostaDTO> produtos = listarProdutoPortaEntrada.listarComFiltro(filtro, pageable)
 				.map(produtoEntradaMapeador::paraProdutoDTO);
-		return ResponseEntity.ok().body(produtos);
+		return ResponseEntity.ok().body(new PagedModel<>(produtos));
 	}
 
 	@Override

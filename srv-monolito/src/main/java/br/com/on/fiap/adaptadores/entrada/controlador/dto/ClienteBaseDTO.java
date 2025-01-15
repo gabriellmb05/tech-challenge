@@ -11,5 +11,4 @@ public interface ClienteBaseDTO {
 	String getEmail();
 
 	LocalDate getDataNascimento();
-
 }
