@@ -7,12 +7,8 @@ spring:
     platform: h2
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
-  liquibase:
-    enabled: ${LIQUIBASE_ENABLED:true}
-    change-log: classpath:sql/init.sql
+  flyway:
+    enabled: true
   h2:
     console:
       enabled: true
-logging:
-  level:
-    liquibase: DEBUG

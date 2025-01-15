@@ -54,7 +54,7 @@ class ManipuladorExcecaoGlobalTest {
 
 		ResponseEntity<DetalhesErrosGerais> response = manipuladorExcecaoGlobal.handleGlobalException(ex, request);
 
-		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
 		assertEquals("Erro interno da aplicação", response.getBody().getErrors().getFirst());
 	}
 }
