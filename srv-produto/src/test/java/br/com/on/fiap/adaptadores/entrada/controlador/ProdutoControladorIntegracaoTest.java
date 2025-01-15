@@ -227,4 +227,15 @@ class ProdutoControladorIntegracaoTest {
 				.andExpect(jsonPath("$.content[0].categoria").value("LANCHE"))
 				.andExpect(jsonPath("$.content[0].nome").value("x-tudo")).andReturn();
 	}
+
+    @Test
+    @Transactional
+    @Order(19)
+    @DisplayName("Dado um produto existente, quando consultar o produto informando filtrando por categoria inválida, então deve retornar erro de validação 'Categoria (categoria) não encontrada'")
+    void dadoProdutoExistente_quandoConsultarFiltrandoPorCategoriaInvalida_entaoDeveRetornarErroDeValidacao()
+            throws Exception {
+        mockMvc.perform(get("/produtos?categoria=INVALIDA").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest()).andExpect(jsonPath("$.detail").value("Categoria (INVALIDA) não encontrada"))
+                .andReturn();
+    }
 }
