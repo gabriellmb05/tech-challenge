@@ -12,6 +12,7 @@
         <module>hexagono</module>
         <module>srv-produto</module>
         <module>srv-cliente</module>
+        <module>srv-pagamento</module>
     </modules>
     <properties>
         <java.version>21</java.version>

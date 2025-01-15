@@ -20,3 +20,11 @@ COPY --from=builder /app/srv-produto/target/*.jar /srv-produto.jar
 
 EXPOSE 8082
 ENTRYPOINT ["java", "-jar", "/srv-produto.jar"]
+
+FROM openjdk:21-slim AS srv_pagamento_builder
+
+WORKDIR /opt/app
+COPY --from=builder /app/srv-pagamento/target/*.jar /srv-pagamento.jar
+
+EXPOSE 8083
+ENTRYPOINT ["java", "-jar", "/srv-pagamento.jar"]

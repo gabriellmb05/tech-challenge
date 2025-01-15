@@ -42,6 +42,16 @@ services:
     depends_on:
       - db
 
+  srv_pagamento:
+      build:
+        context: .
+        dockerfile: Dockerfile
+        target: srv_pagamento_builder
+      ports:
+        - "8083:8080"
+      networks:
+        - app-network
+
 networks:
   app-network:
     driver: bridge
