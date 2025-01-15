@@ -1,17 +1,15 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.CategoriasDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoFiltroDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoFiltroMapeador;
+import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
-import br.com.on.fiap.hexagono.portas.entrada.produto.AlteraProdutoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.produto.BuscaProdutoPorIdPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.produto.DeletaProdutoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.produto.InsereProdutoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.produto.*;
 import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
-import br.com.on.fiap.hexagono.portas.entrada.produto.ListarProdutoPortaEntrada;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
@@ -27,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoControlador implements ProdutoControladorSwagger {
@@ -38,11 +38,13 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
 	private final ProdutoEntradaMapeador produtoEntradaMapeador;
 	private final ProdutoFiltroMapeador produtoFiltroMapeador;
 	private final ListarProdutoPortaEntrada listarProdutoPortaEntrada;
+	private final BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada;
 
 	public ProdutoControlador(BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada,
 			InsereProdutoPortaEntrada insereProdutoPortaEntrada, AlteraProdutoPortaEntrada alteraProdutoPortaEntrada,
 			DeletaProdutoPortaEntrada deletaProdutoPortaEntrada, ProdutoEntradaMapeador produtoEntradaMapeador,
-			ProdutoFiltroMapeador produtoFiltroMapeador, ListarProdutoPortaEntrada listarProdutoPortaEntrada) {
+			ProdutoFiltroMapeador produtoFiltroMapeador, ListarProdutoPortaEntrada listarProdutoPortaEntrada,
+			BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada) {
 		this.buscaProdutoPorIdPortaEntrada = buscaProdutoPorIdPortaEntrada;
 		this.insereProdutoPortaEntrada = insereProdutoPortaEntrada;
 		this.alteraProdutoPortaEntrada = alteraProdutoPortaEntrada;
@@ -50,6 +52,7 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
 		this.produtoEntradaMapeador = produtoEntradaMapeador;
 		this.produtoFiltroMapeador = produtoFiltroMapeador;
 		this.listarProdutoPortaEntrada = listarProdutoPortaEntrada;
+		this.buscaCategoriaPortaEntrada = buscaCategoriaPortaEntrada;
 	}
 
 	@Override
@@ -95,5 +98,13 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
 	public ResponseEntity<Void> deletaProduto(@PathVariable("id") Long id) {
 		deletaProdutoPortaEntrada.deleta(id);
 		return ResponseEntity.noContent().build();
+	}
+
+	@Override
+	@GetMapping("/categorias")
+	public ResponseEntity<CategoriasDTO> buscaCategorias() {
+		List<String> categorias = buscaCategoriaPortaEntrada.buscaCategorias().stream().map(Categoria::getNome)
+				.toList();
+		return ResponseEntity.ok().body(new CategoriasDTO(categorias));
 	}
 }

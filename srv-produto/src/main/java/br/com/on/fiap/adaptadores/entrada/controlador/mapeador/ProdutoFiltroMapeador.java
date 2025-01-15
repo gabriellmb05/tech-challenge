@@ -15,9 +15,9 @@ public interface ProdutoFiltroMapeador {
 
 	@Named("getCategoria")
 	default Categoria getCategoria(String categoria) {
-        if(categoria == null) {
-            return null;
-        }
+		if (categoria == null) {
+			return null;
+		}
 		return Categoria.buscaCategoria(categoria);
 	}
 }

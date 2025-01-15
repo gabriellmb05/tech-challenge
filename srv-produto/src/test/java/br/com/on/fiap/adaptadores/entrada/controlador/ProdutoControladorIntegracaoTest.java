@@ -1,6 +1,7 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
 import br.com.on.fiap.adaptadores.entrada.datapool.DataPoolProdutoSolicitacaoDTO;
+import br.com.on.fiap.hexagono.dominio.Categoria;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -228,14 +230,26 @@ class ProdutoControladorIntegracaoTest {
 				.andExpect(jsonPath("$.content[0].nome").value("x-tudo")).andReturn();
 	}
 
-    @Test
-    @Transactional
-    @Order(19)
-    @DisplayName("Dado um produto existente, quando consultar o produto informando filtrando por categoria inválida, então deve retornar erro de validação 'Categoria (categoria) não encontrada'")
-    void dadoProdutoExistente_quandoConsultarFiltrandoPorCategoriaInvalida_entaoDeveRetornarErroDeValidacao()
-            throws Exception {
-        mockMvc.perform(get("/produtos?categoria=INVALIDA").contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest()).andExpect(jsonPath("$.detail").value("Categoria (INVALIDA) não encontrada"))
-                .andReturn();
-    }
+	@Test
+	@Transactional
+	@Order(19)
+	@DisplayName("Dado um produto existente, quando consultar o produto informando filtrando por categoria inválida, então deve retornar erro de validação 'Categoria (categoria) não encontrada'")
+	void dadoProdutoExistente_quandoConsultarFiltrandoPorCategoriaInvalida_entaoDeveRetornarErroDeValidacao()
+			throws Exception {
+		mockMvc.perform(get("/produtos?categoria=INVALIDA").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isBadRequest())
+				.andExpect(jsonPath("$.detail").value("Categoria (INVALIDA) não encontrada")).andReturn();
+	}
+
+	@Test
+	@Transactional
+	@Order(20)
+	@DisplayName("Dado categorias de produtos, quando buscar as categorias dos produtos então deve retornar as categorias")
+	void dadoCategoriasDeProdutos_quandoBuscarCategorias_entaoDeveRetornarCategorias() throws Exception {
+
+		int quantidadeCategorias = Categoria.values().length;
+		mockMvc.perform(get("/produtos/categorias").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+				.andExpect(jsonPath("$.categorias").isArray())
+				.andExpect(jsonPath("$.categorias", hasSize(quantidadeCategorias))).andReturn();
+	}
 }
