@@ -9,12 +9,10 @@ import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoFiltroMapeador;
-import br.com.on.fiap.hexagono.dominio.Categoria;
+import br.com.on.fiap.adaptadores.entrada.datapool.*;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
 import br.com.on.fiap.hexagono.portas.entrada.produto.*;
-
-import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -62,27 +60,25 @@ class ProdutoControladorTest {
 
 	static Stream<Arguments> produtoDTOProvider() {
 		return Stream.of(
-				Arguments.of(new ProdutoRespostaDTO(1L, "Produto 1", "Descricao 1", BigDecimal.valueOf(10.0)),
-						new ProdutoSolicitacaoDTO("Produto 1", "Descricao 1", BigDecimal.valueOf(10.0))),
-				Arguments.of(new ProdutoRespostaDTO(2L, "Produto 2", "Descricao 2", BigDecimal.valueOf(20.0)),
-						new ProdutoSolicitacaoDTO("Produto 2", "Descricao 2", BigDecimal.valueOf(20.0))),
-				Arguments.of(new ProdutoRespostaDTO(3L, "Produto 3", "Descricao 3", BigDecimal.valueOf(30.0)),
-						new ProdutoSolicitacaoDTO("Produto 3", "Descricao 3", BigDecimal.valueOf(30.0))));
+				Arguments.of(DataPoolProdutoRespostaDTO.gerarProduto1(),
+                        DataPoolProdutoSolicitacaoDTO.gerarProduto1()),
+				Arguments.of(DataPoolProdutoRespostaDTO.gerarProduto2(),
+                        DataPoolProdutoSolicitacaoDTO.gerarProduto2()),
+				Arguments.of(DataPoolProdutoRespostaDTO.gerarProduto3(),
+                        DataPoolProdutoSolicitacaoDTO.gerarProduto3()));
 	}
 
 	static Stream<Arguments> produtoFiltroProvider() {
-		return Stream.of(Arguments.of(new ProdutoFiltroDTO("x-burguer", "LANCHE"),
-				new ProdutoFiltro("x-burguer", Categoria.LANCHE), Collections.emptyList(), Collections.emptyList()),
-				Arguments.of(new ProdutoFiltroDTO("x-burguer", "LANCHE"),
-						new ProdutoFiltro("x-burguer", Categoria.LANCHE),
-						List.of(new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN)),
-						List.of(new ProdutoRespostaDTO(1L, "x-burguer", "LANCHE", BigDecimal.TEN))),
-				Arguments.of(new ProdutoFiltroDTO("x-burguer", "LANCHE"),
-						new ProdutoFiltro("x-burguer", Categoria.LANCHE),
-						List.of(new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN),
-								new Produto(2L, "pizza", Categoria.LANCHE, BigDecimal.valueOf(20))),
-						List.of(new ProdutoRespostaDTO(1L, "x-burguer", "LANCHE", BigDecimal.TEN),
-								new ProdutoRespostaDTO(2L, "pizza", "LANCHE", BigDecimal.valueOf(20)))));
+		return Stream.of(Arguments.of(DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
+                        DataPoolProdutoFiltro.gerarProdutoXBurguer(), Collections.emptyList(), Collections.emptyList()),
+				Arguments.of(DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
+                        DataPoolProdutoFiltro.gerarProdutoXBurguer(),
+						List.of(DataPoolProduto.gerarProdutoXBurguer()),
+						List.of(DataPoolProdutoRespostaDTO.gerarProdutoXBurguer())),
+				Arguments.of(DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
+                        DataPoolProdutoFiltro.gerarProdutoXBurguer(),
+                        DataPoolProduto.gerarListaProdutos(),
+                        DataPoolProdutoRespostaDTO.gerarListaProdutoRespostaDTO()));
 	}
 
 	@ParameterizedTest

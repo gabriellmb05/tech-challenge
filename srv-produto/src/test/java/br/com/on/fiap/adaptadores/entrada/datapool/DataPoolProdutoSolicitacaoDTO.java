@@ -29,4 +29,16 @@ public class DataPoolProdutoSolicitacaoDTO {
 	public static ProdutoSolicitacaoDTO gerarNomeCategoriaPreco(String nome, String categoria, BigDecimal preco) {
 		return construirProduto(nome, categoria, preco);
 	}
+
+    public static ProdutoSolicitacaoDTO gerarProduto1() {
+        return construirProduto("Produto 1", "Descricao 1", BigDecimal.valueOf(10.0));
+    }
+
+    public static ProdutoSolicitacaoDTO gerarProduto2() {
+        return construirProduto("Produto 2", "Descricao 2", BigDecimal.valueOf(20.0));
+    }
+
+    public static ProdutoSolicitacaoDTO gerarProduto3() {
+        return construirProduto("Produto 3", "Descricao 3", BigDecimal.valueOf(30.0));
+    }
 }
