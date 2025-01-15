@@ -4,17 +4,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.CategoriasDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoFiltroDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
+import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoFiltroMapeador;
+import br.com.on.fiap.datapool.*;
+import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
-import br.com.on.fiap.hexagono.portas.entrada.produto.AlteraProdutoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.produto.BuscaProdutoPorIdPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.produto.DeletaProdutoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.produto.InsereProdutoPortaEntrada;
-import java.math.BigDecimal;
+import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
+import br.com.on.fiap.hexagono.portas.entrada.produto.*;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -22,6 +29,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -43,17 +55,36 @@ class ProdutoControladorTest {
 	@Mock
 	private ProdutoEntradaMapeador produtoEntradaMapeador;
 
+	@Mock
+	private ProdutoFiltroMapeador produtoFiltroMapeador;
+
+	@Mock
+	private ListarProdutoPortaEntrada listarProdutoPortaEntrada;
+
+	@Mock
+	private BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada;
+
 	@InjectMocks
 	private ProdutoControlador produtoControlador;
 
 	static Stream<Arguments> produtoDTOProvider() {
 		return Stream.of(
-				Arguments.of(new ProdutoRespostaDTO(1L, "Produto 1", "Descricao 1", BigDecimal.valueOf(10.0)),
-						new ProdutoSolicitacaoDTO("Produto 1", "Descricao 1", BigDecimal.valueOf(10.0))),
-				Arguments.of(new ProdutoRespostaDTO(2L, "Produto 2", "Descricao 2", BigDecimal.valueOf(20.0)),
-						new ProdutoSolicitacaoDTO("Produto 2", "Descricao 2", BigDecimal.valueOf(20.0))),
-				Arguments.of(new ProdutoRespostaDTO(3L, "Produto 3", "Descricao 3", BigDecimal.valueOf(30.0)),
-						new ProdutoSolicitacaoDTO("Produto 3", "Descricao 3", BigDecimal.valueOf(30.0))));
+				Arguments.of(DataPoolProdutoRespostaDTO.gerarProduto1(), DataPoolProdutoSolicitacaoDTO.gerarProduto1()),
+				Arguments.of(DataPoolProdutoRespostaDTO.gerarProduto2(), DataPoolProdutoSolicitacaoDTO.gerarProduto2()),
+				Arguments.of(DataPoolProdutoRespostaDTO.gerarProduto3(),
+						DataPoolProdutoSolicitacaoDTO.gerarProduto3()));
+	}
+
+	static Stream<Arguments> produtoFiltroProvider() {
+		return Stream.of(
+				Arguments.of(DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
+						DataPoolProdutoFiltro.gerarProdutoXBurguer(), Collections.emptyList(), Collections.emptyList()),
+				Arguments.of(DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
+						DataPoolProdutoFiltro.gerarProdutoXBurguer(), List.of(DataPoolProduto.gerarProdutoXBurguer()),
+						List.of(DataPoolProdutoRespostaDTO.gerarProdutoXBurguer())),
+				Arguments.of(DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
+						DataPoolProdutoFiltro.gerarProdutoXBurguer(), DataPoolProduto.gerarListaProdutos(),
+						DataPoolProdutoRespostaDTO.gerarListaProdutoRespostaDTO()));
 	}
 
 	@ParameterizedTest
@@ -125,5 +156,46 @@ class ProdutoControladorTest {
 
 		assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
 		verify(deletaProdutoPortaEntrada).deleta(id);
+	}
+
+	@ParameterizedTest
+	@MethodSource("produtoFiltroProvider")
+	@DisplayName("Dado produtos existentes, quando buscar o produto através do filtro, então ele deve ser retornado")
+	void dadoProdutosExistentes_quandoBuscarProdutoAtravesDoFiltro_entaoDeveSerRetornado(ProdutoFiltroDTO filtroDTO,
+			ProdutoFiltro filtro, List<Produto> produtos, List<ProdutoRespostaDTO> produtoRespostaDTOs) {
+
+		Pageable paginacao = PageRequest.of(0, 10);
+		Page<Produto> produtoPage = new PageImpl<>(produtos, paginacao, produtos.size());
+		Page<ProdutoRespostaDTO> produtoRespostaPage = new PageImpl<>(produtoRespostaDTOs, paginacao,
+				produtoRespostaDTOs.size());
+
+		when(produtoFiltroMapeador.paraProdutoFiltro(filtroDTO)).thenReturn(filtro);
+		when(listarProdutoPortaEntrada.listarComFiltro(filtro, paginacao)).thenReturn(produtoPage);
+		produtos.forEach(produto -> when(produtoEntradaMapeador.paraProdutoDTO(produto))
+				.thenReturn(produtoRespostaDTOs.get(produtos.indexOf(produto))));
+
+		ResponseEntity<PagedModel<ProdutoRespostaDTO>> response = produtoControlador.listarProdutosComFiltro(filtroDTO,
+				paginacao);
+
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertEquals(produtoRespostaPage.getContent(), response.getBody().getContent());
+		verify(listarProdutoPortaEntrada).listarComFiltro(filtro, paginacao);
+		verify(produtoFiltroMapeador).paraProdutoFiltro(filtroDTO);
+		produtos.forEach(produto -> verify(produtoEntradaMapeador).paraProdutoDTO(produto));
+	}
+
+	@Test
+	@DisplayName("Dado categorias de produtos, quando buscar as categorias, então elas devem ser retornadas")
+	void dadoCategoriasDeProdutos_quandoBuscarCategorias_entaoDevemSerRetornadas() {
+
+		Categoria[] categorias = Categoria.values();
+		List<String> categoriasEsperadas = Arrays.stream(categorias).map(Categoria::getNome).toList();
+		CategoriasDTO categoriasDTO = new CategoriasDTO(categoriasEsperadas);
+		when(buscaCategoriaPortaEntrada.buscaCategorias()).thenReturn(List.of(categorias));
+
+		ResponseEntity<CategoriasDTO> response = produtoControlador.buscaCategorias();
+
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertEquals(categoriasDTO, response.getBody());
 	}
 }
