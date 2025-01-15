@@ -85,7 +85,7 @@ class ProdutoControladorIntegracaoTest {
 				.content(objectMapper.writeValueAsString(
 						DataPoolProdutoSolicitacaoDTO.gerarNomeCategoriaPreco("Coca-cola", "BEBIDA", BigDecimal.TEN))))
 				.andExpect(status().isCreated()).andExpect(jsonPath("$.nome").value("Coca-cola"))
-				.andExpect(jsonPath("$.errors[0]").value("BEBIDA")).andExpect(jsonPath("$.preco").value(10.0))
+				.andExpect(jsonPath("$.categoria").value("BEBIDA")).andExpect(jsonPath("$.preco").value(10.0))
 				.andReturn();
 	}
 
