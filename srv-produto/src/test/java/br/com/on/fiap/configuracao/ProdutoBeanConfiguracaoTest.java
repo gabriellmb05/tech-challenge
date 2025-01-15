@@ -11,10 +11,7 @@ import br.com.on.fiap.hexagono.casosdeuso.produto.AlteraProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.produto.BuscaProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.produto.DeletaProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.produto.InsereProdutoCasoDeUso;
-import br.com.on.fiap.hexagono.portas.entrada.produto.AlteraProdutoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.produto.BuscaProdutoPorIdPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.produto.DeletaProdutoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.produto.InsereProdutoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.produto.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -71,6 +68,26 @@ class ProdutoBeanConfiguracaoTest {
 
 		assertNotNull(bean);
 		assertInstanceOf(DeletaProdutoCasoDeUso.class, bean);
+	}
+
+	@Test
+	@DisplayName("Dado a configuração de beans, quando listar Produtos, então deve retornar a instância correta")
+	void dadoConfiguracaoDeBeans_quandoListarProdutos_entaoDeveRetornarInstanciaCorreta() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
+		ListarProdutoPortaEntrada bean = context.getBean(ListarProdutoPortaEntrada.class);
+
+		assertNotNull(bean);
+		assertInstanceOf(ListarProdutoPortaEntrada.class, bean);
+	}
+
+	@Test
+	@DisplayName("Dado a configuração de beans, quando bucar categorias, então deve retornar a instância correta")
+	void dadoConfiguracaoDeBeans_quandoListarCategorias_entaoDeveRetornarInstanciaCorreta() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
+		BuscaCategoriaPortaEntrada bean = context.getBean(BuscaCategoriaPortaEntrada.class);
+
+		assertNotNull(bean);
+		assertInstanceOf(BuscaCategoriaPortaEntrada.class, bean);
 	}
 
 	@Configuration

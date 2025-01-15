@@ -1,8 +1,31 @@
 package br.com.on.fiap.hexagono.dominio;
 
-public interface ProdutoFiltro {
+public class ProdutoFiltro {
 
-	Categoria getCategoria();
+	private String nome;
+	private Categoria categoria;
 
-	String getNome();
+	public ProdutoFiltro() {
+	}
+
+	public ProdutoFiltro(String nome, Categoria categoria) {
+		this.nome = nome;
+		this.categoria = categoria;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 }
