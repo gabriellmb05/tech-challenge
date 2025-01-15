@@ -1,26 +1,23 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.dto;
 
-import br.com.on.fiap.hexagono.dominio.Categoria;
-import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
+public class ProdutoFiltroDTO {
 
-public class ProdutoFiltroDTO implements ProdutoFiltro {
-
-	private Categoria categoria;
+	private String categoria;
 	private String nome;
 
 	public ProdutoFiltroDTO() {
 	}
 
-	public ProdutoFiltroDTO(Categoria categoria, String nome) {
+	public ProdutoFiltroDTO(String categoria, String nome) {
 		this.categoria = categoria;
 		this.nome = nome;
 	}
 
-	public Categoria getCategoria() {
+	public String getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
 

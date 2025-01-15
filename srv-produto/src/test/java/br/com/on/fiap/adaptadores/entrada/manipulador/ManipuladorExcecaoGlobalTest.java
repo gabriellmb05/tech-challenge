@@ -2,6 +2,7 @@ package br.com.on.fiap.adaptadores.entrada.manipulador;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import br.com.on.fiap.hexagono.excecao.CategoriaNaoEncontradaExcecao;
 import br.com.on.fiap.hexagono.excecao.ProdutoExistenteExcecao;
 import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontratoExcecao;
 import org.junit.jupiter.api.DisplayName;
@@ -56,5 +57,17 @@ class ManipuladorExcecaoGlobalTest {
 
 		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
 		assertEquals("Erro interno da aplicação", response.getBody().getDetail());
+	}
+
+	@Test
+	@DisplayName("Dado uma exceção CategoriaNaoEncontradaExcecao, quando manipulada, então deve retornar BAD_REQUEST")
+	void dadoCategoriaNaoEncontradaExcecao_quandoManipulada_entaoDeveRetornarBadRequest() {
+		CategoriaNaoEncontradaExcecao ex = new CategoriaNaoEncontradaExcecao("teste");
+
+		ResponseEntity<ProblemDetail> response = manipuladorExcecaoGlobal.manipulaCategoriaNaoEncontradaExcecao(ex,
+				request);
+
+		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+		assertEquals("Categoria (teste) não encontrada", response.getBody().getDetail());
 	}
 }

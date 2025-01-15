@@ -19,6 +19,6 @@ public interface ProdutoEntradaMapeador {
 
 	@Named("getCategoria")
 	default Categoria getCategoria(String categoria) {
-		return Categoria.buscaCategoria(categoria.toUpperCase());
+		return Categoria.buscaCategoria(categoria);
 	}
 }
