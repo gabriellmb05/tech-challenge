@@ -42,14 +42,6 @@ public class ManipuladorExcecaoGlobal extends ResponseEntityExceptionHandler {
 	}
 
 	@Override
-	protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
-			HttpStatusCode status, WebRequest request) {
-		String detail = (body instanceof ProblemDetail body2) ? body2.getDetail() : body.toString();
-		ProblemDetail detalheProblema = ProblemDetail.forStatusAndDetail(status, detail);
-		return new ResponseEntity<>(detalheProblema, headers, status);
-	}
-
-	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 		Map<String, String> errors = ex.getBindingResult().getFieldErrors().stream()
