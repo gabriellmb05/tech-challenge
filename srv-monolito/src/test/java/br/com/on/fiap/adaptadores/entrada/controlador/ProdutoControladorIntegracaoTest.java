@@ -94,11 +94,11 @@ class ProdutoControladorIntegracaoTest {
 	@Order(5)
 	@DisplayName("Dado um produto existente, quando atualizar o produto passando um id invalido, então deve retornar erro de validação 'Produto (id) não encontrado'")
 	void dadoProdutoExistente_quandoAtualizarProdutoComIdInvalido_entaoDeveRetornarErro() throws Exception {
-		mockMvc.perform(put("/produtos/{id}", 5).contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(put("/produtos/{id}", 999999).contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(
 						DataPoolProdutoSolicitacaoDTO.gerarNomeCategoriaPreco("Coca-cola", "BEBIDA", BigDecimal.TEN))))
-				.andExpect(status().isNotFound()).andExpect(jsonPath("$.errors[0]").value("Produto (5) não encontrado"))
-				.andReturn();
+				.andExpect(status().isNotFound())
+				.andExpect(jsonPath("$.errors[0]").value("Produto (999.999) não encontrado")).andReturn();
 	}
 
 	@Test
@@ -173,9 +173,9 @@ class ProdutoControladorIntegracaoTest {
 	@DisplayName("Dado um produto existente, quando consultar o produto informando id inválido, então deve retornar erro de validação 'Produto (id) não encontrado'")
 	void dadoProdutoExistente_quandoConsultarProdutoInformandoIdInvalido_entaoDeveRetornarErroDeValidacao()
 			throws Exception {
-		mockMvc.perform(get("/produtos/{id}", 8).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isNotFound()).andExpect(jsonPath("$.errors[0]").value("Produto (8) não encontrado"))
-				.andReturn();
+		mockMvc.perform(get("/produtos/{id}", 999999).contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound())
+				.andExpect(jsonPath("$.errors[0]").value("Produto (999.999) não encontrado")).andReturn();
 	}
 
 	@Test
@@ -193,7 +193,8 @@ class ProdutoControladorIntegracaoTest {
 	@DisplayName("Dado produtos existentes, quando listar produtos sem filtro, então deve retornar todos os produtos")
 	void dadoProdutosExistentes_quandoListarProdutosSemFiltro_entaoDeveRetornarTodosOsProdutos() throws Exception {
 		mockMvc.perform(get("/produtos").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-				.andExpect(jsonPath("$.content").isArray()).andExpect(jsonPath("$.totalElements").value(3)).andReturn();
+				.andExpect(jsonPath("$.content").isArray()).andExpect(jsonPath("$.page.totalElements").value(8))
+				.andReturn();
 	}
 
 	@Test
@@ -203,7 +204,7 @@ class ProdutoControladorIntegracaoTest {
 	void dadoProdutosExistentes_quandoListarProdutosComFiltroDeCategoria_entaoDeveRetornarProdutosFiltrados()
 			throws Exception {
 		mockMvc.perform(get("/produtos?categoria=BEBIDA").contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(jsonPath("$.totalElements").value(1))
+				.andExpect(status().isOk()).andExpect(jsonPath("$.page.totalElements").value(1))
 				.andExpect(jsonPath("$.content[0].categoria").value("BEBIDA")).andReturn();
 	}
 
@@ -214,7 +215,7 @@ class ProdutoControladorIntegracaoTest {
 	void dadoProdutosExistentes_quandoListarProdutosComFiltroDeNome_entaoDeveRetornarProdutosFiltrados()
 			throws Exception {
 		mockMvc.perform(get("/produtos?nome=coca-cola lata").contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(jsonPath("$.totalElements").value(1))
+				.andExpect(status().isOk()).andExpect(jsonPath("$.page.totalElements").value(1))
 				.andExpect(jsonPath("$.content[0].nome").value("coca-cola lata")).andReturn();
 	}
 
@@ -225,7 +226,7 @@ class ProdutoControladorIntegracaoTest {
 	void dadoProdutosExistentes_quandoListarProdutosComMultiplosFiltros_entaoDeveRetornarProdutosFiltrados()
 			throws Exception {
 		mockMvc.perform(get("/produtos?categoria=LANCHE&nome=x-tudo").contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(jsonPath("$.totalElements").value(1))
+				.andExpect(status().isOk()).andExpect(jsonPath("$.page.totalElements").value(1))
 				.andExpect(jsonPath("$.content[0].categoria").value("LANCHE"))
 				.andExpect(jsonPath("$.content[0].nome").value("x-tudo")).andReturn();
 	}
