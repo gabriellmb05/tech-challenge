@@ -5,5 +5,5 @@ import br.com.on.fiap.hexagono.dominio.Categoria;
 import java.util.List;
 
 public interface BuscaCategoriaPortaEntrada {
-    List<Categoria> buscaCategorias();
+	List<Categoria> buscaCategorias();
 }

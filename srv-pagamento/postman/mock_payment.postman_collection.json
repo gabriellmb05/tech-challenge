@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "6d00f1c3-5aa5-45cc-9c96-536f557f5101",
+		"name": "mock_payment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31673229"
+	},
+	"item": [
+		{
+			"name": "Pagamento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 1500,\r\n    \"description\": \"Pagamento pedido 123\",\r\n    \"payment\": {\r\n        \"installments\": 1,\r\n        \"type\": \"credit_card\",\r\n        \"installments_cost\": \"seller\"\r\n    },\r\n    \"additional_info\": {\r\n        \"external_reference\": \"4561ads-das4das4-das4754-das456\",\r\n        \"print_on_terminal\": false\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/payments",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"payments"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:8083",
+			"type": "string"
+		}
+	]
+}
