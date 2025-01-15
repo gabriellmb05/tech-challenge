@@ -32,7 +32,7 @@ class ManipuladorExcecaoGlobalTest {
 				request);
 
 		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-		assertEquals("Produto (Produto já existe) já cadastrado", response.getBody().getDetails());
+		assertEquals("Produto (Produto já existe) já cadastrado", response.getBody().getErrors().getFirst());
 	}
 
 	@Test
@@ -44,7 +44,7 @@ class ManipuladorExcecaoGlobalTest {
 				request);
 
 		assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-		assertEquals("Produto (0) não encontrado", response.getBody().getDetails());
+		assertEquals("Produto (0) não encontrado", response.getBody().getErrors().getFirst());
 	}
 
 	@Test
@@ -55,6 +55,6 @@ class ManipuladorExcecaoGlobalTest {
 		ResponseEntity<DetalhesErrosGerais> response = manipuladorExcecaoGlobal.handleGlobalException(ex, request);
 
 		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-		assertEquals("Erro interno da aplicação", response.getBody().getDetails());
+		assertEquals("Erro interno da aplicação", response.getBody().getErrors().getFirst());
 	}
 }

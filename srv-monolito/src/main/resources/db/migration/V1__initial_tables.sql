@@ -1,3 +1,4 @@
+-- CREATE TABLE CLIENTE
 CREATE TABLE clientes (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(256) NOT NULL,
@@ -6,6 +7,7 @@ CREATE TABLE clientes (
     data_nascimento DATE
 );
 
+-- CREATE TABLE PRODUTOS
 CREATE TABLE produtos (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(256) NOT NULL,

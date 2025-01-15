@@ -66,8 +66,8 @@ public class ManipuladorExcecaoGlobal {
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<DetalhesErrosGerais> handleGlobalException(Exception ex, WebRequest request) {
-		return ResponseEntity.badRequest()
-				.body(DetalhesErrosGerais.builder().statusCode(HttpStatus.BAD_REQUEST.value())
+		return ResponseEntity.internalServerError()
+				.body(DetalhesErrosGerais.builder().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
 						.timestamp(LocalDateTime.now()).details(request.getDescription(false))
 						.errors(Collections.singletonList(ex.getMessage())).build());
 	}
