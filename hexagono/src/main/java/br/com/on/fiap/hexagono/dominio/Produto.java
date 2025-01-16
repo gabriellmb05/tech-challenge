@@ -7,21 +7,17 @@ public class Produto {
 	private String nome;
 	private Categoria categoria;
 	private BigDecimal preco;
+	private String ingredientes;
 
 	public Produto() {
 	}
 
-	public Produto(Long id, String nome, Categoria categoria, BigDecimal preco) {
+	public Produto(Long id, String nome, Categoria categoria, BigDecimal preco, String ingredientes) {
 		this.id = id;
 		this.nome = nome;
 		this.categoria = categoria;
 		this.preco = preco;
-	}
-
-	public Produto(String nome, Categoria categoria, BigDecimal preco) {
-		this.nome = nome;
-		this.categoria = categoria;
-		this.preco = preco;
+		this.ingredientes = ingredientes;
 	}
 
 	public Long getId() {
@@ -54,5 +50,13 @@ public class Produto {
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
+	}
+
+	public String getIngredientes() {
+		return ingredientes;
+	}
+
+	public void setIngredientes(String ingredientes) {
+		this.ingredientes = ingredientes;
 	}
 }

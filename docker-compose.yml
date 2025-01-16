@@ -14,43 +14,18 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
 
-  srv_cliente:
+  srv_monolito:
     build:
       context: .
       dockerfile: Dockerfile
-      target: srv_cliente_builder
     env_file:
       - .env
     ports:
-      - "8081:8080"
+      - "8080:8080"
     networks:
       - app-network
     depends_on:
       - db
-
-  srv_produto:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: srv_produto_builder
-    env_file:
-      - .env
-    ports:
-      - "8082:8080"
-    networks:
-      - app-network
-    depends_on:
-      - db
-
-  srv_pagamento:
-      build:
-        context: .
-        dockerfile: Dockerfile
-        target: srv_pagamento_builder
-      ports:
-        - "8083:8080"
-      networks:
-        - app-network
 
 networks:
   app-network:

@@ -10,9 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>hexagono</module>
-        <module>srv-produto</module>
-        <module>srv-cliente</module>
-        <module>srv-pagamento</module>
+        <module>srv-monolito</module>
     </modules>
     <properties>
         <java.version>21</java.version>

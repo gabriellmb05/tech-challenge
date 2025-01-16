@@ -1,0 +1,282 @@
+{
+	"info": {
+		"_postman_id": "f262e265-d1e6-4d6e-b9ef-c99d7bde04ac",
+		"name": "srv-monolito",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31673229"
+	},
+	"item": [
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Buscar cliente por CPF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/clientes/43316652616",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"clientes",
+								"43316652616"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inserir cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Tiago\",\r\n    \"cpf\": \"42202328009\",\r\n    \"email\": \"teste@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/clientes",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Buscar produtos paginado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/produtos?page=0&size=10",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "sort",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar produto por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/produtos/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"produtos",
+								"1"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inserir produto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Produto para deletgar\",\r\n    \"categoria\": \"LANCHE\",\r\n    \"preco\": 25.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/produtos",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar produto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Produto para deletar atualizado\",\r\n    \"categoria\": \"LANCHE\",\r\n    \"preco\": 25.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/produtos/9",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"produtos",
+								"9"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar produto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Produto para deletar atualizado\",\r\n    \"categoria\": \"LANCHE\",\r\n    \"preco\": 25.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/produtos/9",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"produtos",
+								"9"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pagamentos",
+			"item": [
+				{
+					"name": "Fake checkout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 1500,\r\n    \"description\": \"Pagamento pedido 123\",\r\n    \"pagamentoDTO\": {\r\n        \"installments\": 1,\r\n        \"type\": \"credit_card\",\r\n        \"installments_cost\": \"seller\"\r\n    },\r\n    \"additional_info\": {\r\n        \"external_reference\": \"4561ads-das4das4-das4754-das456\",\r\n        \"print_on_terminal\": false\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/pagamentos",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"pagamentos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

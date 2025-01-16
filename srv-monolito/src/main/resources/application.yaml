@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: srv-monolito
+  output:
+    ansi:
+      enabled: ALWAYS
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: ${DB_DRIVER_CLASS_NAME}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    open-in-view: false
+  flyway:
+    enabled: ${FLYWAY_ENABLE:false}
+springdoc:
+  swagger-ui:
+    path: /documentacao.html
+  api-docs:
+    path: /documentacao
+info:
+  application:
+    name: srv-monolito
+    description: Serviço monolito
+    version: 1.0
+logging:
+  level:
+    root: ${LOG_LEVEL_ROOT:INFO}
