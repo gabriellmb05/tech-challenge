@@ -3,6 +3,7 @@ package br.com.on.fiap.adaptadores.entrada.controlador;
 import br.com.on.fiap.datapool.DataPoolProdutoSolicitacaoDTO;
 import br.com.on.fiap.hexagono.dominio.Categoria;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -97,8 +98,9 @@ class ProdutoControladorIntegracaoTest {
 		mockMvc.perform(put("/produtos/{id}", 999999).contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(
 						DataPoolProdutoSolicitacaoDTO.gerarNomeCategoriaPreco("Coca-cola", "BEBIDA", BigDecimal.TEN))))
-				.andExpect(status().isNotFound())
-				.andExpect(jsonPath("$.errors[0]").value("Produto (999.999) não encontrado")).andReturn();
+				.andExpect(status().isNotFound()).andExpect(jsonPath("$.errors[0]")
+						.value(Matchers.matchesPattern("Produto \\(999[.,]999\\) não encontrado")))
+				.andReturn();
 	}
 
 	@Test
@@ -174,8 +176,9 @@ class ProdutoControladorIntegracaoTest {
 	void dadoProdutoExistente_quandoConsultarProdutoInformandoIdInvalido_entaoDeveRetornarErroDeValidacao()
 			throws Exception {
 		mockMvc.perform(get("/produtos/{id}", 999999).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isNotFound())
-				.andExpect(jsonPath("$.errors[0]").value("Produto (999.999) não encontrado")).andReturn();
+				.andExpect(status().isNotFound()).andExpect(jsonPath("$.errors[0]")
+						.value(Matchers.matchesPattern("Produto \\(999[.,]999\\) não encontrado")))
+				.andReturn();
 	}
 
 	@Test
