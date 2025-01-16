@@ -5,7 +5,7 @@ import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.hexagono.casosdeuso.produto.AlteraProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.dominio.Produto;
-import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontratoExcecao;
+import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.portas.saida.produto.PersisteProdutoPortaSaida;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
@@ -29,14 +29,20 @@ class AlteraProdutoCasoDeUsoTest {
 	void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado() {
 		Long id = 1L;
 		Produto produto = new Produto();
-		produto.setNome("Produto Teste");
+		produto.setId(id);
+		produto.setNome("Produto 1");
 
-		when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.of(new Produto()));
-		when(persisteProdutoPortaSaida.salvaProduto(produto)).thenReturn(produto);
+		Produto produtoAlterado = new Produto();
+		produtoAlterado.setId(id);
+		produtoAlterado.setNome("Produto Alterado");
+
+		when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.of(produto));
+		when(persisteProdutoPortaSaida.salvaProduto(produto)).thenReturn(produtoAlterado);
 
 		Produto resultado = alteraProdutoCasoDeUso.alterar(id, produto);
 
-		assertAll(() -> assertEquals(id, resultado.getId()), () -> assertEquals("Produto Teste", resultado.getNome()));
+		assertAll(() -> assertEquals(id, resultado.getId()),
+				() -> assertEquals("Produto Alterado", resultado.getNome()));
 		verify(persisteProdutoPortaSaida).buscaProdutoPorId(id);
 		verify(persisteProdutoPortaSaida).salvaProduto(produto);
 	}
@@ -49,7 +55,7 @@ class AlteraProdutoCasoDeUsoTest {
 
 		when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.empty());
 
-		assertThrows(ProdutoNaoEncontratoExcecao.class, () -> alteraProdutoCasoDeUso.alterar(id, produto));
+		assertThrows(ProdutoNaoEncontradoExcecao.class, () -> alteraProdutoCasoDeUso.alterar(id, produto));
 
 		verify(persisteProdutoPortaSaida).buscaProdutoPorId(id);
 		verify(persisteProdutoPortaSaida, never()).salvaProduto(produto);

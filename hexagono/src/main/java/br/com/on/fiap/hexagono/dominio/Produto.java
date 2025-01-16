@@ -59,4 +59,11 @@ public class Produto {
 	public void setIngredientes(String ingredientes) {
 		this.ingredientes = ingredientes;
 	}
+
+	public void atualizarDados(Produto produto) {
+		this.nome = produto.getNome();
+		this.categoria = produto.getCategoria();
+		this.preco = produto.getPreco();
+		this.ingredientes = produto.getIngredientes();
+	}
 }

@@ -1,6 +1,8 @@
 package br.com.on.fiap.hexagono.dominio;
 
 import br.com.on.fiap.hexagono.excecao.CategoriaNaoEncontradaExcecao;
+import br.com.on.fiap.hexagono.excecao.message.MessageError;
+
 import java.util.stream.Stream;
 
 public enum Categoria {
@@ -17,7 +19,8 @@ public enum Categoria {
 	}
 
 	public static Categoria buscaCategoria(String categoria) {
-		return Stream.of(Categoria.values()).filter(c -> c.nome.equals(categoria)).findFirst()
-				.orElseThrow(() -> new CategoriaNaoEncontradaExcecao(categoria));
+		return Stream.of(Categoria.values()).filter(c -> c.nome.equals(categoria)).findFirst().orElseThrow(
+				() -> new CategoriaNaoEncontradaExcecao(MessageError.MSG_ERRO_CATEGORIA_NAO_CADASTRADA.getMensagem(),
+						categoria));
 	}
 }
