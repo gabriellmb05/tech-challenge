@@ -6,16 +6,14 @@ import java.util.List;
 public class Pedido {
 
 	private List<RelPedidoProduto> produtos;
-	private Pagamento pagamento;
 	private Cliente cliente;
 	private BigDecimal valor;
 
 	public Pedido() {
 	}
 
-	public Pedido(List<RelPedidoProduto> produtos, Pagamento pagamento, Cliente cliente, BigDecimal valor) {
+	public Pedido(List<RelPedidoProduto> produtos, Cliente cliente, BigDecimal valor) {
 		this.produtos = produtos;
-		this.pagamento = pagamento;
 		this.cliente = cliente;
 		this.valor = valor;
 	}
@@ -34,14 +32,6 @@ public class Pedido {
 
 	public List<RelPedidoProduto> getProdutos() {
 		return produtos;
-	}
-
-	public Pagamento getPagamento() {
-		return pagamento;
-	}
-
-	public void setPagamento(Pagamento pagamento) {
-		this.pagamento = pagamento;
 	}
 
 	public Cliente getCliente() {
