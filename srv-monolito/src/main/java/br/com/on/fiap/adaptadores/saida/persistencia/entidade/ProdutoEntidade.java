@@ -34,4 +34,6 @@ public class ProdutoEntidade {
 	private Categoria categoria;
 
 	private BigDecimal preco;
+
+	private String ingredientes;
 }
