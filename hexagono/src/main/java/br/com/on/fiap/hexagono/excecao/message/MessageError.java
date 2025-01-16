@@ -3,7 +3,10 @@ package br.com.on.fiap.hexagono.excecao.message;
 public enum MessageError {
 
 	MSG_ERRO_CPF_JA_CADASTRADO("cpf-ja-cadastrado"), MSG_ERRO_EMAIL_JA_CADASTRADO(
-			"email-ja-cadastrado"), MSG_ERRO_CLIENTE_NAO_CADASTRADO("cliente-nao-cadastrado");
+			"email-ja-cadastrado"), MSG_ERRO_CLIENTE_NAO_CADASTRADO(
+					"cliente-nao-cadastrado"), MSG_ERRO_CATEGORIA_NAO_CADASTRADA(
+							"categoria-nao-cadastrada"), MSG_ERRO_PRODUTO_NAO_CADASTRADO(
+									"produto-nao-cadastrado"), MSG_ERRO_PRODUTO_JA_CADASTRADO("produto-ja-cadastrado");
 
 	private final String mensagem;
 

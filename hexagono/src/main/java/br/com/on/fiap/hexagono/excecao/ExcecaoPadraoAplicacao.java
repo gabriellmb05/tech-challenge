@@ -2,9 +2,9 @@ package br.com.on.fiap.hexagono.excecao;
 
 import br.com.on.fiap.hexagono.excecao.message.MessageManager;
 
-public class ApplicationExcecaoPadrao extends RuntimeException {
+public abstract class ExcecaoPadraoAplicacao extends RuntimeException {
 
-	public ApplicationExcecaoPadrao(String chave, Object... args) {
+	protected ExcecaoPadraoAplicacao(String chave, Object... args) {
 		super(MessageManager.getMessage(chave, args));
 	}
 }

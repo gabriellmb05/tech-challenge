@@ -103,7 +103,7 @@ class ClienteControladorIntegracaoTest {
 	@Order(8)
 	@DisplayName("Dado um cliente criado, quando buscar o cliente com cpf diferente do cadastrado, então deve retornar erro de validação 'Não foi encontrado Cliente para o cpf: {valor}'")
 	void dadoClienteCriado_quandoBuscarClientePorCpfDiferenteDoCadastrado_entaoDeveRetornarOCliente() throws Exception {
-		mockMvc.perform(get("/clientes/{cpf}", "75864522023")).andExpect(status().isBadRequest())
+		mockMvc.perform(get("/clientes/{cpf}", "75864522023")).andExpect(status().isNotFound())
 				.andExpect(jsonPath("$.errors[0]").value("Não foi encontrado Cliente para o cpf: 75864522023"))
 				.andReturn();
 	}

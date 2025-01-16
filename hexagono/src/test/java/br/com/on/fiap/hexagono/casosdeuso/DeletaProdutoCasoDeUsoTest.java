@@ -5,7 +5,7 @@ import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.hexagono.casosdeuso.produto.DeletaProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.dominio.Produto;
-import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontratoExcecao;
+import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.portas.saida.produto.PersisteProdutoPortaSaida;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
@@ -42,7 +42,7 @@ class DeletaProdutoCasoDeUsoTest {
 		Long id = 1L;
 		when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.empty());
 
-		assertThrows(ProdutoNaoEncontratoExcecao.class, () -> deletaProdutoCasoDeUso.deleta(id));
+		assertThrows(ProdutoNaoEncontradoExcecao.class, () -> deletaProdutoCasoDeUso.deleta(id));
 		verify(persisteProdutoPortaSaida).buscaProdutoPorId(id);
 		verify(persisteProdutoPortaSaida, never()).deletaProdutoPorId(id);
 	}
