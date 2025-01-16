@@ -6,7 +6,10 @@ public enum MessageError {
 			"email-ja-cadastrado"), MSG_ERRO_CLIENTE_NAO_CADASTRADO(
 					"cliente-nao-cadastrado"), MSG_ERRO_CATEGORIA_NAO_CADASTRADA(
 							"categoria-nao-cadastrada"), MSG_ERRO_PRODUTO_NAO_CADASTRADO(
-									"produto-nao-cadastrado"), MSG_ERRO_PRODUTO_JA_CADASTRADO("produto-ja-cadastrado");
+									"produto-nao-cadastrado"), MSG_ERRO_PRODUTO_JA_CADASTRADO(
+											"produto-ja-cadastrado"), MSG_CLIENTE_NAO_ENCONTRATO_PARA_ID(
+													"cliente-nao-encontrado-por-id"), MSG_PRODUTOS_NAO_ENCONTRADOS(
+															"produtos-nao-encontrados");
 
 	private final String mensagem;
 

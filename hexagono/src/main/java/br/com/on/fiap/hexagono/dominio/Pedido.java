@@ -1,28 +1,39 @@
 package br.com.on.fiap.hexagono.dominio;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Pedido {
 
-	private List<Produto> listaItems;
+	private List<RelPedidoProduto> produtos;
 	private Pagamento pagamento;
 	private Cliente cliente;
+	private BigDecimal valor;
 
 	public Pedido() {
 	}
 
-	public Pedido(List<Produto> listaItems, Pagamento pagamento, Cliente cliente) {
-		this.listaItems = listaItems;
+	public Pedido(List<RelPedidoProduto> produtos, Pagamento pagamento, Cliente cliente, BigDecimal valor) {
+		this.produtos = produtos;
 		this.pagamento = pagamento;
 		this.cliente = cliente;
+		this.valor = valor;
 	}
 
-	public List<Produto> getListaItems() {
-		return listaItems;
+	public void setProdutos(List<RelPedidoProduto> produtos) {
+		this.produtos = produtos;
 	}
 
-	public void setListaItems(List<Produto> listaItems) {
-		this.listaItems = listaItems;
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+
+	public List<RelPedidoProduto> getProdutos() {
+		return produtos;
 	}
 
 	public Pagamento getPagamento() {

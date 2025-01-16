@@ -2,6 +2,8 @@ package br.com.on.fiap.adaptadores.saida.persistencia.repositorio;
 
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.ProdutoEntidade;
 import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
+
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Repository;
 public interface ProdutoRepositorio extends JpaRepository<ProdutoEntidade, Long> {
 
 	Optional<ProdutoEntidade> findByNome(String nome);
+
+	Optional<List<ProdutoEntidade>> findByIdIn(List<Long> ids);
 
 	@Query("""
 			    SELECT p FROM ProdutoEntidade p

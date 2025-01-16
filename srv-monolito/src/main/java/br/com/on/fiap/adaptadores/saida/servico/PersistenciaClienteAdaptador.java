@@ -26,6 +26,11 @@ public class PersistenciaClienteAdaptador implements PersisteClientePortaSaida {
 	}
 
 	@Override
+	public Optional<Cliente> buscaClientePorId(Long id) {
+		return clienteRepositorio.findById(id).map(clienteSaidaMapeador::paraCliente);
+	}
+
+	@Override
 	public Optional<Cliente> buscaClientePorEmail(String email) {
 		return clienteRepositorio.findByEmail(email).map(clienteSaidaMapeador::paraCliente);
 	}

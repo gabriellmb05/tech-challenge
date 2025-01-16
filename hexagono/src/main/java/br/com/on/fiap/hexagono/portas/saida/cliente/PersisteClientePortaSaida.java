@@ -5,6 +5,8 @@ import java.util.Optional;
 
 public interface PersisteClientePortaSaida {
 
+	Optional<Cliente> buscaClientePorId(Long id);
+
 	Optional<Cliente> buscaClientePorCpf(String cpf);
 
 	Optional<Cliente> buscaClientePorEmail(String email);

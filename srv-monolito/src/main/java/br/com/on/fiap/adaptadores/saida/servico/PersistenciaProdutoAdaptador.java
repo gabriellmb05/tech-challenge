@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,6 +30,12 @@ public class PersistenciaProdutoAdaptador implements PersisteProdutoPortaSaida {
 	@Override
 	public Optional<Produto> buscaProdutoPorId(Long id) {
 		return produtoRepositorio.findById(id).map(produtoSaidaMapeador::paraProduto);
+	}
+
+	@Override
+	public Optional<List<Produto>> buscaProdutoPorIdsLista(List<Long> ids) {
+		return Optional
+				.of(produtoRepositorio.findByIdIn(ids).get().stream().map(produtoSaidaMapeador::paraProduto).toList());
 	}
 
 	@Override
