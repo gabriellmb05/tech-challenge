@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("clientes")
 public class ClienteControlador implements ClienteControladorSwagger {
 
 	private final InsereClientePortaEntrada insereClientePortaEntrada;

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("produtos")
 public class ProdutoControlador implements ProdutoControladorSwagger {
 
 	private final BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada;
