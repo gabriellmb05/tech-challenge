@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("pagamentos")
-public class PagamentoController {
+public class PagamentoController implements PagamentoControllerSwagger {
 	private final Logger log = LoggerFactory.getLogger(PagamentoController.class);
 
 	private final PagamentoServico pagamentoServico;
@@ -22,8 +22,9 @@ public class PagamentoController {
 		this.pagamentoServico = pagamentoServico;
 	}
 
+	@Override
 	@PostMapping
-	public ResponseEntity<PagamentoRespostaDTO> createPayment(
+	public ResponseEntity<PagamentoRespostaDTO> criarPagamento(
 			@RequestBody PagamentoSolicitacaoDTO pagamentoSolicitacaoDTO) {
 		log.info("Request: {}", pagamentoSolicitacaoDTO);
 		PagamentoRespostaDTO response = pagamentoServico.criarPagamentoMockResposta(pagamentoSolicitacaoDTO);

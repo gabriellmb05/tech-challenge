@@ -37,14 +37,14 @@ class ListarProdutoCasoDeUsoTest {
 	void dadoFiltroPorCategoria_quandoListarProdutos_entaoProdutosDaCategoriaDevemSerRetornados() {
 		ProdutoFiltro filtro = new ProdutoFiltro(null, Categoria.LANCHE);
 		Pageable paginacao = PageRequest.of(0, 10);
-		Produto produto = new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN);
+		Produto produto = new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN, "queijo, carne");
 		PageImpl<Produto> page = new PageImpl<>(List.of(produto), paginacao, 1L);
 		when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao)).thenReturn(page);
 
 		Page<Produto> result = listarProdutoCasoDeUso.listarComFiltro(filtro, paginacao);
 
 		assertEquals(1, result.getTotalElements());
-		assertEquals(Categoria.LANCHE, result.getContent().get(0).getCategoria());
+		assertEquals(Categoria.LANCHE, result.getContent().getFirst().getCategoria());
 		verify(persisteProdutoPortaSaida).listarComFiltros(filtro, paginacao);
 	}
 
@@ -54,13 +54,13 @@ class ListarProdutoCasoDeUsoTest {
 
 		ProdutoFiltro filtro = new ProdutoFiltro("x-burguer", Categoria.LANCHE);
 		Pageable paginacao = PageRequest.of(0, 10);
-		Produto produto = new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN);
-		PageImpl<Produto> page = new PageImpl(List.of(produto), paginacao, 10L);
+		Produto produto = new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN, "queijo, carne");
+		PageImpl<Produto> page = new PageImpl<>(List.of(produto), paginacao, 10L);
 		when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao)).thenReturn(page);
 
 		listarProdutoCasoDeUso.listarComFiltro(filtro, paginacao);
 
-		assertEquals(produto, page.getContent().get(0));
+		assertEquals(produto, page.getContent().getFirst());
 		verify(persisteProdutoPortaSaida).listarComFiltros(filtro, paginacao);
 
 	}
@@ -70,8 +70,8 @@ class ListarProdutoCasoDeUsoTest {
 	void dadoFiltroVazio_quandoListarProdutos_entaoTodosProdutosDevemSerRetornados() {
 		ProdutoFiltro filtro = new ProdutoFiltro();
 		Pageable paginacao = PageRequest.of(0, 10);
-		Produto produto1 = new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN);
-		Produto produto2 = new Produto(2L, "pizza", Categoria.LANCHE, BigDecimal.valueOf(20));
+		Produto produto1 = new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN, "queijo, carne");
+		Produto produto2 = new Produto(2L, "pizza", Categoria.LANCHE, BigDecimal.valueOf(20), "queijo, presunto");
 		PageImpl<Produto> page = new PageImpl<>(List.of(produto1, produto2), paginacao, 2L);
 		when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao)).thenReturn(page);
 
