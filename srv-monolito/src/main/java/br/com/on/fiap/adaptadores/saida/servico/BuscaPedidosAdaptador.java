@@ -1,6 +1,7 @@
 package br.com.on.fiap.adaptadores.saida.servico;
 
 import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.PedidoSaidaMapeador;
+import br.com.on.fiap.adaptadores.saida.persistencia.especificacao.PedidoEspecificacao;
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.PedidoRepositorio;
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
@@ -24,6 +25,7 @@ public class BuscaPedidosAdaptador implements BuscaPedidosPortaSaida {
 	@Override
 	@Transactional(readOnly = true)
 	public Page<Pedido> listarComFiltros(PedidoFiltro filtro, Pageable page) {
-		return pedidoRepositorio.buscarPedidosPorFiltro(filtro, page).map(pedidoSaidaMapeador::paraPedido);
+		return pedidoRepositorio.findAll(PedidoEspecificacao.filtroPorDataInicioEDataFim(filtro), page)
+				.map(pedidoSaidaMapeador::paraPedido);
 	}
 }
