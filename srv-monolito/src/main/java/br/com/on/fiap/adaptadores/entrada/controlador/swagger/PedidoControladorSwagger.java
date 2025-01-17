@@ -27,5 +27,6 @@ public interface PedidoControladorSwagger {
 	@Operation(summary = "Lista pedidos", description = "Retorna uma lista de pedidos de forma paginada")
 	@ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Pedidos encontrados"),
 			@ApiResponse(responseCode = "404", description = "Pedidos não encontrados")})
-	ResponseEntity<PagedModel<PedidoRespostaDTO>> listarPedidos(PedidoFiltroDTO pedidoFiltroDTO, Pageable pageable);
+	ResponseEntity<PagedModel<PedidoRespostaDTO>> buscaPedidosPaginado(PedidoFiltroDTO pedidoFiltroDTO,
+			Pageable pageable);
 }

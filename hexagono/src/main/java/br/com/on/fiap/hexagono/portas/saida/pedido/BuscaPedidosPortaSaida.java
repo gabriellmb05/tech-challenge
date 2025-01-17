@@ -5,7 +5,7 @@ import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface ListarPedidosPortaSaida {
+public interface BuscaPedidosPortaSaida {
 
 	Page<Pedido> listarComFiltros(PedidoFiltro filtro, Pageable page);
 }

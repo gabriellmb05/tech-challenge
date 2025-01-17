@@ -9,8 +9,9 @@ import br.com.on.fiap.adaptadores.entrada.controlador.swagger.PedidoControladorS
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.pedido.ListarPedidoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.pedido.BuscaPedidosPortaEntrada;
 import jakarta.validation.Valid;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedModel;
@@ -23,15 +24,15 @@ import org.springframework.web.bind.annotation.*;
 public class PedidoControlador implements PedidoControladorSwagger {
 
 	private final InserePedidoPortaEntrada inserePedidoPortaEntrada;
-	private final ListarPedidoPortaEntrada listarPedidoPortaEntrada;
+	private final BuscaPedidosPortaEntrada buscaPedidosPortaEntrada;
 	private final PedidoEntradaMapeador pedidoEntradaMapeador;
 	private final PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador;
 
 	public PedidoControlador(InserePedidoPortaEntrada inserePedidoPortaEntrada,
-			ListarPedidoPortaEntrada listarPedidoPortaEntrada, PedidoEntradaMapeador pedidoEntradaMapeador,
+			BuscaPedidosPortaEntrada buscaPedidosPortaEntrada, PedidoEntradaMapeador pedidoEntradaMapeador,
 			PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador) {
 		this.inserePedidoPortaEntrada = inserePedidoPortaEntrada;
-		this.listarPedidoPortaEntrada = listarPedidoPortaEntrada;
+		this.buscaPedidosPortaEntrada = buscaPedidosPortaEntrada;
 		this.pedidoEntradaMapeador = pedidoEntradaMapeador;
 		this.pedidoFiltroEntradaMapeador = pedidoFiltroEntradaMapeador;
 	}
@@ -47,10 +48,10 @@ public class PedidoControlador implements PedidoControladorSwagger {
 
 	@Override
 	@GetMapping
-	public ResponseEntity<PagedModel<PedidoRespostaDTO>> listarPedidos(PedidoFiltroDTO pedidoFiltroDTO,
-			Pageable pageable) {
+	public ResponseEntity<PagedModel<PedidoRespostaDTO>> buscaPedidosPaginado(
+			@ParameterObject PedidoFiltroDTO pedidoFiltroDTO, Pageable pageable) {
 		PedidoFiltro pedidoFiltro = pedidoFiltroEntradaMapeador.paraPedidoFiltro(pedidoFiltroDTO);
-		Page<PedidoRespostaDTO> pedidos = listarPedidoPortaEntrada.listarComFiltro(pedidoFiltro, pageable)
+		Page<PedidoRespostaDTO> pedidos = buscaPedidosPortaEntrada.buscarPedidosComFiltro(pedidoFiltro, pageable)
 				.map(pedidoEntradaMapeador::paraPedidoDTO);
 		return ResponseEntity.ok().body(new PagedModel<>(pedidos));
 	}

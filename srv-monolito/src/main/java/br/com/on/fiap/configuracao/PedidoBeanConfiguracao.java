@@ -1,11 +1,11 @@
 package br.com.on.fiap.configuracao;
 
 import br.com.on.fiap.hexagono.casosdeuso.pedido.InserePedidoCasoDeUso;
-import br.com.on.fiap.hexagono.casosdeuso.pedido.ListarPedidoCasoDeUso;
+import br.com.on.fiap.hexagono.casosdeuso.pedido.BuscaPedidosCasoDeUso;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.pedido.ListarPedidoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.pedido.BuscaPedidosPortaEntrada;
 import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
-import br.com.on.fiap.hexagono.portas.saida.pedido.ListarPedidosPortaSaida;
+import br.com.on.fiap.hexagono.portas.saida.pedido.BuscaPedidosPortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoPortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoProdutoPortaSaida;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +23,7 @@ public class PedidoBeanConfiguracao {
 	}
 
 	@Bean
-	public ListarPedidoPortaEntrada listarPedidos(ListarPedidosPortaSaida listarPedidosPortaSaida) {
-		return new ListarPedidoCasoDeUso(listarPedidosPortaSaida);
+	public BuscaPedidosPortaEntrada listarPedidos(BuscaPedidosPortaSaida buscaPedidosPortaSaida) {
+		return new BuscaPedidosCasoDeUso(buscaPedidosPortaSaida);
 	}
 }

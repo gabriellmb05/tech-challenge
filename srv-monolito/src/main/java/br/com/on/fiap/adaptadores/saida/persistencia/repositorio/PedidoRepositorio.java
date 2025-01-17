@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface PedidoRepositorio extends JpaRepository<PedidoEntidade, Long> {
 
 	@Query("""
-			SELECT p FROM Pedido p
+			SELECT p FROM PedidoEntidade p
 			WHERE (:#{#filtro.valorMinimo} IS NULL OR p.valor >= :#{#filtro.valorMinimo})
 			AND (:#{#filtro.valorMaximo} IS NULL OR p.valor <= :#{#filtro.valorMaximo})
 			AND (:#{#filtro.situacao} IS NULL OR p.situacao = :#{#filtro.situacao})
