@@ -14,6 +14,7 @@ public interface ProdutoSaidaMapeador {
     @Mapping(target = "preco", source = "vlProduto")
     Produto paraProduto(ProdutoEntidade produtoEntidade);
 
+    @Mapping(target = "proId", source = "id")
     @Mapping(target = "nmNome", source = "nome")
     @Mapping(target = "tpCategoria", source = "categoria")
     @Mapping(target = "vlProduto", source = "preco")

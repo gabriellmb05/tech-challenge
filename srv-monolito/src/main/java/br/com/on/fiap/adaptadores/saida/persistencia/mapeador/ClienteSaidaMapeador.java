@@ -15,6 +15,7 @@ public interface ClienteSaidaMapeador {
     @Mapping(target = "dataNascimento", source = "dhNascimento")
     Cliente paraCliente(ClienteEntidade clienteEntidade);
 
+    @Mapping(target = "cliId", source = "id")
     @Mapping(target = "nmNome", source = "nome")
     @Mapping(target = "nmCpf", source = "cpf")
     @Mapping(target = "nmEmail", source = "email")

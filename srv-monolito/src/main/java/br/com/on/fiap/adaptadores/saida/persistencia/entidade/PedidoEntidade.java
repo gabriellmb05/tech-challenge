@@ -39,15 +39,15 @@ public class PedidoEntidade {
     @Column(name = "PED_VL_PEDIDO")
     private BigDecimal vlPedido;
 
-    @OneToMany(mappedBy = "pedId", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PedidoProdutoEntidade> relPedPro = new ArrayList<>();
-
     @Column(name = "PED_NM_PROTOCOLO", nullable = false, unique = true)
     private String nmProtocolo;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "PED_DH_PEDIDO", nullable = false)
     private LocalDateTime dhPedido;
+
+    @OneToMany(mappedBy = "id.pedId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PedidoProdutoEntidade> relPedPro = new ArrayList<>();
 
     @PrePersist
     public void gerarProtocolo() {
