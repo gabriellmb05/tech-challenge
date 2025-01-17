@@ -1,5 +1,7 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.entidade;
 
+import br.com.on.fiap.adaptadores.saida.persistencia.entidade.conversor.SituacaoPedidoConversor;
+import br.com.on.fiap.hexagono.dominio.SituacaoPedido;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.security.SecureRandom;
@@ -28,7 +30,8 @@ public class PedidoEntidade {
     @JoinColumn(name = "cliente_id", nullable = false)
     private ClienteEntidade cliente;
 
-    private Long situacao;
+    @Convert(converter = SituacaoPedidoConversor.class)
+    private SituacaoPedido situacao;
 
     private BigDecimal valor;
 

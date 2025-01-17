@@ -1,7 +1,12 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta;
 
+import br.com.on.fiap.hexagono.dominio.SituacaoPedido;
 import java.math.BigDecimal;
 import java.util.List;
 
 public record PedidoDetalhadoRespostaDTO(
-        Long id, ClienteRespostaDTO cliente, BigDecimal valor, Long situacao, List<ProdutoRespostaDTO> produtos) {}
+        Long id,
+        ClienteRespostaDTO cliente,
+        BigDecimal valor,
+        SituacaoPedido situacao,
+        List<ProdutoRespostaDTO> produtos) {}

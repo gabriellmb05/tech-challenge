@@ -33,7 +33,7 @@ public class PedidoEspecificacao {
     private static Predicate adicionarFiltroDataFim(
             PedidoFiltro filtro, Root<PedidoEntidade> root, CriteriaBuilder builder, Predicate predicate) {
         if (filtro.getDataFim() != null) {
-            LocalDateTime dataFim = filtro.getDataFim().plusDays(1).atStartOfDay(); // Ajuste para o final do dia
+            LocalDateTime dataFim = filtro.getDataFim().plusDays(1).atStartOfDay();
             return builder.and(predicate, builder.lessThan(root.get("dataHora"), dataFim));
         }
         return predicate;

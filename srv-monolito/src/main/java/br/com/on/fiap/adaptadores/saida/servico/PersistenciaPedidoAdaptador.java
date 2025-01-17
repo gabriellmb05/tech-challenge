@@ -21,7 +21,6 @@ public class PersistenciaPedidoAdaptador implements PersistePedidoPortaSaida {
     @Override
     public Pedido salvaPedido(Pedido pedido) {
         PedidoEntidade pedidoEntidade = pedidoSaidaMapeador.paraEntidade(pedido);
-        pedidoEntidade.setSituacao(1L);
         return pedidoSaidaMapeador.paraPedido(pedidoRepositorio.save(pedidoEntidade));
     }
 }

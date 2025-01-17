@@ -4,15 +4,14 @@ import br.com.on.fiap.hexagono.excecao.CategoriaNaoEncontradaExcecao;
 import br.com.on.fiap.hexagono.excecao.message.MessageError;
 import java.util.stream.Stream;
 
-public enum SituacaoPedido {
-    REALIZADO(1),
-    APROVADO(2),
-    EM_PREPARACAO(3),
-    FINALIZADO(4);
+public enum SituacaoPagamento {
+    PENDENTE(1),
+    RECUSADO(2),
+    APROVADO(3);
 
     private final Integer codigo;
 
-    SituacaoPedido(Integer codigo) {
+    SituacaoPagamento(Integer codigo) {
         this.codigo = codigo;
     }
 
@@ -20,9 +19,9 @@ public enum SituacaoPedido {
         return codigo;
     }
 
-    public static SituacaoPedido deCodigo(Integer codigo) {
-        return Stream.of(SituacaoPedido.values())
-                .filter(situacaoPedido -> situacaoPedido.getCodigo() == codigo)
+    public static SituacaoPagamento deCodigo(Integer codigo) {
+        return Stream.of(SituacaoPagamento.values())
+                .filter(situacaoPagamento -> situacaoPagamento.getCodigo() == codigo)
                 .findFirst()
                 .orElseThrow(() -> new CategoriaNaoEncontradaExcecao(
                         MessageError.MSG_ERRO_CATEGORIA_NAO_CADASTRADA.getMensagem(), codigo));

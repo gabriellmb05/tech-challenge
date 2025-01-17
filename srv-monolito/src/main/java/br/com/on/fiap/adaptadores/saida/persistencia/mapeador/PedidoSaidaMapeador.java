@@ -12,6 +12,7 @@ public interface PedidoSaidaMapeador {
 
     @Mapping(target = "produtos", ignore = true)
     @Mapping(target = "dataHora", expression = "java(java.time.LocalDateTime.now())")
+    @Mapping(target = "situacao", expression = "java(br.com.on.fiap.hexagono.dominio.SituacaoPedido.REALIZADO)")
     PedidoEntidade paraEntidade(Pedido pedido);
 
     @Mapping(target = "relPedidoProdutos", source = "produtos")

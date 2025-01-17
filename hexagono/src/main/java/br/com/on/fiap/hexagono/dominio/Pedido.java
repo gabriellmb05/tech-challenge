@@ -10,7 +10,7 @@ public class Pedido {
     private List<RelPedidoProduto> relPedidoProdutos;
     private Cliente cliente;
     private BigDecimal valor;
-    private Long situacao;
+    private SituacaoPedido situacao;
     private String protocolo;
     private LocalDateTime dataHora;
 
@@ -21,7 +21,7 @@ public class Pedido {
             List<RelPedidoProduto> relPedidoProdutos,
             Cliente cliente,
             BigDecimal valor,
-            Long situacao,
+            SituacaoPedido situacao,
             String protocolo,
             LocalDateTime dataHora) {
         this.id = id;
@@ -65,11 +65,11 @@ public class Pedido {
         this.valor = valor;
     }
 
-    public Long getSituacao() {
+    public SituacaoPedido getSituacao() {
         return situacao;
     }
 
-    public void setSituacao(Long situacao) {
+    public void setSituacao(SituacaoPedido situacao) {
         this.situacao = situacao;
     }
 
