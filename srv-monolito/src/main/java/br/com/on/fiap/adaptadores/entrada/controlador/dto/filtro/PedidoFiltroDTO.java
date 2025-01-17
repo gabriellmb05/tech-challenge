@@ -4,12 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PedidoFiltroDTO {
 
-	private Double valorMinimo;
-	private Double valorMaximo;
+	private LocalDate dataInicio;
+	private LocalDate dataFim;
 	private Long situacao;
+	private String cpfCliente;
 }

@@ -1,34 +1,38 @@
 package br.com.on.fiap.hexagono.dominio;
 
+import java.time.LocalDate;
+
 public class PedidoFiltro {
 
-	private Double valorMinimo;
-	private Double valorMaximo;
+	private LocalDate dataInicio;
+	private LocalDate dataFim;
 	private Long situacao;
+	private String cpfCliente;
 
 	public PedidoFiltro() {
 	}
 
-	public PedidoFiltro(Double valorMinimo, Double valorMaximo, Long situacao) {
-		this.valorMinimo = valorMinimo;
-		this.valorMaximo = valorMaximo;
+	public PedidoFiltro(LocalDate dataInicio, LocalDate dataFim, Long situacao, String cpfCliente) {
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
 		this.situacao = situacao;
+		this.cpfCliente = cpfCliente;
 	}
 
-	public Double getValorMinimo() {
-		return valorMinimo;
+	public LocalDate getDataInicio() {
+		return dataInicio;
 	}
 
-	public void setValorMinimo(Double valorMinimo) {
-		this.valorMinimo = valorMinimo;
+	public void setDataInicio(LocalDate dataInicio) {
+		this.dataInicio = dataInicio;
 	}
 
-	public Double getValorMaximo() {
-		return valorMaximo;
+	public LocalDate getDataFim() {
+		return dataFim;
 	}
 
-	public void setValorMaximo(Double valorMaximo) {
-		this.valorMaximo = valorMaximo;
+	public void setDataFim(LocalDate dataFim) {
+		this.dataFim = dataFim;
 	}
 
 	public Long getSituacao() {
@@ -37,5 +41,13 @@ public class PedidoFiltro {
 
 	public void setSituacao(Long situacao) {
 		this.situacao = situacao;
+	}
+
+	public String getCpfCliente() {
+		return cpfCliente;
+	}
+
+	public void setCpfCliente(String cpfCliente) {
+		this.cpfCliente = cpfCliente;
 	}
 }
