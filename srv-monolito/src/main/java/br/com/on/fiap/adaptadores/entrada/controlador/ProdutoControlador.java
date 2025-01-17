@@ -1,16 +1,17 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.ProdutoFiltroDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.CategoriaRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoFiltroEntradaMapeador;
 import br.com.on.fiap.adaptadores.entrada.controlador.swagger.ProdutoControladorSwagger;
+import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
 import br.com.on.fiap.hexagono.portas.entrada.produto.*;
 import jakarta.validation.Valid;
+import java.util.List;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -99,11 +100,10 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
 
     @Override
     @GetMapping("/categorias")
-    public ResponseEntity<CategoriaRespostaDTO> buscaCategorias() {
-        //        List<String> categorias = buscaCategoriaPortaEntrada.buscaCategorias().stream()
-        //                .map(Categoria::getNome)
-        //                .toList();
-        return ResponseEntity.ok()
-                .body(CategoriaRespostaDTO.builder().categorias(null).build());
+    public ResponseEntity<List<String>> buscaCategorias() {
+        List<String> categorias = buscaCategoriaPortaEntrada.buscaCategorias().stream()
+                .map(Categoria::name)
+                .toList();
+        return ResponseEntity.ok().body(categorias);
     }
 }
