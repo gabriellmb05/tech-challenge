@@ -29,7 +29,7 @@ CREATE TABLE pedidos (
     valor NUMERIC(10, 2) NOT NULL,
     situacao INT NOT NULL,
     protocolo VARCHAR(50) NOT NULL UNIQUE,
-    data_hora TIMESTAMP NOT NULL,
+    data_hora TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     FOREIGN KEY (cliente_id) REFERENCES clientes(id) ON DELETE CASCADE
 );
 
