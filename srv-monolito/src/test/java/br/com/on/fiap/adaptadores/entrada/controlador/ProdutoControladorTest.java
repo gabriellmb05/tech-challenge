@@ -5,6 +5,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.ProdutoFiltroDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.CategoriaRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
@@ -189,10 +190,10 @@ class ProdutoControladorTest {
 
 		Categoria[] categorias = Categoria.values();
 		List<String> categoriasEsperadas = Arrays.stream(categorias).map(Categoria::getNome).toList();
-		CategoriasDTO categoriasDTO = new CategoriasDTO(categoriasEsperadas);
+		CategoriaRespostaDTO categoriasDTO = new CategoriaRespostaDTO(categoriasEsperadas);
 		when(buscaCategoriaPortaEntrada.buscaCategorias()).thenReturn(List.of(categorias));
 
-		ResponseEntity<CategoriasDTO> response = produtoControlador.buscaCategorias();
+		ResponseEntity<CategoriaRespostaDTO> response = produtoControlador.buscaCategorias();
 
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		assertEquals(categoriasDTO, response.getBody());
