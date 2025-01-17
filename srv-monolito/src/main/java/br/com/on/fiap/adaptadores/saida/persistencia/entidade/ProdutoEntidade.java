@@ -36,4 +36,8 @@ public class ProdutoEntidade {
 	private BigDecimal preco;
 
 	private String ingredientes;
+
+	public ProdutoEntidade(Long id) {
+		this.id = id;
+	}
 }

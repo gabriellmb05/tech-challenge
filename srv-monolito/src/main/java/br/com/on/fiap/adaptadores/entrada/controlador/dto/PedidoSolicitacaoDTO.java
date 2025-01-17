@@ -14,7 +14,7 @@ import java.util.List;
 public class PedidoSolicitacaoDTO {
 
 	@NotNull(message = "O cliente é obrigatório")
-	private Long idCliente;
+	private Long cliente;
 
 	@NotNull(message = "O valor do pedido é obrigatório")
 	private BigDecimal valor;

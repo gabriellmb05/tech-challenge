@@ -12,6 +12,10 @@ public class Produto {
 	public Produto() {
 	}
 
+	public Produto(Long id) {
+		this.id = id;
+	}
+
 	public Produto(Long id, String nome, Categoria categoria, BigDecimal preco, String ingredientes) {
 		this.id = id;
 		this.nome = nome;

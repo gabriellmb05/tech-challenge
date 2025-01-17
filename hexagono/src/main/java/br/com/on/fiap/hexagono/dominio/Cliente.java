@@ -12,6 +12,10 @@ public class Cliente {
 	public Cliente() {
 	}
 
+	public Cliente(Long id) {
+		this.id = id;
+	}
+
 	public Cliente(Long id, String cpf, String nome, String email, LocalDate dataNascimento) {
 		this.id = id;
 		this.cpf = cpf;

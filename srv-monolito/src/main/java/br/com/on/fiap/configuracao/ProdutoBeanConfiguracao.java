@@ -38,4 +38,9 @@ public class ProdutoBeanConfiguracao {
 	public BuscaCategoriaPortaEntrada buscaCategorias() {
 		return new BuscaCategoriaCasoDeUso();
 	}
+
+	@Bean
+	public ValidaProdutosCasoDeUso validaProdutosCasoDeUso(PersistenciaProdutoAdaptador persistenciaProdutoAdaptador) {
+		return new ValidaProdutosCasoDeUso(persistenciaProdutoAdaptador);
+	}
 }

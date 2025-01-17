@@ -1,15 +1,40 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.mapeador;
 
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.PedidoQuantidadeSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.PedidoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.PedidoSolicitacaoDTO;
+import br.com.on.fiap.hexagono.dominio.Cliente;
 import br.com.on.fiap.hexagono.dominio.Pedido;
-import org.mapstruct.Mapper;
+import br.com.on.fiap.hexagono.dominio.Produto;
+import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
+import org.mapstruct.*;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface PedidoEntradaMapeador {
 
 	PedidoRespostaDTO paraPedidoDTO(Pedido pedido);
 
-	Pedido paraPedido(PedidoSolicitacaoDTO pedidoSolicitacaoDTO);
+	@Mapping(target = "cliente", ignore = true)
+	@Mapping(target = "produtos", ignore = true)
+	default Pedido paraPedido(PedidoSolicitacaoDTO pedidoSolicitacaoDTO) {
+		Pedido pedido = new Pedido();
+		pedido.setCliente(cliente(pedidoSolicitacaoDTO.getCliente()));
+		pedido.setProdutos(produtos(pedidoSolicitacaoDTO.getProdutos(), pedido));
+		pedido.setValor(pedidoSolicitacaoDTO.getValor());
+		return pedido;
+	}
 
+	@Named("mapCliente")
+	default Cliente cliente(Long id) {
+		return new Cliente(id);
+	}
+
+	@Named("mapRelPedidoProduto")
+	default List<RelPedidoProduto> produtos(List<PedidoQuantidadeSolicitacaoDTO> produtos, Pedido pedido) {
+		return produtos.stream()
+				.map(obj -> new RelPedidoProduto(new Produto(obj.getIdProduto()), pedido, obj.getQuantidade()))
+				.toList();
+	}
 }

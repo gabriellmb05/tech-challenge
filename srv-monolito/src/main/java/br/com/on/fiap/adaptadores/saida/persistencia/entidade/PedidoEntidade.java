@@ -1,12 +1,12 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.entidade;
 
-import br.com.on.fiap.hexagono.dominio.SituacaoPedido;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -24,13 +24,12 @@ public class PedidoEntidade {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cliente_id", nullable = false)
-	private ClienteEntidade clienteEntidade;
+	private ClienteEntidade cliente;
 
-	@Enumerated(EnumType.STRING)
-	private SituacaoPedido situacao;
+	private Long situacao;
 
 	private BigDecimal valor;
 
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<RelPedidoProdutoEntidade> produtos;
+	private List<PedidoProdutoEntidade> produtos = new ArrayList<>();
 }
