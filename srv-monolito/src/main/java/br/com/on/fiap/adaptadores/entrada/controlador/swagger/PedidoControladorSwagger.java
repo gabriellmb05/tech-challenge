@@ -1,6 +1,7 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.swagger;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.PedidoFiltroDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoDetalhadoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoSolicitacaoDTO;
 import br.com.on.fiap.hexagono.dominio.Cliente;
@@ -29,4 +30,9 @@ public interface PedidoControladorSwagger {
 			@ApiResponse(responseCode = "404", description = "Pedidos não encontrados")})
 	ResponseEntity<PagedModel<PedidoRespostaDTO>> buscaPedidosPaginado(PedidoFiltroDTO pedidoFiltroDTO,
 			Pageable pageable);
+
+	@Operation(summary = "Detalha um pedido", description = "Retorna os detalhes de um pedido específico")
+	@ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Pedido encontrado"),
+			@ApiResponse(responseCode = "404", description = "Pedido não encontrado")})
+	ResponseEntity<PedidoDetalhadoRespostaDTO> detalhaPedido(Long id);
 }

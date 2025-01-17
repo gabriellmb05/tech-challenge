@@ -1,6 +1,7 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.PedidoFiltroDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoDetalhadoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.PedidoEntradaMapeador;
@@ -8,6 +9,7 @@ import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.PedidoFiltroEntra
 import br.com.on.fiap.adaptadores.entrada.controlador.swagger.PedidoControladorSwagger;
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
+import br.com.on.fiap.hexagono.portas.entrada.pedido.DetalhaPedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.BuscaPedidosPortaEntrada;
 import jakarta.validation.Valid;
@@ -25,14 +27,16 @@ public class PedidoControlador implements PedidoControladorSwagger {
 
 	private final InserePedidoPortaEntrada inserePedidoPortaEntrada;
 	private final BuscaPedidosPortaEntrada buscaPedidosPortaEntrada;
+	private final DetalhaPedidoPortaEntrada detalhaPedidoPortaEntrada;
 	private final PedidoEntradaMapeador pedidoEntradaMapeador;
 	private final PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador;
 
 	public PedidoControlador(InserePedidoPortaEntrada inserePedidoPortaEntrada,
-			BuscaPedidosPortaEntrada buscaPedidosPortaEntrada, PedidoEntradaMapeador pedidoEntradaMapeador,
-			PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador) {
+			BuscaPedidosPortaEntrada buscaPedidosPortaEntrada, DetalhaPedidoPortaEntrada detalhaPedidoPortaEntrada,
+			PedidoEntradaMapeador pedidoEntradaMapeador, PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador) {
 		this.inserePedidoPortaEntrada = inserePedidoPortaEntrada;
 		this.buscaPedidosPortaEntrada = buscaPedidosPortaEntrada;
+		this.detalhaPedidoPortaEntrada = detalhaPedidoPortaEntrada;
 		this.pedidoEntradaMapeador = pedidoEntradaMapeador;
 		this.pedidoFiltroEntradaMapeador = pedidoFiltroEntradaMapeador;
 	}
@@ -54,6 +58,14 @@ public class PedidoControlador implements PedidoControladorSwagger {
 		Page<PedidoRespostaDTO> pedidos = buscaPedidosPortaEntrada.buscarPedidosComFiltro(pedidoFiltro, pageable)
 				.map(pedidoEntradaMapeador::paraPedidoDTO);
 		return ResponseEntity.ok().body(new PagedModel<>(pedidos));
+	}
+
+	@Override
+	@GetMapping("/{id}/detalhar")
+	public ResponseEntity<PedidoDetalhadoRespostaDTO> detalhaPedido(@PathVariable Long id) {
+		Pedido pedidoDetalhado = detalhaPedidoPortaEntrada.detalhaPedido(id);
+
+		return ResponseEntity.ok(null);
 	}
 
 }
