@@ -1,7 +1,7 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.mapeador;
 
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoProdutoEntidade;
-import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoProdutoId;
+import br.com.on.fiap.adaptadores.saida.persistencia.entidade.relacionamento.RelPedId;
 import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
 import java.util.List;
 import org.mapstruct.AfterMapping;
@@ -18,7 +18,7 @@ public interface PedidoProdutoSaidaMapeador {
     @AfterMapping
     default void mapearPedidoProdutoId(
             @MappingTarget PedidoProdutoEntidade pedidoProdutoEntidade, RelPedidoProduto relPedidoProduto) {
-        PedidoProdutoId id = new PedidoProdutoId(
+        RelPedId id = new RelPedId(
                 relPedidoProduto.getPedido().getId(),
                 relPedidoProduto.getProduto().getId());
         pedidoProdutoEntidade.setId(id);

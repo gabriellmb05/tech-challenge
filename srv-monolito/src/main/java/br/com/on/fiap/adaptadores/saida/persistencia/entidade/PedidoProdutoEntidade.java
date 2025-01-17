@@ -1,5 +1,6 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.entidade;
 
+import br.com.on.fiap.adaptadores.saida.persistencia.entidade.relacionamento.RelPedId;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -7,21 +8,22 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "pedido_produto")
+@Table(name = "REL_PED_PRO")
 public class PedidoProdutoEntidade {
 
     @EmbeddedId
-    private PedidoProdutoId id;
+    private RelPedId id;
 
     @ManyToOne
-    @MapsId("pedidoId")
-    @JoinColumn(name = "pedido_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private PedidoEntidade pedido;
+    @MapsId("pedId")
+    @JoinColumn(name = "PED_ID", referencedColumnName = "id", insertable = false, updatable = false)
+    private PedidoEntidade pedId;
 
     @ManyToOne
-    @MapsId("produtoId")
-    @JoinColumn(name = "produto_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private ProdutoEntidade produto;
+    @MapsId("proId")
+    @JoinColumn(name = "PRO_ID", referencedColumnName = "id", insertable = false, updatable = false)
+    private ProdutoEntidade proId;
 
-    private Long quantidade;
+    @Column(name = "PED_QT_PEDIDO")
+    private Long qtPedido;
 }

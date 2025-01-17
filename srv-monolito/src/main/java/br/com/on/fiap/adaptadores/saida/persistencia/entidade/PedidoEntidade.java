@@ -17,38 +17,42 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "pedidos")
+@Table(name = "TB_PED_PEDIDO")
 public class PedidoEntidade {
 
+    private final static String SQ_PED_PEDIDO = "SQ_PED_PEDIDO";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pedidos_id_seq")
-    @SequenceGenerator(name = "pedidos_id_seq", sequenceName = "pedidos_id_seq", allocationSize = 1)
-    @Column(name = "id")
+    @Column(name = "PED_ID")
+    @SequenceGenerator(name = SQ_PED_PEDIDO, sequenceName = SQ_PED_PEDIDO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_PED_PEDIDO)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id", nullable = false)
-    private ClienteEntidade cliente;
+    @JoinColumn(name = "CLI_ID", nullable = false)
+    private ClienteEntidade cliId;
 
+    @Column(name = "PED_ST_PEDIDO")
     @Convert(converter = SituacaoPedidoConversor.class)
-    private SituacaoPedido situacao;
+    private SituacaoPedido stPedido;
 
-    private BigDecimal valor;
+    @Column(name = "PED_VL_PEDIDO")
+    private BigDecimal vlPedido;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PedidoProdutoEntidade> produtos = new ArrayList<>();
+    @OneToMany(mappedBy = "pedId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PedidoProdutoEntidade> relPedPro = new ArrayList<>();
 
-    @Column(nullable = false, unique = true)
-    private String protocolo;
+    @Column(name = "PED_NM_PROTOCOLO", nullable = false, unique = true)
+    private String nmProtocolo;
 
-    @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime dataHora;
+    @Column(name = "PED_DH_PEDIDO", nullable = false)
+    private LocalDateTime dhPedido;
 
     @PrePersist
     public void gerarProtocolo() {
-        String dataHoraFormatada = this.dataHora.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        String dataHoraFormatada = this.dhPedido.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
         Integer numeroAleatorio = new SecureRandom().nextInt(Integer.MAX_VALUE) % 10000;
-        this.protocolo = String.format("%s%s%s", dataHoraFormatada, this.id, numeroAleatorio);
+        this.nmProtocolo = String.format("%s%s%s", dataHoraFormatada, this.id, numeroAleatorio);
     }
 }

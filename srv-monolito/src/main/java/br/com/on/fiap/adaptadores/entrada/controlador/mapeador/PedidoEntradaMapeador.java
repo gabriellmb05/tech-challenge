@@ -4,10 +4,7 @@ import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoDetalha
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoQuantidadeSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoSolicitacaoDTO;
-import br.com.on.fiap.hexagono.dominio.Cliente;
-import br.com.on.fiap.hexagono.dominio.Pedido;
-import br.com.on.fiap.hexagono.dominio.Produto;
-import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
+import br.com.on.fiap.hexagono.dominio.*;
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

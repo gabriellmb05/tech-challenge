@@ -19,21 +19,24 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "produtos")
+@Table(name = "TB_PRO_PRODUTO")
 public class ProdutoEntidade {
 
+    private final static String SQ_PRO_PRODUTO = "SQ_PRO_PRODUTO";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "produtos_id_seq")
-    @SequenceGenerator(name = "produtos_id_seq", sequenceName = "produtos_id_seq", allocationSize = 1)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_PRO_PRODUTO)
+    @SequenceGenerator(name = SQ_PRO_PRODUTO, sequenceName = SQ_PRO_PRODUTO)
+    @Column(name = "PRO_ID")
     private Long id;
 
+    @Column(name = "PRO_NM_NOME")
     private String nome;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "PRO_TP_CATEGORIA")
     private Categoria categoria;
 
+    @Column(name = "PRO_VL_PRECO")
     private BigDecimal preco;
-
-    private String ingredientes;
 }
