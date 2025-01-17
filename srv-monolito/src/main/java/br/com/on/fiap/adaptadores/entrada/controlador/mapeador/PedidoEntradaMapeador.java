@@ -1,8 +1,8 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.mapeador;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.PedidoQuantidadeSolicitacaoDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.PedidoRespostaDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.PedidoSolicitacaoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoQuantidadeSolicitacaoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoRespostaDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoSolicitacaoDTO;
 import br.com.on.fiap.hexagono.dominio.Cliente;
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.Produto;

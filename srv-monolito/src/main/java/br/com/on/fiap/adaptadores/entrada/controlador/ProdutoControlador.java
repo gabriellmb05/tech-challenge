@@ -1,11 +1,11 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.CategoriasDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoFiltroDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.ProdutoFiltroDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ProdutoRespostaDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
-import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoFiltroMapeador;
+import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoFiltroEntradaMapeador;
+import br.com.on.fiap.adaptadores.entrada.controlador.swagger.ProdutoControladorSwagger;
 import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
@@ -30,21 +30,21 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
 	private final AlteraProdutoPortaEntrada alteraProdutoPortaEntrada;
 	private final DeletaProdutoPortaEntrada deletaProdutoPortaEntrada;
 	private final ProdutoEntradaMapeador produtoEntradaMapeador;
-	private final ProdutoFiltroMapeador produtoFiltroMapeador;
+	private final ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador;
 	private final ListarProdutoPortaEntrada listarProdutoPortaEntrada;
 	private final BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada;
 
 	public ProdutoControlador(BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada,
-			InsereProdutoPortaEntrada insereProdutoPortaEntrada, AlteraProdutoPortaEntrada alteraProdutoPortaEntrada,
-			DeletaProdutoPortaEntrada deletaProdutoPortaEntrada, ProdutoEntradaMapeador produtoEntradaMapeador,
-			ProdutoFiltroMapeador produtoFiltroMapeador, ListarProdutoPortaEntrada listarProdutoPortaEntrada,
-			BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada) {
+                              InsereProdutoPortaEntrada insereProdutoPortaEntrada, AlteraProdutoPortaEntrada alteraProdutoPortaEntrada,
+                              DeletaProdutoPortaEntrada deletaProdutoPortaEntrada, ProdutoEntradaMapeador produtoEntradaMapeador,
+                              ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador, ListarProdutoPortaEntrada listarProdutoPortaEntrada,
+                              BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada) {
 		this.buscaProdutoPorIdPortaEntrada = buscaProdutoPorIdPortaEntrada;
 		this.insereProdutoPortaEntrada = insereProdutoPortaEntrada;
 		this.alteraProdutoPortaEntrada = alteraProdutoPortaEntrada;
 		this.deletaProdutoPortaEntrada = deletaProdutoPortaEntrada;
 		this.produtoEntradaMapeador = produtoEntradaMapeador;
-		this.produtoFiltroMapeador = produtoFiltroMapeador;
+		this.produtoFiltroEntradaMapeador = produtoFiltroEntradaMapeador;
 		this.listarProdutoPortaEntrada = listarProdutoPortaEntrada;
 		this.buscaCategoriaPortaEntrada = buscaCategoriaPortaEntrada;
 	}
@@ -61,7 +61,7 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
 	@GetMapping
 	public ResponseEntity<PagedModel<ProdutoRespostaDTO>> listarProdutosComFiltro(
 			@ParameterObject ProdutoFiltroDTO filtro, Pageable pageable) {
-		ProdutoFiltro produtoFiltro = produtoFiltroMapeador.paraProdutoFiltro(filtro);
+		ProdutoFiltro produtoFiltro = produtoFiltroEntradaMapeador.paraProdutoFiltro(filtro);
 		Page<ProdutoRespostaDTO> produtos = listarProdutoPortaEntrada.listarComFiltro(produtoFiltro, pageable)
 				.map(produtoEntradaMapeador::paraProdutoDTO);
 		return ResponseEntity.ok().body(new PagedModel<>(produtos));

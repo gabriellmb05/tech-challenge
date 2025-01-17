@@ -1,4 +1,4 @@
-package br.com.on.fiap.adaptadores.entrada.controlador.dto;
+package br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

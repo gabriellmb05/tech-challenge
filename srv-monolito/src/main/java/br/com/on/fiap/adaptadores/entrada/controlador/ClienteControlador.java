@@ -1,8 +1,9 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ClienteRespostaDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ClienteSolicitacaoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ClienteRespostaDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ClienteSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ClienteEntradaMapeador;
+import br.com.on.fiap.adaptadores.entrada.controlador.swagger.ClienteControladorSwagger;
 import br.com.on.fiap.hexagono.dominio.Cliente;
 import br.com.on.fiap.hexagono.portas.entrada.cliente.BuscaClientePorCpfPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.cliente.InsereClientePortaEntrada;

@@ -1,8 +1,9 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.PedidoRespostaDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.PedidoSolicitacaoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoRespostaDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.PedidoEntradaMapeador;
+import br.com.on.fiap.adaptadores.entrada.controlador.swagger.PedidoControladorSwagger;
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
 import jakarta.validation.Valid;

@@ -4,12 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.CategoriasDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoFiltroDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.ProdutoFiltroDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ProdutoRespostaDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
-import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoFiltroMapeador;
+import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoFiltroEntradaMapeador;
 import br.com.on.fiap.datapool.*;
 import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
@@ -56,7 +55,7 @@ class ProdutoControladorTest {
 	private ProdutoEntradaMapeador produtoEntradaMapeador;
 
 	@Mock
-	private ProdutoFiltroMapeador produtoFiltroMapeador;
+	private ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador;
 
 	@Mock
 	private ListarProdutoPortaEntrada listarProdutoPortaEntrada;
@@ -169,7 +168,7 @@ class ProdutoControladorTest {
 		Page<ProdutoRespostaDTO> produtoRespostaPage = new PageImpl<>(produtoRespostaDTOs, paginacao,
 				produtoRespostaDTOs.size());
 
-		when(produtoFiltroMapeador.paraProdutoFiltro(filtroDTO)).thenReturn(filtro);
+		when(produtoFiltroEntradaMapeador.paraProdutoFiltro(filtroDTO)).thenReturn(filtro);
 		when(listarProdutoPortaEntrada.listarComFiltro(filtro, paginacao)).thenReturn(produtoPage);
 		produtos.forEach(produto -> when(produtoEntradaMapeador.paraProdutoDTO(produto))
 				.thenReturn(produtoRespostaDTOs.get(produtos.indexOf(produto))));
@@ -180,7 +179,7 @@ class ProdutoControladorTest {
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		assertEquals(produtoRespostaPage.getContent(), response.getBody().getContent());
 		verify(listarProdutoPortaEntrada).listarComFiltro(filtro, paginacao);
-		verify(produtoFiltroMapeador).paraProdutoFiltro(filtroDTO);
+		verify(produtoFiltroEntradaMapeador).paraProdutoFiltro(filtroDTO);
 		produtos.forEach(produto -> verify(produtoEntradaMapeador).paraProdutoDTO(produto));
 	}
 

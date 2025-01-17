@@ -1,4 +1,4 @@
-package br.com.on.fiap.adaptadores.entrada.controlador.dto;
+package br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

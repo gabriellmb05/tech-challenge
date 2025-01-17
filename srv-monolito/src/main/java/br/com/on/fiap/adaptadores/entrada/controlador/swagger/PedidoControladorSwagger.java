@@ -1,7 +1,7 @@
-package br.com.on.fiap.adaptadores.entrada.controlador;
+package br.com.on.fiap.adaptadores.entrada.controlador.swagger;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.PedidoRespostaDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.PedidoSolicitacaoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoRespostaDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoSolicitacaoDTO;
 import br.com.on.fiap.hexagono.dominio.Cliente;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

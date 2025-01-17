@@ -1,9 +1,8 @@
-package br.com.on.fiap.adaptadores.entrada.controlador;
+package br.com.on.fiap.adaptadores.entrada.controlador.swagger;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.CategoriasDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoFiltroDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoSolicitacaoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.ProdutoFiltroDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ProdutoRespostaDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSolicitacaoDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

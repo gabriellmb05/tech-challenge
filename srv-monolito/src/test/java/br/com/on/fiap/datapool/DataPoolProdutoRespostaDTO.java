@@ -1,6 +1,6 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.ProdutoRespostaDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ProdutoRespostaDTO;
 import java.math.BigDecimal;
 import java.util.List;
 
