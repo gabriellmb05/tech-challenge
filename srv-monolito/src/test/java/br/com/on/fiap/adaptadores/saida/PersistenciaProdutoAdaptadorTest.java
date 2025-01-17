@@ -72,14 +72,14 @@ class PersistenciaProdutoAdaptadorTest {
         String nome = "Produto Teste";
         ProdutoEntidade produtoEntidade = new ProdutoEntidade();
         Produto produto = new Produto();
-        when(produtoRepositorio.findByNome(nome)).thenReturn(Optional.of(produtoEntidade));
+        when(produtoRepositorio.findByNmNome(nome)).thenReturn(Optional.of(produtoEntidade));
         when(produtoSaidaMapeador.paraProduto(produtoEntidade)).thenReturn(produto);
 
         Optional<Produto> resultado = persistenciaProdutoAdaptador.buscaProdutoPorNome(nome);
 
         assertTrue(resultado.isPresent());
         assertEquals(produto, resultado.get());
-        verify(produtoRepositorio).findByNome(nome);
+        verify(produtoRepositorio).findByNmNome(nome);
         verify(produtoSaidaMapeador).paraProduto(produtoEntidade);
     }
 

@@ -2,6 +2,8 @@ package br.com.on.fiap.hexagono.dominio;
 
 import br.com.on.fiap.hexagono.excecao.CategoriaNaoEncontradaExcecao;
 import br.com.on.fiap.hexagono.excecao.message.MessageError;
+
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public enum SituacaoPagamento {
@@ -15,13 +17,13 @@ public enum SituacaoPagamento {
         this.codigo = codigo;
     }
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
     public static SituacaoPagamento deCodigo(Integer codigo) {
         return Stream.of(SituacaoPagamento.values())
-                .filter(situacaoPagamento -> situacaoPagamento.getCodigo() == codigo)
+                .filter(situacaoPagamento -> Objects.equals(situacaoPagamento.getCodigo(), codigo))
                 .findFirst()
                 .orElseThrow(() -> new CategoriaNaoEncontradaExcecao(
                         MessageError.MSG_ERRO_CATEGORIA_NAO_CADASTRADA.getMensagem(), codigo));

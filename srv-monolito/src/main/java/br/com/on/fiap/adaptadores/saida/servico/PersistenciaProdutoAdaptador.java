@@ -47,7 +47,7 @@ public class PersistenciaProdutoAdaptador implements PersisteProdutoPortaSaida {
 
     @Override
     public Optional<Produto> buscaProdutoPorNome(String nome) {
-        return produtoRepositorio.findByNome(nome).map(produtoSaidaMapeador::paraProduto);
+        return produtoRepositorio.findByNmNome(nome).map(produtoSaidaMapeador::paraProduto);
     }
 
     @Override

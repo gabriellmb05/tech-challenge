@@ -2,29 +2,31 @@ package br.com.on.fiap.hexagono.dominio;
 
 import br.com.on.fiap.hexagono.excecao.CategoriaNaoEncontradaExcecao;
 import br.com.on.fiap.hexagono.excecao.message.MessageError;
+
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public enum Categoria {
-    LANCHE("LANCHE"),
-    ACOMPANHAMENTO("ACOMPANHAMENTO"),
-    BEBIDA("BEBIDA"),
-    SOBREMESA("SOBREMESA");
+    LANCHE(1),
+    ACOMPANHAMENTO(2),
+    BEBIDA(3),
+    SOBREMESA(4);
 
-    private final String nome;
+    private final Integer codigo;
 
-    Categoria(String nome) {
-        this.nome = nome;
+    Categoria(Integer codigo) {
+        this.codigo = codigo;
     }
 
-    public String getNome() {
-        return this.nome;
+    public Integer getCodigo() {
+        return codigo;
     }
 
-    public static Categoria buscaCategoria(String categoria) {
+    public static Categoria deCodigo(Integer codigo) {
         return Stream.of(Categoria.values())
-                .filter(c -> c.nome.equals(categoria))
+                .filter(categoria -> Objects.equals(categoria.getCodigo(), codigo))
                 .findFirst()
                 .orElseThrow(() -> new CategoriaNaoEncontradaExcecao(
-                        MessageError.MSG_ERRO_CATEGORIA_NAO_CADASTRADA.getMensagem(), categoria));
+                        MessageError.MSG_ERRO_CATEGORIA_NAO_CADASTRADA.getMensagem(), codigo));
     }
 }

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProdutoRepositorio extends JpaRepository<ProdutoEntidade, Long> {
 
-    Optional<ProdutoEntidade> findByNome(String nome);
+    Optional<ProdutoEntidade> findByNmNome(String nome);
 
     Optional<List<ProdutoEntidade>> findByProIdIn(List<Long> ids);
 
@@ -27,11 +27,11 @@ public interface ProdutoRepositorio extends JpaRepository<ProdutoEntidade, Long>
 			WHERE
 			    (
 			        :#{#filtro.nome} IS NULL
-			            OR p.nome = :#{#filtro.nome}
+			            OR p.nmNome = :#{#filtro.nome}
 			    )
 			    AND (
 			        :#{#filtro.categoria} IS NULL
-			            OR p.categoria = :#{#filtro.categoria}
+			            OR p.tpCategoria = :#{#filtro.categoria}
 			    )
 			""")
     Page<ProdutoEntidade> buscarComFiltro(@Param(value = "filtro") ProdutoFiltro filtro, Pageable page);

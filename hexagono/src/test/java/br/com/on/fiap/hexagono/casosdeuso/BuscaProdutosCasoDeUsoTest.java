@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.hexagono.casosdeuso.produto.ListarProdutoCasoDeUso;
+import br.com.on.fiap.hexagono.casosdeuso.produto.BuscaProdutosCasoDeUso;
 import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
@@ -24,13 +24,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 @ExtendWith(MockitoExtension.class)
-class ListarProdutoCasoDeUsoTest {
+class BuscaProdutosCasoDeUsoTest {
 
     @Mock
     private PersisteProdutoPortaSaida persisteProdutoPortaSaida;
 
     @InjectMocks
-    private ListarProdutoCasoDeUso listarProdutoCasoDeUso;
+    private BuscaProdutosCasoDeUso buscaProdutosCasoDeUso;
 
     @Test
     @DisplayName("Dado filtro por categoria, quando listar produtos, então produtos da categoria devem ser retornados")
@@ -41,7 +41,7 @@ class ListarProdutoCasoDeUsoTest {
         PageImpl<Produto> page = new PageImpl<>(List.of(produto), paginacao, 1L);
         when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao)).thenReturn(page);
 
-        Page<Produto> result = listarProdutoCasoDeUso.listarComFiltro(filtro, paginacao);
+        Page<Produto> result = buscaProdutosCasoDeUso.listarComFiltro(filtro, paginacao);
 
         assertEquals(1, result.getTotalElements());
         assertEquals(Categoria.LANCHE, result.getContent().getFirst().getCategoria());
@@ -59,7 +59,7 @@ class ListarProdutoCasoDeUsoTest {
         PageImpl<Produto> page = new PageImpl<>(List.of(produto), paginacao, 10L);
         when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao)).thenReturn(page);
 
-        listarProdutoCasoDeUso.listarComFiltro(filtro, paginacao);
+        buscaProdutosCasoDeUso.listarComFiltro(filtro, paginacao);
 
         assertEquals(produto, page.getContent().getFirst());
         verify(persisteProdutoPortaSaida).listarComFiltros(filtro, paginacao);
@@ -75,7 +75,7 @@ class ListarProdutoCasoDeUsoTest {
         PageImpl<Produto> page = new PageImpl<>(List.of(produto1, produto2), paginacao, 2L);
         when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao)).thenReturn(page);
 
-        Page<Produto> result = listarProdutoCasoDeUso.listarComFiltro(filtro, paginacao);
+        Page<Produto> result = buscaProdutosCasoDeUso.listarComFiltro(filtro, paginacao);
 
         assertEquals(2, result.getTotalElements());
         verify(persisteProdutoPortaSaida).listarComFiltros(filtro, paginacao);
@@ -89,7 +89,7 @@ class ListarProdutoCasoDeUsoTest {
         PageImpl<Produto> page = new PageImpl<>(Collections.emptyList(), paginacao, 0L);
         when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao)).thenReturn(page);
 
-        Page<Produto> result = listarProdutoCasoDeUso.listarComFiltro(filtro, paginacao);
+        Page<Produto> result = buscaProdutosCasoDeUso.listarComFiltro(filtro, paginacao);
 
         assertEquals(0, result.getTotalElements());
         verify(persisteProdutoPortaSaida).listarComFiltros(filtro, paginacao);

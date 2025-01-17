@@ -30,13 +30,13 @@ public class ProdutoBeanConfiguracao {
     }
 
     @Bean
-    public ListarProdutoPortaEntrada listarProduto(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
-        return new ListarProdutoCasoDeUso(persisteProdutoPortaSaida);
+    public BuscaProdutosPortaEntrada listarProduto(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+        return new BuscaProdutosCasoDeUso(persisteProdutoPortaSaida);
     }
 
     @Bean
     public BuscaCategoriaPortaEntrada buscaCategorias() {
-        return new BuscaCategoriaCasoDeUso();
+        return new BuscaCategoriasCasoDeUso();
     }
 
     @Bean

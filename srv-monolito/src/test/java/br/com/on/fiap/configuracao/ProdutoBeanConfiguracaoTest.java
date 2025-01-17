@@ -74,10 +74,10 @@ class ProdutoBeanConfiguracaoTest {
     @DisplayName("Dado a configuração de beans, quando listar Produtos, então deve retornar a instância correta")
     void dadoConfiguracaoDeBeans_quandoListarProdutos_entaoDeveRetornarInstanciaCorreta() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-        ListarProdutoPortaEntrada bean = context.getBean(ListarProdutoPortaEntrada.class);
+        BuscaProdutosPortaEntrada bean = context.getBean(BuscaProdutosPortaEntrada.class);
 
         assertNotNull(bean);
-        assertInstanceOf(ListarProdutoPortaEntrada.class, bean);
+        assertInstanceOf(BuscaProdutosPortaEntrada.class, bean);
     }
 
     @Test
