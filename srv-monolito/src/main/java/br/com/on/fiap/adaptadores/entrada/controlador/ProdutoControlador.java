@@ -35,10 +35,11 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
 	private final BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada;
 
 	public ProdutoControlador(BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada,
-                              InsereProdutoPortaEntrada insereProdutoPortaEntrada, AlteraProdutoPortaEntrada alteraProdutoPortaEntrada,
-                              DeletaProdutoPortaEntrada deletaProdutoPortaEntrada, ProdutoEntradaMapeador produtoEntradaMapeador,
-                              ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador, ListarProdutoPortaEntrada listarProdutoPortaEntrada,
-                              BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada) {
+			InsereProdutoPortaEntrada insereProdutoPortaEntrada, AlteraProdutoPortaEntrada alteraProdutoPortaEntrada,
+			DeletaProdutoPortaEntrada deletaProdutoPortaEntrada, ProdutoEntradaMapeador produtoEntradaMapeador,
+			ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador,
+			ListarProdutoPortaEntrada listarProdutoPortaEntrada,
+			BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada) {
 		this.buscaProdutoPorIdPortaEntrada = buscaProdutoPorIdPortaEntrada;
 		this.insereProdutoPortaEntrada = insereProdutoPortaEntrada;
 		this.alteraProdutoPortaEntrada = alteraProdutoPortaEntrada;

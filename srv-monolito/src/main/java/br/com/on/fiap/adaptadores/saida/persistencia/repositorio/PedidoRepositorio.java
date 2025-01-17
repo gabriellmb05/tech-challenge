@@ -12,11 +12,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PedidoRepositorio extends JpaRepository<PedidoEntidade, Long> {
 
-    @Query("""
-           SELECT p FROM Pedido p
-           WHERE (:#{#filtro.valorMinimo} IS NULL OR p.valor >= :#{#filtro.valorMinimo})
-           AND (:#{#filtro.valorMaximo} IS NULL OR p.valor <= :#{#filtro.valorMaximo})
-           AND (:#{#filtro.situacao} IS NULL OR p.situacao = :#{#filtro.situacao})
-           """)
-    Page<Pedido> buscarPedidosPorFiltro(PedidoFiltro filtro, Pageable pageable);
+	@Query("""
+			SELECT p FROM Pedido p
+			WHERE (:#{#filtro.valorMinimo} IS NULL OR p.valor >= :#{#filtro.valorMinimo})
+			AND (:#{#filtro.valorMaximo} IS NULL OR p.valor <= :#{#filtro.valorMaximo})
+			AND (:#{#filtro.situacao} IS NULL OR p.situacao = :#{#filtro.situacao})
+			""")
+	Page<Pedido> buscarPedidosPorFiltro(PedidoFiltro filtro, Pageable pageable);
 }

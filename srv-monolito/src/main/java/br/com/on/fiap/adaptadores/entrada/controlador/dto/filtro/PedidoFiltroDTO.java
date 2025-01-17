@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PedidoFiltroDTO {
 
-    private Double valorMinimo;
-    private Double valorMaximo;
-    private Long situacao;
+	private Double valorMinimo;
+	private Double valorMaximo;
+	private Long situacao;
 }
