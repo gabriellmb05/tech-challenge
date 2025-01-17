@@ -228,7 +228,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"cliente\": 1,\r\n    \"valor\": 250.75,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 1,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 1\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"cliente\": 2,\r\n    \"valor\": 2503333.75,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 5,\r\n            \"quantidade\": 1\r\n        },\r\n        {\r\n            \"idProduto\": 1,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 1\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
