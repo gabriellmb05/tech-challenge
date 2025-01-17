@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "TB_CLI_CLIENTE")
 public class ClienteEntidade {
 
-    private final static String SQ_CLI_CLIENTE = "SQ_CLI_CLIENTE";
+    private static final String SQ_CLI_CLIENTE = "SQ_CLI_CLIENTE";
 
     @Id
     @SequenceGenerator(name = SQ_CLI_CLIENTE, sequenceName = SQ_CLI_CLIENTE)

@@ -10,11 +10,11 @@ import org.mapstruct.Mapping;
         uses = {PedidoProdutoSaidaMapeador.class})
 public interface PedidoSaidaMapeador {
 
-    @Mapping(target = "produtos", ignore = true)
-    @Mapping(target = "dataHora", expression = "java(java.time.LocalDateTime.now())")
-    @Mapping(target = "situacao", expression = "java(br.com.on.fiap.hexagono.dominio.SituacaoPedido.REALIZADO)")
+    @Mapping(target = "relPedPro", ignore = true)
+    @Mapping(target = "dhPedido", expression = "java(java.time.LocalDateTime.now())")
+    @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.hexagono.dominio.SituacaoPedido.REALIZADO)")
     PedidoEntidade paraEntidade(Pedido pedido);
 
-    @Mapping(target = "relPedidoProdutos", source = "produtos")
+    @Mapping(target = "relPedidoProdutos", source = "relPedPro")
     Pedido paraPedido(PedidoEntidade pedidoEntidade);
 }

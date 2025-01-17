@@ -19,7 +19,7 @@ public interface PedidoEntradaMapeador {
     PedidoDetalhadoRespostaDTO paraPedidoDetalheDTO(Pedido pedido);
 
     @Mapping(target = "cliente", ignore = true)
-    @Mapping(target = "produtos", ignore = true)
+    @Mapping(target = "relPedidoProdutos", ignore = true)
     default Pedido paraPedido(PedidoSolicitacaoDTO pedidoSolicitacaoDTO) {
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente(pedidoSolicitacaoDTO.getCliente()));

@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "TB_PRO_PRODUTO")
 public class ProdutoEntidade {
 
-    private final static String SQ_PRO_PRODUTO = "SQ_PRO_PRODUTO";
+    private static final String SQ_PRO_PRODUTO = "SQ_PRO_PRODUTO";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_PRO_PRODUTO)

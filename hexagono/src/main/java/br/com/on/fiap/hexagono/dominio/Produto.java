@@ -7,7 +7,6 @@ public class Produto {
     private String nome;
     private Categoria categoria;
     private BigDecimal preco;
-    private String ingredientes;
 
     public Produto() {}
 
@@ -15,12 +14,11 @@ public class Produto {
         this.id = id;
     }
 
-    public Produto(Long id, String nome, Categoria categoria, BigDecimal preco, String ingredientes) {
+    public Produto(Long id, String nome, Categoria categoria, BigDecimal preco) {
         this.id = id;
         this.nome = nome;
         this.categoria = categoria;
         this.preco = preco;
-        this.ingredientes = ingredientes;
     }
 
     public Long getId() {
@@ -55,18 +53,9 @@ public class Produto {
         this.preco = preco;
     }
 
-    public String getIngredientes() {
-        return ingredientes;
-    }
-
-    public void setIngredientes(String ingredientes) {
-        this.ingredientes = ingredientes;
-    }
-
     public void atualizarDados(Produto produto) {
         this.nome = produto.getNome();
         this.categoria = produto.getCategoria();
         this.preco = produto.getPreco();
-        this.ingredientes = produto.getIngredientes();
     }
 }

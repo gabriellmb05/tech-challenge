@@ -31,8 +31,7 @@ public interface ProdutoEntradaMapeador {
                         rel.getProduto().getId(),
                         rel.getProduto().getNome(),
                         rel.getProduto().getCategoria().getNome(),
-                        rel.getProduto().getPreco(),
-                        rel.getProduto().getIngredientes()))
+                        rel.getProduto().getPreco()))
                 .toList();
     }
 }

@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "TB_PED_PEDIDO")
 public class PedidoEntidade {
 
-    private final static String SQ_PED_PEDIDO = "SQ_PED_PEDIDO";
+    private static final String SQ_PED_PEDIDO = "SQ_PED_PEDIDO";
 
     @Id
     @Column(name = "PED_ID")
