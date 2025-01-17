@@ -34,5 +34,5 @@ public interface PedidoControladorSwagger {
 	@Operation(summary = "Detalha um pedido", description = "Retorna os detalhes de um pedido específico")
 	@ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Pedido encontrado"),
 			@ApiResponse(responseCode = "404", description = "Pedido não encontrado")})
-	ResponseEntity<PedidoDetalhadoRespostaDTO> detalhaPedido(Long id);
+	ResponseEntity<PedidoDetalhadoRespostaDTO> detalhaPedido(String protocolo);
 }

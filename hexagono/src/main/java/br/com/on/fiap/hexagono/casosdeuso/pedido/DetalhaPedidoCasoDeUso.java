@@ -15,8 +15,8 @@ public class DetalhaPedidoCasoDeUso implements DetalhaPedidoPortaEntrada {
 	}
 
 	@Override
-	public Pedido detalhaPedido(Long id) {
-		return detalhaPedidoPortaSaida.detalhaPedido(id).orElseThrow(
-				() -> new PedidoNaoEncontradoExcecao(MessageError.MSG_PEDIDO_NAO_ENCONTRADO_PARA_IO.getMensagem(), id));
+	public Pedido detalhaPedido(String protocolo) {
+		return detalhaPedidoPortaSaida.detalhaPedido(protocolo).orElseThrow(() -> new PedidoNaoEncontradoExcecao(
+				MessageError.MSG_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO.getMensagem(), protocolo));
 	}
 }

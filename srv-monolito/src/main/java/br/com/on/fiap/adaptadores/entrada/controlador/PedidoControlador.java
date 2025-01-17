@@ -61,9 +61,9 @@ public class PedidoControlador implements PedidoControladorSwagger {
 	}
 
 	@Override
-	@GetMapping("/{id}/detalhar")
-	public ResponseEntity<PedidoDetalhadoRespostaDTO> detalhaPedido(@PathVariable("id") Long id) {
-		Pedido pedidoDetalhado = detalhaPedidoPortaEntrada.detalhaPedido(id);
+	@GetMapping("/{protocolo}/detalhar")
+	public ResponseEntity<PedidoDetalhadoRespostaDTO> detalhaPedido(@PathVariable("protocolo") String protocolo) {
+		Pedido pedidoDetalhado = detalhaPedidoPortaEntrada.detalhaPedido(protocolo);
 		PedidoDetalhadoRespostaDTO pedidoDetalhadoRespostaDTO = pedidoEntradaMapeador
 				.paraPedidoDetalheDTO(pedidoDetalhado);
 		return ResponseEntity.ok(pedidoDetalhadoRespostaDTO);

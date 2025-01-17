@@ -40,7 +40,7 @@ public class PedidoEntidade {
 	private String protocolo;
 
 	@Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime dataHora;
 
 	@PrePersist

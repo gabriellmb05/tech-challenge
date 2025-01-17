@@ -9,7 +9,7 @@ public enum MessageError {
 									"produto-nao-cadastrado"), MSG_ERRO_PRODUTO_JA_CADASTRADO(
 											"produto-ja-cadastrado"), MSG_CLIENTE_NAO_ENCONTRATO_PARA_ID(
 													"cliente-nao-encontrado-por-id"), MSG_PRODUTOS_NAO_ENCONTRADOS(
-															"produtos-nao-encontrados"), MSG_PEDIDO_NAO_ENCONTRADO_PARA_IO(
+															"produtos-nao-encontrados"), MSG_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO(
 																	"pedido-nao-encontrado-para-id");
 
 	private final String mensagem;
