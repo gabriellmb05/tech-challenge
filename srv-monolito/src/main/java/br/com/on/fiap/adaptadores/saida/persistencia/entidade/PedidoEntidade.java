@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.security.SecureRandom;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,4 +35,18 @@ public class PedidoEntidade {
 
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<PedidoProdutoEntidade> produtos = new ArrayList<>();
+
+	@Column(nullable = false, unique = true)
+	private String protocolo;
+
+	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime dataHora;
+
+	@PrePersist
+	public void gerarProtocolo() {
+		String dataHoraFormatada = this.dataHora.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+		Integer numeroAleatorio = new SecureRandom().nextInt(Integer.MAX_VALUE) % 10000;
+		this.protocolo = String.format("%s%s%s", dataHoraFormatada, this.id, numeroAleatorio);
+	}
 }

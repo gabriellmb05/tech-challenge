@@ -4,9 +4,12 @@ import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ProdutoRespos
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
+import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ProdutoEntradaMapeador {
@@ -20,5 +23,14 @@ public interface ProdutoEntradaMapeador {
 	@Named("getCategoria")
 	default Categoria getCategoria(String categoria) {
 		return Categoria.buscaCategoria(categoria);
+	}
+
+	@Named("mapProdutosResposta")
+	default List<ProdutoRespostaDTO> mapProdutosResposta(List<RelPedidoProduto> relPedidoProdutos) {
+		return relPedidoProdutos.stream()
+				.map(rel -> new ProdutoRespostaDTO(rel.getProduto().getId(), rel.getProduto().getNome(),
+						rel.getProduto().getCategoria().getNome(), rel.getProduto().getPreco(),
+						rel.getProduto().getIngredientes()))
+				.toList();
 	}
 }

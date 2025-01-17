@@ -1,14 +1,16 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.mapeador;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoDetalhadoRespostaDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoQuantidadeSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoRespostaDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoQuantidadeSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoSolicitacaoDTO;
 import br.com.on.fiap.hexagono.dominio.Cliente;
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 
 import java.util.List;
 
@@ -17,6 +19,7 @@ public interface PedidoEntradaMapeador {
 
 	PedidoRespostaDTO paraPedidoDTO(Pedido pedido);
 
+	@Mapping(target = "produtos", source = "relPedidoProdutos", qualifiedByName = "mapProdutosResposta")
 	PedidoDetalhadoRespostaDTO paraPedidoDetalheDTO(Pedido pedido);
 
 	@Mapping(target = "cliente", ignore = true)

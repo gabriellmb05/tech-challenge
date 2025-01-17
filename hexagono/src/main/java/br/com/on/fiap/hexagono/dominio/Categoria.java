@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 public enum Categoria {
 	LANCHE("LANCHE"), ACOMPANHAMENTO("ACOMPANHAMENTO"), BEBIDA("BEBIDA"), SOBREMESA("SOBREMESA");
 
-	private String nome;
+	private final String nome;
 
-	private Categoria(String nome) {
+	Categoria(String nome) {
 		this.nome = nome;
 	}
 

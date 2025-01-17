@@ -14,6 +14,8 @@ public interface PedidoProdutoSaidaMapeador {
 
 	List<PedidoProdutoEntidade> paraListaEntidade(List<RelPedidoProduto> relPedidoProdutos);
 
+	List<RelPedidoProduto> paraRelPedidoProduto(List<PedidoProdutoEntidade> relPedidoProdutos);
+
 	@AfterMapping
 	default void mapearPedidoProdutoId(@MappingTarget PedidoProdutoEntidade pedidoProdutoEntidade,
 			RelPedidoProduto relPedidoProduto) {
