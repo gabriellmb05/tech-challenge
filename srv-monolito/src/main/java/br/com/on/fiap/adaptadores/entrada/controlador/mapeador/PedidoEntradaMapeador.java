@@ -8,11 +8,10 @@ import br.com.on.fiap.hexagono.dominio.Cliente;
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
+import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-
-import java.util.List;
 
 @Mapper(componentModel = "spring", uses = ProdutoEntradaMapeador.class)
 public interface PedidoEntradaMapeador {

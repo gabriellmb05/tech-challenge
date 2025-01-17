@@ -2,10 +2,9 @@ package br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import java.time.LocalDate;
 import lombok.Builder;
 import org.hibernate.validator.constraints.br.CPF;
-
-import java.time.LocalDate;
 
 @Builder
 public record ClienteSolicitacaoDTO(@NotNull(message = "O atributo nome é obrigatório") String nome,

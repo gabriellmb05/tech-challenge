@@ -1,10 +1,10 @@
 package br.com.on.fiap.configuracao;
 
+import br.com.on.fiap.hexagono.casosdeuso.pedido.BuscaPedidosCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.pedido.DetalhaPedidoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.pedido.InserePedidoCasoDeUso;
-import br.com.on.fiap.hexagono.casosdeuso.pedido.BuscaPedidosCasoDeUso;
-import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.BuscaPedidosPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pedido.BuscaPedidosPortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pedido.DetalhaPedidoPortaSaida;

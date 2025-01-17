@@ -4,9 +4,8 @@ import br.com.on.fiap.adaptadores.saida.persistencia.entidade.ClienteEntidade;
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoEntidade;
 import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
 import jakarta.persistence.criteria.*;
-import org.springframework.data.jpa.domain.Specification;
-
 import java.time.LocalDateTime;
+import org.springframework.data.jpa.domain.Specification;
 
 public class PedidoEspecificacao {
 

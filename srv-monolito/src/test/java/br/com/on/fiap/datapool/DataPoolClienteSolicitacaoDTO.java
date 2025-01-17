@@ -1,9 +1,8 @@
 package br.com.on.fiap.datapool;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ClienteSolicitacaoDTO;
-import net.datafaker.Faker;
-
 import java.time.LocalDate;
+import net.datafaker.Faker;
 
 public class DataPoolClienteSolicitacaoDTO {
 

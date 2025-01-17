@@ -3,11 +3,10 @@ package br.com.on.fiap.adaptadores.saida.persistencia.mapeador;
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoProdutoEntidade;
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoProdutoId;
 import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
+import java.util.List;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
-
-import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface PedidoProdutoSaidaMapeador {

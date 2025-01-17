@@ -15,7 +15,6 @@ import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
 import br.com.on.fiap.hexagono.portas.entrada.produto.*;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;

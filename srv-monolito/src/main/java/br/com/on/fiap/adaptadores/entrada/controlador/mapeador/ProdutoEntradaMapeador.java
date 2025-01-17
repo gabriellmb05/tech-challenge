@@ -5,11 +5,10 @@ import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSol
 import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
+import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-
-import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ProdutoEntradaMapeador {

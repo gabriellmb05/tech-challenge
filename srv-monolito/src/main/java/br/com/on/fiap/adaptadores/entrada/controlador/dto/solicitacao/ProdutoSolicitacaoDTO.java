@@ -1,9 +1,8 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
-
 import java.math.BigDecimal;
+import lombok.Builder;
 
 @Builder
 public record ProdutoSolicitacaoDTO(@NotNull(message = "O atributo nome é obrigatório") String nome,

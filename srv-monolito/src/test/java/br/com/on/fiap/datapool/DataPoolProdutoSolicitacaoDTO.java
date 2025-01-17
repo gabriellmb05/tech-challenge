@@ -1,8 +1,8 @@
 package br.com.on.fiap.datapool;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSolicitacaoDTO;
-import net.datafaker.Faker;
 import java.math.BigDecimal;
+import net.datafaker.Faker;
 
 public class DataPoolProdutoSolicitacaoDTO {
 

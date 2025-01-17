@@ -10,7 +10,7 @@ public enum MessageError {
 											"produto-ja-cadastrado"), MSG_CLIENTE_NAO_ENCONTRATO_PARA_ID(
 													"cliente-nao-encontrado-por-id"), MSG_PRODUTOS_NAO_ENCONTRADOS(
 															"produtos-nao-encontrados"), MSG_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO(
-																	"pedido-nao-encontrado-para-id");
+																	"pedido-nao-encontrado-para-protocolo");
 
 	private final String mensagem;
 

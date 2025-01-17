@@ -2,7 +2,6 @@ package br.com.on.fiap.adaptadores.saida.persistencia.repositorio;
 
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.ProdutoEntidade;
 import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
-
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
