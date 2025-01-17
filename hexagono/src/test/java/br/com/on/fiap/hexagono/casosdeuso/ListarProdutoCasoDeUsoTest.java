@@ -37,7 +37,7 @@ class ListarProdutoCasoDeUsoTest {
     void dadoFiltroPorCategoria_quandoListarProdutos_entaoProdutosDaCategoriaDevemSerRetornados() {
         ProdutoFiltro filtro = new ProdutoFiltro(null, Categoria.LANCHE);
         Pageable paginacao = PageRequest.of(0, 10);
-        Produto produto = new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN, "queijo, carne");
+        Produto produto = new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN);
         PageImpl<Produto> page = new PageImpl<>(List.of(produto), paginacao, 1L);
         when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao)).thenReturn(page);
 
@@ -55,7 +55,7 @@ class ListarProdutoCasoDeUsoTest {
 
         ProdutoFiltro filtro = new ProdutoFiltro("x-burguer", Categoria.LANCHE);
         Pageable paginacao = PageRequest.of(0, 10);
-        Produto produto = new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN, "queijo, carne");
+        Produto produto = new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN);
         PageImpl<Produto> page = new PageImpl<>(List.of(produto), paginacao, 10L);
         when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao)).thenReturn(page);
 
@@ -70,8 +70,8 @@ class ListarProdutoCasoDeUsoTest {
     void dadoFiltroVazio_quandoListarProdutos_entaoTodosProdutosDevemSerRetornados() {
         ProdutoFiltro filtro = new ProdutoFiltro();
         Pageable paginacao = PageRequest.of(0, 10);
-        Produto produto1 = new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN, "queijo, carne");
-        Produto produto2 = new Produto(2L, "pizza", Categoria.LANCHE, BigDecimal.valueOf(20), "queijo, presunto");
+        Produto produto1 = new Produto(1L, "x-burguer", Categoria.LANCHE, BigDecimal.TEN);
+        Produto produto2 = new Produto(2L, "pizza", Categoria.LANCHE, BigDecimal.valueOf(20));
         PageImpl<Produto> page = new PageImpl<>(List.of(produto1, produto2), paginacao, 2L);
         when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao)).thenReturn(page);
 

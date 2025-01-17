@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface PedidoRepositorio
         extends JpaRepository<PedidoEntidade, Long>, JpaSpecificationExecutor<PedidoEntidade> {
 
-    Optional<PedidoEntidade> findByProtocolo(String protocolo);
+    Optional<PedidoEntidade> findByNmProtocolo(String protocolo);
 }

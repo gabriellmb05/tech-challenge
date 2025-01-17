@@ -15,13 +15,13 @@ public class PedidoProdutoEntidade {
     private RelPedId id;
 
     @ManyToOne
-    @MapsId("pedId")
-    @JoinColumn(name = "PED_ID", referencedColumnName = "id", insertable = false, updatable = false)
+    @MapsId("PED_ID")
+    @JoinColumn(name = "PED_ID", referencedColumnName = "PED_ID", insertable = false, updatable = false)
     private PedidoEntidade pedId;
 
     @ManyToOne
-    @MapsId("proId")
-    @JoinColumn(name = "PRO_ID", referencedColumnName = "id", insertable = false, updatable = false)
+    @MapsId("PRO_ID")
+    @JoinColumn(name = "PRO_ID", referencedColumnName = "PRO_ID", insertable = false, updatable = false)
     private ProdutoEntidade proId;
 
     @Column(name = "PED_QT_PEDIDO")

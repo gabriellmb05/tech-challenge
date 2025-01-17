@@ -16,10 +16,10 @@ public class ClienteEntidade {
     private static final String SQ_CLI_CLIENTE = "SQ_CLI_CLIENTE";
 
     @Id
-    @SequenceGenerator(name = SQ_CLI_CLIENTE, sequenceName = SQ_CLI_CLIENTE)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_CLI_CLIENTE)
     @Column(name = "CLI_ID")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_CLI_CLIENTE)
+    @SequenceGenerator(name = SQ_CLI_CLIENTE, sequenceName = SQ_CLI_CLIENTE, allocationSize = 1)
+    private Long cliId;
 
     @Column(name = "CLI_NM_NOME")
     private String nmNome;

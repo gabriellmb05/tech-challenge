@@ -22,7 +22,7 @@ public class PersistenciaClienteAdaptador implements PersisteClientePortaSaida {
 
     @Override
     public Optional<Cliente> buscaClientePorCpf(String cpf) {
-        return clienteRepositorio.findByCpf(cpf).map(clienteSaidaMapeador::paraCliente);
+        return clienteRepositorio.findByNmCpf(cpf).map(clienteSaidaMapeador::paraCliente);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class PersistenciaClienteAdaptador implements PersisteClientePortaSaida {
 
     @Override
     public Optional<Cliente> buscaClientePorEmail(String email) {
-        return clienteRepositorio.findByEmail(email).map(clienteSaidaMapeador::paraCliente);
+        return clienteRepositorio.findByNmEmail(email).map(clienteSaidaMapeador::paraCliente);
     }
 
     @Override

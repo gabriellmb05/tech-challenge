@@ -22,6 +22,6 @@ public class DetalhaPedidoAdaptador implements DetalhaPedidoPortaSaida {
     @Override
     @Transactional(readOnly = true)
     public Optional<Pedido> detalhaPedido(String protocolo) {
-        return pedidoRepositorio.findByProtocolo(protocolo).map(pedidoSaidaMapeador::paraPedido);
+        return pedidoRepositorio.findByNmProtocolo(protocolo).map(pedidoSaidaMapeador::paraPedido);
     }
 }

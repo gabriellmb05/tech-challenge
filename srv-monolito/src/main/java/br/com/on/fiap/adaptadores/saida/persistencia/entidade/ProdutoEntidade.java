@@ -26,9 +26,9 @@ public class ProdutoEntidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_PRO_PRODUTO)
-    @SequenceGenerator(name = SQ_PRO_PRODUTO, sequenceName = SQ_PRO_PRODUTO)
+    @SequenceGenerator(name = SQ_PRO_PRODUTO, sequenceName = SQ_PRO_PRODUTO, allocationSize = 1)
     @Column(name = "PRO_ID")
-    private Long id;
+    private Long proId;
 
     @Column(name = "PRO_NM_NOME")
     private String nome;

@@ -24,12 +24,12 @@ public class PedidoEntidade {
 
     @Id
     @Column(name = "PED_ID")
-    @SequenceGenerator(name = SQ_PED_PEDIDO, sequenceName = SQ_PED_PEDIDO)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_PED_PEDIDO)
-    private Long id;
+    @SequenceGenerator(name = SQ_PED_PEDIDO, sequenceName = SQ_PED_PEDIDO, allocationSize = 1)
+    private Long pedId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CLI_ID", nullable = false)
+    @JoinColumn(name = "CLI_ID", referencedColumnName = "CLI_ID", nullable = false)
     private ClienteEntidade cliId;
 
     @Column(name = "PED_ST_PEDIDO")
@@ -53,6 +53,6 @@ public class PedidoEntidade {
     public void gerarProtocolo() {
         String dataHoraFormatada = this.dhPedido.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
         Integer numeroAleatorio = new SecureRandom().nextInt(Integer.MAX_VALUE) % 10000;
-        this.nmProtocolo = String.format("%s%s%s", dataHoraFormatada, this.id, numeroAleatorio);
+        this.nmProtocolo = String.format("%s%s%s", dataHoraFormatada, this.pedId, numeroAleatorio);
     }
 }
