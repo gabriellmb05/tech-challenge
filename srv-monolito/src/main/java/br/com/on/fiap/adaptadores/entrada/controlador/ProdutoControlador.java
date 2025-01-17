@@ -100,9 +100,9 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
     @Override
     @GetMapping("/categorias")
     public ResponseEntity<CategoriaRespostaDTO> buscaCategorias() {
-//        List<String> categorias = buscaCategoriaPortaEntrada.buscaCategorias().stream()
-//                .map(Categoria::getNome)
-//                .toList();
+        //        List<String> categorias = buscaCategoriaPortaEntrada.buscaCategorias().stream()
+        //                .map(Categoria::getNome)
+        //                .toList();
         return ResponseEntity.ok()
                 .body(CategoriaRespostaDTO.builder().categorias(null).build());
     }

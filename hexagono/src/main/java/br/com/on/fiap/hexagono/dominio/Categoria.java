@@ -2,7 +2,6 @@ package br.com.on.fiap.hexagono.dominio;
 
 import br.com.on.fiap.hexagono.excecao.CategoriaNaoEncontradaExcecao;
 import br.com.on.fiap.hexagono.excecao.message.MessageError;
-
 import java.util.Objects;
 import java.util.stream.Stream;
 

@@ -13,11 +13,9 @@ import br.com.on.fiap.datapool.*;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
 import br.com.on.fiap.hexagono.portas.entrada.produto.*;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
-
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -198,15 +196,15 @@ class ProdutoControladorTest {
     @DisplayName("Dado categorias de produtos, quando buscar as categorias, então elas devem ser retornadas")
     void dadoCategoriasDeProdutos_quandoBuscarCategorias_entaoDevemSerRetornadas() {
 
-//        Categoria[] categorias = Categoria.values();
-//        List<String> categoriasEsperadas =
-//                Arrays.stream(categorias).map(Categoria::getNome).toList();
-//        CategoriaRespostaDTO categoriasDTO = new CategoriaRespostaDTO(categoriasEsperadas);
-//        when(buscaCategoriaPortaEntrada.buscaCategorias()).thenReturn(List.of(categorias));
-//
-//        ResponseEntity<CategoriaRespostaDTO> response = produtoControlador.buscaCategorias();
-//
-//        assertEquals(HttpStatus.OK, response.getStatusCode());
-//        assertEquals(categoriasDTO, response.getBody());
+        //        Categoria[] categorias = Categoria.values();
+        //        List<String> categoriasEsperadas =
+        //                Arrays.stream(categorias).map(Categoria::getNome).toList();
+        //        CategoriaRespostaDTO categoriasDTO = new CategoriaRespostaDTO(categoriasEsperadas);
+        //        when(buscaCategoriaPortaEntrada.buscaCategorias()).thenReturn(List.of(categorias));
+        //
+        //        ResponseEntity<CategoriaRespostaDTO> response = produtoControlador.buscaCategorias();
+        //
+        //        assertEquals(HttpStatus.OK, response.getStatusCode());
+        //        assertEquals(categoriasDTO, response.getBody());
     }
 }
