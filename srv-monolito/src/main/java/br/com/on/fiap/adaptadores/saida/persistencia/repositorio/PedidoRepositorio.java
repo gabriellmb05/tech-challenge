@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -17,5 +18,5 @@ public interface PedidoRepositorio extends JpaRepository<PedidoEntidade, Long> {
 			AND (:#{#filtro.valorMaximo} IS NULL OR p.valor <= :#{#filtro.valorMaximo})
 			AND (:#{#filtro.situacao} IS NULL OR p.situacao = :#{#filtro.situacao})
 			""")
-	Page<PedidoEntidade> buscarPedidosPorFiltro(PedidoFiltro filtro, Pageable pageable);
+	Page<PedidoEntidade> buscarPedidosPorFiltro(@Param(value = "filtro") PedidoFiltro filtro, Pageable pageable);
 }
