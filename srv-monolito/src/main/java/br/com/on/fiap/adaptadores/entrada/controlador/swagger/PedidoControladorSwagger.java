@@ -1,5 +1,6 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.swagger;
 
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.PedidoFiltroDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoSolicitacaoDTO;
 import br.com.on.fiap.hexagono.dominio.Cliente;
@@ -9,6 +10,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.ResponseEntity;
 
 @Tag(name = "Pedido", description = "APIs relacionadas a pedidos")
@@ -21,4 +24,8 @@ public interface PedidoControladorSwagger {
 			@ApiResponse(responseCode = "500", description = "Erro interno do servidor")})
 	ResponseEntity<PedidoRespostaDTO> inserePedido(PedidoSolicitacaoDTO pedidoSolicitacaoDTO);
 
+	@Operation(summary = "Lista pedidos", description = "Retorna uma lista de pedidos de forma paginada")
+	@ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Pedidos encontrados"),
+			@ApiResponse(responseCode = "404", description = "Pedidos não encontrados")})
+	ResponseEntity<PagedModel<PedidoRespostaDTO>> listarPedidos(PedidoFiltroDTO pedidoFiltroDTO, Pageable pageable);
 }

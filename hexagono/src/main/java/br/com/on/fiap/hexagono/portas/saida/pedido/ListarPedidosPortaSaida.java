@@ -1,11 +1,11 @@
-package br.com.on.fiap.hexagono.portas.entrada.pedido;
+package br.com.on.fiap.hexagono.portas.saida.pedido;
 
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface ListarPedidoPortaEntrada {
+public interface ListarPedidosPortaSaida {
 
-	Page<Pedido> listarComFiltro(PedidoFiltro filtro, Pageable pageable);
+	Page<Pedido> listarComFiltros(PedidoFiltro filtro, Pageable page);
 }

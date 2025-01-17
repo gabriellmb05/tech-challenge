@@ -1,7 +1,6 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.repositorio;
 
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoEntidade;
-import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,5 +17,5 @@ public interface PedidoRepositorio extends JpaRepository<PedidoEntidade, Long> {
 			AND (:#{#filtro.valorMaximo} IS NULL OR p.valor <= :#{#filtro.valorMaximo})
 			AND (:#{#filtro.situacao} IS NULL OR p.situacao = :#{#filtro.situacao})
 			""")
-	Page<Pedido> buscarPedidosPorFiltro(PedidoFiltro filtro, Pageable pageable);
+	Page<PedidoEntidade> buscarPedidosPorFiltro(PedidoFiltro filtro, Pageable pageable);
 }
