@@ -1,5 +1,6 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.mapeador;
 
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoDetalhadoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoQuantidadeSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoSolicitacaoDTO;
@@ -11,10 +12,12 @@ import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = ProdutoEntradaMapeador.class)
 public interface PedidoEntradaMapeador {
 
 	PedidoRespostaDTO paraPedidoDTO(Pedido pedido);
+
+	PedidoDetalhadoRespostaDTO paraPedidoDetalheDTO(Pedido pedido);
 
 	@Mapping(target = "cliente", ignore = true)
 	@Mapping(target = "produtos", ignore = true)
