@@ -25,81 +25,87 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("produtos")
 public class ProdutoControlador implements ProdutoControladorSwagger {
 
-	private final BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada;
-	private final InsereProdutoPortaEntrada insereProdutoPortaEntrada;
-	private final AlteraProdutoPortaEntrada alteraProdutoPortaEntrada;
-	private final DeletaProdutoPortaEntrada deletaProdutoPortaEntrada;
-	private final ProdutoEntradaMapeador produtoEntradaMapeador;
-	private final ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador;
-	private final ListarProdutoPortaEntrada listarProdutoPortaEntrada;
-	private final BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada;
+    private final BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada;
+    private final InsereProdutoPortaEntrada insereProdutoPortaEntrada;
+    private final AlteraProdutoPortaEntrada alteraProdutoPortaEntrada;
+    private final DeletaProdutoPortaEntrada deletaProdutoPortaEntrada;
+    private final ProdutoEntradaMapeador produtoEntradaMapeador;
+    private final ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador;
+    private final ListarProdutoPortaEntrada listarProdutoPortaEntrada;
+    private final BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada;
 
-	public ProdutoControlador(BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada,
-			InsereProdutoPortaEntrada insereProdutoPortaEntrada, AlteraProdutoPortaEntrada alteraProdutoPortaEntrada,
-			DeletaProdutoPortaEntrada deletaProdutoPortaEntrada, ProdutoEntradaMapeador produtoEntradaMapeador,
-			ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador,
-			ListarProdutoPortaEntrada listarProdutoPortaEntrada,
-			BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada) {
-		this.buscaProdutoPorIdPortaEntrada = buscaProdutoPorIdPortaEntrada;
-		this.insereProdutoPortaEntrada = insereProdutoPortaEntrada;
-		this.alteraProdutoPortaEntrada = alteraProdutoPortaEntrada;
-		this.deletaProdutoPortaEntrada = deletaProdutoPortaEntrada;
-		this.produtoEntradaMapeador = produtoEntradaMapeador;
-		this.produtoFiltroEntradaMapeador = produtoFiltroEntradaMapeador;
-		this.listarProdutoPortaEntrada = listarProdutoPortaEntrada;
-		this.buscaCategoriaPortaEntrada = buscaCategoriaPortaEntrada;
-	}
+    public ProdutoControlador(
+            BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada,
+            InsereProdutoPortaEntrada insereProdutoPortaEntrada,
+            AlteraProdutoPortaEntrada alteraProdutoPortaEntrada,
+            DeletaProdutoPortaEntrada deletaProdutoPortaEntrada,
+            ProdutoEntradaMapeador produtoEntradaMapeador,
+            ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador,
+            ListarProdutoPortaEntrada listarProdutoPortaEntrada,
+            BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada) {
+        this.buscaProdutoPorIdPortaEntrada = buscaProdutoPorIdPortaEntrada;
+        this.insereProdutoPortaEntrada = insereProdutoPortaEntrada;
+        this.alteraProdutoPortaEntrada = alteraProdutoPortaEntrada;
+        this.deletaProdutoPortaEntrada = deletaProdutoPortaEntrada;
+        this.produtoEntradaMapeador = produtoEntradaMapeador;
+        this.produtoFiltroEntradaMapeador = produtoFiltroEntradaMapeador;
+        this.listarProdutoPortaEntrada = listarProdutoPortaEntrada;
+        this.buscaCategoriaPortaEntrada = buscaCategoriaPortaEntrada;
+    }
 
-	@Override
-	@GetMapping("/{id}")
-	public ResponseEntity<ProdutoRespostaDTO> buscaProdutoPorId(@PathVariable("id") Long id) {
-		Produto produto = buscaProdutoPorIdPortaEntrada.buscar(id);
-		ProdutoRespostaDTO produtoRespostaDTO = produtoEntradaMapeador.paraProdutoDTO(produto);
-		return ResponseEntity.ok().body(produtoRespostaDTO);
-	}
+    @Override
+    @GetMapping("/{id}")
+    public ResponseEntity<ProdutoRespostaDTO> buscaProdutoPorId(@PathVariable("id") Long id) {
+        Produto produto = buscaProdutoPorIdPortaEntrada.buscar(id);
+        ProdutoRespostaDTO produtoRespostaDTO = produtoEntradaMapeador.paraProdutoDTO(produto);
+        return ResponseEntity.ok().body(produtoRespostaDTO);
+    }
 
-	@Override
-	@GetMapping
-	public ResponseEntity<PagedModel<ProdutoRespostaDTO>> listarProdutosComFiltro(
-			@ParameterObject ProdutoFiltroDTO filtro, Pageable pageable) {
-		ProdutoFiltro produtoFiltro = produtoFiltroEntradaMapeador.paraProdutoFiltro(filtro);
-		Page<ProdutoRespostaDTO> produtos = listarProdutoPortaEntrada.listarComFiltro(produtoFiltro, pageable)
-				.map(produtoEntradaMapeador::paraProdutoDTO);
-		return ResponseEntity.ok().body(new PagedModel<>(produtos));
-	}
+    @Override
+    @GetMapping
+    public ResponseEntity<PagedModel<ProdutoRespostaDTO>> listarProdutosComFiltro(
+            @ParameterObject ProdutoFiltroDTO filtro, Pageable pageable) {
+        ProdutoFiltro produtoFiltro = produtoFiltroEntradaMapeador.paraProdutoFiltro(filtro);
+        Page<ProdutoRespostaDTO> produtos = listarProdutoPortaEntrada
+                .listarComFiltro(produtoFiltro, pageable)
+                .map(produtoEntradaMapeador::paraProdutoDTO);
+        return ResponseEntity.ok().body(new PagedModel<>(produtos));
+    }
 
-	@Override
-	@PostMapping
-	public ResponseEntity<ProdutoRespostaDTO> insereProduto(
-			@Valid @RequestBody ProdutoSolicitacaoDTO produtoSolicitacaoDTO) {
-		Produto produto = produtoEntradaMapeador.paraProduto(produtoSolicitacaoDTO);
-		Produto produtoPersistido = insereProdutoPortaEntrada.inserir(produto);
-		ProdutoRespostaDTO produtoPersistidoDTO = produtoEntradaMapeador.paraProdutoDTO(produtoPersistido);
-		return ResponseEntity.status(HttpStatus.CREATED).body(produtoPersistidoDTO);
-	}
+    @Override
+    @PostMapping
+    public ResponseEntity<ProdutoRespostaDTO> insereProduto(
+            @Valid @RequestBody ProdutoSolicitacaoDTO produtoSolicitacaoDTO) {
+        Produto produto = produtoEntradaMapeador.paraProduto(produtoSolicitacaoDTO);
+        Produto produtoPersistido = insereProdutoPortaEntrada.inserir(produto);
+        ProdutoRespostaDTO produtoPersistidoDTO = produtoEntradaMapeador.paraProdutoDTO(produtoPersistido);
+        return ResponseEntity.status(HttpStatus.CREATED).body(produtoPersistidoDTO);
+    }
 
-	@Override
-	@PutMapping("/{id}")
-	public ResponseEntity<ProdutoRespostaDTO> alteraProduto(@PathVariable("id") Long id,
-			@Valid @RequestBody ProdutoSolicitacaoDTO produtoSolicitacaoDTO) {
-		Produto produto = produtoEntradaMapeador.paraProduto(produtoSolicitacaoDTO);
-		Produto produtoPersistido = alteraProdutoPortaEntrada.alterar(id, produto);
-		ProdutoRespostaDTO produtoPersistidoDTO = produtoEntradaMapeador.paraProdutoDTO(produtoPersistido);
-		return ResponseEntity.ok().body(produtoPersistidoDTO);
-	}
+    @Override
+    @PutMapping("/{id}")
+    public ResponseEntity<ProdutoRespostaDTO> alteraProduto(
+            @PathVariable("id") Long id, @Valid @RequestBody ProdutoSolicitacaoDTO produtoSolicitacaoDTO) {
+        Produto produto = produtoEntradaMapeador.paraProduto(produtoSolicitacaoDTO);
+        Produto produtoPersistido = alteraProdutoPortaEntrada.alterar(id, produto);
+        ProdutoRespostaDTO produtoPersistidoDTO = produtoEntradaMapeador.paraProdutoDTO(produtoPersistido);
+        return ResponseEntity.ok().body(produtoPersistidoDTO);
+    }
 
-	@Override
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deletaProduto(@PathVariable("id") Long id) {
-		deletaProdutoPortaEntrada.deleta(id);
-		return ResponseEntity.noContent().build();
-	}
+    @Override
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletaProduto(@PathVariable("id") Long id) {
+        deletaProdutoPortaEntrada.deleta(id);
+        return ResponseEntity.noContent().build();
+    }
 
-	@Override
-	@GetMapping("/categorias")
-	public ResponseEntity<CategoriaRespostaDTO> buscaCategorias() {
-		List<String> categorias = buscaCategoriaPortaEntrada.buscaCategorias().stream().map(Categoria::getNome)
-				.toList();
-		return ResponseEntity.ok().body(CategoriaRespostaDTO.builder().categorias(categorias).build());
-	}
+    @Override
+    @GetMapping("/categorias")
+    public ResponseEntity<CategoriaRespostaDTO> buscaCategorias() {
+        List<String> categorias = buscaCategoriaPortaEntrada.buscaCategorias().stream()
+                .map(Categoria::getNome)
+                .toList();
+        return ResponseEntity.ok()
+                .body(CategoriaRespostaDTO.builder().categorias(categorias).build());
+    }
 }

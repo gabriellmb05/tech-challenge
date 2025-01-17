@@ -39,162 +39,173 @@ import org.springframework.http.ResponseEntity;
 @ExtendWith(MockitoExtension.class)
 class ProdutoControladorTest {
 
-	@Mock
-	private BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada;
+    @Mock
+    private BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada;
 
-	@Mock
-	private InsereProdutoPortaEntrada insereProdutoPortaEntrada;
+    @Mock
+    private InsereProdutoPortaEntrada insereProdutoPortaEntrada;
 
-	@Mock
-	private AlteraProdutoPortaEntrada alteraProdutoPortaEntrada;
+    @Mock
+    private AlteraProdutoPortaEntrada alteraProdutoPortaEntrada;
 
-	@Mock
-	private DeletaProdutoPortaEntrada deletaProdutoPortaEntrada;
+    @Mock
+    private DeletaProdutoPortaEntrada deletaProdutoPortaEntrada;
 
-	@Mock
-	private ProdutoEntradaMapeador produtoEntradaMapeador;
+    @Mock
+    private ProdutoEntradaMapeador produtoEntradaMapeador;
 
-	@Mock
-	private ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador;
+    @Mock
+    private ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador;
 
-	@Mock
-	private ListarProdutoPortaEntrada listarProdutoPortaEntrada;
+    @Mock
+    private ListarProdutoPortaEntrada listarProdutoPortaEntrada;
 
-	@Mock
-	private BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada;
+    @Mock
+    private BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada;
 
-	@InjectMocks
-	private ProdutoControlador produtoControlador;
+    @InjectMocks
+    private ProdutoControlador produtoControlador;
 
-	static Stream<Arguments> produtoDTOProvider() {
-		return Stream.of(
-				Arguments.of(DataPoolProdutoRespostaDTO.gerarProduto1(), DataPoolProdutoSolicitacaoDTO.gerarProduto1()),
-				Arguments.of(DataPoolProdutoRespostaDTO.gerarProduto2(), DataPoolProdutoSolicitacaoDTO.gerarProduto2()),
-				Arguments.of(DataPoolProdutoRespostaDTO.gerarProduto3(),
-						DataPoolProdutoSolicitacaoDTO.gerarProduto3()));
-	}
+    static Stream<Arguments> produtoDTOProvider() {
+        return Stream.of(
+                Arguments.of(DataPoolProdutoRespostaDTO.gerarProduto1(), DataPoolProdutoSolicitacaoDTO.gerarProduto1()),
+                Arguments.of(DataPoolProdutoRespostaDTO.gerarProduto2(), DataPoolProdutoSolicitacaoDTO.gerarProduto2()),
+                Arguments.of(
+                        DataPoolProdutoRespostaDTO.gerarProduto3(), DataPoolProdutoSolicitacaoDTO.gerarProduto3()));
+    }
 
-	static Stream<Arguments> produtoFiltroProvider() {
-		return Stream.of(
-				Arguments.of(DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
-						DataPoolProdutoFiltro.gerarProdutoXBurguer(), Collections.emptyList(), Collections.emptyList()),
-				Arguments.of(DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
-						DataPoolProdutoFiltro.gerarProdutoXBurguer(), List.of(DataPoolProduto.gerarProdutoXBurguer()),
-						List.of(DataPoolProdutoRespostaDTO.gerarProdutoXBurguer())),
-				Arguments.of(DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
-						DataPoolProdutoFiltro.gerarProdutoXBurguer(), DataPoolProduto.gerarListaProdutos(),
-						DataPoolProdutoRespostaDTO.gerarListaProdutoRespostaDTO()));
-	}
+    static Stream<Arguments> produtoFiltroProvider() {
+        return Stream.of(
+                Arguments.of(
+                        DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
+                        DataPoolProdutoFiltro.gerarProdutoXBurguer(),
+                        Collections.emptyList(),
+                        Collections.emptyList()),
+                Arguments.of(
+                        DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
+                        DataPoolProdutoFiltro.gerarProdutoXBurguer(),
+                        List.of(DataPoolProduto.gerarProdutoXBurguer()),
+                        List.of(DataPoolProdutoRespostaDTO.gerarProdutoXBurguer())),
+                Arguments.of(
+                        DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
+                        DataPoolProdutoFiltro.gerarProdutoXBurguer(),
+                        DataPoolProduto.gerarListaProdutos(),
+                        DataPoolProdutoRespostaDTO.gerarListaProdutoRespostaDTO()));
+    }
 
-	@ParameterizedTest
-	@MethodSource("produtoDTOProvider")
-	@DisplayName("Dado um produto existente, quando buscar o produto, então ele deve ser retornado")
-	void dadoProdutoExistente_quandoBuscarProduto_entaoDeveSerRetornado(ProdutoRespostaDTO produtoRespostaDTO) {
-		Long id = produtoRespostaDTO.id();
-		Produto produto = new Produto();
-		when(buscaProdutoPorIdPortaEntrada.buscar(id)).thenReturn(produto);
-		when(produtoEntradaMapeador.paraProdutoDTO(produto)).thenReturn(produtoRespostaDTO);
+    @ParameterizedTest
+    @MethodSource("produtoDTOProvider")
+    @DisplayName("Dado um produto existente, quando buscar o produto, então ele deve ser retornado")
+    void dadoProdutoExistente_quandoBuscarProduto_entaoDeveSerRetornado(ProdutoRespostaDTO produtoRespostaDTO) {
+        Long id = produtoRespostaDTO.id();
+        Produto produto = new Produto();
+        when(buscaProdutoPorIdPortaEntrada.buscar(id)).thenReturn(produto);
+        when(produtoEntradaMapeador.paraProdutoDTO(produto)).thenReturn(produtoRespostaDTO);
 
-		ResponseEntity<ProdutoRespostaDTO> response = produtoControlador.buscaProdutoPorId(id);
+        ResponseEntity<ProdutoRespostaDTO> response = produtoControlador.buscaProdutoPorId(id);
 
-		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(produtoRespostaDTO, response.getBody());
-		verify(buscaProdutoPorIdPortaEntrada).buscar(id);
-		verify(produtoEntradaMapeador).paraProdutoDTO(produto);
-	}
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(produtoRespostaDTO, response.getBody());
+        verify(buscaProdutoPorIdPortaEntrada).buscar(id);
+        verify(produtoEntradaMapeador).paraProdutoDTO(produto);
+    }
 
-	@ParameterizedTest
-	@MethodSource("produtoDTOProvider")
-	@DisplayName("Dado um produto novo, quando inserir o produto, então ele deve ser salvo")
-	void dadoProdutoNovo_quandoInserirProduto_entaoDeveSerSalvo(ProdutoRespostaDTO produtoRespostaDTO,
-			ProdutoSolicitacaoDTO produtoSolicitacaoDTO) {
-		Produto produto = new Produto();
-		Produto produtoPersistido = new Produto();
-		when(produtoEntradaMapeador.paraProduto(produtoSolicitacaoDTO)).thenReturn(produto);
-		when(insereProdutoPortaEntrada.inserir(produto)).thenReturn(produtoPersistido);
-		when(produtoEntradaMapeador.paraProdutoDTO(produtoPersistido)).thenReturn(produtoRespostaDTO);
+    @ParameterizedTest
+    @MethodSource("produtoDTOProvider")
+    @DisplayName("Dado um produto novo, quando inserir o produto, então ele deve ser salvo")
+    void dadoProdutoNovo_quandoInserirProduto_entaoDeveSerSalvo(
+            ProdutoRespostaDTO produtoRespostaDTO, ProdutoSolicitacaoDTO produtoSolicitacaoDTO) {
+        Produto produto = new Produto();
+        Produto produtoPersistido = new Produto();
+        when(produtoEntradaMapeador.paraProduto(produtoSolicitacaoDTO)).thenReturn(produto);
+        when(insereProdutoPortaEntrada.inserir(produto)).thenReturn(produtoPersistido);
+        when(produtoEntradaMapeador.paraProdutoDTO(produtoPersistido)).thenReturn(produtoRespostaDTO);
 
-		ResponseEntity<ProdutoRespostaDTO> response = produtoControlador.insereProduto(produtoSolicitacaoDTO);
+        ResponseEntity<ProdutoRespostaDTO> response = produtoControlador.insereProduto(produtoSolicitacaoDTO);
 
-		assertEquals(HttpStatus.CREATED, response.getStatusCode());
-		assertEquals(produtoRespostaDTO, response.getBody());
-		verify(produtoEntradaMapeador).paraProduto(produtoSolicitacaoDTO);
-		verify(insereProdutoPortaEntrada).inserir(produto);
-		verify(produtoEntradaMapeador).paraProdutoDTO(produtoPersistido);
-	}
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(produtoRespostaDTO, response.getBody());
+        verify(produtoEntradaMapeador).paraProduto(produtoSolicitacaoDTO);
+        verify(insereProdutoPortaEntrada).inserir(produto);
+        verify(produtoEntradaMapeador).paraProdutoDTO(produtoPersistido);
+    }
 
-	@ParameterizedTest
-	@MethodSource("produtoDTOProvider")
-	@DisplayName("Dado um produto existente, quando alterar o produto, então ele deve ser atualizado")
-	void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado(ProdutoRespostaDTO produtoRespotaDTO,
-			ProdutoSolicitacaoDTO produtoSolicitacaoDTO) {
-		Long id = produtoRespotaDTO.id();
-		Produto produto = new Produto();
-		Produto produtoPersistido = new Produto();
+    @ParameterizedTest
+    @MethodSource("produtoDTOProvider")
+    @DisplayName("Dado um produto existente, quando alterar o produto, então ele deve ser atualizado")
+    void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado(
+            ProdutoRespostaDTO produtoRespotaDTO, ProdutoSolicitacaoDTO produtoSolicitacaoDTO) {
+        Long id = produtoRespotaDTO.id();
+        Produto produto = new Produto();
+        Produto produtoPersistido = new Produto();
 
-		when(produtoEntradaMapeador.paraProduto(produtoSolicitacaoDTO)).thenReturn(produto);
-		when(alteraProdutoPortaEntrada.alterar(id, produto)).thenReturn(produtoPersistido);
-		when(produtoEntradaMapeador.paraProdutoDTO(produtoPersistido)).thenReturn(produtoRespotaDTO);
+        when(produtoEntradaMapeador.paraProduto(produtoSolicitacaoDTO)).thenReturn(produto);
+        when(alteraProdutoPortaEntrada.alterar(id, produto)).thenReturn(produtoPersistido);
+        when(produtoEntradaMapeador.paraProdutoDTO(produtoPersistido)).thenReturn(produtoRespotaDTO);
 
-		ResponseEntity<ProdutoRespostaDTO> response = produtoControlador.alteraProduto(id, produtoSolicitacaoDTO);
+        ResponseEntity<ProdutoRespostaDTO> response = produtoControlador.alteraProduto(id, produtoSolicitacaoDTO);
 
-		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(produtoRespotaDTO, response.getBody());
-		verify(produtoEntradaMapeador).paraProduto(produtoSolicitacaoDTO);
-		verify(alteraProdutoPortaEntrada).alterar(id, produto);
-		verify(produtoEntradaMapeador).paraProdutoDTO(produtoPersistido);
-	}
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(produtoRespotaDTO, response.getBody());
+        verify(produtoEntradaMapeador).paraProduto(produtoSolicitacaoDTO);
+        verify(alteraProdutoPortaEntrada).alterar(id, produto);
+        verify(produtoEntradaMapeador).paraProdutoDTO(produtoPersistido);
+    }
 
-	@ParameterizedTest
-	@MethodSource("produtoDTOProvider")
-	@DisplayName("Dado um produto existente, quando deletar o produto, então ele deve ser removido")
-	void dadoProdutoExistente_quandoDeletarProduto_entaoDeveSerRemovido(ProdutoRespostaDTO produtoRespostaDTO) {
-		Long id = produtoRespostaDTO.id();
+    @ParameterizedTest
+    @MethodSource("produtoDTOProvider")
+    @DisplayName("Dado um produto existente, quando deletar o produto, então ele deve ser removido")
+    void dadoProdutoExistente_quandoDeletarProduto_entaoDeveSerRemovido(ProdutoRespostaDTO produtoRespostaDTO) {
+        Long id = produtoRespostaDTO.id();
 
-		ResponseEntity<Void> response = produtoControlador.deletaProduto(id);
+        ResponseEntity<Void> response = produtoControlador.deletaProduto(id);
 
-		assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
-		verify(deletaProdutoPortaEntrada).deleta(id);
-	}
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        verify(deletaProdutoPortaEntrada).deleta(id);
+    }
 
-	@ParameterizedTest
-	@MethodSource("produtoFiltroProvider")
-	@DisplayName("Dado produtos existentes, quando buscar o produto através do filtro, então ele deve ser retornado")
-	void dadoProdutosExistentes_quandoBuscarProdutoAtravesDoFiltro_entaoDeveSerRetornado(ProdutoFiltroDTO filtroDTO,
-			ProdutoFiltro filtro, List<Produto> produtos, List<ProdutoRespostaDTO> produtoRespostaDTOs) {
+    @ParameterizedTest
+    @MethodSource("produtoFiltroProvider")
+    @DisplayName("Dado produtos existentes, quando buscar o produto através do filtro, então ele deve ser retornado")
+    void dadoProdutosExistentes_quandoBuscarProdutoAtravesDoFiltro_entaoDeveSerRetornado(
+            ProdutoFiltroDTO filtroDTO,
+            ProdutoFiltro filtro,
+            List<Produto> produtos,
+            List<ProdutoRespostaDTO> produtoRespostaDTOs) {
 
-		Pageable paginacao = PageRequest.of(0, 10);
-		Page<Produto> produtoPage = new PageImpl<>(produtos, paginacao, produtos.size());
-		Page<ProdutoRespostaDTO> produtoRespostaPage = new PageImpl<>(produtoRespostaDTOs, paginacao,
-				produtoRespostaDTOs.size());
+        Pageable paginacao = PageRequest.of(0, 10);
+        Page<Produto> produtoPage = new PageImpl<>(produtos, paginacao, produtos.size());
+        Page<ProdutoRespostaDTO> produtoRespostaPage =
+                new PageImpl<>(produtoRespostaDTOs, paginacao, produtoRespostaDTOs.size());
 
-		when(produtoFiltroEntradaMapeador.paraProdutoFiltro(filtroDTO)).thenReturn(filtro);
-		when(listarProdutoPortaEntrada.listarComFiltro(filtro, paginacao)).thenReturn(produtoPage);
-		produtos.forEach(produto -> when(produtoEntradaMapeador.paraProdutoDTO(produto))
-				.thenReturn(produtoRespostaDTOs.get(produtos.indexOf(produto))));
+        when(produtoFiltroEntradaMapeador.paraProdutoFiltro(filtroDTO)).thenReturn(filtro);
+        when(listarProdutoPortaEntrada.listarComFiltro(filtro, paginacao)).thenReturn(produtoPage);
+        produtos.forEach(produto -> when(produtoEntradaMapeador.paraProdutoDTO(produto))
+                .thenReturn(produtoRespostaDTOs.get(produtos.indexOf(produto))));
 
-		ResponseEntity<PagedModel<ProdutoRespostaDTO>> response = produtoControlador.listarProdutosComFiltro(filtroDTO,
-				paginacao);
+        ResponseEntity<PagedModel<ProdutoRespostaDTO>> response =
+                produtoControlador.listarProdutosComFiltro(filtroDTO, paginacao);
 
-		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(produtoRespostaPage.getContent(), response.getBody().getContent());
-		verify(listarProdutoPortaEntrada).listarComFiltro(filtro, paginacao);
-		verify(produtoFiltroEntradaMapeador).paraProdutoFiltro(filtroDTO);
-		produtos.forEach(produto -> verify(produtoEntradaMapeador).paraProdutoDTO(produto));
-	}
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(produtoRespostaPage.getContent(), response.getBody().getContent());
+        verify(listarProdutoPortaEntrada).listarComFiltro(filtro, paginacao);
+        verify(produtoFiltroEntradaMapeador).paraProdutoFiltro(filtroDTO);
+        produtos.forEach(produto -> verify(produtoEntradaMapeador).paraProdutoDTO(produto));
+    }
 
-	@Test
-	@DisplayName("Dado categorias de produtos, quando buscar as categorias, então elas devem ser retornadas")
-	void dadoCategoriasDeProdutos_quandoBuscarCategorias_entaoDevemSerRetornadas() {
+    @Test
+    @DisplayName("Dado categorias de produtos, quando buscar as categorias, então elas devem ser retornadas")
+    void dadoCategoriasDeProdutos_quandoBuscarCategorias_entaoDevemSerRetornadas() {
 
-		Categoria[] categorias = Categoria.values();
-		List<String> categoriasEsperadas = Arrays.stream(categorias).map(Categoria::getNome).toList();
-		CategoriaRespostaDTO categoriasDTO = new CategoriaRespostaDTO(categoriasEsperadas);
-		when(buscaCategoriaPortaEntrada.buscaCategorias()).thenReturn(List.of(categorias));
+        Categoria[] categorias = Categoria.values();
+        List<String> categoriasEsperadas =
+                Arrays.stream(categorias).map(Categoria::getNome).toList();
+        CategoriaRespostaDTO categoriasDTO = new CategoriaRespostaDTO(categoriasEsperadas);
+        when(buscaCategoriaPortaEntrada.buscaCategorias()).thenReturn(List.of(categorias));
 
-		ResponseEntity<CategoriaRespostaDTO> response = produtoControlador.buscaCategorias();
+        ResponseEntity<CategoriaRespostaDTO> response = produtoControlador.buscaCategorias();
 
-		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertEquals(categoriasDTO, response.getBody());
-	}
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(categoriasDTO, response.getBody());
+    }
 }

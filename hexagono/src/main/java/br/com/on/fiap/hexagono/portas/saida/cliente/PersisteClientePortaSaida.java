@@ -5,11 +5,11 @@ import java.util.Optional;
 
 public interface PersisteClientePortaSaida {
 
-	Optional<Cliente> buscaClientePorId(Long id);
+    Optional<Cliente> buscaClientePorId(Long id);
 
-	Optional<Cliente> buscaClientePorCpf(String cpf);
+    Optional<Cliente> buscaClientePorCpf(String cpf);
 
-	Optional<Cliente> buscaClientePorEmail(String email);
+    Optional<Cliente> buscaClientePorEmail(String email);
 
-	Cliente salvaCliente(Cliente cliente);
+    Cliente salvaCliente(Cliente cliente);
 }

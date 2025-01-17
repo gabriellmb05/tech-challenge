@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProdutoFiltroDTO {
 
-	private String categoria;
-	private String nome;
+    private String categoria;
+    private String nome;
 }

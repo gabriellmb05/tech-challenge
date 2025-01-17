@@ -10,14 +10,14 @@ import org.mapstruct.Named;
 @Mapper(componentModel = "spring")
 public interface ProdutoFiltroEntradaMapeador {
 
-	@Mapping(target = "categoria", qualifiedByName = "getCategoria")
-	ProdutoFiltro paraProdutoFiltro(ProdutoFiltroDTO produtoFiltroDTO);
+    @Mapping(target = "categoria", qualifiedByName = "getCategoria")
+    ProdutoFiltro paraProdutoFiltro(ProdutoFiltroDTO produtoFiltroDTO);
 
-	@Named("getCategoria")
-	default Categoria getCategoria(String categoria) {
-		if (categoria == null) {
-			return null;
-		}
-		return Categoria.buscaCategoria(categoria);
-	}
+    @Named("getCategoria")
+    default Categoria getCategoria(String categoria) {
+        if (categoria == null) {
+            return null;
+        }
+        return Categoria.buscaCategoria(categoria);
+    }
 }

@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface BuscaPedidosPortaSaida {
 
-	Page<Pedido> listarComFiltros(PedidoFiltro filtro, Pageable page);
+    Page<Pedido> listarComFiltros(PedidoFiltro filtro, Pageable page);
 }

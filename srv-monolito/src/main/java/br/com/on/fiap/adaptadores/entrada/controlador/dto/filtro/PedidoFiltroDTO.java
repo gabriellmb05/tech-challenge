@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PedidoFiltroDTO {
 
-	private LocalDate dataInicio;
-	private LocalDate dataFim;
-	private Long situacao;
-	private String cpfCliente;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
+    private Long situacao;
+    private String cpfCliente;
 }

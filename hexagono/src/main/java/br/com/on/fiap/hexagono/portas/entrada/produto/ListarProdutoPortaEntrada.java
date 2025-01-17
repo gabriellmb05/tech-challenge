@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface ListarProdutoPortaEntrada {
 
-	Page<Produto> listarComFiltro(ProdutoFiltro filtro, Pageable pageable);
+    Page<Produto> listarComFiltro(ProdutoFiltro filtro, Pageable pageable);
 }

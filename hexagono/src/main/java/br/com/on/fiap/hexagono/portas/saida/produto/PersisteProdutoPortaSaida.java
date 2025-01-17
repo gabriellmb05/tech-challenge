@@ -9,15 +9,15 @@ import org.springframework.data.domain.Pageable;
 
 public interface PersisteProdutoPortaSaida {
 
-	Optional<Produto> buscaProdutoPorId(Long id);
+    Optional<Produto> buscaProdutoPorId(Long id);
 
-	Optional<List<Produto>> buscaProdutoPorIdsLista(List<Long> ids);
+    Optional<List<Produto>> buscaProdutoPorIdsLista(List<Long> ids);
 
-	Produto salvaProduto(Produto produto);
+    Produto salvaProduto(Produto produto);
 
-	Optional<Produto> buscaProdutoPorNome(String nome);
+    Optional<Produto> buscaProdutoPorNome(String nome);
 
-	void deletaProdutoPorId(Long id);
+    void deletaProdutoPorId(Long id);
 
-	Page<Produto> listarComFiltros(ProdutoFiltro filtro, Pageable page);
+    Page<Produto> listarComFiltros(ProdutoFiltro filtro, Pageable page);
 }

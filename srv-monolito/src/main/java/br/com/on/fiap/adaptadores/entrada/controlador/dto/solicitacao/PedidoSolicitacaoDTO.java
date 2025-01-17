@@ -12,10 +12,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PedidoSolicitacaoDTO {
 
-	@NotNull(message = "O cliente é obrigatório") private Long cliente;
+    @NotNull(message = "O cliente é obrigatório") private Long cliente;
 
-	@NotNull(message = "O valor do pedido é obrigatório") private BigDecimal valor;
+    @NotNull(message = "O valor do pedido é obrigatório") private BigDecimal valor;
 
-	@NotNull(message = "Os produtos precisam ser informados") private List<PedidoQuantidadeSolicitacaoDTO> produtos;
-
+    @NotNull(message = "Os produtos precisam ser informados") private List<PedidoQuantidadeSolicitacaoDTO> produtos;
 }

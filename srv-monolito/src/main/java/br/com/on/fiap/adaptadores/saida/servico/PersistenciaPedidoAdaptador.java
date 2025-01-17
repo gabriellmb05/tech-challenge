@@ -10,18 +10,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersistenciaPedidoAdaptador implements PersistePedidoPortaSaida {
 
-	private final PedidoRepositorio pedidoRepositorio;
-	private final PedidoSaidaMapeador pedidoSaidaMapeador;
+    private final PedidoRepositorio pedidoRepositorio;
+    private final PedidoSaidaMapeador pedidoSaidaMapeador;
 
-	public PersistenciaPedidoAdaptador(PedidoRepositorio pedidoRepositorio, PedidoSaidaMapeador pedidoSaidaMapeador) {
-		this.pedidoRepositorio = pedidoRepositorio;
-		this.pedidoSaidaMapeador = pedidoSaidaMapeador;
-	}
+    public PersistenciaPedidoAdaptador(PedidoRepositorio pedidoRepositorio, PedidoSaidaMapeador pedidoSaidaMapeador) {
+        this.pedidoRepositorio = pedidoRepositorio;
+        this.pedidoSaidaMapeador = pedidoSaidaMapeador;
+    }
 
-	@Override
-	public Pedido salvaPedido(Pedido pedido) {
-		PedidoEntidade pedidoEntidade = pedidoSaidaMapeador.paraEntidade(pedido);
-		pedidoEntidade.setSituacao(1L);
-		return pedidoSaidaMapeador.paraPedido(pedidoRepositorio.save(pedidoEntidade));
-	}
+    @Override
+    public Pedido salvaPedido(Pedido pedido) {
+        PedidoEntidade pedidoEntidade = pedidoSaidaMapeador.paraEntidade(pedido);
+        pedidoEntidade.setSituacao(1L);
+        return pedidoSaidaMapeador.paraPedido(pedidoRepositorio.save(pedidoEntidade));
+    }
 }

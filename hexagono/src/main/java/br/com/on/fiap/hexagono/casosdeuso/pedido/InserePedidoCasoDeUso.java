@@ -13,40 +13,43 @@ import java.util.List;
 
 public class InserePedidoCasoDeUso implements InserePedidoPortaEntrada {
 
-	private final PersisteClientePortaSaida persisteClientePortaSaida;
-	private final PersistePedidoPortaSaida persistePedidoPortaSaida;
-	private final PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida;
+    private final PersisteClientePortaSaida persisteClientePortaSaida;
+    private final PersistePedidoPortaSaida persistePedidoPortaSaida;
+    private final PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida;
 
-	public InserePedidoCasoDeUso(PersisteClientePortaSaida persisteClientePortaSaida,
-			PersistePedidoPortaSaida persistePedidoPortaSaida,
-			PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida) {
-		this.persisteClientePortaSaida = persisteClientePortaSaida;
-		this.persistePedidoPortaSaida = persistePedidoPortaSaida;
-		this.persistePedidoProdutoPortaSaida = persistePedidoProdutoPortaSaida;
-	}
+    public InserePedidoCasoDeUso(
+            PersisteClientePortaSaida persisteClientePortaSaida,
+            PersistePedidoPortaSaida persistePedidoPortaSaida,
+            PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida) {
+        this.persisteClientePortaSaida = persisteClientePortaSaida;
+        this.persistePedidoPortaSaida = persistePedidoPortaSaida;
+        this.persistePedidoProdutoPortaSaida = persistePedidoProdutoPortaSaida;
+    }
 
-	@Override
-	public Pedido inserir(Pedido pedido) {
-		Cliente cliente = buscarCliente(pedido);
-		pedido.setCliente(cliente);
-		Pedido pedidoSalvo = salvarPedido(pedido);
-		vincularProdutosAoPedido(pedidoSalvo, pedido.getRelPedidoProdutos());
-		return pedidoSalvo;
-	}
+    @Override
+    public Pedido inserir(Pedido pedido) {
+        Cliente cliente = buscarCliente(pedido);
+        pedido.setCliente(cliente);
+        Pedido pedidoSalvo = salvarPedido(pedido);
+        vincularProdutosAoPedido(pedidoSalvo, pedido.getRelPedidoProdutos());
+        return pedidoSalvo;
+    }
 
-	private Cliente buscarCliente(Pedido pedido) {
-		return persisteClientePortaSaida.buscaClientePorId(pedido.getCliente().getId()).orElseThrow(
-				() -> new ClienteNaoEncontradoExcecao(MessageError.MSG_CLIENTE_NAO_ENCONTRATO_PARA_ID.getMensagem(),
-						pedido.getCliente().getId()));
-	}
+    private Cliente buscarCliente(Pedido pedido) {
+        return persisteClientePortaSaida
+                .buscaClientePorId(pedido.getCliente().getId())
+                .orElseThrow(() -> new ClienteNaoEncontradoExcecao(
+                        MessageError.MSG_CLIENTE_NAO_ENCONTRATO_PARA_ID.getMensagem(),
+                        pedido.getCliente().getId()));
+    }
 
-	private Pedido salvarPedido(Pedido pedido) {
-		return persistePedidoPortaSaida.salvaPedido(pedido);
-	}
+    private Pedido salvarPedido(Pedido pedido) {
+        return persistePedidoPortaSaida.salvaPedido(pedido);
+    }
 
-	private void vincularProdutosAoPedido(Pedido pedidoSalvo, List<RelPedidoProduto> pedidoProdutos) {
-		pedidoProdutos.forEach(relPedidoProduto -> relPedidoProduto.getPedido().setId(pedidoSalvo.getId()));
-		pedidoSalvo.setRelPedidoProdutos(pedidoProdutos);
-		persistePedidoProdutoPortaSaida.vincularPedido(pedidoSalvo.getRelPedidoProdutos());
-	}
+    private void vincularProdutosAoPedido(Pedido pedidoSalvo, List<RelPedidoProduto> pedidoProdutos) {
+        pedidoProdutos.forEach(relPedidoProduto -> relPedidoProduto.getPedido().setId(pedidoSalvo.getId()));
+        pedidoSalvo.setRelPedidoProdutos(pedidoProdutos);
+        persistePedidoProdutoPortaSaida.vincularPedido(pedidoSalvo.getRelPedidoProdutos());
+    }
 }

@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface PersistePedidoProdutoPortaSaida {
 
-	void vincularPedido(List<RelPedidoProduto> pedidoProdutos);
+    void vincularPedido(List<RelPedidoProduto> pedidoProdutos);
 }

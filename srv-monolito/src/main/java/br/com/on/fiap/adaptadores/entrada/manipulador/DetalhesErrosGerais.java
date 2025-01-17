@@ -14,12 +14,12 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DetalhesErrosGerais {
 
-	private int statusCode;
+    private int statusCode;
 
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-	private LocalDateTime timestamp;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime timestamp;
 
-	private String details;
+    private String details;
 
-	private List<String> errors;
+    private List<String> errors;
 }

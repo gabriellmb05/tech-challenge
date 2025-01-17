@@ -16,46 +16,47 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersistenciaProdutoAdaptador implements PersisteProdutoPortaSaida {
 
-	private final ProdutoRepositorio produtoRepositorio;
-	private final ProdutoSaidaMapeador produtoSaidaMapeador;
+    private final ProdutoRepositorio produtoRepositorio;
+    private final ProdutoSaidaMapeador produtoSaidaMapeador;
 
-	@Autowired
-	public PersistenciaProdutoAdaptador(ProdutoRepositorio produtoRepositorio,
-			ProdutoSaidaMapeador produtoSaidaMapeador) {
-		this.produtoRepositorio = produtoRepositorio;
-		this.produtoSaidaMapeador = produtoSaidaMapeador;
-	}
+    @Autowired
+    public PersistenciaProdutoAdaptador(
+            ProdutoRepositorio produtoRepositorio, ProdutoSaidaMapeador produtoSaidaMapeador) {
+        this.produtoRepositorio = produtoRepositorio;
+        this.produtoSaidaMapeador = produtoSaidaMapeador;
+    }
 
-	@Override
-	public Optional<Produto> buscaProdutoPorId(Long id) {
-		return produtoRepositorio.findById(id).map(produtoSaidaMapeador::paraProduto);
-	}
+    @Override
+    public Optional<Produto> buscaProdutoPorId(Long id) {
+        return produtoRepositorio.findById(id).map(produtoSaidaMapeador::paraProduto);
+    }
 
-	@Override
-	public Optional<List<Produto>> buscaProdutoPorIdsLista(List<Long> ids) {
-		return Optional
-				.of(produtoRepositorio.findByIdIn(ids).get().stream().map(produtoSaidaMapeador::paraProduto).toList());
-	}
+    @Override
+    public Optional<List<Produto>> buscaProdutoPorIdsLista(List<Long> ids) {
+        return Optional.of(produtoRepositorio.findByIdIn(ids).get().stream()
+                .map(produtoSaidaMapeador::paraProduto)
+                .toList());
+    }
 
-	@Override
-	public Produto salvaProduto(Produto produto) {
-		ProdutoEntidade produtoEntidade = produtoSaidaMapeador.paraEntidade(produto);
-		ProdutoEntidade produtoPersistido = produtoRepositorio.save(produtoEntidade);
-		return produtoSaidaMapeador.paraProduto(produtoPersistido);
-	}
+    @Override
+    public Produto salvaProduto(Produto produto) {
+        ProdutoEntidade produtoEntidade = produtoSaidaMapeador.paraEntidade(produto);
+        ProdutoEntidade produtoPersistido = produtoRepositorio.save(produtoEntidade);
+        return produtoSaidaMapeador.paraProduto(produtoPersistido);
+    }
 
-	@Override
-	public Optional<Produto> buscaProdutoPorNome(String nome) {
-		return produtoRepositorio.findByNome(nome).map(produtoSaidaMapeador::paraProduto);
-	}
+    @Override
+    public Optional<Produto> buscaProdutoPorNome(String nome) {
+        return produtoRepositorio.findByNome(nome).map(produtoSaidaMapeador::paraProduto);
+    }
 
-	@Override
-	public void deletaProdutoPorId(Long id) {
-		produtoRepositorio.deleteById(id);
-	}
+    @Override
+    public void deletaProdutoPorId(Long id) {
+        produtoRepositorio.deleteById(id);
+    }
 
-	@Override
-	public Page<Produto> listarComFiltros(ProdutoFiltro filtro, Pageable page) {
-		return produtoRepositorio.buscarComFiltro(filtro, page).map(produtoSaidaMapeador::paraProduto);
-	}
+    @Override
+    public Page<Produto> listarComFiltros(ProdutoFiltro filtro, Pageable page) {
+        return produtoRepositorio.buscarComFiltro(filtro, page).map(produtoSaidaMapeador::paraProduto);
+    }
 }

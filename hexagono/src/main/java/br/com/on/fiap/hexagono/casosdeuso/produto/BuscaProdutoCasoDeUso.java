@@ -9,16 +9,16 @@ import java.util.Optional;
 
 public class BuscaProdutoCasoDeUso implements BuscaProdutoPorIdPortaEntrada {
 
-	private final PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+    private final PersisteProdutoPortaSaida persisteProdutoPortaSaida;
 
-	public BuscaProdutoCasoDeUso(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
-		this.persisteProdutoPortaSaida = persisteProdutoPortaSaida;
-	}
+    public BuscaProdutoCasoDeUso(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+        this.persisteProdutoPortaSaida = persisteProdutoPortaSaida;
+    }
 
-	@Override
-	public Produto buscar(Long id) {
-		Optional<Produto> produtoBancoDados = persisteProdutoPortaSaida.buscaProdutoPorId(id);
-		return produtoBancoDados.orElseThrow(
-				() -> new ProdutoNaoEncontradoExcecao(MessageError.MSG_ERRO_PRODUTO_NAO_CADASTRADO.getMensagem(), id));
-	}
+    @Override
+    public Produto buscar(Long id) {
+        Optional<Produto> produtoBancoDados = persisteProdutoPortaSaida.buscaProdutoPorId(id);
+        return produtoBancoDados.orElseThrow(
+                () -> new ProdutoNaoEncontradoExcecao(MessageError.MSG_ERRO_PRODUTO_NAO_CADASTRADO.getMensagem(), id));
+    }
 }

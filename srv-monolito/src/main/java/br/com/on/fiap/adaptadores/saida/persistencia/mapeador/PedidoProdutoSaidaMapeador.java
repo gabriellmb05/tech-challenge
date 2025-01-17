@@ -11,15 +11,16 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring")
 public interface PedidoProdutoSaidaMapeador {
 
-	List<PedidoProdutoEntidade> paraListaEntidade(List<RelPedidoProduto> relPedidoProdutos);
+    List<PedidoProdutoEntidade> paraListaEntidade(List<RelPedidoProduto> relPedidoProdutos);
 
-	List<RelPedidoProduto> paraRelPedidoProduto(List<PedidoProdutoEntidade> relPedidoProdutos);
+    List<RelPedidoProduto> paraRelPedidoProduto(List<PedidoProdutoEntidade> relPedidoProdutos);
 
-	@AfterMapping
-	default void mapearPedidoProdutoId(@MappingTarget PedidoProdutoEntidade pedidoProdutoEntidade,
-			RelPedidoProduto relPedidoProduto) {
-		PedidoProdutoId id = new PedidoProdutoId(relPedidoProduto.getPedido().getId(),
-				relPedidoProduto.getProduto().getId());
-		pedidoProdutoEntidade.setId(id);
-	}
+    @AfterMapping
+    default void mapearPedidoProdutoId(
+            @MappingTarget PedidoProdutoEntidade pedidoProdutoEntidade, RelPedidoProduto relPedidoProduto) {
+        PedidoProdutoId id = new PedidoProdutoId(
+                relPedidoProduto.getPedido().getId(),
+                relPedidoProduto.getProduto().getId());
+        pedidoProdutoEntidade.setId(id);
+    }
 }

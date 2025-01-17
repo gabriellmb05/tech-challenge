@@ -14,18 +14,19 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class BuscaPedidosAdaptador implements BuscaPedidosPortaSaida {
 
-	private final PedidoRepositorio pedidoRepositorio;
-	private final PedidoSaidaMapeador pedidoSaidaMapeador;
+    private final PedidoRepositorio pedidoRepositorio;
+    private final PedidoSaidaMapeador pedidoSaidaMapeador;
 
-	public BuscaPedidosAdaptador(PedidoRepositorio pedidoRepositorio, PedidoSaidaMapeador pedidoSaidaMapeador) {
-		this.pedidoRepositorio = pedidoRepositorio;
-		this.pedidoSaidaMapeador = pedidoSaidaMapeador;
-	}
+    public BuscaPedidosAdaptador(PedidoRepositorio pedidoRepositorio, PedidoSaidaMapeador pedidoSaidaMapeador) {
+        this.pedidoRepositorio = pedidoRepositorio;
+        this.pedidoSaidaMapeador = pedidoSaidaMapeador;
+    }
 
-	@Override
-	@Transactional(readOnly = true)
-	public Page<Pedido> listarComFiltros(PedidoFiltro filtro, Pageable page) {
-		return pedidoRepositorio.findAll(PedidoEspecificacao.filtroPorDataInicioEDataFim(filtro), page)
-				.map(pedidoSaidaMapeador::paraPedido);
-	}
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Pedido> listarComFiltros(PedidoFiltro filtro, Pageable page) {
+        return pedidoRepositorio
+                .findAll(PedidoEspecificacao.filtroPorDataInicioEDataFim(filtro), page)
+                .map(pedidoSaidaMapeador::paraPedido);
+    }
 }

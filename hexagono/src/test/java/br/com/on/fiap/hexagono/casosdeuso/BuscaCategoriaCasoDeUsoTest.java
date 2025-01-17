@@ -14,12 +14,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class BuscaCategoriaCasoDeUsoTest {
 
-	@Test
-	@DisplayName("Dado categorias de produtos, quando buscar as categorias, então elas devem ser retornadas")
-	void dadoCategorias_quandoBuscarCategorias_entaoDeveSerRetornado() {
-		BuscaCategoriaCasoDeUso buscaCategoriaCasoDeUso = new BuscaCategoriaCasoDeUso();
-		List<Categoria> categorias = buscaCategoriaCasoDeUso.buscaCategorias();
-		assertNotNull(categorias);
-		assertArrayEquals(Categoria.values(), categorias.toArray());
-	}
+    @Test
+    @DisplayName("Dado categorias de produtos, quando buscar as categorias, então elas devem ser retornadas")
+    void dadoCategorias_quandoBuscarCategorias_entaoDeveSerRetornado() {
+        BuscaCategoriaCasoDeUso buscaCategoriaCasoDeUso = new BuscaCategoriaCasoDeUso();
+        List<Categoria> categorias = buscaCategoriaCasoDeUso.buscaCategorias();
+        assertNotNull(categorias);
+        assertArrayEquals(Categoria.values(), categorias.toArray());
+    }
 }

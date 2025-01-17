@@ -4,5 +4,4 @@ import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoProdutoEntid
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoProdutoId;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PedidoProdutoRepositorio extends JpaRepository<PedidoProdutoEntidade, PedidoProdutoId> {
-}
+public interface PedidoProdutoRepositorio extends JpaRepository<PedidoProdutoEntidade, PedidoProdutoId> {}

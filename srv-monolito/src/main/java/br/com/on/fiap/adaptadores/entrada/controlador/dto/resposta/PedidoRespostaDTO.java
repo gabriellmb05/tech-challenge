@@ -5,5 +5,4 @@ import java.time.LocalDateTime;
 import lombok.Builder;
 
 @Builder
-public record PedidoRespostaDTO(Long id, BigDecimal valor, Long situacao, String protocolo, LocalDateTime dataHora) {
-}
+public record PedidoRespostaDTO(Long id, BigDecimal valor, Long situacao, String protocolo, LocalDateTime dataHora) {}

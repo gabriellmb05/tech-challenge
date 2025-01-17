@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PedidoProdutoId implements Serializable {
 
-	private Long pedidoId;
-	private Long produtoId;
+    private Long pedidoId;
+    private Long produtoId;
 }

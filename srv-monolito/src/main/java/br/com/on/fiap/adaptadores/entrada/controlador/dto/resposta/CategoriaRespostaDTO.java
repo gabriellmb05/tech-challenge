@@ -4,5 +4,4 @@ import java.util.List;
 import lombok.Builder;
 
 @Builder
-public record CategoriaRespostaDTO(List<String> categorias) {
-}
+public record CategoriaRespostaDTO(List<String> categorias) {}

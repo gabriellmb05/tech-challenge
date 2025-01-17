@@ -14,11 +14,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProdutoRepositorio extends JpaRepository<ProdutoEntidade, Long> {
 
-	Optional<ProdutoEntidade> findByNome(String nome);
+    Optional<ProdutoEntidade> findByNome(String nome);
 
-	Optional<List<ProdutoEntidade>> findByIdIn(List<Long> ids);
+    Optional<List<ProdutoEntidade>> findByIdIn(List<Long> ids);
 
-	@Query("""
+    @Query(
+            """
 			SELECT
 			    p
 			FROM
@@ -33,5 +34,5 @@ public interface ProdutoRepositorio extends JpaRepository<ProdutoEntidade, Long>
 			            OR p.categoria = :#{#filtro.categoria}
 			    )
 			""")
-	Page<ProdutoEntidade> buscarComFiltro(@Param(value = "filtro") ProdutoFiltro filtro, Pageable page);
+    Page<ProdutoEntidade> buscarComFiltro(@Param(value = "filtro") ProdutoFiltro filtro, Pageable page);
 }

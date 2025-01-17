@@ -9,18 +9,18 @@ import java.util.Optional;
 
 public class InsereProdutoCasoDeUso implements InsereProdutoPortaEntrada {
 
-	private final PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+    private final PersisteProdutoPortaSaida persisteProdutoPortaSaida;
 
-	public InsereProdutoCasoDeUso(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
-		this.persisteProdutoPortaSaida = persisteProdutoPortaSaida;
-	}
+    public InsereProdutoCasoDeUso(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+        this.persisteProdutoPortaSaida = persisteProdutoPortaSaida;
+    }
 
-	@Override
-	public Produto inserir(Produto produto) {
-		Optional<Produto> produtoBancoDados = persisteProdutoPortaSaida.buscaProdutoPorNome(produto.getNome());
-		produtoBancoDados.ifPresent(p -> {
-			throw new ProdutoExistenteExcecao(MessageError.MSG_ERRO_CPF_JA_CADASTRADO.getMensagem(), produto.getNome());
-		});
-		return persisteProdutoPortaSaida.salvaProduto(produto);
-	}
+    @Override
+    public Produto inserir(Produto produto) {
+        Optional<Produto> produtoBancoDados = persisteProdutoPortaSaida.buscaProdutoPorNome(produto.getNome());
+        produtoBancoDados.ifPresent(p -> {
+            throw new ProdutoExistenteExcecao(MessageError.MSG_ERRO_CPF_JA_CADASTRADO.getMensagem(), produto.getNome());
+        });
+        return persisteProdutoPortaSaida.salvaProduto(produto);
+    }
 }

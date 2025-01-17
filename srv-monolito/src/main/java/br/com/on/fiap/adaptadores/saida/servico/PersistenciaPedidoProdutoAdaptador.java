@@ -11,18 +11,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersistenciaPedidoProdutoAdaptador implements PersistePedidoProdutoPortaSaida {
 
-	private final PedidoProdutoRepositorio pedidoProdutoRepositorio;
-	private final PedidoProdutoSaidaMapeador pedidoProdutoSaidaMapeador;
+    private final PedidoProdutoRepositorio pedidoProdutoRepositorio;
+    private final PedidoProdutoSaidaMapeador pedidoProdutoSaidaMapeador;
 
-	public PersistenciaPedidoProdutoAdaptador(PedidoProdutoRepositorio pedidoProdutoRepositorio,
-			PedidoProdutoSaidaMapeador pedidoProdutoSaidaMapeador) {
-		this.pedidoProdutoRepositorio = pedidoProdutoRepositorio;
-		this.pedidoProdutoSaidaMapeador = pedidoProdutoSaidaMapeador;
-	}
+    public PersistenciaPedidoProdutoAdaptador(
+            PedidoProdutoRepositorio pedidoProdutoRepositorio, PedidoProdutoSaidaMapeador pedidoProdutoSaidaMapeador) {
+        this.pedidoProdutoRepositorio = pedidoProdutoRepositorio;
+        this.pedidoProdutoSaidaMapeador = pedidoProdutoSaidaMapeador;
+    }
 
-	@Override
-	public void vincularPedido(List<RelPedidoProduto> relPedidoProdutos) {
-		List<PedidoProdutoEntidade> pedidoProdutos = pedidoProdutoSaidaMapeador.paraListaEntidade(relPedidoProdutos);
-		pedidoProdutoRepositorio.saveAll(pedidoProdutos);
-	}
+    @Override
+    public void vincularPedido(List<RelPedidoProduto> relPedidoProdutos) {
+        List<PedidoProdutoEntidade> pedidoProdutos = pedidoProdutoSaidaMapeador.paraListaEntidade(relPedidoProdutos);
+        pedidoProdutoRepositorio.saveAll(pedidoProdutos);
+    }
 }

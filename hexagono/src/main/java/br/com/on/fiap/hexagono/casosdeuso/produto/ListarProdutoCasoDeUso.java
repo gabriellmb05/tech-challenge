@@ -9,14 +9,14 @@ import org.springframework.data.domain.Pageable;
 
 public class ListarProdutoCasoDeUso implements ListarProdutoPortaEntrada {
 
-	private final PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+    private final PersisteProdutoPortaSaida persisteProdutoPortaSaida;
 
-	public ListarProdutoCasoDeUso(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
-		this.persisteProdutoPortaSaida = persisteProdutoPortaSaida;
-	}
+    public ListarProdutoCasoDeUso(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+        this.persisteProdutoPortaSaida = persisteProdutoPortaSaida;
+    }
 
-	@Override
-	public Page<Produto> listarComFiltro(ProdutoFiltro filtro, Pageable pageable) {
-		return this.persisteProdutoPortaSaida.listarComFiltros(filtro, pageable);
-	}
+    @Override
+    public Page<Produto> listarComFiltro(ProdutoFiltro filtro, Pageable pageable) {
+        return this.persisteProdutoPortaSaida.listarComFiltros(filtro, pageable);
+    }
 }

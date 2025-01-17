@@ -7,5 +7,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface PedidoFiltroEntradaMapeador {
 
-	PedidoFiltro paraPedidoFiltro(PedidoFiltroDTO pedidoFiltroDTO);
+    PedidoFiltro paraPedidoFiltro(PedidoFiltroDTO pedidoFiltroDTO);
 }

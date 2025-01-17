@@ -25,48 +25,51 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("pedidos")
 public class PedidoControlador implements PedidoControladorSwagger {
 
-	private final InserePedidoPortaEntrada inserePedidoPortaEntrada;
-	private final BuscaPedidosPortaEntrada buscaPedidosPortaEntrada;
-	private final DetalhaPedidoPortaEntrada detalhaPedidoPortaEntrada;
-	private final PedidoEntradaMapeador pedidoEntradaMapeador;
-	private final PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador;
+    private final InserePedidoPortaEntrada inserePedidoPortaEntrada;
+    private final BuscaPedidosPortaEntrada buscaPedidosPortaEntrada;
+    private final DetalhaPedidoPortaEntrada detalhaPedidoPortaEntrada;
+    private final PedidoEntradaMapeador pedidoEntradaMapeador;
+    private final PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador;
 
-	public PedidoControlador(InserePedidoPortaEntrada inserePedidoPortaEntrada,
-			BuscaPedidosPortaEntrada buscaPedidosPortaEntrada, DetalhaPedidoPortaEntrada detalhaPedidoPortaEntrada,
-			PedidoEntradaMapeador pedidoEntradaMapeador, PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador) {
-		this.inserePedidoPortaEntrada = inserePedidoPortaEntrada;
-		this.buscaPedidosPortaEntrada = buscaPedidosPortaEntrada;
-		this.detalhaPedidoPortaEntrada = detalhaPedidoPortaEntrada;
-		this.pedidoEntradaMapeador = pedidoEntradaMapeador;
-		this.pedidoFiltroEntradaMapeador = pedidoFiltroEntradaMapeador;
-	}
+    public PedidoControlador(
+            InserePedidoPortaEntrada inserePedidoPortaEntrada,
+            BuscaPedidosPortaEntrada buscaPedidosPortaEntrada,
+            DetalhaPedidoPortaEntrada detalhaPedidoPortaEntrada,
+            PedidoEntradaMapeador pedidoEntradaMapeador,
+            PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador) {
+        this.inserePedidoPortaEntrada = inserePedidoPortaEntrada;
+        this.buscaPedidosPortaEntrada = buscaPedidosPortaEntrada;
+        this.detalhaPedidoPortaEntrada = detalhaPedidoPortaEntrada;
+        this.pedidoEntradaMapeador = pedidoEntradaMapeador;
+        this.pedidoFiltroEntradaMapeador = pedidoFiltroEntradaMapeador;
+    }
 
-	@Override
-	@PostMapping
-	public ResponseEntity<PedidoRespostaDTO> inserePedido(
-			@Valid @RequestBody PedidoSolicitacaoDTO pedidoSolicitacaoDTO) {
-		Pedido pedido = pedidoEntradaMapeador.paraPedido(pedidoSolicitacaoDTO);
-		Pedido pedidoPersistido = inserePedidoPortaEntrada.inserir(pedido);
-		return ResponseEntity.status(HttpStatus.CREATED).body(pedidoEntradaMapeador.paraPedidoDTO(pedidoPersistido));
-	}
+    @Override
+    @PostMapping
+    public ResponseEntity<PedidoRespostaDTO> inserePedido(
+            @Valid @RequestBody PedidoSolicitacaoDTO pedidoSolicitacaoDTO) {
+        Pedido pedido = pedidoEntradaMapeador.paraPedido(pedidoSolicitacaoDTO);
+        Pedido pedidoPersistido = inserePedidoPortaEntrada.inserir(pedido);
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedidoEntradaMapeador.paraPedidoDTO(pedidoPersistido));
+    }
 
-	@Override
-	@GetMapping
-	public ResponseEntity<PagedModel<PedidoRespostaDTO>> buscaPedidosPaginado(
-			@ParameterObject PedidoFiltroDTO pedidoFiltroDTO, Pageable pageable) {
-		PedidoFiltro pedidoFiltro = pedidoFiltroEntradaMapeador.paraPedidoFiltro(pedidoFiltroDTO);
-		Page<PedidoRespostaDTO> pedidos = buscaPedidosPortaEntrada.buscarPedidosComFiltro(pedidoFiltro, pageable)
-				.map(pedidoEntradaMapeador::paraPedidoDTO);
-		return ResponseEntity.ok().body(new PagedModel<>(pedidos));
-	}
+    @Override
+    @GetMapping
+    public ResponseEntity<PagedModel<PedidoRespostaDTO>> buscaPedidosPaginado(
+            @ParameterObject PedidoFiltroDTO pedidoFiltroDTO, Pageable pageable) {
+        PedidoFiltro pedidoFiltro = pedidoFiltroEntradaMapeador.paraPedidoFiltro(pedidoFiltroDTO);
+        Page<PedidoRespostaDTO> pedidos = buscaPedidosPortaEntrada
+                .buscarPedidosComFiltro(pedidoFiltro, pageable)
+                .map(pedidoEntradaMapeador::paraPedidoDTO);
+        return ResponseEntity.ok().body(new PagedModel<>(pedidos));
+    }
 
-	@Override
-	@GetMapping("/{protocolo}/detalhar")
-	public ResponseEntity<PedidoDetalhadoRespostaDTO> detalhaPedido(@PathVariable("protocolo") String protocolo) {
-		Pedido pedidoDetalhado = detalhaPedidoPortaEntrada.detalhaPedido(protocolo);
-		PedidoDetalhadoRespostaDTO pedidoDetalhadoRespostaDTO = pedidoEntradaMapeador
-				.paraPedidoDetalheDTO(pedidoDetalhado);
-		return ResponseEntity.ok(pedidoDetalhadoRespostaDTO);
-	}
-
+    @Override
+    @GetMapping("/{protocolo}/detalhar")
+    public ResponseEntity<PedidoDetalhadoRespostaDTO> detalhaPedido(@PathVariable("protocolo") String protocolo) {
+        Pedido pedidoDetalhado = detalhaPedidoPortaEntrada.detalhaPedido(protocolo);
+        PedidoDetalhadoRespostaDTO pedidoDetalhadoRespostaDTO =
+                pedidoEntradaMapeador.paraPedidoDetalheDTO(pedidoDetalhado);
+        return ResponseEntity.ok(pedidoDetalhadoRespostaDTO);
+    }
 }

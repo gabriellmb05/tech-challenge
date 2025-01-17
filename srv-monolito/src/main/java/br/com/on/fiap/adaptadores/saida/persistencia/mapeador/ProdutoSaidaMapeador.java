@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ProdutoSaidaMapeador {
 
-	Produto paraProduto(ProdutoEntidade produtoEntidade);
+    Produto paraProduto(ProdutoEntidade produtoEntidade);
 
-	ProdutoEntidade paraEntidade(Produto produto);
+    ProdutoEntidade paraEntidade(Produto produto);
 }

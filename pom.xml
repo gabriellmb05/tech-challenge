@@ -37,9 +37,12 @@
                 </executions>
                 <configuration>
                     <java>
-                        <eclipse/>
                         <cleanthat/>
                         <importOrder/>
+                        <palantirJavaFormat>
+                            <style>PALANTIR</style>
+                            <formatJavadoc>false</formatJavadoc>
+                        </palantirJavaFormat>
                         <formatAnnotations/>
                         <removeUnusedImports/>
                         <trimTrailingWhitespace/>

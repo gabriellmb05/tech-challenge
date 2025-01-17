@@ -16,21 +16,22 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PedidoBeanConfiguracao {
 
-	@Bean
-	public InserePedidoPortaEntrada inserePedido(PersisteClientePortaSaida persisteClientePortaSaida,
-			PersistePedidoPortaSaida persistePedidoPortaSaida,
-			PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida) {
-		return new InserePedidoCasoDeUso(persisteClientePortaSaida, persistePedidoPortaSaida,
-				persistePedidoProdutoPortaSaida);
-	}
+    @Bean
+    public InserePedidoPortaEntrada inserePedido(
+            PersisteClientePortaSaida persisteClientePortaSaida,
+            PersistePedidoPortaSaida persistePedidoPortaSaida,
+            PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida) {
+        return new InserePedidoCasoDeUso(
+                persisteClientePortaSaida, persistePedidoPortaSaida, persistePedidoProdutoPortaSaida);
+    }
 
-	@Bean
-	public BuscaPedidosPortaEntrada listaPedidos(BuscaPedidosPortaSaida buscaPedidosPortaSaida) {
-		return new BuscaPedidosCasoDeUso(buscaPedidosPortaSaida);
-	}
+    @Bean
+    public BuscaPedidosPortaEntrada listaPedidos(BuscaPedidosPortaSaida buscaPedidosPortaSaida) {
+        return new BuscaPedidosCasoDeUso(buscaPedidosPortaSaida);
+    }
 
-	@Bean
-	public DetalhaPedidoCasoDeUso detalhaPedido(DetalhaPedidoPortaSaida detalhaPedidoPortaSaida) {
-		return new DetalhaPedidoCasoDeUso(detalhaPedidoPortaSaida);
-	}
+    @Bean
+    public DetalhaPedidoCasoDeUso detalhaPedido(DetalhaPedidoPortaSaida detalhaPedidoPortaSaida) {
+        return new DetalhaPedidoCasoDeUso(detalhaPedidoPortaSaida);
+    }
 }

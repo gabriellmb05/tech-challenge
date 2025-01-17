@@ -8,15 +8,17 @@ import br.com.on.fiap.hexagono.portas.saida.pedido.DetalhaPedidoPortaSaida;
 
 public class DetalhaPedidoCasoDeUso implements DetalhaPedidoPortaEntrada {
 
-	private final DetalhaPedidoPortaSaida detalhaPedidoPortaSaida;
+    private final DetalhaPedidoPortaSaida detalhaPedidoPortaSaida;
 
-	public DetalhaPedidoCasoDeUso(DetalhaPedidoPortaSaida detalhaPedidoPortaSaida) {
-		this.detalhaPedidoPortaSaida = detalhaPedidoPortaSaida;
-	}
+    public DetalhaPedidoCasoDeUso(DetalhaPedidoPortaSaida detalhaPedidoPortaSaida) {
+        this.detalhaPedidoPortaSaida = detalhaPedidoPortaSaida;
+    }
 
-	@Override
-	public Pedido detalhaPedido(String protocolo) {
-		return detalhaPedidoPortaSaida.detalhaPedido(protocolo).orElseThrow(() -> new PedidoNaoEncontradoExcecao(
-				MessageError.MSG_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO.getMensagem(), protocolo));
-	}
+    @Override
+    public Pedido detalhaPedido(String protocolo) {
+        return detalhaPedidoPortaSaida
+                .detalhaPedido(protocolo)
+                .orElseThrow(() -> new PedidoNaoEncontradoExcecao(
+                        MessageError.MSG_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO.getMensagem(), protocolo));
+    }
 }

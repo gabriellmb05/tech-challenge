@@ -7,18 +7,19 @@ import br.com.on.fiap.hexagono.portas.saida.produto.PersisteProdutoPortaSaida;
 
 public class DeletaProdutoCasoDeUso implements DeletaProdutoPortaEntrada {
 
-	private final PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+    private final PersisteProdutoPortaSaida persisteProdutoPortaSaida;
 
-	public DeletaProdutoCasoDeUso(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
-		this.persisteProdutoPortaSaida = persisteProdutoPortaSaida;
-	}
+    public DeletaProdutoCasoDeUso(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+        this.persisteProdutoPortaSaida = persisteProdutoPortaSaida;
+    }
 
-	@Override
-	public void deleta(Long id) {
-		persisteProdutoPortaSaida.buscaProdutoPorId(id)
-				.ifPresentOrElse(produto -> persisteProdutoPortaSaida.deletaProdutoPorId(id), () -> {
-					throw new ProdutoNaoEncontradoExcecao(MessageError.MSG_ERRO_PRODUTO_NAO_CADASTRADO.getMensagem(),
-							id);
-				});
-	}
+    @Override
+    public void deleta(Long id) {
+        persisteProdutoPortaSaida
+                .buscaProdutoPorId(id)
+                .ifPresentOrElse(produto -> persisteProdutoPortaSaida.deletaProdutoPorId(id), () -> {
+                    throw new ProdutoNaoEncontradoExcecao(
+                            MessageError.MSG_ERRO_PRODUTO_NAO_CADASTRADO.getMensagem(), id);
+                });
+    }
 }

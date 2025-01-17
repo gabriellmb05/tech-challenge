@@ -4,5 +4,5 @@ import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
 import java.util.List;
 
 public interface ValidaProdutoPortaEntrada {
-	void validar(List<RelPedidoProduto> produtos);
+    void validar(List<RelPedidoProduto> produtos);
 }

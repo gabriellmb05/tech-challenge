@@ -4,8 +4,7 @@ import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.ProdutoFiltroDT
 
 public class DataPoolProdutoFiltroDTO {
 
-	public static ProdutoFiltroDTO gerarProdutoXBurguer() {
-		return new ProdutoFiltroDTO("x-burguer", "LANCHE");
-	}
-
+    public static ProdutoFiltroDTO gerarProdutoXBurguer() {
+        return new ProdutoFiltroDTO("x-burguer", "LANCHE");
+    }
 }

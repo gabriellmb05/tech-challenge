@@ -6,8 +6,8 @@ import java.util.List;
 
 public class BuscaCategoriaCasoDeUso implements BuscaCategoriaPortaEntrada {
 
-	@Override
-	public List<Categoria> buscaCategorias() {
-		return List.of(Categoria.values());
-	}
+    @Override
+    public List<Categoria> buscaCategorias() {
+        return List.of(Categoria.values());
+    }
 }

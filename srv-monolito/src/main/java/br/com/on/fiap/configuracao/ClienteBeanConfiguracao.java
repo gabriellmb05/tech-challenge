@@ -11,13 +11,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ClienteBeanConfiguracao {
 
-	@Bean
-	public BuscaClientePorCpfPortaEntrada buscaCliente(PersisteClientePortaSaida persisteClientePortaSaida) {
-		return new BuscaClienteCasoDeUso(persisteClientePortaSaida);
-	}
+    @Bean
+    public BuscaClientePorCpfPortaEntrada buscaCliente(PersisteClientePortaSaida persisteClientePortaSaida) {
+        return new BuscaClienteCasoDeUso(persisteClientePortaSaida);
+    }
 
-	@Bean
-	public InsereClientePortaEntrada insereCliente(PersisteClientePortaSaida persisteClientePortaSaida) {
-		return new InsereClienteCasoDeUso(persisteClientePortaSaida);
-	}
+    @Bean
+    public InsereClientePortaEntrada insereCliente(PersisteClientePortaSaida persisteClientePortaSaida) {
+        return new InsereClienteCasoDeUso(persisteClientePortaSaida);
+    }
 }

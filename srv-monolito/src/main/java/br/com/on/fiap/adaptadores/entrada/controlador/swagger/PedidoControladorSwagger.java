@@ -18,21 +18,35 @@ import org.springframework.http.ResponseEntity;
 @Tag(name = "Pedido", description = "APIs relacionadas a pedidos")
 public interface PedidoControladorSwagger {
 
-	@Operation(summary = "Insere um novo pedido", description = "Insere um novo pedido no sistema")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "201", description = "Pedido criado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Cliente.class))),
-			@ApiResponse(responseCode = "400", description = "Dados inválidos"),
-			@ApiResponse(responseCode = "500", description = "Erro interno do servidor")})
-	ResponseEntity<PedidoRespostaDTO> inserePedido(PedidoSolicitacaoDTO pedidoSolicitacaoDTO);
+    @Operation(summary = "Insere um novo pedido", description = "Insere um novo pedido no sistema")
+    @ApiResponses(
+            value = {
+                @ApiResponse(
+                        responseCode = "201",
+                        description = "Pedido criado",
+                        content =
+                                @Content(
+                                        mediaType = "application/json",
+                                        schema = @Schema(implementation = Cliente.class))),
+                @ApiResponse(responseCode = "400", description = "Dados inválidos"),
+                @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+            })
+    ResponseEntity<PedidoRespostaDTO> inserePedido(PedidoSolicitacaoDTO pedidoSolicitacaoDTO);
 
-	@Operation(summary = "Lista pedidos", description = "Retorna uma lista de pedidos de forma paginada")
-	@ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Pedidos encontrados"),
-			@ApiResponse(responseCode = "404", description = "Pedidos não encontrados")})
-	ResponseEntity<PagedModel<PedidoRespostaDTO>> buscaPedidosPaginado(PedidoFiltroDTO pedidoFiltroDTO,
-			Pageable pageable);
+    @Operation(summary = "Lista pedidos", description = "Retorna uma lista de pedidos de forma paginada")
+    @ApiResponses(
+            value = {
+                @ApiResponse(responseCode = "200", description = "Pedidos encontrados"),
+                @ApiResponse(responseCode = "404", description = "Pedidos não encontrados")
+            })
+    ResponseEntity<PagedModel<PedidoRespostaDTO>> buscaPedidosPaginado(
+            PedidoFiltroDTO pedidoFiltroDTO, Pageable pageable);
 
-	@Operation(summary = "Detalha um pedido", description = "Retorna os detalhes de um pedido específico")
-	@ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Pedido encontrado"),
-			@ApiResponse(responseCode = "404", description = "Pedido não encontrado")})
-	ResponseEntity<PedidoDetalhadoRespostaDTO> detalhaPedido(String protocolo);
+    @Operation(summary = "Detalha um pedido", description = "Retorna os detalhes de um pedido específico")
+    @ApiResponses(
+            value = {
+                @ApiResponse(responseCode = "200", description = "Pedido encontrado"),
+                @ApiResponse(responseCode = "404", description = "Pedido não encontrado")
+            })
+    ResponseEntity<PedidoDetalhadoRespostaDTO> detalhaPedido(String protocolo);
 }

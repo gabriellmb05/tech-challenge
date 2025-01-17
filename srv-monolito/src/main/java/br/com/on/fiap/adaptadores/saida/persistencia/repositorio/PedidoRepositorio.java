@@ -8,9 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PedidoRepositorio
-		extends
-			JpaRepository<PedidoEntidade, Long>,
-			JpaSpecificationExecutor<PedidoEntidade> {
+        extends JpaRepository<PedidoEntidade, Long>, JpaSpecificationExecutor<PedidoEntidade> {
 
-	Optional<PedidoEntidade> findByProtocolo(String protocolo);
+    Optional<PedidoEntidade> findByProtocolo(String protocolo);
 }

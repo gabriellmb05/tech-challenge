@@ -9,14 +9,14 @@ import org.springframework.data.domain.Pageable;
 
 public class BuscaPedidosCasoDeUso implements BuscaPedidosPortaEntrada {
 
-	private final BuscaPedidosPortaSaida listarPedidoPortaSaida;
+    private final BuscaPedidosPortaSaida listarPedidoPortaSaida;
 
-	public BuscaPedidosCasoDeUso(BuscaPedidosPortaSaida listarPedidoPortaSaida) {
-		this.listarPedidoPortaSaida = listarPedidoPortaSaida;
-	}
+    public BuscaPedidosCasoDeUso(BuscaPedidosPortaSaida listarPedidoPortaSaida) {
+        this.listarPedidoPortaSaida = listarPedidoPortaSaida;
+    }
 
-	@Override
-	public Page<Pedido> buscarPedidosComFiltro(PedidoFiltro filtro, Pageable pageable) {
-		return listarPedidoPortaSaida.listarComFiltros(filtro, pageable);
-	}
+    @Override
+    public Page<Pedido> buscarPedidosComFiltro(PedidoFiltro filtro, Pageable pageable) {
+        return listarPedidoPortaSaida.listarComFiltros(filtro, pageable);
+    }
 }

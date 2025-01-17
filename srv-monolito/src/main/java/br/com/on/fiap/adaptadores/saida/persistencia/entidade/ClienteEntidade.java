@@ -13,17 +13,17 @@ import lombok.NoArgsConstructor;
 @Table(name = "clientes")
 public class ClienteEntidade {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clientes_id_seq")
-	@SequenceGenerator(name = "clientes_id_seq", sequenceName = "clientes_id_seq", allocationSize = 1)
-	@Column(name = "id")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clientes_id_seq")
+    @SequenceGenerator(name = "clientes_id_seq", sequenceName = "clientes_id_seq", allocationSize = 1)
+    @Column(name = "id")
+    private Long id;
 
-	private String nome;
+    private String nome;
 
-	private String cpf;
+    private String cpf;
 
-	private String email;
+    private String email;
 
-	private LocalDate dataNascimento;
+    private LocalDate dataNascimento;
 }

@@ -13,23 +13,26 @@ import org.mapstruct.Named;
 @Mapper(componentModel = "spring")
 public interface ProdutoEntradaMapeador {
 
-	@Mapping(target = "categoria", expression = "java(produto.getCategoria().name())")
-	ProdutoRespostaDTO paraProdutoDTO(Produto produto);
+    @Mapping(target = "categoria", expression = "java(produto.getCategoria().name())")
+    ProdutoRespostaDTO paraProdutoDTO(Produto produto);
 
-	@Mapping(target = "categoria", qualifiedByName = "getCategoria")
-	Produto paraProduto(ProdutoSolicitacaoDTO produtoSolicitacaoDTO);
+    @Mapping(target = "categoria", qualifiedByName = "getCategoria")
+    Produto paraProduto(ProdutoSolicitacaoDTO produtoSolicitacaoDTO);
 
-	@Named("getCategoria")
-	default Categoria getCategoria(String categoria) {
-		return Categoria.buscaCategoria(categoria);
-	}
+    @Named("getCategoria")
+    default Categoria getCategoria(String categoria) {
+        return Categoria.buscaCategoria(categoria);
+    }
 
-	@Named("mapProdutosResposta")
-	default List<ProdutoRespostaDTO> mapProdutosResposta(List<RelPedidoProduto> relPedidoProdutos) {
-		return relPedidoProdutos.stream()
-				.map(rel -> new ProdutoRespostaDTO(rel.getProduto().getId(), rel.getProduto().getNome(),
-						rel.getProduto().getCategoria().getNome(), rel.getProduto().getPreco(),
-						rel.getProduto().getIngredientes()))
-				.toList();
-	}
+    @Named("mapProdutosResposta")
+    default List<ProdutoRespostaDTO> mapProdutosResposta(List<RelPedidoProduto> relPedidoProdutos) {
+        return relPedidoProdutos.stream()
+                .map(rel -> new ProdutoRespostaDTO(
+                        rel.getProduto().getId(),
+                        rel.getProduto().getNome(),
+                        rel.getProduto().getCategoria().getNome(),
+                        rel.getProduto().getPreco(),
+                        rel.getProduto().getIngredientes()))
+                .toList();
+    }
 }

@@ -11,17 +11,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class DetalhaPedidoAdaptador implements DetalhaPedidoPortaSaida {
 
-	private final PedidoRepositorio pedidoRepositorio;
-	private final PedidoSaidaMapeador pedidoSaidaMapeador;
+    private final PedidoRepositorio pedidoRepositorio;
+    private final PedidoSaidaMapeador pedidoSaidaMapeador;
 
-	public DetalhaPedidoAdaptador(PedidoRepositorio pedidoRepositorio, PedidoSaidaMapeador pedidoSaidaMapeador) {
-		this.pedidoRepositorio = pedidoRepositorio;
-		this.pedidoSaidaMapeador = pedidoSaidaMapeador;
-	}
+    public DetalhaPedidoAdaptador(PedidoRepositorio pedidoRepositorio, PedidoSaidaMapeador pedidoSaidaMapeador) {
+        this.pedidoRepositorio = pedidoRepositorio;
+        this.pedidoSaidaMapeador = pedidoSaidaMapeador;
+    }
 
-	@Override
-	@Transactional(readOnly = true)
-	public Optional<Pedido> detalhaPedido(String protocolo) {
-		return pedidoRepositorio.findByProtocolo(protocolo).map(pedidoSaidaMapeador::paraPedido);
-	}
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Pedido> detalhaPedido(String protocolo) {
+        return pedidoRepositorio.findByProtocolo(protocolo).map(pedidoSaidaMapeador::paraPedido);
+    }
 }
