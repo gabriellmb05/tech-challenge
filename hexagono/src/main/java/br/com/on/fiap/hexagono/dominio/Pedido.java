@@ -5,21 +5,45 @@ import java.util.List;
 
 public class Pedido {
 
-	private List<RelPedidoProduto> produtos;
+	private Long id;
+	private List<RelPedidoProduto> relPedidoProdutos;
 	private Cliente cliente;
 	private BigDecimal valor;
+	private Long situacao;
 
 	public Pedido() {
 	}
 
-	public Pedido(List<RelPedidoProduto> produtos, Cliente cliente, BigDecimal valor) {
-		this.produtos = produtos;
+	public Pedido(Long id, List<RelPedidoProduto> relPedidoProdutos, Cliente cliente, BigDecimal valor, Long situacao) {
+		this.id = id;
+		this.relPedidoProdutos = relPedidoProdutos;
 		this.cliente = cliente;
 		this.valor = valor;
+		this.situacao = situacao;
 	}
 
-	public void setProdutos(List<RelPedidoProduto> produtos) {
-		this.produtos = produtos;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<RelPedidoProduto> getRelPedidoProdutos() {
+		return relPedidoProdutos;
+	}
+
+	public void setRelPedidoProdutos(List<RelPedidoProduto> relPedidoProdutos) {
+		this.relPedidoProdutos = relPedidoProdutos;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public BigDecimal getValor() {
@@ -30,15 +54,11 @@ public class Pedido {
 		this.valor = valor;
 	}
 
-	public List<RelPedidoProduto> getProdutos() {
-		return produtos;
+	public Long getSituacao() {
+		return situacao;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setSituacao(Long situacao) {
+		this.situacao = situacao;
 	}
 }

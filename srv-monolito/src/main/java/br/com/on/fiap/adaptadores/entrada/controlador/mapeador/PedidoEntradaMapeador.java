@@ -21,7 +21,7 @@ public interface PedidoEntradaMapeador {
 	default Pedido paraPedido(PedidoSolicitacaoDTO pedidoSolicitacaoDTO) {
 		Pedido pedido = new Pedido();
 		pedido.setCliente(cliente(pedidoSolicitacaoDTO.getCliente()));
-		pedido.setProdutos(produtos(pedidoSolicitacaoDTO.getProdutos(), pedido));
+		pedido.setRelPedidoProdutos(produtos(pedidoSolicitacaoDTO.getProdutos(), pedido));
 		pedido.setValor(pedidoSolicitacaoDTO.getValor());
 		return pedido;
 	}

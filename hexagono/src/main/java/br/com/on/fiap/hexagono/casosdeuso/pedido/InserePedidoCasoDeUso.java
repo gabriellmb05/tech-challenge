@@ -1,32 +1,53 @@
 package br.com.on.fiap.hexagono.casosdeuso.pedido;
 
-import br.com.on.fiap.hexagono.casosdeuso.produto.ValidaProdutosCasoDeUso;
+import br.com.on.fiap.hexagono.dominio.Cliente;
 import br.com.on.fiap.hexagono.dominio.Pedido;
+import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
 import br.com.on.fiap.hexagono.excecao.ClienteNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.excecao.message.MessageError;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoPortaSaida;
+import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoProdutoPortaSaida;
+
+import java.util.List;
 
 public class InserePedidoCasoDeUso implements InserePedidoPortaEntrada {
 
 	private final PersisteClientePortaSaida persisteClientePortaSaida;
 	private final PersistePedidoPortaSaida persistePedidoPortaSaida;
-	private final ValidaProdutosCasoDeUso validaProdutosCasoDeUso;
+	private final PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida;
 
 	public InserePedidoCasoDeUso(PersisteClientePortaSaida persisteClientePortaSaida,
-			PersistePedidoPortaSaida persistePedidoPortaSaida, ValidaProdutosCasoDeUso validaProdutosCasoDeUso) {
+			PersistePedidoPortaSaida persistePedidoPortaSaida,
+			PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida) {
 		this.persisteClientePortaSaida = persisteClientePortaSaida;
 		this.persistePedidoPortaSaida = persistePedidoPortaSaida;
-		this.validaProdutosCasoDeUso = validaProdutosCasoDeUso;
+		this.persistePedidoProdutoPortaSaida = persistePedidoProdutoPortaSaida;
 	}
 
 	@Override
 	public Pedido inserir(Pedido pedido) {
-		persisteClientePortaSaida.buscaClientePorId(pedido.getCliente().getId()).orElseThrow(
+		Cliente cliente = buscarCliente(pedido);
+		pedido.setCliente(cliente);
+		Pedido pedidoSalvo = salvarPedido(pedido);
+		vincularProdutosAoPedido(pedidoSalvo, pedido.getRelPedidoProdutos());
+		return pedidoSalvo;
+	}
+
+	private Cliente buscarCliente(Pedido pedido) {
+		return persisteClientePortaSaida.buscaClientePorId(pedido.getCliente().getId()).orElseThrow(
 				() -> new ClienteNaoEncontradoExcecao(MessageError.MSG_CLIENTE_NAO_ENCONTRATO_PARA_ID.getMensagem(),
 						pedido.getCliente().getId()));
-		validaProdutosCasoDeUso.validar(pedido.getProdutos());
+	}
+
+	private Pedido salvarPedido(Pedido pedido) {
 		return persistePedidoPortaSaida.salvaPedido(pedido);
+	}
+
+	private void vincularProdutosAoPedido(Pedido pedidoSalvo, List<RelPedidoProduto> pedidoProdutos) {
+		pedidoProdutos.forEach(relPedidoProduto -> relPedidoProduto.getPedido().setId(pedidoSalvo.getId()));
+		pedidoSalvo.setRelPedidoProdutos(pedidoProdutos);
+		persistePedidoProdutoPortaSaida.vincularPedido(pedidoSalvo.getRelPedidoProdutos());
 	}
 }

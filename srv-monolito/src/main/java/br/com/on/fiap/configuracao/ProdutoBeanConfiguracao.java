@@ -1,8 +1,8 @@
 package br.com.on.fiap.configuracao;
 
-import br.com.on.fiap.adaptadores.saida.servico.PersistenciaProdutoAdaptador;
 import br.com.on.fiap.hexagono.casosdeuso.produto.*;
 import br.com.on.fiap.hexagono.portas.entrada.produto.*;
+import br.com.on.fiap.hexagono.portas.saida.produto.PersisteProdutoPortaSaida;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,28 +10,28 @@ import org.springframework.context.annotation.Configuration;
 public class ProdutoBeanConfiguracao {
 
 	@Bean
-	public BuscaProdutoPorIdPortaEntrada buscaProduto(PersistenciaProdutoAdaptador persistenciaProdutoAdaptador) {
-		return new BuscaProdutoCasoDeUso(persistenciaProdutoAdaptador);
+	public BuscaProdutoPorIdPortaEntrada buscaProduto(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+		return new BuscaProdutoCasoDeUso(persisteProdutoPortaSaida);
 	}
 
 	@Bean
-	public InsereProdutoPortaEntrada insereProduto(PersistenciaProdutoAdaptador persistenciaProdutoAdaptador) {
-		return new InsereProdutoCasoDeUso(persistenciaProdutoAdaptador);
+	public InsereProdutoPortaEntrada insereProduto(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+		return new InsereProdutoCasoDeUso(persisteProdutoPortaSaida);
 	}
 
 	@Bean
-	public AlteraProdutoPortaEntrada alteraProduto(PersistenciaProdutoAdaptador persistenciaProdutoAdaptador) {
-		return new AlteraProdutoCasoDeUso(persistenciaProdutoAdaptador);
+	public AlteraProdutoPortaEntrada alteraProduto(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+		return new AlteraProdutoCasoDeUso(persisteProdutoPortaSaida);
 	}
 
 	@Bean
-	public DeletaProdutoPortaEntrada deletaProduto(PersistenciaProdutoAdaptador persistenciaProdutoAdaptador) {
-		return new DeletaProdutoCasoDeUso(persistenciaProdutoAdaptador);
+	public DeletaProdutoPortaEntrada deletaProduto(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+		return new DeletaProdutoCasoDeUso(persisteProdutoPortaSaida);
 	}
 
 	@Bean
-	public ListarProdutoPortaEntrada listarProduto(PersistenciaProdutoAdaptador persistenciaProdutoAdapter) {
-		return new ListarProdutoCasoDeUso(persistenciaProdutoAdapter);
+	public ListarProdutoPortaEntrada listarProduto(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+		return new ListarProdutoCasoDeUso(persisteProdutoPortaSaida);
 	}
 
 	@Bean
@@ -40,7 +40,7 @@ public class ProdutoBeanConfiguracao {
 	}
 
 	@Bean
-	public ValidaProdutosCasoDeUso validaProdutosCasoDeUso(PersistenciaProdutoAdaptador persistenciaProdutoAdaptador) {
-		return new ValidaProdutosCasoDeUso(persistenciaProdutoAdaptador);
+	public ValidaProdutoPortaEntrada validaProdutosCasoDeUso(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+		return new ValidaProdutosCasoDeUso(persisteProdutoPortaSaida);
 	}
 }
