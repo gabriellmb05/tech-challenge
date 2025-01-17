@@ -36,12 +36,12 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <java>\
+                    <java>
                         <eclipse/>
-                        <cleanthat />
+                        <cleanthat/>
                         <importOrder/>
-                        <formatAnnotations />
-                        <removeUnusedImports />
+                        <formatAnnotations/>
+                        <removeUnusedImports/>
                         <trimTrailingWhitespace/>
                         <lineEndings>UNIX</lineEndings>
                     </java>
