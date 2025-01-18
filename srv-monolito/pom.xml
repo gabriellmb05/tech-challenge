@@ -113,11 +113,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <version>3.1.0</version> <!-- Substitua pela versão desejada -->
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-openfeign-core</artifactId>
         </dependency>
     </dependencies>
     <parent>
@@ -137,7 +132,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2021.0.0</version> <!-- Substitua pela versão desejada -->
+                <version>2024.0.0</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
