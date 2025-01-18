@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring")
 public interface ProdutoEntradaMapeador {
 
-    ProdutoEntradaMapeador INSTANCE = Mappers.getMapper( ProdutoEntradaMapeador.class );
+    ProdutoEntradaMapeador INSTANCE = Mappers.getMapper(ProdutoEntradaMapeador.class);
 
     ProdutoRespostaDTO paraProdutoDTO(Produto produto);
 

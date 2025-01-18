@@ -39,7 +39,7 @@ public interface PedidoProdutoSaidaMapeador {
     @Mapping(target = "qtPedido", source = "quantidade")
     PedidoProdutoEntidade paraEntidade(RelPedidoProduto relPedidoProdutos);
 
-    @Mapping(target = "pedido", source = "pedId")
+    @Mapping(target = "pedido", ignore = true)
     @Mapping(target = "produto", source = "proId")
     @Mapping(target = "quantidade", source = "qtPedido")
     RelPedidoProduto paraRelPedidoProduto(PedidoProdutoEntidade pedidoProdutoEntidade);

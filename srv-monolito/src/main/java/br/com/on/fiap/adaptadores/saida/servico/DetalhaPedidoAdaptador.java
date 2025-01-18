@@ -5,9 +5,8 @@ import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.PedidoProdutoSaida
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.PedidoRepositorio;
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.portas.saida.pedido.DetalhaPedidoPortaSaida;
-import org.springframework.stereotype.Service;
-
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 @Service
 public class DetalhaPedidoAdaptador implements DetalhaPedidoPortaSaida {
