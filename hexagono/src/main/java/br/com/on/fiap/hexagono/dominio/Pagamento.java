@@ -14,6 +14,10 @@ public class Pagamento {
     public Pagamento() {
     }
 
+    public Pagamento(Long id) {
+        this.pagId = id;
+    }
+
     public Pagamento(Long pagId, SituacaoPagamento stPagamento, BigDecimal vlCompra, TipoPagamento tpPagamento, LocalDateTime dhPagamento) {
         this.pagId = pagId;
         this.stPagamento = stPagamento;
