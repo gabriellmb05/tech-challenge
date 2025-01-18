@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -194,7 +193,6 @@ class ProdutoControladorTest {
     }
 
     @Test
-    @Disabled
     @DisplayName("Dado categorias de produtos, quando buscar as categorias, então elas devem ser retornadas")
     void dadoCategoriasDeProdutos_quandoBuscarCategorias_entaoDevemSerRetornadas() {
         List<String> categoriasEsperadas =
