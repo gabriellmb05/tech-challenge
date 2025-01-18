@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SrvMonolitoAplicacao {
-	public static void main(String[] args) {
-		SpringApplication.run(SrvMonolitoAplicacao.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SrvMonolitoAplicacao.class, args);
+    }
 }

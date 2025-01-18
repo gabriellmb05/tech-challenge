@@ -1,6 +1,7 @@
 spring:
   application:
     name: srv-monolito
+    version: 0.0.1
   output:
     ansi:
       enabled: ALWAYS

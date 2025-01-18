@@ -2,19 +2,22 @@ package br.com.on.fiap.hexagono.portas.saida.produto;
 
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface PersisteProdutoPortaSaida {
 
-	Optional<Produto> buscaProdutoPorId(Long id);
+    Optional<Produto> buscaProdutoPorId(Long id);
 
-	Produto salvaProduto(Produto produto);
+    List<Produto> buscaProdutoPorIdsLista(List<Long> ids);
 
-	Optional<Produto> buscaProdutoPorNome(String nome);
+    Produto salvaProduto(Produto produto);
 
-	void deletaProdutoPorId(Long id);
+    Optional<Produto> buscaProdutoPorNome(String nome);
 
-	Page<Produto> listarComFiltros(ProdutoFiltro filtro, Pageable page);
+    void deletaProdutoPorId(Long id);
+
+    Page<Produto> listarComFiltros(ProdutoFiltro filtro, Pageable page);
 }

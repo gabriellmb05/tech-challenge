@@ -3,67 +3,59 @@ package br.com.on.fiap.hexagono.dominio;
 import java.math.BigDecimal;
 
 public class Produto {
-	private Long id;
-	private String nome;
-	private Categoria categoria;
-	private BigDecimal preco;
-	private String ingredientes;
+    private Long id;
+    private String nome;
+    private Categoria categoria;
+    private BigDecimal preco;
 
-	public Produto() {
-	}
+    public Produto() {}
 
-	public Produto(Long id, String nome, Categoria categoria, BigDecimal preco, String ingredientes) {
-		this.id = id;
-		this.nome = nome;
-		this.categoria = categoria;
-		this.preco = preco;
-		this.ingredientes = ingredientes;
-	}
+    public Produto(Long id) {
+        this.id = id;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Produto(Long id, String nome, Categoria categoria, BigDecimal preco) {
+        this.id = id;
+        this.nome = nome;
+        this.categoria = categoria;
+        this.preco = preco;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public Categoria getCategoria() {
-		return categoria;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+    public Categoria getCategoria() {
+        return categoria;
+    }
 
-	public BigDecimal getPreco() {
-		return preco;
-	}
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
-	}
+    public BigDecimal getPreco() {
+        return preco;
+    }
 
-	public String getIngredientes() {
-		return ingredientes;
-	}
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
 
-	public void setIngredientes(String ingredientes) {
-		this.ingredientes = ingredientes;
-	}
-
-	public void atualizarDados(Produto produto) {
-		this.nome = produto.getNome();
-		this.categoria = produto.getCategoria();
-		this.preco = produto.getPreco();
-		this.ingredientes = produto.getIngredientes();
-	}
+    public void atualizarDados(Produto produto) {
+        this.nome = produto.getNome();
+        this.categoria = produto.getCategoria();
+        this.preco = produto.getPreco();
+    }
 }

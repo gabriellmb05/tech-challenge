@@ -10,20 +10,26 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "clientes")
+@Table(name = "TB_CLI_CLIENTE")
 public class ClienteEntidade {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "clientes_id_seq")
-	@SequenceGenerator(name = "clientes_id_seq", sequenceName = "clientes_id_seq", allocationSize = 1)
-	@Column(name = "id")
-	private Long id;
+    private static final String SQ_CLI_CLIENTE = "SQ_CLI_CLIENTE";
 
-	private String nome;
+    @Id
+    @Column(name = "CLI_ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_CLI_CLIENTE)
+    @SequenceGenerator(name = SQ_CLI_CLIENTE, sequenceName = SQ_CLI_CLIENTE, allocationSize = 1)
+    private Long cliId;
 
-	private String cpf;
+    @Column(name = "CLI_NM_NOME")
+    private String nmNome;
 
-	private String email;
+    @Column(name = "CLI_NM_CPF")
+    private String nmCpf;
 
-	private LocalDate dataNascimento;
+    @Column(name = "CLI_NM_EMAIL")
+    private String nmEmail;
+
+    @Column(name = "CLI_DH_NASCIMENTO")
+    private LocalDate dhNascimento;
 }

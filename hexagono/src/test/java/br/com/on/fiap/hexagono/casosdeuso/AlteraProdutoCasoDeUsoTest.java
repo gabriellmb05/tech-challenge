@@ -18,46 +18,46 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class AlteraProdutoCasoDeUsoTest {
 
-	@Mock
-	private PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+    @Mock
+    private PersisteProdutoPortaSaida persisteProdutoPortaSaida;
 
-	@InjectMocks
-	private AlteraProdutoCasoDeUso alteraProdutoCasoDeUso;
+    @InjectMocks
+    private AlteraProdutoCasoDeUso alteraProdutoCasoDeUso;
 
-	@Test
-	@DisplayName("Dado um produto existente, quando alterar o produto, então ele deve ser atualizado")
-	void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado() {
-		Long id = 1L;
-		Produto produto = new Produto();
-		produto.setId(id);
-		produto.setNome("Produto 1");
+    @Test
+    @DisplayName("Dado um produto existente, quando alterar o produto, então ele deve ser atualizado")
+    void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado() {
+        Long id = 1L;
+        Produto produto = new Produto();
+        produto.setId(id);
+        produto.setNome("Produto 1");
 
-		Produto produtoAlterado = new Produto();
-		produtoAlterado.setId(id);
-		produtoAlterado.setNome("Produto Alterado");
+        Produto produtoAlterado = new Produto();
+        produtoAlterado.setId(id);
+        produtoAlterado.setNome("Produto Alterado");
 
-		when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.of(produto));
-		when(persisteProdutoPortaSaida.salvaProduto(produto)).thenReturn(produtoAlterado);
+        when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.of(produto));
+        when(persisteProdutoPortaSaida.salvaProduto(produto)).thenReturn(produtoAlterado);
 
-		Produto resultado = alteraProdutoCasoDeUso.alterar(id, produto);
+        Produto resultado = alteraProdutoCasoDeUso.alterar(id, produto);
 
-		assertAll(() -> assertEquals(id, resultado.getId()),
-				() -> assertEquals("Produto Alterado", resultado.getNome()));
-		verify(persisteProdutoPortaSaida).buscaProdutoPorId(id);
-		verify(persisteProdutoPortaSaida).salvaProduto(produto);
-	}
+        assertAll(
+                () -> assertEquals(id, resultado.getId()), () -> assertEquals("Produto Alterado", resultado.getNome()));
+        verify(persisteProdutoPortaSaida).buscaProdutoPorId(id);
+        verify(persisteProdutoPortaSaida).salvaProduto(produto);
+    }
 
-	@Test
-	@DisplayName("Dado um produto não existente, quando alterar o produto, então deve lançar uma exceção")
-	void dadoProdutoNaoExistente_quandoAlterarProduto_entaoDeveLancarExcecao() {
-		Long id = 1L;
-		Produto produto = new Produto();
+    @Test
+    @DisplayName("Dado um produto não existente, quando alterar o produto, então deve lançar uma exceção")
+    void dadoProdutoNaoExistente_quandoAlterarProduto_entaoDeveLancarExcecao() {
+        Long id = 1L;
+        Produto produto = new Produto();
 
-		when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.empty());
+        when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.empty());
 
-		assertThrows(ProdutoNaoEncontradoExcecao.class, () -> alteraProdutoCasoDeUso.alterar(id, produto));
+        assertThrows(ProdutoNaoEncontradoExcecao.class, () -> alteraProdutoCasoDeUso.alterar(id, produto));
 
-		verify(persisteProdutoPortaSaida).buscaProdutoPorId(id);
-		verify(persisteProdutoPortaSaida, never()).salvaProduto(produto);
-	}
+        verify(persisteProdutoPortaSaida).buscaProdutoPorId(id);
+        verify(persisteProdutoPortaSaida, never()).salvaProduto(produto);
+    }
 }

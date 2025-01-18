@@ -24,78 +24,78 @@ import org.springframework.context.annotation.Configuration;
 @ExtendWith(MockitoExtension.class)
 class ProdutoBeanConfiguracaoTest {
 
-	@Mock
-	private ProdutoRepositorio produtoRepositorio;
+    @Mock
+    private ProdutoRepositorio produtoRepositorio;
 
-	@Mock
-	private ProdutoSaidaMapeador produtoSaidaMapeador;
+    @Mock
+    private ProdutoSaidaMapeador produtoSaidaMapeador;
 
-	@Test
-	@DisplayName("Dado a configuração de beans, quando buscar ProdutoPorId, então deve retornar a instância correta")
-	void dadoConfiguracaoDeBeans_quandoBuscarProdutoPorId_entaoDeveRetornarInstanciaCorreta() {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-		BuscaProdutoPorIdPortaEntrada bean = context.getBean(BuscaProdutoPorIdPortaEntrada.class);
+    @Test
+    @DisplayName("Dado a configuração de beans, quando buscar ProdutoPorId, então deve retornar a instância correta")
+    void dadoConfiguracaoDeBeans_quandoBuscarProdutoPorId_entaoDeveRetornarInstanciaCorreta() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
+        BuscaProdutoPorIdPortaEntrada bean = context.getBean(BuscaProdutoPorIdPortaEntrada.class);
 
-		assertNotNull(bean);
-		assertInstanceOf(BuscaProdutoCasoDeUso.class, bean);
-	}
+        assertNotNull(bean);
+        assertInstanceOf(BuscaProdutoCasoDeUso.class, bean);
+    }
 
-	@Test
-	@DisplayName("Dado a configuração de beans, quando inserir Produto, então deve retornar a instância correta")
-	void dadoConfiguracaoDeBeans_quandoInserirProduto_entaoDeveRetornarInstanciaCorreta() {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-		InsereProdutoPortaEntrada bean = context.getBean(InsereProdutoPortaEntrada.class);
+    @Test
+    @DisplayName("Dado a configuração de beans, quando inserir Produto, então deve retornar a instância correta")
+    void dadoConfiguracaoDeBeans_quandoInserirProduto_entaoDeveRetornarInstanciaCorreta() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
+        InsereProdutoPortaEntrada bean = context.getBean(InsereProdutoPortaEntrada.class);
 
-		assertNotNull(bean);
-		assertInstanceOf(InsereProdutoCasoDeUso.class, bean);
-	}
+        assertNotNull(bean);
+        assertInstanceOf(InsereProdutoCasoDeUso.class, bean);
+    }
 
-	@Test
-	@DisplayName("Dado a configuração de beans, quando alterar Produto, então deve retornar a instância correta")
-	void dadoConfiguracaoDeBeans_quandoAlterarProduto_entaoDeveRetornarInstanciaCorreta() {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-		AlteraProdutoPortaEntrada bean = context.getBean(AlteraProdutoPortaEntrada.class);
+    @Test
+    @DisplayName("Dado a configuração de beans, quando alterar Produto, então deve retornar a instância correta")
+    void dadoConfiguracaoDeBeans_quandoAlterarProduto_entaoDeveRetornarInstanciaCorreta() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
+        AlteraProdutoPortaEntrada bean = context.getBean(AlteraProdutoPortaEntrada.class);
 
-		assertNotNull(bean);
-		assertInstanceOf(AlteraProdutoCasoDeUso.class, bean);
-	}
+        assertNotNull(bean);
+        assertInstanceOf(AlteraProdutoCasoDeUso.class, bean);
+    }
 
-	@Test
-	@DisplayName("Dado a configuração de beans, quando deletar Produto, então deve retornar a instância correta")
-	void dadoConfiguracaoDeBeans_quandoDeletarProduto_entaoDeveRetornarInstanciaCorreta() {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-		DeletaProdutoPortaEntrada bean = context.getBean(DeletaProdutoPortaEntrada.class);
+    @Test
+    @DisplayName("Dado a configuração de beans, quando deletar Produto, então deve retornar a instância correta")
+    void dadoConfiguracaoDeBeans_quandoDeletarProduto_entaoDeveRetornarInstanciaCorreta() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
+        DeletaProdutoPortaEntrada bean = context.getBean(DeletaProdutoPortaEntrada.class);
 
-		assertNotNull(bean);
-		assertInstanceOf(DeletaProdutoCasoDeUso.class, bean);
-	}
+        assertNotNull(bean);
+        assertInstanceOf(DeletaProdutoCasoDeUso.class, bean);
+    }
 
-	@Test
-	@DisplayName("Dado a configuração de beans, quando listar Produtos, então deve retornar a instância correta")
-	void dadoConfiguracaoDeBeans_quandoListarProdutos_entaoDeveRetornarInstanciaCorreta() {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-		ListarProdutoPortaEntrada bean = context.getBean(ListarProdutoPortaEntrada.class);
+    @Test
+    @DisplayName("Dado a configuração de beans, quando listar Produtos, então deve retornar a instância correta")
+    void dadoConfiguracaoDeBeans_quandoListarProdutos_entaoDeveRetornarInstanciaCorreta() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
+        BuscaProdutosPortaEntrada bean = context.getBean(BuscaProdutosPortaEntrada.class);
 
-		assertNotNull(bean);
-		assertInstanceOf(ListarProdutoPortaEntrada.class, bean);
-	}
+        assertNotNull(bean);
+        assertInstanceOf(BuscaProdutosPortaEntrada.class, bean);
+    }
 
-	@Test
-	@DisplayName("Dado a configuração de beans, quando bucar categorias, então deve retornar a instância correta")
-	void dadoConfiguracaoDeBeans_quandoListarCategorias_entaoDeveRetornarInstanciaCorreta() {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-		BuscaCategoriaPortaEntrada bean = context.getBean(BuscaCategoriaPortaEntrada.class);
+    @Test
+    @DisplayName("Dado a configuração de beans, quando bucar categorias, então deve retornar a instância correta")
+    void dadoConfiguracaoDeBeans_quandoListarCategorias_entaoDeveRetornarInstanciaCorreta() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
+        BuscaCategoriaPortaEntrada bean = context.getBean(BuscaCategoriaPortaEntrada.class);
 
-		assertNotNull(bean);
-		assertInstanceOf(BuscaCategoriaPortaEntrada.class, bean);
-	}
+        assertNotNull(bean);
+        assertInstanceOf(BuscaCategoriaPortaEntrada.class, bean);
+    }
 
-	@Configuration
-	static class TestConfig extends ProdutoBeanConfiguracao {
+    @Configuration
+    static class TestConfig extends ProdutoBeanConfiguracao {
 
-		@Bean
-		public PersistenciaProdutoAdaptador persistenciaProdutoAdaptador() {
-			return new PersistenciaProdutoAdaptador(mock(ProdutoRepositorio.class), mock(ProdutoSaidaMapeador.class));
-		}
-	}
+        @Bean
+        public PersistenciaProdutoAdaptador persistenciaProdutoAdaptador() {
+            return new PersistenciaProdutoAdaptador(mock(ProdutoRepositorio.class), mock(ProdutoSaidaMapeador.class));
+        }
+    }
 }

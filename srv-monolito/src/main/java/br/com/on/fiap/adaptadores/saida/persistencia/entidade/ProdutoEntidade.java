@@ -1,15 +1,8 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.entidade;
 
+import br.com.on.fiap.adaptadores.saida.persistencia.entidade.conversor.TipoCategoriaConversor;
 import br.com.on.fiap.hexagono.dominio.Categoria;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,21 +12,24 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "produtos")
+@Table(name = "TB_PRO_PRODUTO")
 public class ProdutoEntidade {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "produtos_id_seq")
-	@SequenceGenerator(name = "produtos_id_seq", sequenceName = "produtos_id_seq", allocationSize = 1)
-	@Column(name = "id")
-	private Long id;
+    private static final String SQ_PRO_PRODUTO = "SQ_PRO_PRODUTO";
 
-	private String nome;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_PRO_PRODUTO)
+    @SequenceGenerator(name = SQ_PRO_PRODUTO, sequenceName = SQ_PRO_PRODUTO, allocationSize = 1)
+    @Column(name = "PRO_ID")
+    private Long proId;
 
-	@Enumerated(EnumType.STRING)
-	private Categoria categoria;
+    @Column(name = "PRO_NM_NOME")
+    private String nmNome;
 
-	private BigDecimal preco;
+    @Column(name = "PRO_TP_CATEGORIA")
+    @Convert(converter = TipoCategoriaConversor.class)
+    private Categoria tpCategoria;
 
-	private String ingredientes;
+    @Column(name = "PRO_VL_PRODUTO")
+    private BigDecimal vlProduto;
 }
