@@ -2,6 +2,14 @@ package br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta;
 
 import java.math.BigDecimal;
 import lombok.Builder;
+import lombok.Data;
 
+@Data
 @Builder
-public record ProdutoRespostaDTO(Long id, String nome, String categoria, BigDecimal preco) {}
+public class ProdutoRespostaDTO {
+
+    private Long id;
+    private String nome;
+    private String categoria;
+    private BigDecimal preco;
+}
