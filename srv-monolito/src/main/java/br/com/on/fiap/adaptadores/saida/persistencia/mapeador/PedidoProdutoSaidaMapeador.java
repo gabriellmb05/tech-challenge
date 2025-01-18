@@ -8,18 +8,21 @@ import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.factory.Mappers;
 
 @Mapper(
         componentModel = "spring",
         uses = {PedidoSaidaMapeador.class, ProdutoSaidaMapeador.class})
 public interface PedidoProdutoSaidaMapeador {
 
+    PedidoProdutoSaidaMapeador INSTANCE = Mappers.getMapper(PedidoProdutoSaidaMapeador.class);
+
     List<PedidoProdutoEntidade> paraListaEntidade(List<RelPedidoProduto> relPedidoProdutos);
 
     List<RelPedidoProduto> paraListaRelPedidoProduto(List<PedidoProdutoEntidade> relPedidoProdutos);
 
-    @Mapping(target = "pedId", source = "pedido")
-    @Mapping(target = "proId", source = "produto")
+    @Mapping(target = "id.pedId", source = "pedido.id")
+    @Mapping(target = "id.proId", source = "produto.id")
     @Mapping(target = "qtPedido", source = "quantidade")
     PedidoProdutoEntidade paraEntidade(RelPedidoProduto relPedidoProdutos);
 

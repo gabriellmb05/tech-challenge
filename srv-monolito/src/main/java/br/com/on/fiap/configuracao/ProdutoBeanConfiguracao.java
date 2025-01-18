@@ -40,7 +40,8 @@ public class ProdutoBeanConfiguracao {
     }
 
     @Bean
-    public ValidaProdutoPortaEntrada validaProdutosCasoDeUso(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
-        return new ValidaProdutosCasoDeUso(persisteProdutoPortaSaida);
+    public ValidaProdutosDoPedidoPortaEntrada validaProdutosCasoDeUso(
+            PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+        return new ValidaProdutosDoPedidoCasoDeUso(persisteProdutoPortaSaida);
     }
 }

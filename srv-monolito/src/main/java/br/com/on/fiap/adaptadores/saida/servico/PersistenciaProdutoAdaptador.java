@@ -32,10 +32,8 @@ public class PersistenciaProdutoAdaptador implements PersisteProdutoPortaSaida {
     }
 
     @Override
-    public Optional<List<Produto>> buscaProdutoPorIdsLista(List<Long> ids) {
-        return Optional.of(produtoRepositorio.findByProIdIn(ids).get().stream()
-                .map(produtoSaidaMapeador::paraProduto)
-                .toList());
+    public List<Produto> buscaProdutoPorIdsLista(List<Long> ids) {
+        return produtoSaidaMapeador.paraListaProdutos(produtoRepositorio.findByProIdIn(ids));
     }
 
     @Override

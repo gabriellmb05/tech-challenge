@@ -11,7 +11,7 @@ public interface PersisteProdutoPortaSaida {
 
     Optional<Produto> buscaProdutoPorId(Long id);
 
-    Optional<List<Produto>> buscaProdutoPorIdsLista(List<Long> ids);
+    List<Produto> buscaProdutoPorIdsLista(List<Long> ids);
 
     Produto salvaProduto(Produto produto);
 

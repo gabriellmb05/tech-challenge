@@ -12,6 +12,7 @@ import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.BuscaPedidosPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.DetalhaPedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.produto.ValidaProdutosDoPedidoPortaEntrada;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
@@ -28,6 +29,8 @@ public class PedidoControlador implements PedidoControladorSwagger {
     private final InserePedidoPortaEntrada inserePedidoPortaEntrada;
     private final BuscaPedidosPortaEntrada buscaPedidosPortaEntrada;
     private final DetalhaPedidoPortaEntrada detalhaPedidoPortaEntrada;
+    private final ValidaProdutosDoPedidoPortaEntrada validaProdutosDoPedidoPortaEntrada;
+
     private final PedidoEntradaMapeador pedidoEntradaMapeador;
     private final PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador;
 
@@ -35,11 +38,13 @@ public class PedidoControlador implements PedidoControladorSwagger {
             InserePedidoPortaEntrada inserePedidoPortaEntrada,
             BuscaPedidosPortaEntrada buscaPedidosPortaEntrada,
             DetalhaPedidoPortaEntrada detalhaPedidoPortaEntrada,
+            ValidaProdutosDoPedidoPortaEntrada validaProdutosDoPedidoPortaEntrada,
             PedidoEntradaMapeador pedidoEntradaMapeador,
             PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador) {
         this.inserePedidoPortaEntrada = inserePedidoPortaEntrada;
         this.buscaPedidosPortaEntrada = buscaPedidosPortaEntrada;
         this.detalhaPedidoPortaEntrada = detalhaPedidoPortaEntrada;
+        this.validaProdutosDoPedidoPortaEntrada = validaProdutosDoPedidoPortaEntrada;
         this.pedidoEntradaMapeador = pedidoEntradaMapeador;
         this.pedidoFiltroEntradaMapeador = pedidoFiltroEntradaMapeador;
     }
@@ -49,6 +54,7 @@ public class PedidoControlador implements PedidoControladorSwagger {
     public ResponseEntity<PedidoRespostaDTO> inserePedido(
             @Valid @RequestBody PedidoSolicitacaoDTO pedidoSolicitacaoDTO) {
         Pedido pedido = pedidoEntradaMapeador.paraPedido(pedidoSolicitacaoDTO);
+        validaProdutosDoPedidoPortaEntrada.validarProdutosDoPedido(pedido);
         Pedido pedidoPersistido = inserePedidoPortaEntrada.inserir(pedido);
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoEntradaMapeador.paraPedidoDTO(pedidoPersistido));
     }

@@ -16,7 +16,7 @@ public interface ProdutoRepositorio extends JpaRepository<ProdutoEntidade, Long>
 
     Optional<ProdutoEntidade> findByNmNome(String nome);
 
-    Optional<List<ProdutoEntidade>> findByProIdIn(List<Long> ids);
+    List<ProdutoEntidade> findByProIdIn(List<Long> ids);
 
     @Query(
             """
