@@ -16,7 +16,7 @@ spring:
     show-sql: false
     open-in-view: false
   flyway:
-    enabled: ${FLYWAY_ENABLE:true}
+    enabled: ${FLYWAY_ENABLE:false}
 springdoc:
   swagger-ui:
     path: /documentacao.html
