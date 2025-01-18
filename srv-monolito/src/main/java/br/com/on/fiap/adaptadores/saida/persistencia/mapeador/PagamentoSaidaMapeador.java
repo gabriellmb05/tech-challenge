@@ -1,44 +1,31 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.mapeador;
 
-import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoEntidade;
-import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoProdutoEntidade;
-import br.com.on.fiap.hexagono.dominio.Pedido;
-import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
-import java.util.List;
+import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PagamentoEntidade;
+import br.com.on.fiap.hexagono.dominio.Pagamento;
+import br.com.on.fiap.hexagono.dominio.SituacaoPagamento;
+import java.time.LocalDateTime;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 
-@Mapper(
-        componentModel = "spring",
-        uses = {ClienteSaidaMapeador.class, ProdutoSaidaMapeador.class})
-public interface PedidoProdutoSaidaMapeador {
+@Mapper(componentModel = "spring")
+public interface PagamentoSaidaMapeador {
 
-    @Mapping(target = "relPedPro", ignore = true)
-    @Mapping(target = "cliId", source = "cliente")
-    @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.hexagono.dominio.SituacaoPedido.REALIZADO)")
-    @Mapping(target = "dhPedido", expression = "java(java.time.LocalDateTime.now())")
-    PedidoEntidade paraEntidade(Pedido pedido);
+    Pagamento paraPagamento(PagamentoEntidade pagamentoEntidade);
 
-    @Mapping(target = "id", source = "pedId")
-    @Mapping(target = "relPedidoProdutos", source = "relPedPro")
-    @Mapping(target = "cliente", source = "cliId")
-    @Mapping(target = "situacao", source = "stPedido")
-    @Mapping(target = "protocolo", source = "nmProtocolo")
-    @Mapping(target = "dataHora", source = "dhPedido")
-    Pedido paraPedido(PedidoEntidade pedidoEntidade);
+    PagamentoEntidade paraEntidade(Pagamento pagamento);
 
-    List<PedidoProdutoEntidade> paraListaEntidade(List<RelPedidoProduto> relPedidoProdutos);
+    @Mapping(target = "stPagamento", source = "stPagamento", qualifiedByName = "definirStPagamentoAprovado")
+    @Mapping(target = "dhPagamento", source = "dhPagamento", qualifiedByName = "definirDtHoraPagamento")
+    PagamentoEntidade paraEntidadeComPagamentoAprovado(Pagamento pagamento);
 
-    List<RelPedidoProduto> paraListaRelPedidoProduto(List<PedidoProdutoEntidade> relPedidoProdutos);
+    @Named("definirStPagamentoAprovado")
+    default SituacaoPagamento mapRelPedidoProduto(SituacaoPagamento situacaoPagamento) {
+        return SituacaoPagamento.APROVADO;
+    }
 
-    @Mapping(target = "id.pedId", source = "pedido.id")
-    @Mapping(target = "id.proId", source = "produto.id")
-    @Mapping(target = "proId", source = "produto")
-    @Mapping(target = "qtPedido", source = "quantidade")
-    PedidoProdutoEntidade paraEntidade(RelPedidoProduto relPedidoProdutos);
-
-    @Mapping(target = "pedido", source = "pedId")
-    @Mapping(target = "produto", source = "proId")
-    @Mapping(target = "quantidade", source = "qtPedido")
-    RelPedidoProduto paraRelPedidoProduto(PedidoProdutoEntidade pedidoProdutoEntidade);
+    @Named("definirDtHoraPagamento")
+    default LocalDateTime mapRelPedidoProduto(LocalDateTime dhPagamento) {
+        return LocalDateTime.now();
+    }
 }

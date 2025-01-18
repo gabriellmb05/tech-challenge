@@ -1,7 +1,6 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.swagger;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ClienteRespostaDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ClienteSolicitacaoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PagamentoRespostaDTO;
 import br.com.on.fiap.hexagono.dominio.Cliente;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -11,15 +10,15 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 
-@Tag(name = "Cliente", description = "APIs relacionadas a clientes")
-public interface ClienteControladorSwagger {
+@Tag(name = "Pagamentos", description = "APIs relacionadas a pagamentos")
+public interface PagamentoControladorSwagger {
 
-    @Operation(summary = "Insere um novo cliente", description = "Insere um novo cliente no sistema")
+    @Operation(summary = "Atualiza pagamento", description = "Atualiza pagamento no sistema")
     @ApiResponses(
             value = {
                 @ApiResponse(
                         responseCode = "201",
-                        description = "Cliente criado",
+                        description = "Pagamento atualizado",
                         content =
                                 @Content(
                                         mediaType = "application/json",
@@ -27,20 +26,5 @@ public interface ClienteControladorSwagger {
                 @ApiResponse(responseCode = "400", description = "Dados inválidos"),
                 @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
             })
-    ResponseEntity<ClienteRespostaDTO> insereCliente(ClienteSolicitacaoDTO clienteSolicitacaoDTO);
-
-    @Operation(summary = "Busca cliente por CPF", description = "Retorna um cliente pelo seu CPF")
-    @ApiResponses(
-            value = {
-                @ApiResponse(
-                        responseCode = "200",
-                        description = "Cliente encontrado",
-                        content =
-                                @Content(
-                                        mediaType = "application/json",
-                                        schema = @Schema(implementation = Cliente.class))),
-                @ApiResponse(responseCode = "404", description = "Cliente não encontrado"),
-                @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
-            })
-    ResponseEntity<ClienteRespostaDTO> buscaClientePorCpf(String cpf);
+    ResponseEntity<PagamentoRespostaDTO> atualizaPagamento(String nrProtocolo);
 }

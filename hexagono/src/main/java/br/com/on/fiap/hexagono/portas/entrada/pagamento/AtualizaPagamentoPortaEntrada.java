@@ -1,7 +1,7 @@
-package br.com.on.fiap.hexagono.portas.entrada.cliente;
+package br.com.on.fiap.hexagono.portas.entrada.pagamento;
 
-import br.com.on.fiap.hexagono.dominio.Cliente;
+import br.com.on.fiap.hexagono.dominio.Pagamento;
 
-public interface InsereClientePortaEntrada {
-    Cliente inserir(Cliente cliente);
+public interface AtualizaPagamentoPortaEntrada {
+    Pagamento atualizaPagamento(String nrProtocolo);
 }

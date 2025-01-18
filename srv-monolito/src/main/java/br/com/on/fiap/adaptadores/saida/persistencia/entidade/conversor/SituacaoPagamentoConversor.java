@@ -1,19 +1,19 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.entidade.conversor;
 
-import br.com.on.fiap.hexagono.dominio.SituacaoPedido;
+import br.com.on.fiap.hexagono.dominio.SituacaoPagamento;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 import java.util.Objects;
 
 @Converter
-public class SituacaoPedidoConversor implements AttributeConverter<SituacaoPedido, Integer> {
+public class SituacaoPagamentoConversor implements AttributeConverter<SituacaoPagamento, Integer> {
     @Override
-    public Integer convertToDatabaseColumn(SituacaoPedido situacaoPedido) {
-        return Objects.nonNull(situacaoPedido) ? situacaoPedido.getCodigo() : null;
+    public Integer convertToDatabaseColumn(SituacaoPagamento situacaoPagamento) {
+        return Objects.nonNull(situacaoPagamento) ? situacaoPagamento.getCodigo() : null;
     }
 
     @Override
-    public SituacaoPedido convertToEntityAttribute(Integer situacaoPedido) {
-        return Objects.nonNull(situacaoPedido) ? SituacaoPedido.deCodigo(situacaoPedido) : null;
+    public SituacaoPagamento convertToEntityAttribute(Integer situacaoPagamento) {
+        return Objects.nonNull(situacaoPagamento) ? SituacaoPagamento.deCodigo(situacaoPagamento) : null;
     }
 }

@@ -1,31 +1,15 @@
 package br.com.on.fiap.adaptadores.integracao.solicitacao;
 
-import br.com.on.fiap.hexagono.dominio.Pagamento;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PagamentoSolicitacaoIntegracaoDTO  {
+public class PagamentoRespostaIntegracaoDTO {
 
-    private BigDecimal amount;
-    private Payment payment;
-
-    @AllArgsConstructor
-    public static class Payment {
-        private String type;
-    }
-
-    public static PagamentoSolicitacaoIntegracaoDTO criarPagamentoIntegracao(Pagamento pagamento) {
-        return PagamentoSolicitacaoIntegracaoDTO.builder()
-                .amount(pagamento.getVlCompra())
-                .payment(new Payment(pagamento.getTpPagamento().getDescricao()))
-                .build();
-    }
+    private Long id;
 }

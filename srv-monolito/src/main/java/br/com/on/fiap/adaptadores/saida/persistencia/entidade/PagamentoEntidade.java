@@ -1,9 +1,19 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.entidade;
 
-import br.com.on.fiap.adaptadores.saida.persistencia.entidade.conversor.TipoCategoriaConversor;
-import br.com.on.fiap.hexagono.dominio.Categoria;
-import jakarta.persistence.*;
+import br.com.on.fiap.adaptadores.saida.persistencia.entidade.conversor.SituacaoPagamentoConversor;
+import br.com.on.fiap.adaptadores.saida.persistencia.entidade.conversor.TipoPagamentoConversor;
+import br.com.on.fiap.hexagono.dominio.SituacaoPagamento;
+import br.com.on.fiap.hexagono.dominio.TipoPagamento;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,24 +22,28 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "TB_PRO_PRODUTO")
-public class ProdutoEntidade {
+@Table(name = "TB_PAG_PAGAMENTO")
+public class PagamentoEntidade {
 
-    private static final String SQ_PRO_PRODUTO = "SQ_PRO_PRODUTO";
+    private static final String SQ_PAG_PAGAMENTO = "SQ_PAG_PAGAMENTO";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_PRO_PRODUTO)
-    @SequenceGenerator(name = SQ_PRO_PRODUTO, sequenceName = SQ_PRO_PRODUTO, allocationSize = 1)
-    @Column(name = "PRO_ID")
-    private Long proId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_PAG_PAGAMENTO)
+    @SequenceGenerator(name = SQ_PAG_PAGAMENTO, sequenceName = SQ_PAG_PAGAMENTO, allocationSize = 1)
+    @Column(name = "PAG_ID")
+    private Long pagId;
 
-    @Column(name = "PRO_NM_NOME")
-    private String nmNome;
+    @Column(name = "PAG_VL_COMPRA")
+    private BigDecimal vlCompra;
 
-    @Column(name = "PRO_TP_CATEGORIA")
-    @Convert(converter = TipoCategoriaConversor.class)
-    private Categoria tpCategoria;
+    @Column(name = "PAG_ST_PAGAMENTO")
+    @Convert(converter = SituacaoPagamentoConversor.class)
+    private SituacaoPagamento stPagamento;
 
-    @Column(name = "PRO_VL_PRODUTO")
-    private BigDecimal vlProduto;
+    @Column(name = "PAG_TP_PAGAMENTO")
+    @Convert(converter = TipoPagamentoConversor.class)
+    private TipoPagamento tpPagamento;
+
+    @Column(name = "PAG_DH_PAGAMENTO")
+    private LocalDateTime dhPagamento;
 }

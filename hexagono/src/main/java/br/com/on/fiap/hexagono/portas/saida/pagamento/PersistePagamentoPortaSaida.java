@@ -1,9 +1,10 @@
-package br.com.on.fiap.hexagono.portas.saida.pedido;
+package br.com.on.fiap.hexagono.portas.saida.pagamento;
 
-import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
-import java.util.List;
+import br.com.on.fiap.hexagono.dominio.Pagamento;
 
-public interface PersistePedidoProdutoPortaSaida {
+public interface PersistePagamentoPortaSaida {
 
-    void vincularPedido(List<RelPedidoProduto> pedidoProdutos);
+    Pagamento salvaPagamento(Pagamento pagamento);
+
+    Pagamento salvaPagamentoFinalizado(Pagamento pagamento);
 }

@@ -9,7 +9,10 @@ public enum MessageError {
     MSG_ERRO_PRODUTO_JA_CADASTRADO("produto-ja-cadastrado"),
     MSG_CLIENTE_NAO_ENCONTRATO_PARA_ID("cliente-nao-encontrado-por-id"),
     MSG_PRODUTOS_NAO_ENCONTRADOS("produtos-nao-encontrados"),
-    MSG_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO("pedido-nao-encontrado-para-protocolo");
+    MSG_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO("pedido-nao-encontrado-para-protocolo"),
+    MSG_TIPO_PAGAMENTO_NAO_ENCONTRADO("tipo-pagamento-nao-encontrato"),
+    MSG_ERRO_CODIGO_STATUS_DIFERENTE_OK("erro-codigo-status-diferente-ok"),
+    MSG_ERRO_INESPERADO_INTEGRACAO("erro-inesperado-integracao");
 
     private final String mensagem;
 

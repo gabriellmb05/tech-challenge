@@ -16,7 +16,7 @@ spring:
     show-sql: false
     open-in-view: false
   flyway:
-    enabled: ${FLYWAY_ENABLE:false}
+    enabled: ${FLYWAY_ENABLE:true}
 springdoc:
   swagger-ui:
     path: /documentacao.html
@@ -30,3 +30,14 @@ info:
 logging:
   level:
     root: ${LOG_LEVEL_ROOT:INFO}
+pagamento:
+  service:
+    url: ${IT_PAGAMENTO}
+    path: ${IT_PAGAMENTO_PATH_PAYMENTS}
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+        connectionTimeout: 5000
+        readTimeout: 5000

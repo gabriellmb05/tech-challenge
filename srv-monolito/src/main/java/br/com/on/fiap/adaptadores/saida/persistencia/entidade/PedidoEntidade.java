@@ -4,7 +4,6 @@ import br.com.on.fiap.adaptadores.saida.persistencia.entidade.conversor.Situacao
 import br.com.on.fiap.hexagono.dominio.SituacaoPedido;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import java.math.BigDecimal;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -33,12 +32,13 @@ public class PedidoEntidade {
     @JoinColumn(name = "CLI_ID", referencedColumnName = "CLI_ID", nullable = false)
     private ClienteEntidade cliId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PAG_ID", referencedColumnName = "PAG_ID", nullable = false)
+    private PagamentoEntidade pagId;
+
     @Column(name = "PED_ST_PEDIDO")
     @Convert(converter = SituacaoPedidoConversor.class)
     private SituacaoPedido stPedido;
-
-    @Column(name = "PED_VL_PEDIDO")
-    private BigDecimal vlPedido;
 
     @Column(name = "PED_NM_PROTOCOLO", nullable = false, unique = true)
     private String nmProtocolo;

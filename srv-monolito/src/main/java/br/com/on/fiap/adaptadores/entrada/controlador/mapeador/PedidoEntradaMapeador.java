@@ -14,7 +14,7 @@ import org.mapstruct.Named;
 
 @Mapper(
         componentModel = "spring",
-        uses = {ClienteEntradaMapeador.class})
+        uses = {ClienteEntradaMapeador.class, PagamentoEntradaMapeador.class})
 public interface PedidoEntradaMapeador {
 
     PedidoRespostaDTO paraPedidoDTO(Pedido pedido);
@@ -23,6 +23,7 @@ public interface PedidoEntradaMapeador {
     PedidoDetalhadoRespostaDTO paraPedidoDetalheDTO(Pedido pedido);
 
     @Mapping(target = "cliente", source = "cliente")
+    @Mapping(target = "pagamento", source = "pagamento")
     @Mapping(target = "relPedidoProdutos", source = "produtos", qualifiedByName = "mapRelPedidoProduto")
     Pedido paraPedido(PedidoSolicitacaoDTO pedidoSolicitacaoDTO);
 

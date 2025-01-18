@@ -1,8 +1,9 @@
-package br.com.on.fiap.hexagono.excecao;
+package br.com.on.fiap.adaptadores.integracao.excecao;
 
-public class CategoriaNaoEncontradaExcecao extends ExcecaoPadraoAplicacao {
+import br.com.on.fiap.hexagono.excecao.message.MessageManager;
 
-    public CategoriaNaoEncontradaExcecao(String chave, Object... args) {
-        super(chave, args);
+public class IntegracaoPagamentoExcecao extends RuntimeException {
+    public IntegracaoPagamentoExcecao(String chave, Object... args) {
+        super(MessageManager.getMessage(chave, args));
     }
 }

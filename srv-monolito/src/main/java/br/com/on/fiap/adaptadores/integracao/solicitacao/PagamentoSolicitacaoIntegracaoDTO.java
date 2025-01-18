@@ -1,33 +1,30 @@
-package br.com.on.fiap.adaptadores.saida.servico;
+package br.com.on.fiap.adaptadores.integracao.solicitacao;
 
-import br.com.on.fiap.adaptadores.saida.persistencia.especificacao.PedidoEspecificacao;
-import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.PedidoProdutoSaidaMapeador;
-import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.PedidoRepositorio;
-import br.com.on.fiap.hexagono.dominio.Pedido;
-import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
-import br.com.on.fiap.hexagono.portas.saida.pedido.BuscaPedidosPortaSaida;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import br.com.on.fiap.hexagono.dominio.Pagamento;
+import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Service
-public class BuscaPedidosAdaptador implements BuscaPedidosPortaSaida {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class PagamentoSolicitacaoIntegracaoDTO {
 
-    private final PedidoRepositorio pedidoRepositorio;
-    private final PedidoProdutoSaidaMapeador pedidoProdutoSaidaMapeador;
+    private BigDecimal amount;
+    private Payment payment;
 
-    public BuscaPedidosAdaptador(
-            PedidoRepositorio pedidoRepositorio, PedidoProdutoSaidaMapeador pedidoProdutoSaidaMapeador) {
-        this.pedidoRepositorio = pedidoRepositorio;
-        this.pedidoProdutoSaidaMapeador = pedidoProdutoSaidaMapeador;
+    @AllArgsConstructor
+    public static class Payment {
+        private String type;
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Pedido> listarComFiltros(PedidoFiltro filtro, Pageable page) {
-        return pedidoRepositorio
-                .findAll(PedidoEspecificacao.filtroPorDataInicioEDataFim(filtro), page)
-                .map(pedidoProdutoSaidaMapeador::paraPedido);
+    public static PagamentoSolicitacaoIntegracaoDTO criarPagamentoIntegracao(Pagamento pagamento) {
+        return PagamentoSolicitacaoIntegracaoDTO.builder()
+                .amount(pagamento.getVlCompra())
+                .payment(new Payment(pagamento.getTpPagamento().getDescricao()))
+                .build();
     }
 }

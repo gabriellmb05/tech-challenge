@@ -6,6 +6,7 @@ import br.com.on.fiap.hexagono.casosdeuso.pedido.InserePedidoCasoDeUso;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.BuscaPedidosPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
+import br.com.on.fiap.hexagono.portas.saida.pagamento.PersistePagamentoPortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pedido.BuscaPedidosPortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pedido.DetalhaPedidoPortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoPortaSaida;
@@ -20,9 +21,13 @@ public class PedidoBeanConfiguracao {
     public InserePedidoPortaEntrada inserePedido(
             PersisteClientePortaSaida persisteClientePortaSaida,
             PersistePedidoPortaSaida persistePedidoPortaSaida,
-            PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida) {
+            PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida,
+            PersistePagamentoPortaSaida persistePagamentoPortaSaida) {
         return new InserePedidoCasoDeUso(
-                persisteClientePortaSaida, persistePedidoPortaSaida, persistePedidoProdutoPortaSaida);
+                persisteClientePortaSaida,
+                persistePedidoPortaSaida,
+                persistePedidoProdutoPortaSaida,
+                persistePagamentoPortaSaida);
     }
 
     @Bean

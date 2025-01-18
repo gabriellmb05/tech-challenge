@@ -1,6 +1,7 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao;
 
 import jakarta.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PedidoQuantidadeSolicitacaoDTO {
+public class PagamentoSolicitacaoDTO {
 
-    @NotNull(message = "O produto do pedido é obrigatório") private Long idProduto;
+    @NotNull(message = "O valor a ser pago precisa ser informado") private BigDecimal vlCompra;
 
-    @NotNull(message = "A quantidade do produto é obrigatório") private Long quantidade;
+    @NotNull(message = "O tipo do pagamento deve ser informado") private Integer tpPagamento;
 }

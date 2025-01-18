@@ -1,29 +1,32 @@
-package br.com.on.fiap.hexagono.casosdeuso.cliente;
+package br.com.on.fiap.hexagono.casosdeuso.pagamento;
 
-import br.com.on.fiap.hexagono.dominio.Cliente;
-import br.com.on.fiap.hexagono.excecao.ClienteExistenteExcecao;
-import br.com.on.fiap.hexagono.excecao.message.MessageError;
-import br.com.on.fiap.hexagono.portas.entrada.cliente.InsereClientePortaEntrada;
-import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
+import br.com.on.fiap.hexagono.dominio.Pagamento;
+import br.com.on.fiap.hexagono.dominio.Pedido;
+import br.com.on.fiap.hexagono.portas.entrada.pagamento.AtualizaPagamentoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.saida.integracao.IntegracaoPagamentoSaida;
+import br.com.on.fiap.hexagono.portas.saida.pagamento.PersistePagamentoPortaSaida;
+import br.com.on.fiap.hexagono.portas.saida.pedido.DetalhaPedidoPortaSaida;
+import java.util.Optional;
 
-public class InsereClienteCasoDeUso implements InsereClientePortaEntrada {
+public class AtualizaPagamentoCasoDeUso implements AtualizaPagamentoPortaEntrada {
 
-    private final PersisteClientePortaSaida persisteClientePortaSaida;
+    private final IntegracaoPagamentoSaida integracaoPagamentoSaida;
+    private final DetalhaPedidoPortaSaida detalhaPedidoPortaSaida;
+    private final PersistePagamentoPortaSaida persistePagamentoPortaSaida;
 
-    public InsereClienteCasoDeUso(PersisteClientePortaSaida persisteClientePortaSaida) {
-        this.persisteClientePortaSaida = persisteClientePortaSaida;
+    public AtualizaPagamentoCasoDeUso(
+            IntegracaoPagamentoSaida integracaoPagamentoSaida,
+            DetalhaPedidoPortaSaida detalhaPedidoPortaSaida,
+            PersistePagamentoPortaSaida persistePagamentoPortaSaida) {
+        this.integracaoPagamentoSaida = integracaoPagamentoSaida;
+        this.detalhaPedidoPortaSaida = detalhaPedidoPortaSaida;
+        this.persistePagamentoPortaSaida = persistePagamentoPortaSaida;
     }
 
     @Override
-    public Cliente inserir(Cliente cliente) {
-        persisteClientePortaSaida.buscaClientePorCpf(cliente.getCpf()).ifPresent(p -> {
-            throw new ClienteExistenteExcecao(MessageError.MSG_ERRO_CPF_JA_CADASTRADO.getMensagem(), cliente.getCpf());
-        });
-
-        persisteClientePortaSaida.buscaClientePorEmail(cliente.getEmail()).ifPresent(p -> {
-            throw new ClienteExistenteExcecao(
-                    MessageError.MSG_ERRO_EMAIL_JA_CADASTRADO.getMensagem(), cliente.getEmail());
-        });
-        return persisteClientePortaSaida.salvaCliente(cliente);
+    public Pagamento atualizaPagamento(String nrProtocolo) {
+        Optional<Pedido> pedido = detalhaPedidoPortaSaida.detalhaPedido(nrProtocolo);
+        integracaoPagamentoSaida.integracaoEnviaPagamento(pedido.get().getPagamento());
+        return persistePagamentoPortaSaida.salvaPagamentoFinalizado(pedido.get().getPagamento());
     }
 }

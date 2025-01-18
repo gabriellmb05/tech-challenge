@@ -1,11 +1,8 @@
-package br.com.on.fiap.hexagono.portas.saida.pedido;
+package br.com.on.fiap.hexagono.portas.saida.integracao;
 
-import br.com.on.fiap.hexagono.dominio.Pedido;
-import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import br.com.on.fiap.hexagono.dominio.Pagamento;
 
-public interface BuscaPedidosPortaSaida {
+public interface IntegracaoPagamentoSaida {
 
-    Page<Pedido> listarComFiltros(PedidoFiltro filtro, Pageable page);
+    void integracaoEnviaPagamento(Pagamento pagamento);
 }

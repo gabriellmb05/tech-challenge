@@ -1,33 +1,44 @@
 package br.com.on.fiap.adaptadores.saida.servico;
 
-import br.com.on.fiap.adaptadores.saida.persistencia.especificacao.PedidoEspecificacao;
-import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.PedidoProdutoSaidaMapeador;
-import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.PedidoRepositorio;
-import br.com.on.fiap.hexagono.dominio.Pedido;
-import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
-import br.com.on.fiap.hexagono.portas.saida.pedido.BuscaPedidosPortaSaida;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import br.com.on.fiap.adaptadores.integracao.IntegracaoPagamento;
+import br.com.on.fiap.adaptadores.integracao.excecao.IntegracaoPagamentoExcecao;
+import br.com.on.fiap.adaptadores.integracao.solicitacao.PagamentoRespostaIntegracaoDTO;
+import br.com.on.fiap.adaptadores.integracao.solicitacao.PagamentoSolicitacaoIntegracaoDTO;
+import br.com.on.fiap.hexagono.dominio.Pagamento;
+import br.com.on.fiap.hexagono.excecao.message.MessageError;
+import br.com.on.fiap.hexagono.portas.saida.integracao.IntegracaoPagamentoSaida;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class BuscaPedidosAdaptador implements BuscaPedidosPortaSaida {
+@Log4j2
+public class IntegracaoPagamentoAdaptador implements IntegracaoPagamentoSaida {
 
-    private final PedidoRepositorio pedidoRepositorio;
-    private final PedidoProdutoSaidaMapeador pedidoProdutoSaidaMapeador;
+    private final IntegracaoPagamento integracaoPagamento;
 
-    public BuscaPedidosAdaptador(
-            PedidoRepositorio pedidoRepositorio, PedidoProdutoSaidaMapeador pedidoProdutoSaidaMapeador) {
-        this.pedidoRepositorio = pedidoRepositorio;
-        this.pedidoProdutoSaidaMapeador = pedidoProdutoSaidaMapeador;
+    public IntegracaoPagamentoAdaptador(IntegracaoPagamento integracaoPagamento) {
+        this.integracaoPagamento = integracaoPagamento;
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Page<Pedido> listarComFiltros(PedidoFiltro filtro, Pageable page) {
-        return pedidoRepositorio
-                .findAll(PedidoEspecificacao.filtroPorDataInicioEDataFim(filtro), page)
-                .map(pedidoProdutoSaidaMapeador::paraPedido);
+    public void integracaoEnviaPagamento(Pagamento pagamento) {
+        try {
+            ResponseEntity<PagamentoRespostaIntegracaoDTO> res = integracaoPagamento.enviarPagamento(
+                    PagamentoSolicitacaoIntegracaoDTO.criarPagamentoIntegracao(pagamento));
+
+            if (res.getStatusCode().equals(HttpStatus.OK)) {
+                log.info("Pagamento realizado com sucesso >>>");
+            } else {
+                throw new IntegracaoPagamentoExcecao(
+                        MessageError.MSG_ERRO_CODIGO_STATUS_DIFERENTE_OK.getMensagem(), res.getStatusCode());
+            }
+        } catch (IntegracaoPagamentoExcecao e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IntegracaoPagamentoExcecao(
+                    MessageError.MSG_ERRO_INESPERADO_INTEGRACAO.getMensagem(), e.getMessage());
+        }
     }
 }

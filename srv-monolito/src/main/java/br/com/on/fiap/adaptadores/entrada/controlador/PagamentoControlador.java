@@ -1,47 +1,36 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ClienteRespostaDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ClienteSolicitacaoDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ClienteEntradaMapeador;
-import br.com.on.fiap.adaptadores.entrada.controlador.swagger.ClienteControladorSwagger;
-import br.com.on.fiap.hexagono.dominio.Cliente;
-import br.com.on.fiap.hexagono.portas.entrada.cliente.BuscaClientePorCpfPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.cliente.InsereClientePortaEntrada;
-import jakarta.validation.Valid;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PagamentoRespostaDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.PagamentoEntradaMapeador;
+import br.com.on.fiap.adaptadores.entrada.controlador.swagger.PagamentoControladorSwagger;
+import br.com.on.fiap.hexagono.dominio.Pagamento;
+import br.com.on.fiap.hexagono.portas.entrada.pagamento.AtualizaPagamentoPortaEntrada;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("clientes")
-public class ClienteControlador implements ClienteControladorSwagger {
+public class PagamentoControlador implements PagamentoControladorSwagger {
 
-    private final InsereClientePortaEntrada insereClientePortaEntrada;
-    private final ClienteEntradaMapeador clienteEntradaMapeador;
-    private final BuscaClientePorCpfPortaEntrada buscaClientePorCpfPortaEntrada;
+    private final AtualizaPagamentoPortaEntrada atualizaPagamentoPortaEntrada;
+    private final PagamentoEntradaMapeador pagamentoEntradaMapeador;
 
-    public ClienteControlador(
-            InsereClientePortaEntrada insereClientePortaEntrada,
-            ClienteEntradaMapeador clienteEntradaMapeador,
-            BuscaClientePorCpfPortaEntrada buscaClientePorCpfPortaEntrada) {
-        this.insereClientePortaEntrada = insereClientePortaEntrada;
-        this.clienteEntradaMapeador = clienteEntradaMapeador;
-        this.buscaClientePorCpfPortaEntrada = buscaClientePorCpfPortaEntrada;
+    public PagamentoControlador(
+            AtualizaPagamentoPortaEntrada atualizaPagamentoPortaEntrada,
+            PagamentoEntradaMapeador pagamentoEntradaMapeador) {
+        this.atualizaPagamentoPortaEntrada = atualizaPagamentoPortaEntrada;
+        this.pagamentoEntradaMapeador = pagamentoEntradaMapeador;
     }
 
     @Override
-    @PostMapping
-    public ResponseEntity<ClienteRespostaDTO> insereCliente(
-            @Valid @RequestBody ClienteSolicitacaoDTO clienteSolicitacaoDTO) {
-        Cliente cliente = clienteEntradaMapeador.paraCliente(clienteSolicitacaoDTO);
-        Cliente clientePersistido = insereClientePortaEntrada.inserir(cliente);
-        return ResponseEntity.status(HttpStatus.CREATED).body(clienteEntradaMapeador.paraClienteDTO(clientePersistido));
-    }
-
-    @Override
-    @GetMapping("/{cpf}")
-    public ResponseEntity<ClienteRespostaDTO> buscaClientePorCpf(@PathVariable("cpf") String cpf) {
-        Cliente cliente = buscaClientePorCpfPortaEntrada.buscar(cpf);
-        return ResponseEntity.ok().body(clienteEntradaMapeador.paraClienteDTO(cliente));
+    @PutMapping("/{nrProtocolo}")
+    public ResponseEntity<PagamentoRespostaDTO> atualizaPagamento(@PathVariable("numeroProtocolo") String nrProtocolo) {
+        Pagamento pagamentoAtualizado = atualizaPagamentoPortaEntrada.atualizaPagamento(nrProtocolo);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(pagamentoEntradaMapeador.paraPagamentoDTO(pagamentoAtualizado));
     }
 }
