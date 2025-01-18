@@ -1,21 +1,33 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.mapeador;
 
+import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoEntidade;
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoProdutoEntidade;
-import br.com.on.fiap.adaptadores.saida.persistencia.entidade.relacionamento.RelPedId;
+import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
 import java.util.List;
-import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(
         componentModel = "spring",
-        uses = {PedidoSaidaMapeador.class, ProdutoSaidaMapeador.class})
+        uses = {ClienteSaidaMapeador.class, ProdutoSaidaMapeador.class})
 public interface PedidoProdutoSaidaMapeador {
 
-    PedidoProdutoSaidaMapeador INSTANCE = Mappers.getMapper(PedidoProdutoSaidaMapeador.class);
+    @Mapping(target = "relPedPro", ignore = true)
+    @Mapping(target = "cliId", source = "cliente")
+    @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.hexagono.dominio.SituacaoPedido.REALIZADO)")
+    @Mapping(target = "vlPedido", source = "valor")
+    @Mapping(target = "dhPedido", expression = "java(java.time.LocalDateTime.now())")
+    PedidoEntidade paraEntidade(Pedido pedido);
+
+    @Mapping(target = "id", source = "pedId")
+    @Mapping(target = "relPedidoProdutos", source = "relPedPro")
+    @Mapping(target = "cliente", source = "cliId")
+    @Mapping(target = "situacao", source = "stPedido")
+    @Mapping(target = "protocolo", source = "nmProtocolo")
+    @Mapping(target = "valor", source = "vlPedido")
+    @Mapping(target = "dataHora", source = "dhPedido")
+    Pedido paraPedido(PedidoEntidade pedidoEntidade);
 
     List<PedidoProdutoEntidade> paraListaEntidade(List<RelPedidoProduto> relPedidoProdutos);
 
@@ -23,6 +35,7 @@ public interface PedidoProdutoSaidaMapeador {
 
     @Mapping(target = "id.pedId", source = "pedido.id")
     @Mapping(target = "id.proId", source = "produto.id")
+    @Mapping(target = "proId", source = "produto")
     @Mapping(target = "qtPedido", source = "quantidade")
     PedidoProdutoEntidade paraEntidade(RelPedidoProduto relPedidoProdutos);
 
@@ -30,13 +43,4 @@ public interface PedidoProdutoSaidaMapeador {
     @Mapping(target = "produto", source = "proId")
     @Mapping(target = "quantidade", source = "qtPedido")
     RelPedidoProduto paraRelPedidoProduto(PedidoProdutoEntidade pedidoProdutoEntidade);
-
-    @AfterMapping
-    default void mapearPedidoProdutoId(
-            @MappingTarget PedidoProdutoEntidade pedidoProdutoEntidade, RelPedidoProduto relPedidoProduto) {
-        RelPedId id = new RelPedId(
-                relPedidoProduto.getPedido().getId(),
-                relPedidoProduto.getProduto().getId());
-        pedidoProdutoEntidade.setId(id);
-    }
 }

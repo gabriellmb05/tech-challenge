@@ -1,6 +1,7 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.entidade;
 
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.relacionamento.RelPedId;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,7 @@ public class PedidoProdutoEntidade {
     @ManyToOne
     @MapsId("PED_ID")
     @JoinColumn(name = "PED_ID", referencedColumnName = "PED_ID", insertable = false, updatable = false)
+    @JsonBackReference
     private PedidoEntidade pedId;
 
     @ManyToOne

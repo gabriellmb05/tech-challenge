@@ -5,7 +5,7 @@ import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoDetalha
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.PedidoEntradaMapeador;
-import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.PedidoFiltroEntradaMapeador;
+import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.filtro.PedidoFiltroEntradaMapeador;
 import br.com.on.fiap.adaptadores.entrada.controlador.swagger.PedidoControladorSwagger;
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
@@ -53,9 +53,9 @@ public class PedidoControlador implements PedidoControladorSwagger {
     @PostMapping
     public ResponseEntity<PedidoRespostaDTO> inserePedido(
             @Valid @RequestBody PedidoSolicitacaoDTO pedidoSolicitacaoDTO) {
-        Pedido pedido = pedidoEntradaMapeador.paraPedido(pedidoSolicitacaoDTO);
-        validaProdutosDoPedidoPortaEntrada.validarProdutosDoPedido(pedido);
-        Pedido pedidoPersistido = inserePedidoPortaEntrada.inserir(pedido);
+        Pedido pedidoParaValidar = pedidoEntradaMapeador.paraPedido(pedidoSolicitacaoDTO);
+        Pedido pedidoComProdutosValidos = validaProdutosDoPedidoPortaEntrada.validarProdutosDoPedido(pedidoParaValidar);
+        Pedido pedidoPersistido = inserePedidoPortaEntrada.inserir(pedidoComProdutosValidos);
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoEntradaMapeador.paraPedidoDTO(pedidoPersistido));
     }
 

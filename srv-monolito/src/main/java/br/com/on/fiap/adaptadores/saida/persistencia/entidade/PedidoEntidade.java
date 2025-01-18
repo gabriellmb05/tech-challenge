@@ -2,6 +2,7 @@ package br.com.on.fiap.adaptadores.saida.persistencia.entidade;
 
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.conversor.SituacaoPedidoConversor;
 import br.com.on.fiap.hexagono.dominio.SituacaoPedido;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.security.SecureRandom;
@@ -46,7 +47,8 @@ public class PedidoEntidade {
     @Column(name = "PED_DH_PEDIDO", nullable = false)
     private LocalDateTime dhPedido;
 
-    @OneToMany(mappedBy = "id.pedId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "pedId", cascade = CascadeType.MERGE, orphanRemoval = true)
+    @JsonManagedReference
     private List<PedidoProdutoEntidade> relPedPro = new ArrayList<>();
 
     @PrePersist

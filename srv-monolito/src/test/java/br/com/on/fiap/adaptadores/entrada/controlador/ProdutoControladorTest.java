@@ -8,7 +8,7 @@ import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.ProdutoFiltroDT
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
-import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoFiltroEntradaMapeador;
+import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.filtro.ProdutoFiltroEntradaMapeador;
 import br.com.on.fiap.datapool.*;
 import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;

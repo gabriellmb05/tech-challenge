@@ -48,7 +48,7 @@ public class InserePedidoCasoDeUso implements InserePedidoPortaEntrada {
     }
 
     private void vincularProdutosAoPedido(Pedido pedidoSalvo, List<RelPedidoProduto> pedidoProdutos) {
-        pedidoProdutos.forEach(relPedidoProduto -> relPedidoProduto.getPedido().setId(pedidoSalvo.getId()));
+        pedidoProdutos.forEach(relPedidoProduto -> relPedidoProduto.setPedido(pedidoSalvo));
         pedidoSalvo.setRelPedidoProdutos(pedidoProdutos);
         persistePedidoProdutoPortaSaida.vincularPedido(pedidoSalvo.getRelPedidoProdutos());
     }

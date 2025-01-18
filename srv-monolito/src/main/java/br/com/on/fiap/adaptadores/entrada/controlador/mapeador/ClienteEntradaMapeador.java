@@ -11,4 +11,8 @@ public interface ClienteEntradaMapeador {
     ClienteRespostaDTO paraClienteDTO(Cliente cliente);
 
     Cliente paraCliente(ClienteSolicitacaoDTO clienteSolicitacaoDTO);
+
+    default Cliente map(Long id) {
+        return id == null ? null : new Cliente(id);
+    }
 }

@@ -1,7 +1,7 @@
 package br.com.on.fiap.adaptadores.saida.servico;
 
 import br.com.on.fiap.adaptadores.saida.persistencia.especificacao.PedidoEspecificacao;
-import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.PedidoSaidaMapeador;
+import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.PedidoProdutoSaidaMapeador;
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.PedidoRepositorio;
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
@@ -15,11 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class BuscaPedidosAdaptador implements BuscaPedidosPortaSaida {
 
     private final PedidoRepositorio pedidoRepositorio;
-    private final PedidoSaidaMapeador pedidoSaidaMapeador;
+    private final PedidoProdutoSaidaMapeador pedidoProdutoSaidaMapeador;
 
-    public BuscaPedidosAdaptador(PedidoRepositorio pedidoRepositorio, PedidoSaidaMapeador pedidoSaidaMapeador) {
+    public BuscaPedidosAdaptador(
+            PedidoRepositorio pedidoRepositorio, PedidoProdutoSaidaMapeador pedidoProdutoSaidaMapeador) {
         this.pedidoRepositorio = pedidoRepositorio;
-        this.pedidoSaidaMapeador = pedidoSaidaMapeador;
+        this.pedidoProdutoSaidaMapeador = pedidoProdutoSaidaMapeador;
     }
 
     @Override
@@ -27,6 +28,6 @@ public class BuscaPedidosAdaptador implements BuscaPedidosPortaSaida {
     public Page<Pedido> listarComFiltros(PedidoFiltro filtro, Pageable page) {
         return pedidoRepositorio
                 .findAll(PedidoEspecificacao.filtroPorDataInicioEDataFim(filtro), page)
-                .map(pedidoSaidaMapeador::paraPedido);
+                .map(pedidoProdutoSaidaMapeador::paraPedido);
     }
 }
