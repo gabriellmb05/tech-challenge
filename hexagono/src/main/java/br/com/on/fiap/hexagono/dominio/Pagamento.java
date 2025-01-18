@@ -5,24 +5,29 @@ import java.time.LocalDateTime;
 
 public class Pagamento {
 
-    private Long id;
+    private Long pagId;
     private SituacaoPagamento stPagamento;
     private BigDecimal vlCompra;
     private TipoPagamento tpPagamento;
     private LocalDateTime dhPagamento;
 
-    public Pagamento() {}
-
-    public Pagamento(Long id) {
-        this.id = id;
+    public Pagamento() {
     }
 
-    public Pagamento(
-            SituacaoPagamento stPagamento, BigDecimal vlCompra, TipoPagamento tpPagamento, LocalDateTime dhPagamento) {
+    public Pagamento(Long pagId, SituacaoPagamento stPagamento, BigDecimal vlCompra, TipoPagamento tpPagamento, LocalDateTime dhPagamento) {
+        this.pagId = pagId;
         this.stPagamento = stPagamento;
         this.vlCompra = vlCompra;
         this.tpPagamento = tpPagamento;
         this.dhPagamento = dhPagamento;
+    }
+
+    public Long getPagId() {
+        return pagId;
+    }
+
+    public void setPagId(Long pagId) {
+        this.pagId = pagId;
     }
 
     public SituacaoPagamento getStPagamento() {
@@ -45,8 +50,8 @@ public class Pagamento {
         return tpPagamento;
     }
 
-    public void setTpPagamento(TipoPagamento tipo) {
-        this.tpPagamento = tipo;
+    public void setTpPagamento(TipoPagamento tpPagamento) {
+        this.tpPagamento = tpPagamento;
     }
 
     public LocalDateTime getDhPagamento() {
