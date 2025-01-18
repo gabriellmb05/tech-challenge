@@ -5,10 +5,9 @@ import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.PedidoProdutoSaida
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.PedidoRepositorio;
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.portas.saida.pedido.DetalhaPedidoPortaSaida;
-import java.util.Optional;
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 public class DetalhaPedidoAdaptador implements DetalhaPedidoPortaSaida {
@@ -23,10 +22,8 @@ public class DetalhaPedidoAdaptador implements DetalhaPedidoPortaSaida {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Optional<Pedido> detalhaPedido(String protocolo) {
         Optional<PedidoEntidade> pedido = pedidoRepositorio.findByNmProtocolo(protocolo);
-        pedido.ifPresent(p -> Hibernate.initialize(p.getRelPedPro()));
         return pedido.map(pedidoProdutoSaidaMapeador::paraPedido);
     }
 }
