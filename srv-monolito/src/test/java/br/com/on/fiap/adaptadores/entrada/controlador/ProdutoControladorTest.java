@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -97,7 +96,7 @@ class ProdutoControladorTest {
     @MethodSource("produtoDTOProvider")
     @DisplayName("Dado um produto existente, quando buscar o produto, então ele deve ser retornado")
     void dadoProdutoExistente_quandoBuscarProduto_entaoDeveSerRetornado(ProdutoRespostaDTO produtoRespostaDTO) {
-        Long id = produtoRespostaDTO.id();
+        Long id = produtoRespostaDTO.getId();
         Produto produto = new Produto();
         when(buscaProdutoPorIdPortaEntrada.buscar(id)).thenReturn(produto);
         when(produtoEntradaMapeador.paraProdutoDTO(produto)).thenReturn(produtoRespostaDTO);
@@ -135,7 +134,7 @@ class ProdutoControladorTest {
     @DisplayName("Dado um produto existente, quando alterar o produto, então ele deve ser atualizado")
     void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado(
             ProdutoRespostaDTO produtoRespotaDTO, ProdutoSolicitacaoDTO produtoSolicitacaoDTO) {
-        Long id = produtoRespotaDTO.id();
+        Long id = produtoRespotaDTO.getId();
         Produto produto = new Produto();
         Produto produtoPersistido = new Produto();
 
@@ -156,7 +155,7 @@ class ProdutoControladorTest {
     @MethodSource("produtoDTOProvider")
     @DisplayName("Dado um produto existente, quando deletar o produto, então ele deve ser removido")
     void dadoProdutoExistente_quandoDeletarProduto_entaoDeveSerRemovido(ProdutoRespostaDTO produtoRespostaDTO) {
-        Long id = produtoRespostaDTO.id();
+        Long id = produtoRespostaDTO.getId();
 
         ResponseEntity<Void> response = produtoControlador.deletaProduto(id);
 
@@ -194,7 +193,6 @@ class ProdutoControladorTest {
     }
 
     @Test
-    @Disabled
     @DisplayName("Dado categorias de produtos, quando buscar as categorias, então elas devem ser retornadas")
     void dadoCategoriasDeProdutos_quandoBuscarCategorias_entaoDevemSerRetornadas() {
         List<String> categoriasEsperadas =

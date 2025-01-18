@@ -2,7 +2,6 @@ package br.com.on.fiap.adaptadores.saida.persistencia.entidade;
 
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.conversor.SituacaoPedidoConversor;
 import br.com.on.fiap.hexagono.dominio.SituacaoPedido;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
@@ -12,6 +11,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -28,6 +28,7 @@ public class PedidoEntidade {
     @SequenceGenerator(name = SQ_PED_PEDIDO, sequenceName = SQ_PED_PEDIDO, allocationSize = 1)
     private Long pedId;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CLI_ID", referencedColumnName = "CLI_ID", nullable = false)
     private ClienteEntidade cliId;
@@ -47,8 +48,8 @@ public class PedidoEntidade {
     @Column(name = "PED_DH_PEDIDO", nullable = false)
     private LocalDateTime dhPedido;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "pedId", cascade = CascadeType.MERGE, orphanRemoval = true)
-    @JsonManagedReference
     private List<PedidoProdutoEntidade> relPedPro = new ArrayList<>();
 
     @PrePersist

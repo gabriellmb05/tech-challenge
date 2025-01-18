@@ -25,7 +25,7 @@ public class PedidoEspecificacao {
             PedidoFiltro filtro, Root<PedidoEntidade> root, CriteriaBuilder builder, Predicate predicate) {
         if (filtro.getDataInicio() != null) {
             LocalDateTime dataInicio = filtro.getDataInicio().atStartOfDay();
-            return builder.and(predicate, builder.greaterThanOrEqualTo(root.get("dataHora"), dataInicio));
+            return builder.and(predicate, builder.greaterThanOrEqualTo(root.get("dhPedido"), dataInicio));
         }
         return predicate;
     }
@@ -34,7 +34,7 @@ public class PedidoEspecificacao {
             PedidoFiltro filtro, Root<PedidoEntidade> root, CriteriaBuilder builder, Predicate predicate) {
         if (filtro.getDataFim() != null) {
             LocalDateTime dataFim = filtro.getDataFim().plusDays(1).atStartOfDay();
-            return builder.and(predicate, builder.lessThan(root.get("dataHora"), dataFim));
+            return builder.and(predicate, builder.lessThan(root.get("dhPedido"), dataFim));
         }
         return predicate;
     }
@@ -42,7 +42,7 @@ public class PedidoEspecificacao {
     private static Predicate adicionarFiltroSituacao(
             PedidoFiltro filtro, Root<PedidoEntidade> root, CriteriaBuilder builder, Predicate predicate) {
         if (filtro.getSituacao() != null) {
-            return builder.and(predicate, builder.equal(root.get("situacao"), filtro.getSituacao()));
+            return builder.and(predicate, builder.equal(root.get("stPedido"), filtro.getSituacao()));
         }
         return predicate;
     }
@@ -50,8 +50,8 @@ public class PedidoEspecificacao {
     private static Predicate adicionarFiltroCpfCliente(
             PedidoFiltro filtro, Root<PedidoEntidade> root, CriteriaBuilder builder, Predicate predicate) {
         if (filtro.getCpfCliente() != null && !filtro.getCpfCliente().isEmpty()) {
-            Join<PedidoEntidade, ClienteEntidade> clienteJoin = root.join("cliente", JoinType.INNER);
-            return builder.and(predicate, builder.equal(clienteJoin.get("cpf"), filtro.getCpfCliente()));
+            Join<PedidoEntidade, ClienteEntidade> clienteJoin = root.join("cliId", JoinType.INNER);
+            return builder.and(predicate, builder.equal(clienteJoin.get("nmCpf"), filtro.getCpfCliente()));
         }
         return predicate;
     }
