@@ -34,7 +34,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Tiago\",\r\n    \"cpf\": \"226.642.150-60\",\r\n    \"email\": \"teste322222@gmail.com\",\r\n    \"dataNascimento\": \"2000-10-18\" \r\n}",
+							"raw": "{\r\n    \"nome\": \"Tiago\",\r\n    \"cpf\": \"226.642.150-60\",\r\n    \"email\": \"teste322222@gmail.com\",\r\n    \"dataNascimento\": \"2000-10-18\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -397,14 +397,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8081/pagamentos/enviar",
-									"protocol": "http",
+									"raw": "{{IT_PAGAMENTOS}}/enviar",
 									"host": [
-										"localhost"
+										"{{IT_PAGAMENTOS}}"
 									],
-									"port": "8081",
 									"path": [
-										"pagamentos",
 										"enviar"
 									]
 								}
@@ -442,6 +439,11 @@
 		{
 			"key": "BASE_URL",
 			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "IT_PAGAMENTOS",
+			"value": "http://localhost:8081/pagamentos",
 			"type": "string"
 		}
 	]
