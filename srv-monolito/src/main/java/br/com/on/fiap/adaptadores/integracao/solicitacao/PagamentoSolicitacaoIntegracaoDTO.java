@@ -8,14 +8,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class PagamentoSolicitacaoIntegracaoDTO {
 
     private BigDecimal amount;
     private Payment payment;
 
+    @Data
+    @NoArgsConstructor
     @AllArgsConstructor
     public static class Payment {
         private String type;

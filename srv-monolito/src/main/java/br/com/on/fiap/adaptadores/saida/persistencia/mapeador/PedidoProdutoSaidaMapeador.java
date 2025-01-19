@@ -27,6 +27,15 @@ public interface PedidoProdutoSaidaMapeador {
     @Mapping(target = "dataHora", source = "dhPedido")
     Pedido paraPedido(PedidoEntidade pedidoEntidade);
 
+    @Mapping(target = "id", source = "pedId")
+    @Mapping(target = "relPedidoProdutos", source = "relPedPro")
+    @Mapping(target = "cliente", source = "cliId")
+    @Mapping(target = "situacao", source = "stPedido")
+    @Mapping(target = "protocolo", source = "nmProtocolo")
+    @Mapping(target = "dataHora", source = "dhPedido")
+    @Mapping(target = "pagamento", source = "pagId")
+    Pedido paraPedidoComPagamento(PedidoEntidade pedidoEntidade);
+
     @Mapping(target = "pedId", source = "id")
     @Mapping(target = "cliId", source = "cliente")
     @Mapping(target = "pagId", source = "pagamento")

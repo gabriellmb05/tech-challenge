@@ -30,10 +30,9 @@ info:
 logging:
   level:
     root: ${LOG_LEVEL_ROOT:INFO}
-pagamento:
-  service:
+integracoes:
+  pagamento:
     url: ${IT_PAGAMENTO}
-    path: ${IT_PAGAMENTO_PATH_PAYMENTS}
 feign:
   client:
     config:

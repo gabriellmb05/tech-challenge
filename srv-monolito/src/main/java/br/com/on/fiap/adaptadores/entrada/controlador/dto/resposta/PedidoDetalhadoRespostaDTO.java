@@ -19,4 +19,5 @@ public class PedidoDetalhadoRespostaDTO {
     private BigDecimal valor;
     private SituacaoPedido situacao;
     private List<ProdutoRespostaDTO> produtos;
+    private PagamentoRespostaDTO pagamento;
 }

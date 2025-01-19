@@ -11,6 +11,7 @@ import org.mapstruct.Named;
 @Mapper(componentModel = "spring")
 public interface PagamentoEntradaMapeador {
 
+    @Mapping(target = "id", source = "pagId")
     PagamentoRespostaDTO paraPagamentoDTO(Pagamento pagamento);
 
     @Mapping(target = "tpPagamento", source = "tpPagamento", qualifiedByName = "definirTpPagamento")

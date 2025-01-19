@@ -7,10 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "pagamentoClient", url = "${pagamento.service.url}/${pagamento.service.path}")
+@FeignClient(name = "pagamentoClient", url = "${integracoes.pagamento.url}")
 public interface IntegracaoPagamento {
 
-    @PostMapping("/pagamentos")
+    @PostMapping("/enviar")
     ResponseEntity<PagamentoRespostaIntegracaoDTO> enviarPagamento(
             @RequestBody PagamentoSolicitacaoIntegracaoDTO pagamentoSolicitacaoIntegracaoDTO);
 }

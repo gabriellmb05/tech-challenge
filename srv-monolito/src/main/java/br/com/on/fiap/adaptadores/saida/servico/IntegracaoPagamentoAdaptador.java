@@ -12,8 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-@Service
 @Log4j2
+@Service
 public class IntegracaoPagamentoAdaptador implements IntegracaoPagamentoSaida {
 
     private final IntegracaoPagamento integracaoPagamento;

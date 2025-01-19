@@ -21,6 +21,7 @@ public interface PedidoEntradaMapeador {
     PedidoRespostaDTO paraPedidoDTO(Pedido pedido);
 
     @Mapping(target = "produtos", expression = "java(mapearProdutos(pedido.getRelPedidoProdutos()))")
+    @Mapping(target = "pagamento", source = "pagamento")
     PedidoDetalhadoRespostaDTO paraPedidoDetalheDTO(Pedido pedido);
 
     @Mapping(target = "cliente", source = "cliente")

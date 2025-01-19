@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("clientes")
+@RequestMapping("pagamentos")
 public class PagamentoControlador implements PagamentoControladorSwagger {
 
     private final AtualizaPagamentoPortaEntrada atualizaPagamentoPortaEntrada;
@@ -28,7 +28,7 @@ public class PagamentoControlador implements PagamentoControladorSwagger {
 
     @Override
     @PutMapping("/{nrProtocolo}")
-    public ResponseEntity<PagamentoRespostaDTO> atualizaPagamento(@PathVariable("numeroProtocolo") String nrProtocolo) {
+    public ResponseEntity<PagamentoRespostaDTO> atualizaPagamento(@PathVariable("nrProtocolo") String nrProtocolo) {
         Pagamento pagamentoAtualizado = atualizaPagamentoPortaEntrada.atualizaPagamento(nrProtocolo);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(pagamentoEntradaMapeador.paraPagamentoDTO(pagamentoAtualizado));
