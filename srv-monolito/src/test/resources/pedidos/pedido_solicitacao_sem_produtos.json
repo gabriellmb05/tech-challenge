@@ -1,8 +1,0 @@
-{
-  "cliente": 1,
-  "valor": 2000,
-  "pagamento": {
-    "vlCompra": 2,
-    "tpPagamento": 1
-  }
-}
