@@ -7,6 +7,8 @@ import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.SituacaoPedido;
 import br.com.on.fiap.hexagono.portas.saida.pedido.AtualizaPedidoPortaSaida;
 import java.util.Optional;
+
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +24,7 @@ public class AtualizaPedidoAdaptador implements AtualizaPedidoPortaSaida {
     }
 
     @Override
+    @Transactional
     public Optional<Pedido> atualizarPedido(String protocolo) {
         Optional<PedidoEntidade> pedidoOptional = pedidoRepositorio.findByNmProtocolo(protocolo);
 
