@@ -1,9 +1,9 @@
-FROM maven:3.9.9-amazoncorretto-21-debian-bookworm AS builder
+FROM maven:3.9.9-eclipse-temurin-21-alpine AS builder
 
 WORKDIR /app
 COPY . /app/
 
-RUN mvn dependency:go-offline && mvn clean install -DskipTests
+RUN mvn clean install -DskipTests
 
 FROM openjdk:21-slim
 

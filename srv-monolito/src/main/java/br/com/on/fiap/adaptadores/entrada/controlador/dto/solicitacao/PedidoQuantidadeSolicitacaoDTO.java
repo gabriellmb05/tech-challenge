@@ -2,10 +2,12 @@ package br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class PedidoQuantidadeSolicitacaoDTO {

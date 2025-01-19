@@ -17,6 +17,14 @@ spring:
     open-in-view: false
   flyway:
     enabled: ${FLYWAY_ENABLE:false}
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 5000
+            readTimeout: 10000
+            loggerLevel: basic
 springdoc:
   swagger-ui:
     path: /documentacao.html
@@ -33,10 +41,3 @@ logging:
 integracoes:
   pagamento:
     url: ${IT_PAGAMENTO}
-feign:
-  client:
-    config:
-      default:
-        loggerLevel: full
-        connectionTimeout: 5000
-        readTimeout: 5000

@@ -1,9 +1,12 @@
 package br.com.on.fiap.configuracao;
 
+import br.com.on.fiap.hexagono.casosdeuso.pedido.AtualizaPedidoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.pedido.BuscaPedidosCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.pedido.DetalhaPedidoCasoDeUso;
 import br.com.on.fiap.hexagono.casosdeuso.pedido.InserePedidoCasoDeUso;
+import br.com.on.fiap.hexagono.portas.entrada.pedido.AtualizaPedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.BuscaPedidosPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.pedido.DetalhaPedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pagamento.PersistePagamentoPortaSaida;
@@ -35,7 +38,12 @@ public class PedidoBeanConfiguracao {
     }
 
     @Bean
-    public DetalhaPedidoCasoDeUso detalhaPedido(DetalhaPedidoPortaSaida detalhaPedidoPortaSaida) {
+    public DetalhaPedidoPortaEntrada detalhaPedido(DetalhaPedidoPortaSaida detalhaPedidoPortaSaida) {
         return new DetalhaPedidoCasoDeUso(detalhaPedidoPortaSaida);
+    }
+
+    @Bean
+    public AtualizaPedidoPortaEntrada atualizaPedido(AtualizaPedidoPortaSaida atualizaPedidoPortaSaida) {
+        return new AtualizaPedidoCasoDeUso(atualizaPedidoPortaSaida);
     }
 }
