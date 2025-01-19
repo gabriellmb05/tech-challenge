@@ -1,0 +1,18 @@
+{
+  "cliente": 1,
+  "valor": 2000,
+  "produtos": [
+    {
+      "idProduto": 3,
+      "quantidade": 2
+    },
+    {
+      "idProduto": 2,
+      "quantidade": 2
+    }
+  ],
+  "pagamento": {
+    "vlCompra": 2,
+    "tpPagamento": 1
+  }
+}
