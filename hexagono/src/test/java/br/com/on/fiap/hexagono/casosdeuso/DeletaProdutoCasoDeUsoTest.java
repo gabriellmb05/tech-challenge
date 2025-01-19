@@ -5,7 +5,7 @@ import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.hexagono.casosdeuso.produto.DeletaProdutoCasoDeUso;
 import br.com.on.fiap.hexagono.dominio.Produto;
-import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontratoExcecao;
+import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.portas.saida.produto.PersisteProdutoPortaSaida;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
@@ -18,32 +18,32 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class DeletaProdutoCasoDeUsoTest {
 
-	@Mock
-	private PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+    @Mock
+    private PersisteProdutoPortaSaida persisteProdutoPortaSaida;
 
-	@InjectMocks
-	private DeletaProdutoCasoDeUso deletaProdutoCasoDeUso;
+    @InjectMocks
+    private DeletaProdutoCasoDeUso deletaProdutoCasoDeUso;
 
-	@Test
-	@DisplayName("Dado um produto existente, quando deletar o produto, então ele deve ser removido")
-	void dadoProdutoExistente_quandoDeletarProduto_entaoDeveSerRemovido() {
-		Long id = 1L;
-		when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.of(new Produto()));
+    @Test
+    @DisplayName("Dado um produto existente, quando deletar o produto, então ele deve ser removido")
+    void dadoProdutoExistente_quandoDeletarProduto_entaoDeveSerRemovido() {
+        Long id = 1L;
+        when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.of(new Produto()));
 
-		deletaProdutoCasoDeUso.deleta(id);
+        deletaProdutoCasoDeUso.deleta(id);
 
-		verify(persisteProdutoPortaSaida).buscaProdutoPorId(id);
-		verify(persisteProdutoPortaSaida).deletaProdutoPorId(id);
-	}
+        verify(persisteProdutoPortaSaida).buscaProdutoPorId(id);
+        verify(persisteProdutoPortaSaida).deletaProdutoPorId(id);
+    }
 
-	@Test
-	@DisplayName("Dado um produto não existente, quando deletar o produto, então deve lançar uma exceção")
-	void dadoProdutoNaoExistente_quandoDeletarProduto_entaoDeveLancarExcecao() {
-		Long id = 1L;
-		when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.empty());
+    @Test
+    @DisplayName("Dado um produto não existente, quando deletar o produto, então deve lançar uma exceção")
+    void dadoProdutoNaoExistente_quandoDeletarProduto_entaoDeveLancarExcecao() {
+        Long id = 1L;
+        when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.empty());
 
-		assertThrows(ProdutoNaoEncontratoExcecao.class, () -> deletaProdutoCasoDeUso.deleta(id));
-		verify(persisteProdutoPortaSaida).buscaProdutoPorId(id);
-		verify(persisteProdutoPortaSaida, never()).deletaProdutoPorId(id);
-	}
+        assertThrows(ProdutoNaoEncontradoExcecao.class, () -> deletaProdutoCasoDeUso.deleta(id));
+        verify(persisteProdutoPortaSaida).buscaProdutoPorId(id);
+        verify(persisteProdutoPortaSaida, never()).deletaProdutoPorId(id);
+    }
 }

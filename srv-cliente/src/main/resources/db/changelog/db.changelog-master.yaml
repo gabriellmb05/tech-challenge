@@ -1,7 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: classpath:/db/changelog/db.changelog-1.yaml
-      labels: "Create table clientes"
-  - include:
-      file: classpath:/db/changelog/db.changelog-2.yaml
-      labels: "Insert data into clientes"
