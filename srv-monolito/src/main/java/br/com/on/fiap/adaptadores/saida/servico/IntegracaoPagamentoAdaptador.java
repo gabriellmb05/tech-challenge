@@ -29,7 +29,7 @@ public class IntegracaoPagamentoAdaptador implements IntegracaoPagamentoSaida {
                     PagamentoSolicitacaoIntegracaoDTO.criarPagamentoIntegracao(pagamento));
 
             if (res.getStatusCode().equals(HttpStatus.OK)) {
-                log.info("Pagamento realizado com sucesso >>>");
+                log.info("Pagamento realizado com sucesso");
             } else {
                 throw new IntegracaoPagamentoExcecao(
                         MessageError.MSG_ERRO_CODIGO_STATUS_DIFERENTE_OK.getMensagem(), res.getStatusCode());
