@@ -125,7 +125,7 @@ class ClienteControladorIntegracaoTest {
     void dadoClienteCriado_quandoBuscarClientePorCpfDiferenteDoCadastrado_entaoDeveRetornarOCliente() throws Exception {
         mockMvc.perform(get("/clientes/{cpf}", "75864522023"))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.errors[0]").value("Não foi encontrado Cliente para o cpf: 75864522023"))
+                .andExpect(jsonPath("$.errors[0]").value("Não foi encontrado Cliente para o cpf: 758.645.220-23"))
                 .andReturn();
     }
 
@@ -139,7 +139,7 @@ class ClienteControladorIntegracaoTest {
                         .content(objectMapper.writeValueAsString(
                                 DataPoolClienteSolicitacaoDTO.gerarComCpf("10903153092"))))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.errors[0]").value("O CPF de número 10903153092 já foi utilizado"))
+                .andExpect(jsonPath("$.errors[0]").value("O CPF de número 109.031.530-92 já foi utilizado"))
                 .andReturn();
     }
 
