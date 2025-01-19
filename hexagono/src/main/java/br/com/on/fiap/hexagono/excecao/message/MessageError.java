@@ -11,7 +11,7 @@ public enum MessageError {
     MSG_ERRO_PRODUTO_NAO_ENCONTRADO("msg-erro-produto-nao-encontrado"),
     MSG_ERRO_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO("msg-erro-pedido-nao-encontrado-para-protocolo"),
     MSG_ERRO_PAGAMENTO_TIPO_PAGAMENTO_NAO_ENCONTRADO("msg-erro-pagamento-tipo-pagamento-nao-encontrado"),
-    MSG_ERRO_INTEGRACAO_CODIGO_STATUS_DIFERENTE_OK("msg-erro-integracao-codigo-status-diferente-ok"),
+    MSG_ERRO_PAGAMENTO_JA_REALIZADO_PARA_PEDIDO("msg-erro-pagamento-ja-realizado-para-pedido"),
     MSG_ERRO_INTEGRACAO_INESPERADO("msg-erro-integracao-inesperado");
 
     private final String mensagem;

@@ -1,57 +1,293 @@
 {
 	"info": {
-		"_postman_id": "f262e265-d1e6-4d6e-b9ef-c99d7bde04ac",
+		"_postman_id": "3a7013b1-b629-44c5-ab49-b18efcde2fb3",
 		"name": "srv-monolito",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "31673229"
+		"_exporter_id": "40946856"
 	},
 	"item": [
 		{
 			"name": "clientes",
 			"item": [
 				{
-					"name": "buscar cliente por CPF",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/clientes/45216784918",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"clientes",
-								"45216784918"
-							]
+					"name": "validacoes",
+					"item": [
+						{
+							"name": "inserir_cliente_erro_cpf_invalido",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Tiago\",\r\n    \"cpf\": \"226.632.150-60\",\r\n    \"email\": \"teste322222@gmail.com\",\r\n    \"dataNascimento\": \"2000-10-18\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/clientes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_cliente_erro_cpf_obrigatorio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Tiago\",\r\n    \"email\": \"teste322222@gmail.com\",\r\n    \"dataNascimento\": \"2000-10-18\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/clientes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_cliente_erro_email_obrigatorio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Tiago\",\r\n    \"cpf\": \"226.642.150-60\",\r\n    \"dataNascimento\": \"2000-10-18\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/clientes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_cliente_erro_email_invalido",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Tiago\",\r\n    \"cpf\": \"226.642.150-60\",\r\n    \"email\": \"teste322222\",\r\n    \"dataNascimento\": \"2000-10-18\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/clientes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_cliente_erro_nome_obrigatorio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cpf\": \"226.642.150-60\",\r\n    \"email\": \"teste322222@gmail.com\",\r\n    \"dataNascimento\": \"2000-10-18\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/clientes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_cliente_erro_geral",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/clientes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_cliente_erro_email_ja_cadastrado",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Tiago\",\r\n    \"cpf\": \"828.808.690-05\",\r\n    \"email\": \"ut.molestie@google.edu\",\r\n    \"dataNascimento\": \"2000-10-18\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/clientes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_cliente_erro_cpf_ja_cadastrado",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Tiago\",\r\n    \"cpf\": \"226.642.150-60\",\r\n    \"email\": \"teste@max.com\",\r\n    \"dataNascimento\": \"2000-10-18\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/clientes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "buscar_cliente_cpf_nao_cadastrado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/clientes/45216784918",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"clientes",
+										"45216784918"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "inserir cliente",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Tiago\",\r\n    \"cpf\": \"226.642.150-60\",\r\n    \"email\": \"teste322222@gmail.com\",\r\n    \"dataNascimento\": \"2000-10-18\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "sucesso",
+					"item": [
+						{
+							"name": "inserir_cliente",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Tiago\",\r\n    \"cpf\": \"61236258029\",\r\n    \"email\": \"teste322222@gmail.com\",\r\n    \"dataNascimento\": \"2000-10-18\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/clientes",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"clientes"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{BASE_URL}}/clientes",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"clientes"
-							]
+						{
+							"name": "buscar_cliente_por_cpf",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/clientes/61236258029",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"clientes",
+										"61236258029"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
@@ -59,191 +295,459 @@
 			"name": "produtos",
 			"item": [
 				{
-					"name": "buscar produtos paginado",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/produtos?page=0&size=10&categoria=INVALIDA",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"produtos"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "0"
-								},
-								{
-									"key": "size",
-									"value": "10"
-								},
-								{
-									"key": "sort",
-									"value": "",
-									"disabled": true
-								},
-								{
-									"key": "categoria",
-									"value": "INVALIDA"
+					"name": "validacoes",
+					"item": [
+						{
+							"name": "buscar_produto_por_id_erro_nao_cadastrado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/produtos/29",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos",
+										"29"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "buscar produto por ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/produtos/1",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"produtos",
-								"1"
-							],
-							"query": [
-								{
-									"key": "sort",
-									"value": null,
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "busca categorias",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/produtos/categorias",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"produtos",
-								"categorias"
-							],
-							"query": [
-								{
-									"key": "sort",
-									"value": null,
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "inserir produto",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Produto para deletgar\",\r\n    \"categoria\": \"inválida\",\r\n    \"preco\": 25.00\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{BASE_URL}}/produtos",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"produtos"
-							],
-							"query": [
-								{
-									"key": "sort",
-									"value": null,
-									"disabled": true
+						{
+							"name": "inserir_produto_erro_nome_obrigatorio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoria\": \"inválida\",\r\n    \"preco\": 25.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/produtos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_produto_erro_categoria_obrigatoria",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Produto para deletgar\",\r\n    \"preco\": 25.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/produtos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_produto_erro_preco_obrigatorio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Produto para deletgar\",\r\n    \"categoria\": \"inválida\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/produtos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_produto_erro_geral",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/produtos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_produto_erro_produto_ja_cadastrado",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Produto para deletgar\",\r\n    \"categoria\": \"LANCHE\",\r\n    \"preco\": 25.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/produtos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "atualizar_produto_erro_produto_nao_cadastrado",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Produto para deletar atualizado\",\r\n    \"categoria\": \"LANCHE\",\r\n    \"preco\": 25.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/produtos/99",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos",
+										"99"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deletar_produto_erro_nao_produto_nao_cadastrado",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Produto para deletar atualizado\",\r\n    \"categoria\": \"LANCHE\",\r\n    \"preco\": 25.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/produtos/99",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos",
+										"99"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "atualizar produto",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Produto para deletar atualizado\",\r\n    \"categoria\": \"LANCHE\",\r\n    \"preco\": 25.00\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "sucesso",
+					"item": [
+						{
+							"name": "buscar_produtos_paginado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/produtos?page=0&size=10&categoria=LANCHE",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sort",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "categoria",
+											"value": "LANCHE"
+										}
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{BASE_URL}}/produtos/9",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"produtos",
-								"9"
-							],
-							"query": [
-								{
-									"key": "sort",
-									"value": null,
-									"disabled": true
+						{
+							"name": "buscar_produto_por_id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/produtos/1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos",
+										"1"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deletar produto",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Produto para deletar atualizado\",\r\n    \"categoria\": \"LANCHE\",\r\n    \"preco\": 25.00\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{BASE_URL}}/produtos/9",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"produtos",
-								"9"
-							],
-							"query": [
-								{
-									"key": "sort",
-									"value": null,
-									"disabled": true
+						{
+							"name": "busca_categorias",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/produtos/categorias",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos",
+										"categorias"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_produto",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Produto para deletgar\",\r\n    \"categoria\": \"LANCHE\",\r\n    \"preco\": 25.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/produtos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "atualizar_produto",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Produto para deletar atualizado\",\r\n    \"categoria\": \"LANCHE\",\r\n    \"preco\": 25.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/produtos/9",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos",
+										"9"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deletar_produto",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Produto para deletar atualizado\",\r\n    \"categoria\": \"LANCHE\",\r\n    \"preco\": 25.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/produtos/9",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"produtos",
+										"9"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
@@ -251,121 +755,287 @@
 			"name": "pedidos",
 			"item": [
 				{
-					"name": "criar pedido",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"cliente\": 2,\r\n    \"valor\": 2000,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"vlCompra\": 2,\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "validacoes",
+					"item": [
+						{
+							"name": "inserir_pedido_erro_cliente_obrigatorio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"valor\": 2000,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"vlCompra\": 2,\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/pedidos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pedidos"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{BASE_URL}}/pedidos",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"pedidos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "buscar pedidos paginado",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/pedidos?page=0&size=10",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"pedidos"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "0"
+						{
+							"name": "inserir_pedido_erro_produtos_nao_informados",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cliente\": 2,\r\n    \"valor\": 2000,\r\n    \"pagamento\": {\r\n        \"vlCompra\": 2,\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
-								{
-									"key": "size",
-									"value": "10"
-								},
-								{
-									"key": "sort",
-									"value": "valor,asc",
-									"disabled": true
-								},
-								{
-									"key": "dataInicio",
-									"value": "2025-01-18",
-									"disabled": true
-								},
-								{
-									"key": "dataFim",
-									"value": "2025-01-19",
-									"disabled": true
-								},
-								{
-									"key": "cpfCliente",
-									"value": "45216784918",
-									"disabled": true
+								"url": {
+									"raw": "{{BASE_URL}}/pedidos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pedidos"
+									]
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "buscar pedidos por protocolo",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/pedidos/20250118213724238248/detalhar",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"pedidos",
-								"20250118213724238248",
-								"detalhar"
-							],
-							"query": [
-								{
-									"key": "sort",
-									"value": "",
-									"disabled": true
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_pedido_erro_info_pagamento_nao_informados",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cliente\": 2,\r\n    \"valor\": 2000,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/pedidos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pedidos"
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_pedido_erro_produto_nao_encontrado",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cliente\": 2,\r\n    \"valor\": 2000,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 33,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"vlCompra\": 2,\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/pedidos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pedidos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "inserir_pedido_erro_cliente_nao_encontrado",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cliente\": 233,\r\n    \"valor\": 2000,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"vlCompra\": 2,\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/pedidos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pedidos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "detalhar_pedido_erro_pedido_nao_encontrado_para_protocolo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/pedidos/20250118213724238248/detalhar",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pedidos",
+										"20250118213724238248",
+										"detalhar"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "atualizar pedido",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/pedidos/2025011917455124210",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"pedidos",
-								"2025011917455124210"
-							]
+					"name": "sucesso",
+					"item": [
+						{
+							"name": "inserir_pedido",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cliente\": 2,\r\n    \"valor\": 2000,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"vlCompra\": 2,\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/pedidos",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pedidos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "buscar_pedido_paginado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/pedidos?page=0&size=10",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pedidos"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "sort",
+											"value": "valor,asc",
+											"disabled": true
+										},
+										{
+											"key": "dataInicio",
+											"value": "2025-01-18",
+											"disabled": true
+										},
+										{
+											"key": "dataFim",
+											"value": "2025-01-19",
+											"disabled": true
+										},
+										{
+											"key": "cpfCliente",
+											"value": "45216784918",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "detalher_pedido_por_protocolo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/pedidos/2025011918301535717/detalhar",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pedidos",
+										"2025011918301535717",
+										"detalhar"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "atualizar_pedido",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/pedidos/2025011918301535717",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pedidos",
+										"2025011918301535717"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
@@ -373,22 +1043,86 @@
 			"name": "pagamentos",
 			"item": [
 				{
-					"name": "atualizar pagamento",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/pagamentos/20250118213724238248",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"pagamentos",
-								"20250118213724238248"
-							]
+					"name": "validacao",
+					"item": [
+						{
+							"name": "atualizar_pagamento_erro_pedido_nao_encontrado_para_protocolo",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/pagamentos/20250118213724238248",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pagamentos",
+										"20250118213724238248"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "atualizar_pagamento_erro_na_integracao",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/pagamentos/202501191836074416",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pagamentos",
+										"202501191836074416"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "atualizar_pagamento_erro_pagamento_ja_realizado_para_pedido",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/pagamentos/202501191836074416",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pagamentos",
+										"202501191836074416"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "sucesso",
+					"item": [
+						{
+							"name": "atualizar_pagamento",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/pagamentos/202501191836074416",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"pagamentos",
+										"202501191836074416"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -416,12 +1150,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{IT_PAGAMENTOS}}/enviar",
+									"raw": "{{IT_PAGAMENTOS}}/payments",
 									"host": [
 										"{{IT_PAGAMENTOS}}"
 									],
 									"path": [
-										"enviar"
+										"payments"
 									]
 								}
 							},

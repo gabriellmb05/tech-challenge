@@ -5,6 +5,8 @@ import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.PagamentoEntradaM
 import br.com.on.fiap.adaptadores.entrada.controlador.swagger.PagamentoControladorSwagger;
 import br.com.on.fiap.hexagono.dominio.Pagamento;
 import br.com.on.fiap.hexagono.portas.entrada.pagamento.AtualizaPagamentoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.pagamento.ValidaPagamentoPortaEntrada;
+import br.com.on.fiap.hexagono.portas.entrada.pedido.DetalhaPedidoPortaEntrada;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,18 +20,27 @@ public class PagamentoControlador implements PagamentoControladorSwagger {
 
     private final AtualizaPagamentoPortaEntrada atualizaPagamentoPortaEntrada;
     private final PagamentoEntradaMapeador pagamentoEntradaMapeador;
+    private final DetalhaPedidoPortaEntrada detalhaPedidoPortaEntrada;
+    private final ValidaPagamentoPortaEntrada validaPagamentoPortaEntrada;
 
     public PagamentoControlador(
             AtualizaPagamentoPortaEntrada atualizaPagamentoPortaEntrada,
-            PagamentoEntradaMapeador pagamentoEntradaMapeador) {
+            PagamentoEntradaMapeador pagamentoEntradaMapeador,
+            DetalhaPedidoPortaEntrada detalhaPedidoPortaEntrada,
+            ValidaPagamentoPortaEntrada validaPagamentoPortaEntrada) {
         this.atualizaPagamentoPortaEntrada = atualizaPagamentoPortaEntrada;
         this.pagamentoEntradaMapeador = pagamentoEntradaMapeador;
+        this.detalhaPedidoPortaEntrada = detalhaPedidoPortaEntrada;
+        this.validaPagamentoPortaEntrada = validaPagamentoPortaEntrada;
     }
 
     @Override
     @PutMapping("/{nrProtocolo}")
     public ResponseEntity<PagamentoRespostaDTO> atualizaPagamento(@PathVariable("nrProtocolo") String nrProtocolo) {
-        Pagamento pagamentoAtualizado = atualizaPagamentoPortaEntrada.atualizaPagamento(nrProtocolo);
+        Pagamento pagamento =
+                detalhaPedidoPortaEntrada.detalhaPedido(nrProtocolo).getPagamento();
+        validaPagamentoPortaEntrada.validarPagamentoJaRealizado(pagamento, nrProtocolo);
+        Pagamento pagamentoAtualizado = atualizaPagamentoPortaEntrada.atualizaPagamento(pagamento);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(pagamentoEntradaMapeador.paraPagamentoDTO(pagamentoAtualizado));
     }

@@ -27,16 +27,14 @@ services:
     depends_on:
       - db
 
-  srv_wiremock:
-    image: wiremock/wiremock:3.10.0
-    container_name: wiremock
+  srv-mercadopagofake:
+    image: maxsuelsbr/mercadopago_fake:0.0.1
+    container_name: mercadopago_fake_container
+    environment:
+      - SERVER_PORT=8080
     ports:
       - "8081:8080"
-    volumes:
-      - ./wiremock/mappings:/home/wiremock/mappings
-      - ./wiremock/__files:/home/wiremock/__files
-    networks:
-      - app-network
+    restart: always
 
 networks:
   app-network:
