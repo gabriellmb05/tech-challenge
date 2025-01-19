@@ -5,6 +5,7 @@ import br.com.on.fiap.hexagono.excecao.ClienteExistenteExcecao;
 import br.com.on.fiap.hexagono.excecao.message.MessageError;
 import br.com.on.fiap.hexagono.portas.entrada.cliente.InsereClientePortaEntrada;
 import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
+import br.com.on.fiap.hexagono.utilitarios.FormatadorCpf;
 
 public class InsereClienteCasoDeUso implements InsereClientePortaEntrada {
 
@@ -18,7 +19,8 @@ public class InsereClienteCasoDeUso implements InsereClientePortaEntrada {
     public Cliente inserir(Cliente cliente) {
         persisteClientePortaSaida.buscaClientePorCpf(cliente.getCpf()).ifPresent(p -> {
             throw new ClienteExistenteExcecao(
-                    MessageError.MSG_ERRO_CLIENTE_CPF_JA_CADASTRADO.getMensagem(), cliente.getCpf());
+                    MessageError.MSG_ERRO_CLIENTE_CPF_JA_CADASTRADO.getMensagem(),
+                    FormatadorCpf.formatarCpf(cliente.getCpf()));
         });
 
         persisteClientePortaSaida.buscaClientePorEmail(cliente.getEmail()).ifPresent(p -> {
