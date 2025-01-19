@@ -282,7 +282,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/pedidos?page=0&size=100&cpfCliente=45216784918",
+							"raw": "{{BASE_URL}}/pedidos?page=0&size=10",
 							"host": [
 								"{{BASE_URL}}"
 							],
@@ -296,7 +296,7 @@
 								},
 								{
 									"key": "size",
-									"value": "100"
+									"value": "10"
 								},
 								{
 									"key": "sort",
@@ -315,7 +315,8 @@
 								},
 								{
 									"key": "cpfCliente",
-									"value": "45216784918"
+									"value": "45216784918",
+									"disabled": true
 								}
 							]
 						}
@@ -343,6 +344,24 @@
 									"value": "",
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar pedido",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/pedidos/2025011917455124210",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"pedidos",
+								"2025011917455124210"
 							]
 						}
 					},

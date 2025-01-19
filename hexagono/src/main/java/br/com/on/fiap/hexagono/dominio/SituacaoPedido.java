@@ -4,19 +4,25 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 public enum SituacaoPedido {
-    REALIZADO(1),
-    APROVADO(2),
-    EM_PREPARACAO(3),
-    FINALIZADO(4);
+    REALIZADO(1, 1),
+    APROVADO(2, 2),
+    EM_PREPARACAO(3, 3),
+    FINALIZADO(4, 4);
 
     private final Integer codigo;
+    private final Integer ordem;
 
-    SituacaoPedido(Integer codigo) {
+    SituacaoPedido(Integer codigo, Integer ordem) {
         this.codigo = codigo;
+        this.ordem = ordem;
     }
 
     public Integer getCodigo() {
         return codigo;
+    }
+
+    public Integer getOrdem() {
+        return ordem;
     }
 
     public static SituacaoPedido deCodigo(Integer codigo) {

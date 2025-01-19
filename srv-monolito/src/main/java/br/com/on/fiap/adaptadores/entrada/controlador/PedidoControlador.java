@@ -11,6 +11,7 @@ import br.com.on.fiap.adaptadores.entrada.controlador.swagger.PedidoControladorS
 import br.com.on.fiap.hexagono.dominio.Pagamento;
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
+import br.com.on.fiap.hexagono.portas.entrada.pedido.AtualizaPedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.BuscaPedidosPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.DetalhaPedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
@@ -32,6 +33,7 @@ public class PedidoControlador implements PedidoControladorSwagger {
     private final BuscaPedidosPortaEntrada buscaPedidosPortaEntrada;
     private final DetalhaPedidoPortaEntrada detalhaPedidoPortaEntrada;
     private final ValidaProdutosDoPedidoPortaEntrada validaProdutosDoPedidoPortaEntrada;
+    private final AtualizaPedidoPortaEntrada atualizaPedidoPortaEntrada;
 
     private final PedidoEntradaMapeador pedidoEntradaMapeador;
     private final PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador;
@@ -42,6 +44,7 @@ public class PedidoControlador implements PedidoControladorSwagger {
             BuscaPedidosPortaEntrada buscaPedidosPortaEntrada,
             DetalhaPedidoPortaEntrada detalhaPedidoPortaEntrada,
             ValidaProdutosDoPedidoPortaEntrada validaProdutosDoPedidoPortaEntrada,
+            AtualizaPedidoPortaEntrada atualizaPedidoPortaEntrada,
             PedidoEntradaMapeador pedidoEntradaMapeador,
             PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador,
             PagamentoEntradaMapeador pagamentoEntradaMapeador) {
@@ -49,6 +52,7 @@ public class PedidoControlador implements PedidoControladorSwagger {
         this.buscaPedidosPortaEntrada = buscaPedidosPortaEntrada;
         this.detalhaPedidoPortaEntrada = detalhaPedidoPortaEntrada;
         this.validaProdutosDoPedidoPortaEntrada = validaProdutosDoPedidoPortaEntrada;
+        this.atualizaPedidoPortaEntrada = atualizaPedidoPortaEntrada;
         this.pedidoEntradaMapeador = pedidoEntradaMapeador;
         this.pedidoFiltroEntradaMapeador = pedidoFiltroEntradaMapeador;
         this.pagamentoEntradaMapeador = pagamentoEntradaMapeador;
@@ -83,5 +87,12 @@ public class PedidoControlador implements PedidoControladorSwagger {
         PedidoDetalhadoRespostaDTO pedidoDetalhadoRespostaDTO =
                 pedidoEntradaMapeador.paraPedidoDetalheDTO(pedidoDetalhado);
         return ResponseEntity.ok(pedidoDetalhadoRespostaDTO);
+    }
+
+    @Override
+    @PutMapping("/{protocolo}")
+    public ResponseEntity<PedidoRespostaDTO> atualizarPedido(@PathVariable("protocolo") String protocolo) {
+        Pedido pedido = atualizaPedidoPortaEntrada.atualizarPedido(protocolo);
+        return ResponseEntity.ok(pedidoEntradaMapeador.paraPedidoDTO(pedido));
     }
 }

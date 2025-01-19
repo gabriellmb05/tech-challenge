@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedModel;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Tag(name = "Pedido", description = "APIs relacionadas a pedidos")
 public interface PedidoControladorSwagger {
@@ -49,4 +50,22 @@ public interface PedidoControladorSwagger {
                 @ApiResponse(responseCode = "404", description = "Pedido não encontrado")
             })
     ResponseEntity<PedidoDetalhadoRespostaDTO> detalhaPedido(String protocolo);
+
+    @Operation(
+            summary = "Atualiza um pedido",
+            description = "Atualiza as informações de um pedido existente, identificado pelo protocolo fornecido")
+    @ApiResponses(
+            value = {
+                @ApiResponse(
+                        responseCode = "200",
+                        description = "Pedido atualizado com sucesso",
+                        content =
+                                @Content(
+                                        mediaType = "application/json",
+                                        schema = @Schema(implementation = PedidoRespostaDTO.class))),
+                @ApiResponse(responseCode = "400", description = "Dados inválidos fornecidos para a atualização"),
+                @ApiResponse(responseCode = "404", description = "Pedido não encontrado com o protocolo informado"),
+                @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+            })
+    ResponseEntity<PedidoRespostaDTO> atualizarPedido(@PathVariable("protocolo") String protocolo);
 }
