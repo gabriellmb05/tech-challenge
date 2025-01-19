@@ -6,7 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import br.com.on.fiap.utilitarios.Arquivo;
+import br.com.on.fiap.datapool.DataPoolPedidoSolicitacaoDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,17 +30,16 @@ class PedidoControladorIntegracaoTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Autowired
-    private Arquivo arquivo;
-
     @Test
     @Order(1)
     @Transactional
     @DisplayName(
             "Dado um pedido novo, quando não informar um produto, então deve retornar erro de validação 'Os produtos precisam ser informados'")
     void dadoPedidoNovo_quandoInserirPedidoSemProduto_entaoDeveRetornarErroDeValidacao() throws Exception {
-        String pedidoJson = arquivo.carregarArquivo("/pedidos/pedido_solicitacao_sem_produtos.json");
-        mockMvc.perform(post("/pedidos").contentType(MediaType.APPLICATION_JSON).content(pedidoJson))
+        mockMvc.perform(post("/pedidos")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(
+                                DataPoolPedidoSolicitacaoDTO.construirPedidoSemProdutos())))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.errors[0]").value("Os produtos precisam ser informados"))
                 .andReturn();
@@ -59,7 +58,6 @@ class PedidoControladorIntegracaoTest {
     @Transactional
     @DisplayName("Dado um pedido inexistente, quando detalhar pedido com protocolo inválido, então deve retornar erro")
     void dadoPedidoInexistente_quandoDetalharPedidoComProtocoloInvalido_entaoDeveRetornarErro() throws Exception {
-        criarPedido();
         mockMvc.perform(get("/pedidos/{protocolo}/detalhar", "protocolo-invalido")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
@@ -86,9 +84,9 @@ class PedidoControladorIntegracaoTest {
     @Transactional
     @DisplayName("Dado um pedido existente, quando consultar o pedido, então deve retornar o pedido")
     void dadoPedidoExistente_quandoConsultarPedido_entaoDeveRetornarPedido() throws Exception {
-        String pedidoJson = arquivo.carregarArquivo("/pedidos/pedido_solicitacao_completo.json");
-        MvcResult postResult = mockMvc.perform(
-                        post("/pedidos").contentType(MediaType.APPLICATION_JSON).content(pedidoJson))
+        MvcResult postResult = mockMvc.perform(post("/pedidos")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(DataPoolPedidoSolicitacaoDTO.construirPedido())))
                 .andExpect(status().isCreated())
                 .andReturn();
 
@@ -117,8 +115,9 @@ class PedidoControladorIntegracaoTest {
     }
 
     private void criarPedido() throws Exception {
-        String pedidoJson = arquivo.carregarArquivo("/pedidos/pedido_solicitacao_completo.json");
-        mockMvc.perform(post("/pedidos").contentType(MediaType.APPLICATION_JSON).content(pedidoJson))
+        mockMvc.perform(post("/pedidos")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(DataPoolPedidoSolicitacaoDTO.construirPedido())))
                 .andExpect(status().isCreated())
                 .andReturn();
     }
