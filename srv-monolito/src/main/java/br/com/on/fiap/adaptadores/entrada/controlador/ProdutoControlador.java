@@ -1,6 +1,7 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.ProdutoFiltroDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.CategoriaRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
@@ -100,10 +101,10 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
 
     @Override
     @GetMapping("/categorias")
-    public ResponseEntity<List<String>> buscaCategorias() {
+    public ResponseEntity<CategoriaRespostaDTO> buscaCategorias() {
         List<String> categorias = buscaCategoriaPortaEntrada.buscaCategorias().stream()
                 .map(Categoria::name)
                 .toList();
-        return ResponseEntity.ok().body(categorias);
+        return ResponseEntity.ok().body(new CategoriaRespostaDTO(categorias));
     }
 }

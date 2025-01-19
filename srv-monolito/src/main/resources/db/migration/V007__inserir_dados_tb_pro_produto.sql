@@ -114,6 +114,6 @@ INSERT
 VALUES (
     NEXTVAL('sq_pro_produto'),
     'coca-cola lata',
-    5,
+    3,
     8.00
 );
