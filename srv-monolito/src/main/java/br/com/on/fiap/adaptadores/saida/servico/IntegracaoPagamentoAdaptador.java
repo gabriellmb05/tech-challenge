@@ -32,13 +32,13 @@ public class IntegracaoPagamentoAdaptador implements IntegracaoPagamentoSaida {
                 log.info("Pagamento realizado com sucesso");
             } else {
                 throw new IntegracaoPagamentoExcecao(
-                        MessageError.MSG_ERRO_CODIGO_STATUS_DIFERENTE_OK.getMensagem(), res.getStatusCode());
+                        MessageError.MSG_ERRO_INTEGRACAO_CODIGO_STATUS_DIFERENTE_OK.getMensagem(), res.getStatusCode());
             }
         } catch (IntegracaoPagamentoExcecao e) {
             throw e;
         } catch (Exception e) {
             throw new IntegracaoPagamentoExcecao(
-                    MessageError.MSG_ERRO_INESPERADO_INTEGRACAO.getMensagem(), e.getMessage());
+                    MessageError.MSG_ERRO_INTEGRACAO_INESPERADO.getMensagem(), e.getMessage());
         }
     }
 }

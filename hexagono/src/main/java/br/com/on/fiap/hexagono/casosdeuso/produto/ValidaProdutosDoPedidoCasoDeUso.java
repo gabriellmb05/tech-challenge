@@ -57,7 +57,7 @@ public class ValidaProdutosDoPedidoCasoDeUso implements ValidaProdutosDoPedidoPo
 
         if (!idsFaltantes.isEmpty()) {
             throw new ProdutoNaoEncontradoExcecao(
-                    MessageError.MSG_PRODUTOS_NAO_ENCONTRADOS.getMensagem(),
+                    MessageError.MSG_ERRO_PRODUTO_NAO_ENCONTRADO.getMensagem(),
                     idsFaltantes.stream().toList());
         }
         return produtosExistentes;

@@ -42,7 +42,7 @@ class ManipuladorExcecaoGlobalTest {
     @DisplayName("Dado uma exceção ClienteExistenteExcecao, quando cpf já existente, então deve retornar BAD_REQUEST")
     void dadoClienteExistenteExcecao_quandoManipuladaCpf_entaoDeveRetornarBadRequest() {
         ClienteExistenteExcecao ex =
-                new ClienteExistenteExcecao(MessageError.MSG_ERRO_CPF_JA_CADASTRADO.getMensagem(), "75864522023");
+                new ClienteExistenteExcecao(MessageError.MSG_ERRO_CLIENTE_CPF_JA_CADASTRADO.getMensagem(), "75864522023");
 
         ResponseEntity<DetalhesErrosGerais> response =
                 manipuladorExcecaoGlobal.handleClienteExistenteExcecao(ex, request);
@@ -57,7 +57,7 @@ class ManipuladorExcecaoGlobalTest {
     @DisplayName("Dado uma exceção ClienteExistenteExcecao, quando email já existente, então deve retornar BAD_REQUEST")
     void dadoClienteExistenteExcecao_quandoManipuladaEmail_entaoDeveRetornarBadRequest() {
         ClienteExistenteExcecao ex =
-                new ClienteExistenteExcecao(MessageError.MSG_ERRO_EMAIL_JA_CADASTRADO.getMensagem(), "teste@gmail.com");
+                new ClienteExistenteExcecao(MessageError.MSG_ERRO_CLIENTE_EMAIL_JA_CADASTRADO.getMensagem(), "teste@gmail.com");
 
         ResponseEntity<DetalhesErrosGerais> response =
                 manipuladorExcecaoGlobal.handleClienteExistenteExcecao(ex, request);
@@ -112,7 +112,7 @@ class ManipuladorExcecaoGlobalTest {
     @DisplayName("Dado uma exceção CategoriaNaoEncontradaExcecao, quando manipulada, então deve retornar BAD_REQUEST")
     void dadoCategoriaNaoEncontradaExcecao_quandoManipulada_entaoDeveRetornarBadRequest() {
         CategoriaNaoEncontradaExcecao ex =
-                new CategoriaNaoEncontradaExcecao(MessageError.MSG_ERRO_CATEGORIA_NAO_CADASTRADA.getMensagem(), 1L);
+                new CategoriaNaoEncontradaExcecao(MessageError.MSG_ERRO_PRODUTO_CATEGORIA_NAO_CADASTRADA.getMensagem(), 1L);
 
         ResponseEntity<DetalhesErrosGerais> response =
                 manipuladorExcecaoGlobal.handleCategoriaNaoEncontradaExcecao(ex, request);

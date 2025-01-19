@@ -19,6 +19,6 @@ public class DetalhaPedidoCasoDeUso implements DetalhaPedidoPortaEntrada {
         return detalhaPedidoPortaSaida
                 .detalhaPedido(protocolo)
                 .orElseThrow(() -> new PedidoNaoEncontradoExcecao(
-                        MessageError.MSG_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO.getMensagem(), protocolo));
+                        MessageError.MSG_ERRO_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO.getMensagem(), protocolo));
     }
 }

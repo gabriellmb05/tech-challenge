@@ -49,7 +49,7 @@ public class InserePedidoCasoDeUso implements InserePedidoPortaEntrada {
         return persisteClientePortaSaida
                 .buscaClientePorId(pedido.getCliente().getId())
                 .orElseThrow(() -> new ClienteNaoEncontradoExcecao(
-                        MessageError.MSG_CLIENTE_NAO_ENCONTRATO_PARA_ID.getMensagem(),
+                        MessageError.MSG_ERRO_CLIENTE_NAO_ENCONTRATO_PARA_ID.getMensagem(),
                         pedido.getCliente().getId()));
     }
 
