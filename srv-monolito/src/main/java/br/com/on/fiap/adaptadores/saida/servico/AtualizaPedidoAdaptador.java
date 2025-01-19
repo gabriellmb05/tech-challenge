@@ -6,9 +6,8 @@ import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.PedidoRepositor
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.SituacaoPedido;
 import br.com.on.fiap.hexagono.portas.saida.pedido.AtualizaPedidoPortaSaida;
-import java.util.Optional;
-
 import jakarta.transaction.Transactional;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service

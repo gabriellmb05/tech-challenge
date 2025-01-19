@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PagamentoRespostaIntegracaoDTO {
 
-    private Long id;
+    private String id;
 }
