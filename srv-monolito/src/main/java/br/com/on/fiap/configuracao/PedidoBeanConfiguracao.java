@@ -7,10 +7,7 @@ import br.com.on.fiap.hexagono.portas.entrada.pedido.BuscaPedidosPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pagamento.PersistePagamentoPortaSaida;
-import br.com.on.fiap.hexagono.portas.saida.pedido.BuscaPedidosPortaSaida;
-import br.com.on.fiap.hexagono.portas.saida.pedido.DetalhaPedidoPortaSaida;
-import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoPortaSaida;
-import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoProdutoPortaSaida;
+import br.com.on.fiap.hexagono.portas.saida.pedido.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,12 +19,14 @@ public class PedidoBeanConfiguracao {
             PersisteClientePortaSaida persisteClientePortaSaida,
             PersistePedidoPortaSaida persistePedidoPortaSaida,
             PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida,
-            PersistePagamentoPortaSaida persistePagamentoPortaSaida) {
+            PersistePagamentoPortaSaida persistePagamentoPortaSaida,
+            PersistePedidoPagamentoPortaSaida persistePedidoPagamentoPortaSaida) {
         return new InserePedidoCasoDeUso(
                 persisteClientePortaSaida,
                 persistePedidoPortaSaida,
                 persistePedidoProdutoPortaSaida,
-                persistePagamentoPortaSaida);
+                persistePagamentoPortaSaida,
+                persistePedidoPagamentoPortaSaida);
     }
 
     @Bean

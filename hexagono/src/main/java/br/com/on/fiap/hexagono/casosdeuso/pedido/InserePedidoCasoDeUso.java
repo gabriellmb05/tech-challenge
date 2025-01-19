@@ -9,6 +9,7 @@ import br.com.on.fiap.hexagono.excecao.message.MessageError;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
 import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pagamento.PersistePagamentoPortaSaida;
+import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoPagamentoPortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoPortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoProdutoPortaSaida;
 import java.util.List;
@@ -19,25 +20,28 @@ public class InserePedidoCasoDeUso implements InserePedidoPortaEntrada {
     private final PersistePedidoPortaSaida persistePedidoPortaSaida;
     private final PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida;
     private final PersistePagamentoPortaSaida persistePagamentoPortaSaida;
+    private final PersistePedidoPagamentoPortaSaida persistePedidoPagamentoPortaSaida;
 
     public InserePedidoCasoDeUso(
             PersisteClientePortaSaida persisteClientePortaSaida,
             PersistePedidoPortaSaida persistePedidoPortaSaida,
             PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida,
-            PersistePagamentoPortaSaida persistePagamentoPortaSaida) {
+            PersistePagamentoPortaSaida persistePagamentoPortaSaida,
+            PersistePedidoPagamentoPortaSaida persistePedidoPagamentoPortaSaida) {
         this.persisteClientePortaSaida = persisteClientePortaSaida;
         this.persistePedidoPortaSaida = persistePedidoPortaSaida;
         this.persistePedidoProdutoPortaSaida = persistePedidoProdutoPortaSaida;
         this.persistePagamentoPortaSaida = persistePagamentoPortaSaida;
+        this.persistePedidoPagamentoPortaSaida = persistePedidoPagamentoPortaSaida;
     }
 
     @Override
-    public Pedido inserir(Pedido pedido) {
+    public Pedido inserir(Pedido pedido, Pagamento pagamento) {
         Cliente cliente = buscarCliente(pedido);
         pedido.setCliente(cliente);
         Pedido pedidoSalvo = salvarPedido(pedido);
         vincularProdutosAoPedido(pedidoSalvo, pedido.getRelPedidoProdutos());
-        vincularPedidoAoPagamento(pedidoSalvo, pedido.getPagamento());
+        vincularPedidoAoPagamento(pedidoSalvo, pagamento);
         return pedidoSalvo;
     }
 
@@ -62,6 +66,6 @@ public class InserePedidoCasoDeUso implements InserePedidoPortaEntrada {
     private void vincularPedidoAoPagamento(Pedido pedidoSalvo, Pagamento pagamento) {
         Pagamento pagamentoSalvo = persistePagamentoPortaSaida.salvaPagamento(pagamento);
         pedidoSalvo.setPagamento(pagamentoSalvo);
-        persistePedidoPortaSaida.salvaPedido(pedidoSalvo);
+        persistePedidoPagamentoPortaSaida.salvaPedidoPagamento(pedidoSalvo);
     }
 }

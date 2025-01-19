@@ -11,14 +11,18 @@ public class Pagamento {
     private TipoPagamento tpPagamento;
     private LocalDateTime dhPagamento;
 
-    public Pagamento() {
-    }
+    public Pagamento() {}
 
     public Pagamento(Long id) {
         this.pagId = id;
     }
 
-    public Pagamento(Long pagId, SituacaoPagamento stPagamento, BigDecimal vlCompra, TipoPagamento tpPagamento, LocalDateTime dhPagamento) {
+    public Pagamento(
+            Long pagId,
+            SituacaoPagamento stPagamento,
+            BigDecimal vlCompra,
+            TipoPagamento tpPagamento,
+            LocalDateTime dhPagamento) {
         this.pagId = pagId;
         this.stPagamento = stPagamento;
         this.vlCompra = vlCompra;

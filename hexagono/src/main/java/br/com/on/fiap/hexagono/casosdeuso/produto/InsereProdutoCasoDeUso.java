@@ -19,7 +19,8 @@ public class InsereProdutoCasoDeUso implements InsereProdutoPortaEntrada {
     public Produto inserir(Produto produto) {
         Optional<Produto> produtoBancoDados = persisteProdutoPortaSaida.buscaProdutoPorNome(produto.getNome());
         produtoBancoDados.ifPresent(p -> {
-            throw new ProdutoExistenteExcecao(MessageError.MSG_ERRO_PRODUTO_JA_CADASTRADO.getMensagem(), produto.getNome());
+            throw new ProdutoExistenteExcecao(
+                    MessageError.MSG_ERRO_PRODUTO_JA_CADASTRADO.getMensagem(), produto.getNome());
         });
         return persisteProdutoPortaSaida.salvaProduto(produto);
     }

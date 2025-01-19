@@ -27,6 +27,15 @@ public interface PedidoProdutoSaidaMapeador {
     @Mapping(target = "dataHora", source = "dhPedido")
     Pedido paraPedido(PedidoEntidade pedidoEntidade);
 
+    @Mapping(target = "pedId", source = "id")
+    @Mapping(target = "cliId", source = "cliente")
+    @Mapping(target = "pagId", source = "pagamento")
+    @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.hexagono.dominio.SituacaoPedido.REALIZADO)")
+    @Mapping(target = "nmProtocolo", source = "protocolo")
+    @Mapping(target = "dhPedido", expression = "java(java.time.LocalDateTime.now())")
+    @Mapping(target = "relPedPro", source = "relPedidoProdutos")
+    PedidoEntidade paraEntidadeComPagamento(Pedido pedido);
+
     List<PedidoProdutoEntidade> paraListaEntidade(List<RelPedidoProduto> relPedidoProdutos);
 
     List<RelPedidoProduto> paraListaRelPedidoProduto(List<PedidoProdutoEntidade> relPedidoProdutos);
