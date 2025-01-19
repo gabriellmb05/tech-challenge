@@ -5,6 +5,7 @@ import br.com.on.fiap.hexagono.excecao.ClienteNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.excecao.message.MessageError;
 import br.com.on.fiap.hexagono.portas.entrada.cliente.BuscaClientePorCpfPortaEntrada;
 import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
+import br.com.on.fiap.hexagono.utilitarios.FormatadorCpf;
 
 public class BuscaClienteCasoDeUso implements BuscaClientePorCpfPortaEntrada {
 
@@ -19,6 +20,6 @@ public class BuscaClienteCasoDeUso implements BuscaClientePorCpfPortaEntrada {
         return persisteClientePortaSaida
                 .buscaClientePorCpf(cpf)
                 .orElseThrow(() -> new ClienteNaoEncontradoExcecao(
-                        MessageError.MSG_ERRO_CLIENTE_NAO_CADASTRADO.getMensagem(), cpf));
+                        MessageError.MSG_ERRO_CLIENTE_NAO_CADASTRADO.getMensagem(), FormatadorCpf.formatarCpf(cpf)));
     }
 }
