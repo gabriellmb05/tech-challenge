@@ -30,3 +30,13 @@ info:
 logging:
   level:
     root: ${LOG_LEVEL_ROOT:INFO}
+integracoes:
+  pagamento:
+    url: ${IT_PAGAMENTO}
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+        connectionTimeout: 5000
+        readTimeout: 5000

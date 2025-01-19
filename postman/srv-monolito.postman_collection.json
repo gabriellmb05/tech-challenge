@@ -7,34 +7,34 @@
 	},
 	"item": [
 		{
-			"name": "Clientes",
+			"name": "clientes",
 			"item": [
 				{
-					"name": "Buscar cliente por CPF",
+					"name": "buscar cliente por CPF",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/clientes/43316652616",
+							"raw": "{{BASE_URL}}/clientes/45216784918",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"clientes",
-								"43316652616"
+								"45216784918"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Inserir cliente",
+					"name": "inserir cliente",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Tiago\",\r\n    \"cpf\": \"42202328009\",\r\n    \"email\": \"teste@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"nome\": \"Tiago\",\r\n    \"cpf\": \"226.642.150-60\",\r\n    \"email\": \"teste322222@gmail.com\",\r\n    \"dataNascimento\": \"2000-10-18\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -56,15 +56,15 @@
 			]
 		},
 		{
-			"name": "Produtos",
+			"name": "produtos",
 			"item": [
 				{
-					"name": "Buscar produtos paginado",
+					"name": "buscar produtos paginado",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/produtos?page=0&size=10",
+							"raw": "{{BASE_URL}}/produtos?page=0&size=10&categoria=INVALIDA",
 							"host": [
 								"{{BASE_URL}}"
 							],
@@ -82,8 +82,12 @@
 								},
 								{
 									"key": "sort",
-									"value": null,
+									"value": "",
 									"disabled": true
+								},
+								{
+									"key": "categoria",
+									"value": "INVALIDA"
 								}
 							]
 						}
@@ -91,7 +95,7 @@
 					"response": []
 				},
 				{
-					"name": "Buscar produto por ID",
+					"name": "buscar produto por ID",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -116,13 +120,38 @@
 					"response": []
 				},
 				{
-					"name": "Inserir produto",
+					"name": "busca categorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/produtos/categorias",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"produtos",
+								"categorias"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "inserir produto",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Produto para deletgar\",\r\n    \"categoria\": \"LANCHE\",\r\n    \"preco\": 25.00\r\n}",
+							"raw": "{\r\n    \"nome\": \"Produto para deletgar\",\r\n    \"categoria\": \"inválida\",\r\n    \"preco\": 25.00\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -149,7 +178,7 @@
 					"response": []
 				},
 				{
-					"name": "Atualizar produto",
+					"name": "atualizar produto",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -183,7 +212,7 @@
 					"response": []
 				},
 				{
-					"name": "Deletar produto",
+					"name": "deletar produto",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -219,16 +248,16 @@
 			]
 		},
 		{
-			"name": "Pedidos",
+			"name": "pedidos",
 			"item": [
 				{
-					"name": "Criar pedido",
+					"name": "criar pedido",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"cliente\": 2,\r\n    \"valor\": 2503333.75,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 5,\r\n            \"quantidade\": 1\r\n        },\r\n        {\r\n            \"idProduto\": 1,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 1\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"cliente\": 2,\r\n    \"valor\": 2000,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"vlCompra\": 2,\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -248,12 +277,12 @@
 					"response": []
 				},
 				{
-					"name": "Buscar pedidos paginado",
+					"name": "buscar pedidos paginado",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/pedidos?page=1&size=10&valorMinimo=250.000",
+							"raw": "{{BASE_URL}}/pedidos?page=0&size=100&cpfCliente=45216784918",
 							"host": [
 								"{{BASE_URL}}"
 							],
@@ -263,20 +292,30 @@
 							"query": [
 								{
 									"key": "page",
-									"value": "1"
+									"value": "0"
 								},
 								{
 									"key": "size",
-									"value": "10"
+									"value": "100"
 								},
 								{
 									"key": "sort",
-									"value": "",
+									"value": "valor,asc",
 									"disabled": true
 								},
 								{
-									"key": "valorMinimo",
-									"value": "250.000"
+									"key": "dataInicio",
+									"value": "2025-01-18",
+									"disabled": true
+								},
+								{
+									"key": "dataFim",
+									"value": "2025-01-19",
+									"disabled": true
+								},
+								{
+									"key": "cpfCliente",
+									"value": "45216784918"
 								}
 							]
 						}
@@ -284,18 +323,18 @@
 					"response": []
 				},
 				{
-					"name": "Buscar pedidos por ID",
+					"name": "buscar pedidos por protocolo",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/pedidos/65/detalhar",
+							"raw": "{{BASE_URL}}/pedidos/20250118213724238248/detalhar",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"pedidos",
-								"65",
+								"20250118213724238248",
 								"detalhar"
 							],
 							"query": [
@@ -308,6 +347,68 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "pagamentos",
+			"item": [
+				{
+					"name": "atualizar pagamento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/pagamentos/20250118213724238248",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"pagamentos",
+								"20250118213724238248"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "integração",
+			"item": [
+				{
+					"name": "pagamentos",
+					"item": [
+						{
+							"name": "envia pagamento",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": 1,\r\n    \"payment\": {\r\n        \"type\": \"PIX\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{IT_PAGAMENTOS}}/enviar",
+									"host": [
+										"{{IT_PAGAMENTOS}}"
+									],
+									"path": [
+										"enviar"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
@@ -338,6 +439,11 @@
 		{
 			"key": "BASE_URL",
 			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "IT_PAGAMENTOS",
+			"value": "http://localhost:8081/pagamentos",
 			"type": "string"
 		}
 	]

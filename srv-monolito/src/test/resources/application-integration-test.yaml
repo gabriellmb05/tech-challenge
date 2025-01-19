@@ -13,3 +13,6 @@ spring:
   h2:
     console:
       enabled: true
+integracoes:
+  pagamento:
+    url: http://localhost:8081/pagamentos

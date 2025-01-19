@@ -23,6 +23,6 @@ public class DetalhaPedidoAdaptador implements DetalhaPedidoPortaSaida {
     @Override
     public Optional<Pedido> detalhaPedido(String protocolo) {
         Optional<PedidoEntidade> pedido = pedidoRepositorio.findByNmProtocolo(protocolo);
-        return pedido.map(pedidoProdutoSaidaMapeador::paraPedido);
+        return pedido.map(pedidoProdutoSaidaMapeador::paraPedidoComPagamento);
     }
 }

@@ -17,12 +17,13 @@ public class InsereClienteCasoDeUso implements InsereClientePortaEntrada {
     @Override
     public Cliente inserir(Cliente cliente) {
         persisteClientePortaSaida.buscaClientePorCpf(cliente.getCpf()).ifPresent(p -> {
-            throw new ClienteExistenteExcecao(MessageError.MSG_ERRO_CPF_JA_CADASTRADO.getMensagem(), cliente.getCpf());
+            throw new ClienteExistenteExcecao(
+                    MessageError.MSG_ERRO_CLIENTE_CPF_JA_CADASTRADO.getMensagem(), cliente.getCpf());
         });
 
         persisteClientePortaSaida.buscaClientePorEmail(cliente.getEmail()).ifPresent(p -> {
             throw new ClienteExistenteExcecao(
-                    MessageError.MSG_ERRO_EMAIL_JA_CADASTRADO.getMensagem(), cliente.getEmail());
+                    MessageError.MSG_ERRO_CLIENTE_EMAIL_JA_CADASTRADO.getMensagem(), cliente.getEmail());
         });
         return persisteClientePortaSaida.salvaCliente(cliente);
     }

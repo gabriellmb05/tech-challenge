@@ -16,7 +16,6 @@ public interface PedidoProdutoSaidaMapeador {
     @Mapping(target = "relPedPro", ignore = true)
     @Mapping(target = "cliId", source = "cliente")
     @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.hexagono.dominio.SituacaoPedido.REALIZADO)")
-    @Mapping(target = "vlPedido", source = "valor")
     @Mapping(target = "dhPedido", expression = "java(java.time.LocalDateTime.now())")
     PedidoEntidade paraEntidade(Pedido pedido);
 
@@ -25,9 +24,26 @@ public interface PedidoProdutoSaidaMapeador {
     @Mapping(target = "cliente", source = "cliId")
     @Mapping(target = "situacao", source = "stPedido")
     @Mapping(target = "protocolo", source = "nmProtocolo")
-    @Mapping(target = "valor", source = "vlPedido")
     @Mapping(target = "dataHora", source = "dhPedido")
     Pedido paraPedido(PedidoEntidade pedidoEntidade);
+
+    @Mapping(target = "id", source = "pedId")
+    @Mapping(target = "relPedidoProdutos", source = "relPedPro")
+    @Mapping(target = "cliente", source = "cliId")
+    @Mapping(target = "situacao", source = "stPedido")
+    @Mapping(target = "protocolo", source = "nmProtocolo")
+    @Mapping(target = "dataHora", source = "dhPedido")
+    @Mapping(target = "pagamento", source = "pagId")
+    Pedido paraPedidoComPagamento(PedidoEntidade pedidoEntidade);
+
+    @Mapping(target = "pedId", source = "id")
+    @Mapping(target = "cliId", source = "cliente")
+    @Mapping(target = "pagId", source = "pagamento")
+    @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.hexagono.dominio.SituacaoPedido.REALIZADO)")
+    @Mapping(target = "nmProtocolo", source = "protocolo")
+    @Mapping(target = "dhPedido", expression = "java(java.time.LocalDateTime.now())")
+    @Mapping(target = "relPedPro", source = "relPedidoProdutos")
+    PedidoEntidade paraEntidadeComPagamento(Pedido pedido);
 
     List<PedidoProdutoEntidade> paraListaEntidade(List<RelPedidoProduto> relPedidoProdutos);
 

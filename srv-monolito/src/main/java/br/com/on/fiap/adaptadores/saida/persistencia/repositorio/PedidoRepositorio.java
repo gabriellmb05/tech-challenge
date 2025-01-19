@@ -21,6 +21,7 @@ public interface PedidoRepositorio
                 PedidoEntidade p
             LEFT JOIN FETCH p.relPedPro
             LEFT JOIN FETCH p.cliId
+            LEFT JOIN FETCH p.pagId
             WHERE
                 p.nmProtocolo = :protocolo
             """)

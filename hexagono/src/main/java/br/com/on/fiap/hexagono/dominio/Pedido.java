@@ -1,6 +1,5 @@
 package br.com.on.fiap.hexagono.dominio;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -9,7 +8,7 @@ public class Pedido {
     private Long id;
     private List<RelPedidoProduto> relPedidoProdutos;
     private Cliente cliente;
-    private BigDecimal valor;
+    private Pagamento pagamento;
     private SituacaoPedido situacao;
     private String protocolo;
     private LocalDateTime dataHora;
@@ -20,14 +19,14 @@ public class Pedido {
             Long id,
             List<RelPedidoProduto> relPedidoProdutos,
             Cliente cliente,
-            BigDecimal valor,
+            Pagamento pagamento,
             SituacaoPedido situacao,
             String protocolo,
             LocalDateTime dataHora) {
         this.id = id;
         this.relPedidoProdutos = relPedidoProdutos;
         this.cliente = cliente;
-        this.valor = valor;
+        this.pagamento = pagamento;
         this.situacao = situacao;
         this.protocolo = protocolo;
         this.dataHora = dataHora;
@@ -57,12 +56,12 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public BigDecimal getValor() {
-        return valor;
+    public Pagamento getPagamento() {
+        return pagamento;
     }
 
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
     }
 
     public SituacaoPedido getSituacao() {

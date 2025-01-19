@@ -26,6 +26,14 @@ public enum Categoria {
                 .filter(categoria -> Objects.equals(categoria.getCodigo(), codigo))
                 .findFirst()
                 .orElseThrow(() -> new CategoriaNaoEncontradaExcecao(
-                        MessageError.MSG_ERRO_CATEGORIA_NAO_CADASTRADA.getMensagem(), codigo));
+                        MessageError.MSG_ERRO_PRODUTO_CATEGORIA_NAO_CADASTRADA.getMensagem(), codigo));
+    }
+
+    public static Categoria deString(String categoriaStr) {
+        return Stream.of(Categoria.values())
+                .filter(categoria -> categoria.name().equalsIgnoreCase(categoriaStr))
+                .findFirst()
+                .orElseThrow(() -> new CategoriaNaoEncontradaExcecao(
+                        MessageError.MSG_ERRO_PRODUTO_CATEGORIA_NAO_CADASTRADA.getMensagem(), categoriaStr));
     }
 }

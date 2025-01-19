@@ -1,13 +1,13 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.swagger;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.ProdutoFiltroDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.CategoriaRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSolicitacaoDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedModel;
 import org.springframework.http.ResponseEntity;
@@ -59,5 +59,5 @@ public interface ProdutoControladorSwagger {
 
     @Operation(summary = "Busca categorias", description = "Retorna uma lista de categorias")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Categorias disponíveis")})
-    ResponseEntity<List<String>> buscaCategorias();
+    ResponseEntity<CategoriaRespostaDTO> buscaCategorias();
 }

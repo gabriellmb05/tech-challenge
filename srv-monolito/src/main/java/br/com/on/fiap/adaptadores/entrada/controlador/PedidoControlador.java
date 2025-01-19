@@ -4,9 +4,11 @@ import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.PedidoFiltroDTO
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoDetalhadoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PedidoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PedidoSolicitacaoDTO;
+import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.PagamentoEntradaMapeador;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.PedidoEntradaMapeador;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.filtro.PedidoFiltroEntradaMapeador;
 import br.com.on.fiap.adaptadores.entrada.controlador.swagger.PedidoControladorSwagger;
+import br.com.on.fiap.hexagono.dominio.Pagamento;
 import br.com.on.fiap.hexagono.dominio.Pedido;
 import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
 import br.com.on.fiap.hexagono.portas.entrada.pedido.BuscaPedidosPortaEntrada;
@@ -33,6 +35,7 @@ public class PedidoControlador implements PedidoControladorSwagger {
 
     private final PedidoEntradaMapeador pedidoEntradaMapeador;
     private final PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador;
+    private final PagamentoEntradaMapeador pagamentoEntradaMapeador;
 
     public PedidoControlador(
             InserePedidoPortaEntrada inserePedidoPortaEntrada,
@@ -40,13 +43,15 @@ public class PedidoControlador implements PedidoControladorSwagger {
             DetalhaPedidoPortaEntrada detalhaPedidoPortaEntrada,
             ValidaProdutosDoPedidoPortaEntrada validaProdutosDoPedidoPortaEntrada,
             PedidoEntradaMapeador pedidoEntradaMapeador,
-            PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador) {
+            PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador,
+            PagamentoEntradaMapeador pagamentoEntradaMapeador) {
         this.inserePedidoPortaEntrada = inserePedidoPortaEntrada;
         this.buscaPedidosPortaEntrada = buscaPedidosPortaEntrada;
         this.detalhaPedidoPortaEntrada = detalhaPedidoPortaEntrada;
         this.validaProdutosDoPedidoPortaEntrada = validaProdutosDoPedidoPortaEntrada;
         this.pedidoEntradaMapeador = pedidoEntradaMapeador;
         this.pedidoFiltroEntradaMapeador = pedidoFiltroEntradaMapeador;
+        this.pagamentoEntradaMapeador = pagamentoEntradaMapeador;
     }
 
     @Override
@@ -55,7 +60,8 @@ public class PedidoControlador implements PedidoControladorSwagger {
             @Valid @RequestBody PedidoSolicitacaoDTO pedidoSolicitacaoDTO) {
         Pedido pedidoParaValidar = pedidoEntradaMapeador.paraPedido(pedidoSolicitacaoDTO);
         Pedido pedidoComProdutosValidos = validaProdutosDoPedidoPortaEntrada.validarProdutosDoPedido(pedidoParaValidar);
-        Pedido pedidoPersistido = inserePedidoPortaEntrada.inserir(pedidoComProdutosValidos);
+        Pagamento pagamento = pagamentoEntradaMapeador.paraPagamento(pedidoSolicitacaoDTO.getPagamento());
+        Pedido pedidoPersistido = inserePedidoPortaEntrada.inserir(pedidoComProdutosValidos, pagamento);
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoEntradaMapeador.paraPedidoDTO(pedidoPersistido));
     }
 
