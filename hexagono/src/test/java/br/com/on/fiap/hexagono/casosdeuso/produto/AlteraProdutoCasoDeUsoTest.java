@@ -1,9 +1,9 @@
-package br.com.on.fiap.hexagono.casosdeuso;
+package br.com.on.fiap.hexagono.casosdeuso.produto;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import br.com.on.fiap.hexagono.casosdeuso.produto.AlteraProdutoCasoDeUso;
+import br.com.on.fiap.hexagono.datapool.DataPoolProduto;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.excecao.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.portas.saida.produto.PersisteProdutoPortaSaida;
@@ -28,12 +28,9 @@ class AlteraProdutoCasoDeUsoTest {
     @DisplayName("Dado um produto existente, quando alterar o produto, então ele deve ser atualizado")
     void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado() {
         Long id = 1L;
-        Produto produto = new Produto();
-        produto.setId(id);
-        produto.setNome("Produto 1");
+        Produto produto = DataPoolProduto.produtoExistente(id);
 
-        Produto produtoAlterado = new Produto();
-        produtoAlterado.setId(id);
+        Produto produtoAlterado = DataPoolProduto.produtoExistente(id);
         produtoAlterado.setNome("Produto Alterado");
 
         when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.of(produto));
@@ -51,7 +48,7 @@ class AlteraProdutoCasoDeUsoTest {
     @DisplayName("Dado um produto não existente, quando alterar o produto, então deve lançar uma exceção")
     void dadoProdutoNaoExistente_quandoAlterarProduto_entaoDeveLancarExcecao() {
         Long id = 1L;
-        Produto produto = new Produto();
+        Produto produto = DataPoolProduto.produtoExistente(id);
 
         when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.empty());
 

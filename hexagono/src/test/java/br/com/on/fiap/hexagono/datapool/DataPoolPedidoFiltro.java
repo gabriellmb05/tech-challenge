@@ -1,0 +1,25 @@
+package br.com.on.fiap.hexagono.datapool;
+
+import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
+import java.time.LocalDate;
+
+public class DataPoolPedidoFiltro {
+
+    private DataPoolPedidoFiltro() {}
+
+    public static PedidoFiltro pedidoFiltroComPeriodo(LocalDate dataInicio, LocalDate dataFim) {
+        return new PedidoFiltro(dataInicio, dataFim, null, null);
+    }
+
+    public static PedidoFiltro pedidoFiltroComSituacao(Long situacao) {
+        return new PedidoFiltro(null, null, situacao, null);
+    }
+
+    public static PedidoFiltro pedidoFiltroComCpfCliente(String cpfCliente) {
+        return new PedidoFiltro(null, null, null, cpfCliente);
+    }
+
+    public static PedidoFiltro pedidoFiltroVazio() {
+        return new PedidoFiltro();
+    }
+}
