@@ -76,8 +76,9 @@ public class InserePedidoCasoDeUso implements InserePedidoPortaEntrada {
         AtomicReference<BigDecimal> valorPedido = new AtomicReference<>(BigDecimal.ZERO);
 
         pedidoSalvo.getRelPedidoProdutos().forEach(rel -> {
-            valorPedido.set(valorPedido.get().add(rel.getProduto().getPreco()
-                    .multiply(BigDecimal.valueOf(rel.getQuantidade()))));
+            valorPedido.set(valorPedido
+                    .get()
+                    .add(rel.getProduto().getPreco().multiply(BigDecimal.valueOf(rel.getQuantidade()))));
         });
 
         return valorPedido.get();
