@@ -4,5 +4,5 @@ import br.com.on.fiap.hexagono.dominio.Pedido;
 import java.util.Optional;
 
 public interface AtualizaPedidoPortaSaida {
-    void atualizaPedido(Pedido pedido);
+    Optional<Pedido> atualizarPedido(String protocolo);
 }
