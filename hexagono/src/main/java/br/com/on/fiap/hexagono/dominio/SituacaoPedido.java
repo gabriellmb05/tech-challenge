@@ -17,18 +17,18 @@ public enum SituacaoPedido {
         this.ordem = ordem;
     }
 
+    public static SituacaoPedido deCodigo(Integer codigo) {
+        return Stream.of(SituacaoPedido.values())
+                .filter(situacaoPedido -> Objects.equals(situacaoPedido.getCodigo(), codigo))
+                .findFirst()
+                .orElse(null);
+    }
+
     public Integer getCodigo() {
         return codigo;
     }
 
     public Integer getOrdem() {
         return ordem;
-    }
-
-    public static SituacaoPedido deCodigo(Integer codigo) {
-        return Stream.of(SituacaoPedido.values())
-                .filter(situacaoPedido -> Objects.equals(situacaoPedido.getCodigo(), codigo))
-                .findFirst()
-                .orElse(null);
     }
 }

@@ -14,14 +14,14 @@ public enum SituacaoPagamento {
         this.codigo = codigo;
     }
 
-    public Integer getCodigo() {
-        return codigo;
-    }
-
     public static SituacaoPagamento deCodigo(Integer codigo) {
         return Stream.of(SituacaoPagamento.values())
                 .filter(situacaoPagamento -> Objects.equals(situacaoPagamento.getCodigo(), codigo))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public Integer getCodigo() {
+        return codigo;
     }
 }

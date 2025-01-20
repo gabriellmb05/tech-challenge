@@ -17,10 +17,6 @@ public enum Categoria {
         this.codigo = codigo;
     }
 
-    public Integer getCodigo() {
-        return codigo;
-    }
-
     public static Categoria deCodigo(Integer codigo) {
         return Stream.of(Categoria.values())
                 .filter(categoria -> Objects.equals(categoria.getCodigo(), codigo))
@@ -35,5 +31,9 @@ public enum Categoria {
                 .findFirst()
                 .orElseThrow(() -> new CategoriaNaoEncontradaExcecao(
                         MessageError.MSG_ERRO_PRODUTO_CATEGORIA_NAO_CADASTRADA.getMensagem(), categoriaStr));
+    }
+
+    public Integer getCodigo() {
+        return codigo;
     }
 }

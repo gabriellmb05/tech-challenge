@@ -1,6 +1,6 @@
 package br.com.on.fiap.hexagono.dominio;
 
-import br.com.on.fiap.hexagono.excecao.CategoriaNaoEncontradaExcecao;
+import br.com.on.fiap.hexagono.excecao.TipoPagamentoNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.excecao.message.MessageError;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -18,19 +18,19 @@ public enum TipoPagamento {
         this.descricao = descricao;
     }
 
+    public static TipoPagamento deCodigo(Integer codigo) {
+        return Stream.of(TipoPagamento.values())
+                .filter(tipoPagamento -> Objects.equals(tipoPagamento.getCodigo(), codigo))
+                .findFirst()
+                .orElseThrow(() -> new TipoPagamentoNaoEncontradoExcecao(
+                        MessageError.MSG_ERRO_PAGAMENTO_TIPO_PAGAMENTO_NAO_ENCONTRADO.getMensagem(), codigo));
+    }
+
     public Integer getCodigo() {
         return codigo;
     }
 
     public String getDescricao() {
         return descricao;
-    }
-
-    public static TipoPagamento deCodigo(Integer codigo) {
-        return Stream.of(TipoPagamento.values())
-                .filter(tipoPagamento -> Objects.equals(tipoPagamento.getCodigo(), codigo))
-                .findFirst()
-                .orElseThrow(() -> new CategoriaNaoEncontradaExcecao(
-                        MessageError.MSG_ERRO_PAGAMENTO_TIPO_PAGAMENTO_NAO_ENCONTRADO.getMensagem(), codigo));
     }
 }

@@ -1,10 +1,10 @@
-package br.com.on.fiap.hexagono.casosdeuso;
+package br.com.on.fiap.hexagono.casosdeuso.produto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-import br.com.on.fiap.hexagono.casosdeuso.produto.InsereProdutoCasoDeUso;
+import br.com.on.fiap.hexagono.datapool.DataPoolProduto;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.excecao.ProdutoExistenteExcecao;
 import br.com.on.fiap.hexagono.portas.saida.produto.PersisteProdutoPortaSaida;
@@ -28,8 +28,7 @@ class InsereProdutoCasoDeUsoTest {
     @Test
     @DisplayName("Dado um produto novo, quando inserir o produto, então ele deve ser salvo")
     void dadoProdutoNovo_quandoInserirProduto_entaoDeveSerSalvo() {
-        Produto produto = new Produto();
-        produto.setNome("Produto Teste");
+        Produto produto = DataPoolProduto.produtoNovo();
         when(persisteProdutoPortaSaida.buscaProdutoPorNome(produto.getNome())).thenReturn(Optional.empty());
         when(persisteProdutoPortaSaida.salvaProduto(produto)).thenReturn(produto);
 
@@ -43,8 +42,7 @@ class InsereProdutoCasoDeUsoTest {
     @Test
     @DisplayName("Dado um produto existente, quando inserir o produto, então deve lançar uma exceção")
     void dadoProdutoExistente_quandoInserirProduto_entaoDeveLancarExcecao() {
-        Produto produto = new Produto();
-        produto.setNome("Produto Teste");
+        Produto produto = DataPoolProduto.produtoNovo();
         when(persisteProdutoPortaSaida.buscaProdutoPorNome(produto.getNome())).thenReturn(Optional.of(produto));
 
         assertThrows(ProdutoExistenteExcecao.class, () -> insereProdutoCasoDeUso.inserir(produto));

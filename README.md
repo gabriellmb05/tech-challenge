@@ -47,6 +47,7 @@ projeto:
 | `DB_DRIVER_CLASS_NAME` | Classe do driver do banco de dados  |
 | `FLYWAY_ENABLE`        | Habilita ou desabilita o Flyway     |
 | `LOG_LEVEL_ROOT`       | Nível de log da aplicação           |
+| `IT_PAGAMENTO`         | Integração com api-pagamentos       |
 
 Exemplo de configuração do arquivo `.env`:
 
@@ -58,6 +59,7 @@ DB_URL=jdbc:postgresql://localhost:5432/tech-challenge
 DB_DRIVER_CLASS_NAME=org.postgresql.Driver
 FLYWAY_ENABLE=true
 LOG_LEVEL_ROOT=INFO
+IT_PAGAMENTO=http://localhost:8081/api
 ```
 
 ## Documentação da API
