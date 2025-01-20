@@ -39,6 +39,16 @@ public class DataPoolPagamento {
         return pagamento;
     }
 
+    public static Pagamento pagamentoValidoSemData() {
+        Pagamento pagamento = new Pagamento();
+        pagamento.setPagId(1L);
+        pagamento.setStPagamento(SituacaoPagamento.APROVADO);
+        pagamento.setVlCompra(new BigDecimal("200.00"));
+        pagamento.setTpPagamento(TipoPagamento.CREDITO);
+        pagamento.setDhPagamento(null);
+        return pagamento;
+    }
+
     public static Pagamento pagamentoPendente() {
         Pagamento pagamento = new Pagamento();
         pagamento.setPagId(3L);
