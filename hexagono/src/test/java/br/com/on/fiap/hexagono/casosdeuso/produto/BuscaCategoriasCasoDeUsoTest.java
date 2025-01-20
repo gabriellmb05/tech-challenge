@@ -1,9 +1,8 @@
-package br.com.on.fiap.hexagono.casosdeuso;
+package br.com.on.fiap.hexagono.casosdeuso.produto;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import br.com.on.fiap.hexagono.casosdeuso.produto.BuscaCategoriasCasoDeUso;
 import br.com.on.fiap.hexagono.dominio.Categoria;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
