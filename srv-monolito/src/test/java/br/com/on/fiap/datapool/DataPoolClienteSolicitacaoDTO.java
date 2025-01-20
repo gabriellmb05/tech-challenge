@@ -33,4 +33,8 @@ public class DataPoolClienteSolicitacaoDTO {
     public static ClienteSolicitacaoDTO gerarComCpfEmail(String cpf, String email) {
         return construirCliente(faker.name().fullName(), cpf, email, LocalDate.now());
     }
+
+    public static ClienteSolicitacaoDTO gerarCliente() {
+        return construirCliente("Elmo Cameron", "43316652616", "lectus@yahoo.edu", LocalDate.now());
+    }
 }
