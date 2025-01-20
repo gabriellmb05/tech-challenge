@@ -12,7 +12,9 @@ import br.com.on.fiap.hexagono.portas.saida.pagamento.PersistePagamentoPortaSaid
 import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoPagamentoPortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoPortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoProdutoPortaSaida;
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class InserePedidoCasoDeUso implements InserePedidoPortaEntrada {
 
@@ -64,8 +66,20 @@ public class InserePedidoCasoDeUso implements InserePedidoPortaEntrada {
     }
 
     private void vincularPedidoAoPagamento(Pedido pedidoSalvo, Pagamento pagamento) {
+        pagamento.setVlCompra(definirValorPedido(pedidoSalvo));
         Pagamento pagamentoSalvo = persistePagamentoPortaSaida.salvaPagamento(pagamento);
         pedidoSalvo.setPagamento(pagamentoSalvo);
         persistePedidoPagamentoPortaSaida.salvaPedidoPagamento(pedidoSalvo);
+    }
+
+    private BigDecimal definirValorPedido(Pedido pedidoSalvo) {
+        AtomicReference<BigDecimal> valorPedido = new AtomicReference<>(BigDecimal.ZERO);
+
+        pedidoSalvo.getRelPedidoProdutos().forEach(rel -> {
+            valorPedido.set(valorPedido.get().add(rel.getProduto().getPreco()
+                    .multiply(BigDecimal.valueOf(rel.getQuantidade()))));
+        });
+
+        return valorPedido.get();
     }
 }

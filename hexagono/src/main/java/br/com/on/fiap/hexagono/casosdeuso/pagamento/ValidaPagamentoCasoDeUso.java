@@ -14,7 +14,9 @@ public class ValidaPagamentoCasoDeUso implements ValidaPagamentoPortaEntrada {
         if (pagamento.getStPagamento().equals(SituacaoPagamento.APROVADO)
                 && Objects.nonNull(pagamento.getDhPagamento())) {
             throw new PagamentoJaRealizadoExcecao(
-                    MessageError.MSG_ERRO_PAGAMENTO_JA_REALIZADO_PARA_PEDIDO.getMensagem(), pagamento.getVlCompra(), nrProtocolo);
+                    MessageError.MSG_ERRO_PAGAMENTO_JA_REALIZADO_PARA_PEDIDO.getMensagem(),
+                    pagamento.getVlCompra(),
+                    nrProtocolo);
         }
     }
 }
