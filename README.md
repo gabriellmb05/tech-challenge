@@ -47,6 +47,7 @@ projeto:
 | `DB_DRIVER_CLASS_NAME` | Classe do driver do banco de dados  |
 | `FLYWAY_ENABLE`        | Habilita ou desabilita o Flyway     |
 | `LOG_LEVEL_ROOT`       | Nível de log da aplicação           |
+| `IT_PAGAMENTO`         | Integração com api-pagamentos       |
 
 Exemplo de configuração do arquivo `.env`:
 
