@@ -59,6 +59,7 @@ DB_URL=jdbc:postgresql://localhost:5432/tech-challenge
 DB_DRIVER_CLASS_NAME=org.postgresql.Driver
 FLYWAY_ENABLE=true
 LOG_LEVEL_ROOT=INFO
+IT_PAGAMENTO=http://localhost:8081/api
 ```
 
 ## Documentação da API
