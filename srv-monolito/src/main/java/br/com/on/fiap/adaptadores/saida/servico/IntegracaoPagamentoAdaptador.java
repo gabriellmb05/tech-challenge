@@ -33,14 +33,14 @@ public class IntegracaoPagamentoAdaptador implements IntegracaoPagamentoSaida {
             } else {
                 log.error(res.getStatusCode());
                 throw new IntegracaoPagamentoExcecao(
-                        MessageError.MSG_ERRO_INTEGRACAO_INESPERADO.getMensagem(), res.getStatusCode());
+                        MessageError.MSG_ERRO_INTEGRACAO_INESPERADO.getMensagem());
             }
         } catch (IntegracaoPagamentoExcecao e) {
             throw e;
         } catch (Exception e) {
             log.error(e.getMessage());
             throw new IntegracaoPagamentoExcecao(
-                    MessageError.MSG_ERRO_INTEGRACAO_INESPERADO.getMensagem(), e.getMessage());
+                    MessageError.MSG_ERRO_INTEGRACAO_INESPERADO.getMensagem());
         }
     }
 }

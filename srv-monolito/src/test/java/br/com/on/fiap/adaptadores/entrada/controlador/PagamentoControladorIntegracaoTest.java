@@ -1,26 +1,38 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
+import static org.hamcrest.Matchers.notNullValue;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import br.com.on.fiap.adaptadores.integracao.IntegracaoPagamento;
+import br.com.on.fiap.adaptadores.integracao.solicitacao.PagamentoRespostaIntegracaoDTO;
 import br.com.on.fiap.datapool.DataPoolPagamentoSolicitacaoDTO;
 import br.com.on.fiap.datapool.DataPoolPedidoSolicitacaoDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.hamcrest.Matchers.notNullValue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -33,6 +45,25 @@ class PagamentoControladorIntegracaoTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    private MockWebServer mockWebServer;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        mockWebServer = new MockWebServer();
+        mockWebServer.start();
+
+        // Configura a resposta simulada do MockWebServer
+        mockWebServer.enqueue(new MockResponse()
+                .setBody("{\"status\":\"SUCCESS\"}")
+                .addHeader("Content-Type", "application/json")
+                .setResponseCode(200));
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        mockWebServer.shutdown();
+    }
 
     @Test
     @Order(1)
@@ -52,14 +83,39 @@ class PagamentoControladorIntegracaoTest {
                 .split("\"protocolo\":\"")[1]
                 .split("\"")[0];
 
-        mockMvc.perform(post("/pagamentos/{protocolo}", protocolo)
+        mockMvc.perform(put("/pagamentos/{protocolo}", protocolo)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(
-                                DataPoolPagamentoSolicitacaoDTO.construirPagamento(1))))
+                        .content(
+                                objectMapper.writeValueAsString(DataPoolPagamentoSolicitacaoDTO.construirPagamento(1))))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.situacao").value("APROVADO"))
                 .andExpect(jsonPath("$.dhPagamento").value(notNullValue()))
                 .andReturn();
     }
 
+    @Test
+    @Order(2)
+    @Transactional
+    @DisplayName(
+            "Dado um pedido realizado, quando atualizar pagamento e api externa estiver indisponivel, então deve ser retornado erro")
+    void dadoPedidoRealizado_quandoAtualizarPagamentoEApiExternaIndisponivel_entaoDeveSerRetornadoErro() throws Exception {
+        MvcResult postResult = mockMvc.perform(post("/pedidos")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(DataPoolPedidoSolicitacaoDTO.construirPedido())))
+                .andExpect(status().isCreated())
+                .andReturn();
+
+        String protocolo = postResult
+                .getResponse()
+                .getContentAsString()
+                .split("\"protocolo\":\"")[1]
+                .split("\"")[0];
+
+        mockMvc.perform(put("/pagamentos/{protocolo}", protocolo)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(
+                                objectMapper.writeValueAsString(DataPoolPagamentoSolicitacaoDTO.construirPagamento(1))))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.errors[0]").value("Erro ao realizar pagamento, tente novamente. Se o erro persistir entre em contato com o provedor."));
+    }
 }
