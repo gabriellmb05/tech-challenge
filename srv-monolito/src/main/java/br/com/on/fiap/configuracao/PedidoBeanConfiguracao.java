@@ -43,7 +43,8 @@ public class PedidoBeanConfiguracao {
     }
 
     @Bean
-    public AtualizaPedidoPortaEntrada atualizaPedido(AtualizaPedidoPortaSaida atualizaPedidoPortaSaida) {
-        return new AtualizaPedidoCasoDeUso(atualizaPedidoPortaSaida);
+    public AtualizaPedidoPortaEntrada atualizaPedido(
+            AtualizaPedidoPortaSaida atualizaPedidoPortaSaida, DetalhaPedidoPortaEntrada detalhaPedidoCasoDeUso) {
+        return new AtualizaPedidoCasoDeUso(atualizaPedidoPortaSaida, detalhaPedidoCasoDeUso);
     }
 }
