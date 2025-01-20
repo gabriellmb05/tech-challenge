@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.DisplayName;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -33,6 +34,7 @@ class BuscaPedidosCasoDeUsoTest {
     private BuscaPedidosCasoDeUso buscaPedidosCasoDeUso;
 
     @Test
+    @DisplayName("Dado um filtro com data de início e fim, ao buscar pedidos, os pedidos devem ser filtrados pelo período")
     void dadoFiltroComDataInicioEDataFim_quandoBuscarPedidos_entaoPedidosDevemSerFiltradosPorPeriodo() {
         LocalDate dataInicio = LocalDate.of(2025, 1, 1);
         LocalDate dataFim = LocalDate.of(2025, 1, 31);
@@ -53,6 +55,7 @@ class BuscaPedidosCasoDeUsoTest {
     }
 
     @Test
+    @DisplayName("Dado um filtro com situação, ao buscar pedidos, os pedidos devem ser filtrados pela situação")
     void dadoFiltroComSituacao_quandoBuscarPedidos_entaoPedidosDevemSerFiltradosPorSituacao() {
         SituacaoPedido situacao = SituacaoPedido.deCodigo(1);
         PedidoFiltro filtro = DataPoolPedidoFiltro.pedidoFiltroComSituacao(
@@ -74,6 +77,7 @@ class BuscaPedidosCasoDeUsoTest {
     }
 
     @Test
+    @DisplayName("Dado um filtro com CPF de cliente, ao buscar pedidos, os pedidos devem ser filtrados pelo CPF do cliente")
     void dadoFiltroComCpfCliente_quandoBuscarPedidos_entaoPedidosDevemSerFiltradosPorCpfCliente() {
         String cpfCliente = "12345678900";
         PedidoFiltro filtro = DataPoolPedidoFiltro.pedidoFiltroComCpfCliente(cpfCliente);
@@ -92,6 +96,7 @@ class BuscaPedidosCasoDeUsoTest {
     }
 
     @Test
+    @DisplayName("Dado um filtro vazio, ao buscar pedidos, todos os pedidos devem ser retornados")
     void dadoFiltroVazio_quandoBuscarPedidos_entaoTodosOsPedidosDevemSerRetornados() {
         PedidoFiltro filtro = DataPoolPedidoFiltro.pedidoFiltroVazio();
 

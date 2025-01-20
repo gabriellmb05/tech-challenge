@@ -15,6 +15,7 @@ import br.com.on.fiap.hexagono.excecao.message.MessageError;
 import br.com.on.fiap.hexagono.excecao.message.MessageManager;
 import br.com.on.fiap.hexagono.portas.saida.pedido.AtualizaPedidoPortaSaida;
 import java.util.Optional;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,6 +32,7 @@ class AtualizaPedidoCasoDeUsoTest {
     private AtualizaPedidoCasoDeUso atualizaPedidoCasoDeUso;
 
     @Test
+    @DisplayName("Dado um pedido existente, ao atualizar, deve retornar o pedido atualizado")
     void dadoPedidoExistente_quandoAtualizarPedido_entaoDeveRetornarPedidoAtualizado() {
         String protocolo = "12345";
         Pedido pedidoExistente = DataPoolPedido.pedidoComProtocolo(protocolo);
@@ -45,6 +47,7 @@ class AtualizaPedidoCasoDeUsoTest {
     }
 
     @Test
+    @DisplayName("Dado um pedido não existente, ao atualizar, deve lançar exceção PedidoNaoEncontradoExcecao")
     void dadoPedidoNaoExistente_quandoAtualizarPedido_entaoDeveLancarExcecao() {
         String protocolo = "99999";
 
@@ -61,6 +64,7 @@ class AtualizaPedidoCasoDeUsoTest {
     }
 
     @Test
+    @DisplayName("Dado um pedido com pagamento existente, ao atualizar, deve retornar o pedido atualizado com pagamento")
     void dadoPedidoComPagamentoExistente_quandoAtualizarPedido_entaoDeveRetornarPedidoAtualizado() {
         Pagamento pagamento = DataPoolPagamento.pagamentoExistente(1L);
 
@@ -79,6 +83,7 @@ class AtualizaPedidoCasoDeUsoTest {
     }
 
     @Test
+    @DisplayName("Dado um pedido com pagamento não efetuado, ao atualizar, deve lançar exceção PedidoNaoEncontradoExcecao")
     void dadoPedidoComPagamentoNaoEfetuado_quandoAtualizarPedido_entaoDeveLancarExcecao() {
         Pagamento pagamento =
                 DataPoolPagamento.pagamentoComTipoESituacao(2L, TipoPagamento.DEBITO, SituacaoPagamento.PENDENTE);

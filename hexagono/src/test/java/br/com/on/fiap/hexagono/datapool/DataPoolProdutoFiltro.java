@@ -11,14 +11,6 @@ public class DataPoolProdutoFiltro {
         return new ProdutoFiltro();
     }
 
-    public static ProdutoFiltro filtroPorNome(String nome) {
-        return new ProdutoFiltro(nome, null);
-    }
-
-    public static ProdutoFiltro filtroPorCategoria(Categoria categoria) {
-        return new ProdutoFiltro(null, categoria);
-    }
-
     public static ProdutoFiltro filtroPorNomeECategoria(String nome, Categoria categoria) {
         return new ProdutoFiltro(nome, categoria);
     }

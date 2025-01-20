@@ -7,11 +7,6 @@ public class DataPoolPedidoFiltro {
 
     private DataPoolPedidoFiltro() {}
 
-    public static PedidoFiltro pedidoFiltroComParametros(
-            LocalDate dataInicio, LocalDate dataFim, Long situacao, String cpfCliente) {
-        return new PedidoFiltro(dataInicio, dataFim, situacao, cpfCliente);
-    }
-
     public static PedidoFiltro pedidoFiltroComPeriodo(LocalDate dataInicio, LocalDate dataFim) {
         return new PedidoFiltro(dataInicio, dataFim, null, null);
     }

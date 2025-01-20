@@ -38,4 +38,34 @@ public class DataPoolPagamento {
         pagamento.setDhPagamento(LocalDateTime.now());
         return pagamento;
     }
+
+    public static Pagamento pagamentoPendente() {
+        Pagamento pagamento = new Pagamento();
+        pagamento.setPagId(3L);
+        pagamento.setStPagamento(SituacaoPagamento.PENDENTE);
+        pagamento.setVlCompra(new BigDecimal("50.00"));
+        pagamento.setTpPagamento(TipoPagamento.DEBITO);
+        pagamento.setDhPagamento(null);
+        return pagamento;
+    }
+
+    public static Pagamento pagamentoParaAtualizacao() {
+        Pagamento pagamento = new Pagamento();
+        pagamento.setPagId(1L);
+        pagamento.setStPagamento(SituacaoPagamento.PENDENTE);
+        pagamento.setVlCompra(new BigDecimal("500.00"));
+        pagamento.setTpPagamento(TipoPagamento.CREDITO);
+        pagamento.setDhPagamento(null);
+        return pagamento;
+    }
+
+    public static Pagamento pagamentoFinalizado() {
+        Pagamento pagamento = new Pagamento();
+        pagamento.setPagId(2L);
+        pagamento.setStPagamento(SituacaoPagamento.APROVADO);
+        pagamento.setVlCompra(new BigDecimal("300.00"));
+        pagamento.setTpPagamento(TipoPagamento.PIX);
+        pagamento.setDhPagamento(LocalDateTime.now());
+        return pagamento;
+    }
 }

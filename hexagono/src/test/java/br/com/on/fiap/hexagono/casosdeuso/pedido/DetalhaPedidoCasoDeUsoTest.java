@@ -10,6 +10,7 @@ import br.com.on.fiap.hexagono.excecao.PedidoNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.portas.saida.pedido.DetalhaPedidoPortaSaida;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.DisplayName;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -24,6 +25,7 @@ class DetalhaPedidoCasoDeUsoTest {
     private DetalhaPedidoCasoDeUso detalhaPedidoCasoDeUso;
 
     @Test
+    @DisplayName("Dado um protocolo válido, ao detalhar o pedido, o pedido deve ser retornado")
     void dadoProtocoloValido_quandoDetalharPedido_entaoPedidoDeveSerRetornado() {
         String protocolo = "20250118213724238248";
         Pedido pedido = DataPoolPedido.pedidoExistente(1L);
@@ -38,7 +40,8 @@ class DetalhaPedidoCasoDeUsoTest {
     }
 
     @Test
-    void dadoProtocoloInvalido_quandoDetalharPedido_entaoPedidoNaoEncontradoExcecaoDeveSerLançada() {
+    @DisplayName("Dado um protocolo inválido, ao detalhar o pedido, deve lançar a exceção PedidoNaoEncontradoExcecao")
+    void dadoProtocoloInvalido_quandoDetalharPedido_entaoPedidoNaoEncontradoExcecaoDeveSerLancada() {
         String protocoloInvalido = "PROTOCOLO_INEXISTENTE";
 
         when(detalhaPedidoPortaSaida.detalhaPedido(protocoloInvalido)).thenReturn(java.util.Optional.empty());
