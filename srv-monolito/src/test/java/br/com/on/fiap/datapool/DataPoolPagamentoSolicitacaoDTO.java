@@ -5,6 +5,8 @@ import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.PagamentoS
 public class DataPoolPagamentoSolicitacaoDTO {
 
     public static PagamentoSolicitacaoDTO construirPagamento(Integer tpPagamento) {
-        return PagamentoSolicitacaoDTO.builder().tpPagamento(tpPagamento).build();
+        return PagamentoSolicitacaoDTO.builder()
+                .tpPagamento(tpPagamento)
+                .build();
     }
 }
