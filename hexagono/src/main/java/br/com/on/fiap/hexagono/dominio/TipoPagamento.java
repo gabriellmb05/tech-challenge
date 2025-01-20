@@ -18,19 +18,19 @@ public enum TipoPagamento {
         this.descricao = descricao;
     }
 
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
     public static TipoPagamento deCodigo(Integer codigo) {
         return Stream.of(TipoPagamento.values())
                 .filter(tipoPagamento -> Objects.equals(tipoPagamento.getCodigo(), codigo))
                 .findFirst()
                 .orElseThrow(() -> new CategoriaNaoEncontradaExcecao(
                         MessageError.MSG_ERRO_PAGAMENTO_TIPO_PAGAMENTO_NAO_ENCONTRADO.getMensagem(), codigo));
+    }
+
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 }

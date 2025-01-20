@@ -1,0 +1,101 @@
+package br.com.on.fiap.hexagono.casosdeuso.pedido;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import br.com.on.fiap.hexagono.datapool.DataPoolPagamento;
+import br.com.on.fiap.hexagono.datapool.DataPoolPedido;
+import br.com.on.fiap.hexagono.dominio.Pagamento;
+import br.com.on.fiap.hexagono.dominio.Pedido;
+import br.com.on.fiap.hexagono.dominio.SituacaoPagamento;
+import br.com.on.fiap.hexagono.dominio.TipoPagamento;
+import br.com.on.fiap.hexagono.excecao.PedidoNaoEncontradoExcecao;
+import br.com.on.fiap.hexagono.excecao.message.MessageError;
+import br.com.on.fiap.hexagono.excecao.message.MessageManager;
+import br.com.on.fiap.hexagono.portas.saida.pedido.AtualizaPedidoPortaSaida;
+import java.util.Optional;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+@ExtendWith(MockitoExtension.class)
+class AtualizaPedidoCasoDeUsoTest {
+
+    @Mock
+    private AtualizaPedidoPortaSaida atualizaPedidoPortaSaida;
+
+    @InjectMocks
+    private AtualizaPedidoCasoDeUso atualizaPedidoCasoDeUso;
+
+    @Test
+    void dadoPedidoExistente_quandoAtualizarPedido_entaoDeveRetornarPedidoAtualizado() {
+        String protocolo = "12345";
+        Pedido pedidoExistente = DataPoolPedido.pedidoComProtocolo(protocolo);
+
+        when(atualizaPedidoPortaSaida.atualizarPedido(protocolo)).thenReturn(Optional.of(pedidoExistente));
+
+        Pedido pedidoAtualizado = atualizaPedidoCasoDeUso.atualizarPedido(protocolo);
+
+        assertNotNull(pedidoAtualizado);
+        assertEquals(protocolo, pedidoAtualizado.getProtocolo());
+        verify(atualizaPedidoPortaSaida).atualizarPedido(protocolo);
+    }
+
+    @Test
+    void dadoPedidoNaoExistente_quandoAtualizarPedido_entaoDeveLancarExcecao() {
+        String protocolo = "99999";
+
+        when(atualizaPedidoPortaSaida.atualizarPedido(protocolo)).thenReturn(Optional.empty());
+
+        PedidoNaoEncontradoExcecao exception = assertThrows(
+                PedidoNaoEncontradoExcecao.class, () -> atualizaPedidoCasoDeUso.atualizarPedido(protocolo));
+
+        assertEquals(
+                MessageManager.getMessage(
+                        MessageError.MSG_ERRO_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO.getMensagem(), protocolo),
+                exception.getMessage());
+        verify(atualizaPedidoPortaSaida).atualizarPedido(protocolo);
+    }
+
+    @Test
+    void dadoPedidoComPagamentoExistente_quandoAtualizarPedido_entaoDeveRetornarPedidoAtualizado() {
+        Pagamento pagamento = DataPoolPagamento.pagamentoExistente(1L);
+
+        String protocolo = "12345";
+        Pedido pedidoExistente = DataPoolPedido.pedidoComProtocolo(protocolo);
+        pedidoExistente.setPagamento(pagamento);
+
+        when(atualizaPedidoPortaSaida.atualizarPedido(protocolo)).thenReturn(Optional.of(pedidoExistente));
+
+        Pedido pedidoAtualizado = atualizaPedidoCasoDeUso.atualizarPedido(protocolo);
+
+        assertNotNull(pedidoAtualizado);
+        assertEquals(protocolo, pedidoAtualizado.getProtocolo());
+        assertEquals(pagamento.getPagId(), pedidoAtualizado.getPagamento().getPagId());
+        verify(atualizaPedidoPortaSaida).atualizarPedido(protocolo);
+    }
+
+    @Test
+    void dadoPedidoComPagamentoNaoEfetuado_quandoAtualizarPedido_entaoDeveLancarExcecao() {
+        Pagamento pagamento =
+                DataPoolPagamento.pagamentoComTipoESituacao(2L, TipoPagamento.DEBITO, SituacaoPagamento.PENDENTE);
+
+        String protocolo = "99999";
+        Pedido pedidoExistente = DataPoolPedido.pedidoComProtocolo(protocolo);
+        pedidoExistente.setPagamento(pagamento);
+
+        when(atualizaPedidoPortaSaida.atualizarPedido(protocolo)).thenReturn(Optional.empty());
+
+        PedidoNaoEncontradoExcecao exception = assertThrows(
+                PedidoNaoEncontradoExcecao.class, () -> atualizaPedidoCasoDeUso.atualizarPedido(protocolo));
+
+        assertEquals(
+                MessageManager.getMessage(
+                        MessageError.MSG_ERRO_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO.getMensagem(), protocolo),
+                exception.getMessage());
+        verify(atualizaPedidoPortaSaida).atualizarPedido(protocolo);
+    }
+}
