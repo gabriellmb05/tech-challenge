@@ -64,7 +64,8 @@ class AtualizaPedidoCasoDeUsoTest {
     }
 
     @Test
-    @DisplayName("Dado um pedido com pagamento existente, ao atualizar, deve retornar o pedido atualizado com pagamento")
+    @DisplayName(
+            "Dado um pedido com pagamento existente, ao atualizar, deve retornar o pedido atualizado com pagamento")
     void dadoPedidoComPagamentoExistente_quandoAtualizarPedido_entaoDeveRetornarPedidoAtualizado() {
         Pagamento pagamento = DataPoolPagamento.pagamentoExistente(1L);
 
@@ -83,7 +84,8 @@ class AtualizaPedidoCasoDeUsoTest {
     }
 
     @Test
-    @DisplayName("Dado um pedido com pagamento não efetuado, ao atualizar, deve lançar exceção PedidoNaoEncontradoExcecao")
+    @DisplayName(
+            "Dado um pedido com pagamento não efetuado, ao atualizar, deve lançar exceção PedidoNaoEncontradoExcecao")
     void dadoPedidoComPagamentoNaoEfetuado_quandoAtualizarPedido_entaoDeveLancarExcecao() {
         Pagamento pagamento =
                 DataPoolPagamento.pagamentoComTipoESituacao(2L, TipoPagamento.DEBITO, SituacaoPagamento.PENDENTE);

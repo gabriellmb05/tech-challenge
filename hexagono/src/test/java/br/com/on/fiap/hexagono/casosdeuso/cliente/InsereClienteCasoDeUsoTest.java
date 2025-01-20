@@ -1,20 +1,19 @@
 package br.com.on.fiap.hexagono.casosdeuso.cliente;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 import br.com.on.fiap.hexagono.datapool.DataPoolCliente;
 import br.com.on.fiap.hexagono.dominio.Cliente;
 import br.com.on.fiap.hexagono.excecao.ClienteExistenteExcecao;
 import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
+import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class InsereClienteCasoDeUsoTest {
@@ -46,13 +45,15 @@ class InsereClienteCasoDeUsoTest {
     }
 
     @Test
-    @DisplayName("Dado um cliente com CPF existente, quando inserir o cliente, então deve lançar exceção ClienteExistenteExcecao")
+    @DisplayName(
+            "Dado um cliente com CPF existente, quando inserir o cliente, então deve lançar exceção ClienteExistenteExcecao")
     void dadoClienteComCpfExistente_quandoInserirCliente_entaoDeveLancarExcecao() {
         Cliente cliente = DataPoolCliente.clienteValido();
 
         when(persisteClientePortaSaida.buscaClientePorCpf(cliente.getCpf())).thenReturn(Optional.of(cliente));
 
-        ClienteExistenteExcecao exception = assertThrows(ClienteExistenteExcecao.class, () -> insereClienteCasoDeUso.inserir(cliente));
+        ClienteExistenteExcecao exception =
+                assertThrows(ClienteExistenteExcecao.class, () -> insereClienteCasoDeUso.inserir(cliente));
 
         assertEquals("O CPF de número 123.456.789-00 já foi utilizado", exception.getMessage());
 
@@ -61,7 +62,8 @@ class InsereClienteCasoDeUsoTest {
     }
 
     @Test
-    @DisplayName("Dado um cliente com email existente, quando inserir o cliente, então deve lançar exceção ClienteExistenteExcecao")
+    @DisplayName(
+            "Dado um cliente com email existente, quando inserir o cliente, então deve lançar exceção ClienteExistenteExcecao")
     void dadoClienteComEmailExistente_quandoInserirCliente_entaoDeveLancarExcecao() {
         Cliente cliente = DataPoolCliente.clienteValido();
 

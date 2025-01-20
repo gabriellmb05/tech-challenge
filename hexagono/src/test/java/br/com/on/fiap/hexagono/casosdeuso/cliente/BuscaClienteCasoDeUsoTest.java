@@ -1,20 +1,19 @@
 package br.com.on.fiap.hexagono.casosdeuso.cliente;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 import br.com.on.fiap.hexagono.datapool.DataPoolCliente;
 import br.com.on.fiap.hexagono.dominio.Cliente;
 import br.com.on.fiap.hexagono.excecao.ClienteNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
+import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class BuscaClienteCasoDeUsoTest {
@@ -49,7 +48,8 @@ class BuscaClienteCasoDeUsoTest {
 
         when(persisteClientePortaSaida.buscaClientePorCpf(cpf)).thenReturn(Optional.empty());
 
-        ClienteNaoEncontradoExcecao exception = assertThrows(ClienteNaoEncontradoExcecao.class, () -> buscaClienteCasoDeUso.buscar(cpf));
+        ClienteNaoEncontradoExcecao exception =
+                assertThrows(ClienteNaoEncontradoExcecao.class, () -> buscaClienteCasoDeUso.buscar(cpf));
 
         assertEquals("Não foi encontrado Cliente para o cpf: 000.000.000-00", exception.getMessage());
 

@@ -17,9 +17,9 @@ import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoPagamentoPortaS
 import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoPortaSaida;
 import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoProdutoPortaSaida;
 import java.util.Optional;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.DisplayName;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -74,7 +74,8 @@ class InserePedidoCasoDeUsoTest {
     }
 
     @Test
-    @DisplayName("Dado um pedido com cliente inexistente, quando inserir o pedido, então a exceção ClienteNaoEncontradoExcecao deve ser lançada")
+    @DisplayName(
+            "Dado um pedido com cliente inexistente, quando inserir o pedido, então a exceção ClienteNaoEncontradoExcecao deve ser lançada")
     void dadoPedidoComClienteInexistente_quandoInserirPedido_entaoClienteNaoEncontradoExcecaoDeveSerLancada() {
         Cliente cliente = new Cliente(999L);
         Pedido pedido = DataPoolPedido.pedidoComCliente(cliente);

@@ -4,8 +4,7 @@ import br.com.on.fiap.hexagono.dominio.Cliente;
 
 public class DataPoolCliente {
 
-    private DataPoolCliente() {
-    }
+    private DataPoolCliente() {}
 
     public static Cliente clienteExistente(Long id) {
         Cliente cliente = new Cliente();
