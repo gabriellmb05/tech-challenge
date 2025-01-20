@@ -1,14 +1,11 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
 import static org.hamcrest.Matchers.notNullValue;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import br.com.on.fiap.adaptadores.integracao.IntegracaoPagamento;
-import br.com.on.fiap.adaptadores.integracao.solicitacao.PagamentoRespostaIntegracaoDTO;
 import br.com.on.fiap.datapool.DataPoolPagamentoSolicitacaoDTO;
 import br.com.on.fiap.datapool.DataPoolPedidoSolicitacaoDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,14 +18,10 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -98,7 +91,8 @@ class PagamentoControladorIntegracaoTest {
     @Transactional
     @DisplayName(
             "Dado um pedido realizado, quando atualizar pagamento e api externa estiver indisponivel, então deve ser retornado erro")
-    void dadoPedidoRealizado_quandoAtualizarPagamentoEApiExternaIndisponivel_entaoDeveSerRetornadoErro() throws Exception {
+    void dadoPedidoRealizado_quandoAtualizarPagamentoEApiExternaIndisponivel_entaoDeveSerRetornadoErro()
+            throws Exception {
         MvcResult postResult = mockMvc.perform(post("/pedidos")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(DataPoolPedidoSolicitacaoDTO.construirPedido())))
@@ -116,6 +110,9 @@ class PagamentoControladorIntegracaoTest {
                         .content(
                                 objectMapper.writeValueAsString(DataPoolPagamentoSolicitacaoDTO.construirPagamento(1))))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.errors[0]").value("Erro ao realizar pagamento, tente novamente. Se o erro persistir entre em contato com o provedor."));
+                .andExpect(
+                        jsonPath("$.errors[0]")
+                                .value(
+                                        "Erro ao realizar pagamento, tente novamente. Se o erro persistir entre em contato com o provedor."));
     }
 }
