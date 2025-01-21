@@ -23,7 +23,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.Matchers.notNullValue;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -78,7 +77,8 @@ class PagamentoControladorIntegracaoTest {
     @Transactional
     @DisplayName(
             "Dado um pedido realizado, quando atualizar pagamento e api externa estiver indisponivel, então deve ser retornado erro")
-    void dadoPedidoRealizado_quandoAtualizarPagamentoEApiExternaIndisponivel_entaoDeveSerRetornadoErro() throws Exception {
+    void dadoPedidoRealizado_quandoAtualizarPagamentoEApiExternaIndisponivel_entaoDeveSerRetornadoErro()
+            throws Exception {
         MvcResult postResult = mockMvc.perform(post("/pedidos")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(DataPoolPedidoSolicitacaoDTO.construirPedido())))
@@ -96,7 +96,10 @@ class PagamentoControladorIntegracaoTest {
                         .content(
                                 objectMapper.writeValueAsString(DataPoolPagamentoSolicitacaoDTO.construirPagamento(1))))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.errors[0]").value("Erro ao realizar pagamento, tente novamente. Se o erro persistir entre em contato com o provedor."));
+                .andExpect(
+                        jsonPath("$.errors[0]")
+                                .value(
+                                        "Erro ao realizar pagamento, tente novamente. Se o erro persistir entre em contato com o provedor."));
     }
 
     @Test
