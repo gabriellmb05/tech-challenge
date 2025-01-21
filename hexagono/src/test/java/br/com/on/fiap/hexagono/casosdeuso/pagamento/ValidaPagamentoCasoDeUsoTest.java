@@ -1,9 +1,10 @@
 package br.com.on.fiap.hexagono.casosdeuso.pagamento;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 import br.com.on.fiap.hexagono.datapool.DataPoolPagamento;
 import br.com.on.fiap.hexagono.dominio.Pagamento;
+import br.com.on.fiap.hexagono.dominio.SituacaoPagamento;
 import br.com.on.fiap.hexagono.excecao.PagamentoJaRealizadoExcecao;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,11 +31,23 @@ class ValidaPagamentoCasoDeUsoTest {
     }
 
     @Test
+    @DisplayName("Dado um pagamento aprovado sem data, quando validar o pagamento, então não deve lançar exceção")
+    void dadoPagamentoAprovadoSemData_quandoValidarPagamento_EntaoNaoDeveLancarExcecao() {
+        Pagamento pagamento = DataPoolPagamento.pagamentoValidoSemData();
+        String nrProtocolo = "123ABC";
+
+        assertDoesNotThrow(() -> validaPagamentoCasoDeUso.validarPagamentoJaRealizado(pagamento, nrProtocolo));
+    }
+
+    @Test
     @DisplayName("Dado um pagamento pendente, quando validar o pagamento, então não deve lançar exceção")
     void dadoPagamentoPendente_quandoValidarPagamento_EntaoNaoDeveLancarExcecao() {
         Pagamento pagamento = DataPoolPagamento.pagamentoPendente();
         String nrProtocolo = "123ABC";
 
         validaPagamentoCasoDeUso.validarPagamentoJaRealizado(pagamento, nrProtocolo);
+
+        assertDoesNotThrow(() -> validaPagamentoCasoDeUso.validarPagamentoJaRealizado(pagamento, nrProtocolo));
+        assertEquals(SituacaoPagamento.PENDENTE, pagamento.getStPagamento());
     }
 }

@@ -3,6 +3,7 @@ package br.com.on.fiap.adaptadores.entrada.controlador;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -120,5 +121,40 @@ class PedidoControladorIntegracaoTest {
                         .content(objectMapper.writeValueAsString(DataPoolPedidoSolicitacaoDTO.construirPedido())))
                 .andExpect(status().isCreated())
                 .andReturn();
+    }
+
+    @Test
+    @Order(6)
+    @Transactional
+    @DisplayName(
+            "Dado um pedido existente em situação realizado, quando atualizar pedido, então deve ser atualizado com sucesso para próximo estágio")
+    void dadoPedidoExistenteSituacaoRealizado_quandoAtualizarPedido_entaoDeveAtualizadoParaProximoEstágio()
+            throws Exception {
+        MvcResult postResult = mockMvc.perform(post("/pedidos")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(DataPoolPedidoSolicitacaoDTO.construirPedido())))
+                .andExpect(status().isCreated())
+                .andReturn();
+
+        String protocolo = postResult
+                .getResponse()
+                .getContentAsString()
+                .split("\"protocolo\":\"")[1]
+                .split("\"")[0];
+
+        mockMvc.perform(put("/pedidos/{protocolo}", protocolo).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.protocolo").value(protocolo))
+                .andExpect(jsonPath("$.situacao").value("APROVADO"));
+
+        mockMvc.perform(put("/pedidos/{protocolo}", protocolo).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.protocolo").value(protocolo))
+                .andExpect(jsonPath("$.situacao").value("EM_PREPARACAO"));
+
+        mockMvc.perform(put("/pedidos/{protocolo}", protocolo).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.protocolo").value(protocolo))
+                .andExpect(jsonPath("$.situacao").value("FINALIZADO"));
     }
 }
