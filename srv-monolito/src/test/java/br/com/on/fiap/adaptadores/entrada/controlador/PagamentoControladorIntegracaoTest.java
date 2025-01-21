@@ -1,5 +1,12 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
+import static org.hamcrest.Matchers.notNullValue;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import br.com.on.fiap.adaptadores.integracao.IntegracaoPagamento;
 import br.com.on.fiap.adaptadores.integracao.solicitacao.PagamentoRespostaIntegracaoDTO;
 import br.com.on.fiap.datapool.DataPoolPagamentoSolicitacaoDTO;
@@ -22,13 +29,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.hamcrest.Matchers.notNullValue;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("integration-test")
@@ -47,7 +47,8 @@ class PagamentoControladorIntegracaoTest {
     @Test
     @Order(1)
     @Transactional
-    @DisplayName("Dado um pedido realizado, quando atualizar pagamento, então deve ser atualizado a situacao e a data do mesmo")
+    @DisplayName(
+            "Dado um pedido realizado, quando atualizar pagamento, então deve ser atualizado a situacao e a data do mesmo")
     void dadoPedidoRealizado_quandoAtualizarPagamento_entaoDeveSerAtualizadoSituacaoData() throws Exception {
         MvcResult postResult = mockMvc.perform(post("/pedidos")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -55,7 +56,9 @@ class PagamentoControladorIntegracaoTest {
                 .andExpect(status().isCreated())
                 .andReturn();
 
-        when(integracaoPagamento.enviarPagamento(Mockito.any())).thenReturn(ResponseEntity.ok(PagamentoRespostaIntegracaoDTO.builder().build()));
+        when(integracaoPagamento.enviarPagamento(Mockito.any()))
+                .thenReturn(ResponseEntity.ok(
+                        PagamentoRespostaIntegracaoDTO.builder().build()));
 
         String protocolo = postResult
                 .getResponse()
@@ -108,14 +111,16 @@ class PagamentoControladorIntegracaoTest {
     @Transactional
     @DisplayName(
             "Dado um pedido realizado, quando atualizar pagamento e api externa retornar erro, então deve ser retornado erro")
-    void dadoPedidoRealizado_quandoAtualizarPagamentoEApiExternaIndisponivelRetornarErro_entaoDeveSerRetornadoErro() throws Exception {
+    void dadoPedidoRealizado_quandoAtualizarPagamentoEApiExternaIndisponivelRetornarErro_entaoDeveSerRetornadoErro()
+            throws Exception {
         MvcResult postResult = mockMvc.perform(post("/pedidos")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(DataPoolPedidoSolicitacaoDTO.construirPedido())))
                 .andExpect(status().isCreated())
                 .andReturn();
 
-        when(integracaoPagamento.enviarPagamento(Mockito.any())).thenReturn(ResponseEntity.badRequest().body(null));
+        when(integracaoPagamento.enviarPagamento(Mockito.any()))
+                .thenReturn(ResponseEntity.badRequest().body(null));
 
         String protocolo = postResult
                 .getResponse()
@@ -128,6 +133,9 @@ class PagamentoControladorIntegracaoTest {
                         .content(
                                 objectMapper.writeValueAsString(DataPoolPagamentoSolicitacaoDTO.construirPagamento(1))))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.errors[0]").value("Erro ao realizar pagamento, tente novamente. Se o erro persistir entre em contato com o provedor."));
+                .andExpect(
+                        jsonPath("$.errors[0]")
+                                .value(
+                                        "Erro ao realizar pagamento, tente novamente. Se o erro persistir entre em contato com o provedor."));
     }
 }
