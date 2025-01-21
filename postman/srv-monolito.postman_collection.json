@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "3a7013b1-b629-44c5-ab49-b18efcde2fb3",
+		"_postman_id": "f1e7c87c-8d95-4d4f-ae61-ee7e1aa4cfc4",
 		"name": "srv-monolito",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "40946856"
+		"_exporter_id": "31673229"
 	},
 	"item": [
 		{
@@ -1196,7 +1196,7 @@
 		},
 		{
 			"key": "IT_PAGAMENTOS",
-			"value": "http://localhost:8081/pagamentos",
+			"value": "http://localhost:8081/api",
 			"type": "string"
 		}
 	]
