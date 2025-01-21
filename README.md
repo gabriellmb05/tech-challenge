@@ -55,11 +55,21 @@ Exemplo de configuração do arquivo `.env`:
 DB_NAME=tech-challenge
 DB_USER=tech-challenge
 DB_PASSWORD=tech-challenge
-DB_URL=jdbc:postgresql://localhost:5432/tech-challenge
+DB_URL=jdbc:postgresql://db:5432/tech-challenge
 DB_DRIVER_CLASS_NAME=org.postgresql.Driver
 FLYWAY_ENABLE=true
 LOG_LEVEL_ROOT=INFO
-IT_PAGAMENTO=http://localhost:8081/api
+IT_PAGAMENTO=http://mercadopagofake:8081/api
+```
+
+## Construir e Rodar os Contêineres
+
+Execute os seguintes comandos para construir e iniciar os contêineres Docker:
+```shell
+mvn spotless:apply
+```
+```shell
+docker-compose up --build
 ```
 
 ## Documentação da API
@@ -67,14 +77,6 @@ IT_PAGAMENTO=http://localhost:8081/api
 ![Swagger](documentacao/swagger.svg)
 
 A documentação da API pode ser acessada através do Swagger em `http://localhost:8080/documentacao.html`.
-
-## Construir e Rodar os Contêineres
-
-Execute os seguintes comandos para construir e iniciar os contêineres Docker:
-
-```shell
-docker-compose up --build
-```
 
 ## Formatação de Código
 
