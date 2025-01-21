@@ -27,13 +27,15 @@ services:
     depends_on:
       - db
 
-  srv-mercadopagofake:
+  mercadopagofake:
     image: maxsuelsbr/mercadopago_fake:0.0.1
     container_name: mercadopago_fake_container
     environment:
       - SERVER_PORT=8081
     ports:
       - "8081:8081"
+    networks:
+      - app-network
     restart: always
 
 networks:
