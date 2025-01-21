@@ -13,6 +13,7 @@ public class DataPoolRelPedidoProduto {
         Produto produto = DataPoolProduto.produtoExistente(produtoId);
         RelPedidoProduto relPedidoProduto = new RelPedidoProduto();
         relPedidoProduto.setProduto(produto);
+        relPedidoProduto.setQuantidade(10L);
         return relPedidoProduto;
     }
 
