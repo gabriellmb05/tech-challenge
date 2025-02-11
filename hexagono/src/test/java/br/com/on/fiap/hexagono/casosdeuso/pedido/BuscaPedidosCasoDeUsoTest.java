@@ -12,6 +12,7 @@ import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
 import br.com.on.fiap.hexagono.dominio.SituacaoPedido;
 import br.com.on.fiap.hexagono.portas.saida.pedido.BuscaPedidosPortaSaida;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,7 +43,7 @@ class BuscaPedidosCasoDeUsoTest {
         PedidoFiltro filtro = DataPoolPedidoFiltro.pedidoFiltroComPeriodo(dataInicio, dataFim);
 
         Pageable pageable = PageRequest.of(0, 10);
-        Pedido pedido = DataPoolPedido.pedidoExistente(1L);
+        Pedido pedido = DataPoolPedido.pedidoExistenteComDataHora(1L, LocalDateTime.of(2025, 1, 15, 12, 0));
         Page<Pedido> page = new PageImpl<>(List.of(pedido), pageable, 1L);
 
         when(buscaPedidosPortaSaida.listarComFiltros(filtro, pageable)).thenReturn(page);

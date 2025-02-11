@@ -55,4 +55,16 @@ public class DataPoolPedido {
         pedido.setRelPedidoProdutos(DataPoolRelPedidoProduto.relPedidoProdutosComProdutos(1));
         return pedido;
     }
+
+    public static Pedido pedidoExistenteComDataHora(Long id, LocalDateTime dataHora) {
+        Pedido pedido = new Pedido();
+        pedido.setId(id);
+        pedido.setProtocolo("20250118213724238248");
+        pedido.setDataHora(dataHora);
+        pedido.setSituacao(SituacaoPedido.REALIZADO);
+        pedido.setCliente(DataPoolCliente.clienteExistente(1L));
+        pedido.setPagamento(DataPoolPagamento.pagamentoExistente(1L));
+        pedido.setRelPedidoProdutos(List.of(DataPoolRelPedidoProduto.relPedidoProdutoComProduto(1L)));
+        return pedido;
+    }
 }

@@ -5,22 +5,19 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.ProdutoFiltroDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.CategoriaRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.filtro.ProdutoFiltroEntradaMapeador;
 import br.com.on.fiap.datapool.*;
-import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
+import br.com.on.fiap.hexagono.portas.entrada.categoria.BuscaCategoriaPortaEntrada;
 import br.com.on.fiap.hexagono.portas.entrada.produto.*;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -191,19 +188,5 @@ class ProdutoControladorTest {
         verify(buscaProdutosPortaEntrada).listarComFiltro(filtro, paginacao);
         verify(produtoFiltroEntradaMapeador).paraProdutoFiltro(filtroDTO);
         produtos.forEach(produto -> verify(produtoEntradaMapeador).paraProdutoDTO(produto));
-    }
-
-    @Test
-    @DisplayName("Dado categorias de produtos, quando buscar as categorias, então elas devem ser retornadas")
-    void dadoCategoriasDeProdutos_quandoBuscarCategorias_entaoDevemSerRetornadas() {
-        List<String> categoriasEsperadas =
-                Arrays.stream(Categoria.values()).map(Categoria::name).toList();
-        when(buscaCategoriaPortaEntrada.buscaCategorias())
-                .thenReturn(Arrays.stream(Categoria.values()).toList());
-
-        ResponseEntity<CategoriaRespostaDTO> response = produtoControlador.buscaCategorias();
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(new CategoriaRespostaDTO(categoriasEsperadas), response.getBody());
     }
 }

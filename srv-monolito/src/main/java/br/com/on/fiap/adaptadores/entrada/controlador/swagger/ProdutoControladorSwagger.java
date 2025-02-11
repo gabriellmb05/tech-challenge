@@ -1,7 +1,6 @@
 package br.com.on.fiap.adaptadores.entrada.controlador.swagger;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.ProdutoFiltroDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.CategoriaRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSolicitacaoDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -56,8 +55,4 @@ public interface ProdutoControladorSwagger {
                 @ApiResponse(responseCode = "404", description = "Produto não encontrado")
             })
     ResponseEntity<Void> deletaProduto(Long id);
-
-    @Operation(summary = "Busca categorias", description = "Retorna uma lista de categorias")
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Categorias disponíveis")})
-    ResponseEntity<CategoriaRespostaDTO> buscaCategorias();
 }

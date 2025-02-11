@@ -80,16 +80,6 @@ class ProdutoBeanConfiguracaoTest {
         assertInstanceOf(BuscaProdutosPortaEntrada.class, bean);
     }
 
-    @Test
-    @DisplayName("Dado a configuração de beans, quando bucar categorias, então deve retornar a instância correta")
-    void dadoConfiguracaoDeBeans_quandoListarCategorias_entaoDeveRetornarInstanciaCorreta() {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-        BuscaCategoriaPortaEntrada bean = context.getBean(BuscaCategoriaPortaEntrada.class);
-
-        assertNotNull(bean);
-        assertInstanceOf(BuscaCategoriaPortaEntrada.class, bean);
-    }
-
     @Configuration
     static class TestConfig extends ProdutoBeanConfiguracao {
 

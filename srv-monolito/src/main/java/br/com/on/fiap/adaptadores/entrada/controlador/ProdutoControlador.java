@@ -1,18 +1,15 @@
 package br.com.on.fiap.adaptadores.entrada.controlador;
 
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.filtro.ProdutoFiltroDTO;
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.CategoriaRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.dto.solicitacao.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.ProdutoEntradaMapeador;
 import br.com.on.fiap.adaptadores.entrada.controlador.mapeador.filtro.ProdutoFiltroEntradaMapeador;
 import br.com.on.fiap.adaptadores.entrada.controlador.swagger.ProdutoControladorSwagger;
-import br.com.on.fiap.hexagono.dominio.Categoria;
 import br.com.on.fiap.hexagono.dominio.Produto;
 import br.com.on.fiap.hexagono.dominio.ProdutoFiltro;
 import br.com.on.fiap.hexagono.portas.entrada.produto.*;
 import jakarta.validation.Valid;
-import java.util.List;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,7 +29,6 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
     private final ProdutoEntradaMapeador produtoEntradaMapeador;
     private final ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador;
     private final BuscaProdutosPortaEntrada buscaProdutosPortaEntrada;
-    private final BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada;
 
     public ProdutoControlador(
             BuscaProdutoPorIdPortaEntrada buscaProdutoPorIdPortaEntrada,
@@ -41,8 +37,7 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
             DeletaProdutoPortaEntrada deletaProdutoPortaEntrada,
             ProdutoEntradaMapeador produtoEntradaMapeador,
             ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador,
-            BuscaProdutosPortaEntrada buscaProdutosPortaEntrada,
-            BuscaCategoriaPortaEntrada buscaCategoriaPortaEntrada) {
+            BuscaProdutosPortaEntrada buscaProdutosPortaEntrada) {
         this.buscaProdutoPorIdPortaEntrada = buscaProdutoPorIdPortaEntrada;
         this.insereProdutoPortaEntrada = insereProdutoPortaEntrada;
         this.alteraProdutoPortaEntrada = alteraProdutoPortaEntrada;
@@ -50,7 +45,6 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
         this.produtoEntradaMapeador = produtoEntradaMapeador;
         this.produtoFiltroEntradaMapeador = produtoFiltroEntradaMapeador;
         this.buscaProdutosPortaEntrada = buscaProdutosPortaEntrada;
-        this.buscaCategoriaPortaEntrada = buscaCategoriaPortaEntrada;
     }
 
     @Override
@@ -97,14 +91,5 @@ public class ProdutoControlador implements ProdutoControladorSwagger {
     public ResponseEntity<Void> deletaProduto(@PathVariable("id") Long id) {
         deletaProdutoPortaEntrada.deleta(id);
         return ResponseEntity.noContent().build();
-    }
-
-    @Override
-    @GetMapping("/categorias")
-    public ResponseEntity<CategoriaRespostaDTO> buscaCategorias() {
-        List<String> categorias = buscaCategoriaPortaEntrada.buscaCategorias().stream()
-                .map(Categoria::name)
-                .toList();
-        return ResponseEntity.ok().body(new CategoriaRespostaDTO(categorias));
     }
 }

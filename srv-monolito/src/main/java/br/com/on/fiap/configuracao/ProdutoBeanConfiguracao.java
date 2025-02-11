@@ -35,11 +35,6 @@ public class ProdutoBeanConfiguracao {
     }
 
     @Bean
-    public BuscaCategoriaPortaEntrada buscaCategorias() {
-        return new BuscaCategoriasCasoDeUso();
-    }
-
-    @Bean
     public ValidaProdutosDoPedidoPortaEntrada validaProdutosCasoDeUso(
             PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
         return new ValidaProdutosDoPedidoCasoDeUso(persisteProdutoPortaSaida);
