@@ -9,7 +9,7 @@ import br.com.on.fiap.adaptadores.saida.persistencia.entidade.ProdutoEntidade;
 import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.ProdutoSaidaMapeador;
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.ProdutoRepositorio;
 import br.com.on.fiap.adaptadores.saida.servico.PersistenciaProdutoAdaptador;
-import br.com.on.fiap.hexagono.dominio.Produto;
+import br.com.on.fiap.hexagono.entities.entidades.Produto;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

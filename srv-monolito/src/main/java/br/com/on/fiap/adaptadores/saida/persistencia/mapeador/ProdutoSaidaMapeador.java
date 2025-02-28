@@ -1,7 +1,7 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.mapeador;
 
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.ProdutoEntidade;
-import br.com.on.fiap.hexagono.dominio.Produto;
+import br.com.on.fiap.hexagono.entities.entidades.Produto;
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

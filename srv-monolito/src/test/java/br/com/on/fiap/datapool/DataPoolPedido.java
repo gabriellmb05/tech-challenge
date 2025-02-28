@@ -1,7 +1,7 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.hexagono.dominio.Pedido;
-import br.com.on.fiap.hexagono.dominio.SituacaoPedido;
+import br.com.on.fiap.hexagono.entities.entidades.Pedido;
+import br.com.on.fiap.hexagono.entities.entidades.SituacaoPedido;
 import java.time.LocalDateTime;
 import java.util.List;
 

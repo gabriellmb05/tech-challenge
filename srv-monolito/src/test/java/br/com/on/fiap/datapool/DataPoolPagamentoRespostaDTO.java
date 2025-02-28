@@ -1,8 +1,8 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.PagamentoRespostaDTO;
-import br.com.on.fiap.hexagono.dominio.SituacaoPagamento;
-import br.com.on.fiap.hexagono.dominio.TipoPagamento;
+import br.com.on.fiap.adaptadores.entrada.manipulador.dto.resposta.PagamentoRespostaDTO;
+import br.com.on.fiap.hexagono.entities.entidades.SituacaoPagamento;
+import br.com.on.fiap.hexagono.entities.entidades.TipoPagamento;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 

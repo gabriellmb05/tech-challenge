@@ -1,7 +1,7 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.hexagono.dominio.Pedido;
-import br.com.on.fiap.hexagono.dominio.RelPedidoProduto;
+import br.com.on.fiap.hexagono.entities.entidades.Pedido;
+import br.com.on.fiap.hexagono.entities.entidades.RelPedidoProduto;
 import java.util.List;
 
 public class DataPoolRelPedidoProduto {

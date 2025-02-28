@@ -1,6 +1,6 @@
 package br.com.on.fiap.adaptadores.saida.persistencia.entidade.conversor;
 
-import br.com.on.fiap.hexagono.dominio.Categoria;
+import br.com.on.fiap.hexagono.entities.entidades.Categoria;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 import java.util.Objects;

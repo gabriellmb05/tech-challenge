@@ -1,6 +1,6 @@
 package br.com.on.fiap.adaptadores.integracao.solicitacao;
 
-import br.com.on.fiap.hexagono.dominio.Pagamento;
+import br.com.on.fiap.hexagono.entities.entidades.Pagamento;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

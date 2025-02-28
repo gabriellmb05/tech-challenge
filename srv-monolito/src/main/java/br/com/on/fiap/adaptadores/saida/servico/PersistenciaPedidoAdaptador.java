@@ -3,9 +3,9 @@ package br.com.on.fiap.adaptadores.saida.servico;
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoEntidade;
 import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.PedidoProdutoSaidaMapeador;
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.PedidoRepositorio;
-import br.com.on.fiap.hexagono.dominio.Pedido;
-import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoPagamentoPortaSaida;
-import br.com.on.fiap.hexagono.portas.saida.pedido.PersistePedidoPortaSaida;
+import br.com.on.fiap.hexagono.entities.entidades.Pedido;
+import br.com.on.fiap.hexagono.usecases.interfaces.saida.pedido.PersistePedidoPagamentoPortaSaida;
+import br.com.on.fiap.hexagono.usecases.interfaces.saida.pedido.PersistePedidoPortaSaida;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

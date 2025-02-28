@@ -1,7 +1,8 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.adaptadores.entrada.controlador.dto.resposta.*;
-import br.com.on.fiap.hexagono.dominio.SituacaoPedido;
+import br.com.on.fiap.adaptadores.entrada.manipulador.dto.resposta.*;
+import br.com.on.fiap.hexagono.entities.entidades.SituacaoPedido;
+import br.com.on.fiap.hexagono.interfaceadapters.interfaces.dto.ClienteRespostaDTO;
 import java.util.List;
 
 public class DataPoolPedidoDetalheRespostaDTO {

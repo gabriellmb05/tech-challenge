@@ -1,16 +1,16 @@
 package br.com.on.fiap.configuracao;
 
-import br.com.on.fiap.hexagono.casosdeuso.pedido.AtualizaPedidoCasoDeUso;
-import br.com.on.fiap.hexagono.casosdeuso.pedido.BuscaPedidosCasoDeUso;
-import br.com.on.fiap.hexagono.casosdeuso.pedido.DetalhaPedidoCasoDeUso;
-import br.com.on.fiap.hexagono.casosdeuso.pedido.InserePedidoCasoDeUso;
-import br.com.on.fiap.hexagono.portas.entrada.pedido.AtualizaPedidoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.pedido.BuscaPedidosPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.pedido.DetalhaPedidoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.entrada.pedido.InserePedidoPortaEntrada;
-import br.com.on.fiap.hexagono.portas.saida.cliente.PersisteClientePortaSaida;
-import br.com.on.fiap.hexagono.portas.saida.pagamento.PersistePagamentoPortaSaida;
-import br.com.on.fiap.hexagono.portas.saida.pedido.*;
+import br.com.on.fiap.hexagono.usecases.casodeuso.pedido.AtualizaPedidoCasoDeUsoImpl;
+import br.com.on.fiap.hexagono.usecases.casodeuso.pedido.BuscaPedidosCasoDeUsoImpl;
+import br.com.on.fiap.hexagono.usecases.casodeuso.pedido.DetalhaPedidoCasoDeUsoImpl;
+import br.com.on.fiap.hexagono.usecases.casodeuso.pedido.InserePedidoCasoDeUsoImpl;
+import br.com.on.fiap.hexagono.usecases.interfaces.entrada.pedido.AtualizaPedidoCasoDeUso;
+import br.com.on.fiap.hexagono.usecases.interfaces.entrada.pedido.BuscaPedidosCasoDeUso;
+import br.com.on.fiap.hexagono.usecases.interfaces.entrada.pedido.DetalhaPedidoCasoDeUso;
+import br.com.on.fiap.hexagono.usecases.interfaces.entrada.pedido.InserePedidoCasoDeUso;
+import br.com.on.fiap.hexagono.usecases.interfaces.gateway.cliente.ClienteGateway;
+import br.com.on.fiap.hexagono.usecases.interfaces.saida.pagamento.PersistePagamentoPortaSaida;
+import br.com.on.fiap.hexagono.usecases.interfaces.saida.pedido.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,14 +18,14 @@ import org.springframework.context.annotation.Configuration;
 public class PedidoBeanConfiguracao {
 
     @Bean
-    public InserePedidoPortaEntrada inserePedido(
-            PersisteClientePortaSaida persisteClientePortaSaida,
+    public InserePedidoCasoDeUso inserePedido(
+            ClienteGateway clienteGateway,
             PersistePedidoPortaSaida persistePedidoPortaSaida,
             PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida,
             PersistePagamentoPortaSaida persistePagamentoPortaSaida,
             PersistePedidoPagamentoPortaSaida persistePedidoPagamentoPortaSaida) {
-        return new InserePedidoCasoDeUso(
-                persisteClientePortaSaida,
+        return new InserePedidoCasoDeUsoImpl(
+                clienteGateway,
                 persistePedidoPortaSaida,
                 persistePedidoProdutoPortaSaida,
                 persistePagamentoPortaSaida,
@@ -33,17 +33,17 @@ public class PedidoBeanConfiguracao {
     }
 
     @Bean
-    public BuscaPedidosPortaEntrada listaPedidos(BuscaPedidosPortaSaida buscaPedidosPortaSaida) {
-        return new BuscaPedidosCasoDeUso(buscaPedidosPortaSaida);
+    public BuscaPedidosCasoDeUso listaPedidos(BuscaPedidosPortaSaida buscaPedidosPortaSaida) {
+        return new BuscaPedidosCasoDeUsoImpl(buscaPedidosPortaSaida);
     }
 
     @Bean
-    public DetalhaPedidoPortaEntrada detalhaPedido(DetalhaPedidoPortaSaida detalhaPedidoPortaSaida) {
-        return new DetalhaPedidoCasoDeUso(detalhaPedidoPortaSaida);
+    public DetalhaPedidoCasoDeUso detalhaPedido(DetalhaPedidoPortaSaida detalhaPedidoPortaSaida) {
+        return new DetalhaPedidoCasoDeUsoImpl(detalhaPedidoPortaSaida);
     }
 
     @Bean
-    public AtualizaPedidoPortaEntrada atualizaPedido(AtualizaPedidoPortaSaida atualizaPedidoPortaSaida) {
-        return new AtualizaPedidoCasoDeUso(atualizaPedidoPortaSaida);
+    public AtualizaPedidoCasoDeUso atualizaPedido(AtualizaPedidoPortaSaida atualizaPedidoPortaSaida) {
+        return new AtualizaPedidoCasoDeUsoImpl(atualizaPedidoPortaSaida);
     }
 }

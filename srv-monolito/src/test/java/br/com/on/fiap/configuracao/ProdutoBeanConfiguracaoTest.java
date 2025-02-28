@@ -7,11 +7,11 @@ import static org.mockito.Mockito.mock;
 import br.com.on.fiap.adaptadores.saida.persistencia.mapeador.ProdutoSaidaMapeador;
 import br.com.on.fiap.adaptadores.saida.persistencia.repositorio.ProdutoRepositorio;
 import br.com.on.fiap.adaptadores.saida.servico.PersistenciaProdutoAdaptador;
-import br.com.on.fiap.hexagono.casosdeuso.produto.AlteraProdutoCasoDeUso;
-import br.com.on.fiap.hexagono.casosdeuso.produto.BuscaProdutoCasoDeUso;
-import br.com.on.fiap.hexagono.casosdeuso.produto.DeletaProdutoCasoDeUso;
-import br.com.on.fiap.hexagono.casosdeuso.produto.InsereProdutoCasoDeUso;
-import br.com.on.fiap.hexagono.portas.entrada.produto.*;
+import br.com.on.fiap.hexagono.usecases.casodeuso.produto.AlteraProdutoCasoDeUsoImpl;
+import br.com.on.fiap.hexagono.usecases.casodeuso.produto.BuscaProdutoCasoDeUsoImpl;
+import br.com.on.fiap.hexagono.usecases.casodeuso.produto.DeletaProdutoCasoDeUsoImpl;
+import br.com.on.fiap.hexagono.usecases.casodeuso.produto.InsereProdutoCasoDeUsoImpl;
+import br.com.on.fiap.hexagono.usecases.interfaces.entrada.produto.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,50 +34,50 @@ class ProdutoBeanConfiguracaoTest {
     @DisplayName("Dado a configuração de beans, quando buscar ProdutoPorId, então deve retornar a instância correta")
     void dadoConfiguracaoDeBeans_quandoBuscarProdutoPorId_entaoDeveRetornarInstanciaCorreta() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-        BuscaProdutoPorIdPortaEntrada bean = context.getBean(BuscaProdutoPorIdPortaEntrada.class);
+        BuscaProdutoPorIdCasoDeUso bean = context.getBean(BuscaProdutoPorIdCasoDeUso.class);
 
         assertNotNull(bean);
-        assertInstanceOf(BuscaProdutoCasoDeUso.class, bean);
+        assertInstanceOf(BuscaProdutoCasoDeUsoImpl.class, bean);
     }
 
     @Test
     @DisplayName("Dado a configuração de beans, quando inserir Produto, então deve retornar a instância correta")
     void dadoConfiguracaoDeBeans_quandoInserirProduto_entaoDeveRetornarInstanciaCorreta() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-        InsereProdutoPortaEntrada bean = context.getBean(InsereProdutoPortaEntrada.class);
+        InsereProdutoCasoDeUso bean = context.getBean(InsereProdutoCasoDeUso.class);
 
         assertNotNull(bean);
-        assertInstanceOf(InsereProdutoCasoDeUso.class, bean);
+        assertInstanceOf(InsereProdutoCasoDeUsoImpl.class, bean);
     }
 
     @Test
     @DisplayName("Dado a configuração de beans, quando alterar Produto, então deve retornar a instância correta")
     void dadoConfiguracaoDeBeans_quandoAlterarProduto_entaoDeveRetornarInstanciaCorreta() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-        AlteraProdutoPortaEntrada bean = context.getBean(AlteraProdutoPortaEntrada.class);
+        AlteraProdutoCasoDeUso bean = context.getBean(AlteraProdutoCasoDeUso.class);
 
         assertNotNull(bean);
-        assertInstanceOf(AlteraProdutoCasoDeUso.class, bean);
+        assertInstanceOf(AlteraProdutoCasoDeUsoImpl.class, bean);
     }
 
     @Test
     @DisplayName("Dado a configuração de beans, quando deletar Produto, então deve retornar a instância correta")
     void dadoConfiguracaoDeBeans_quandoDeletarProduto_entaoDeveRetornarInstanciaCorreta() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-        DeletaProdutoPortaEntrada bean = context.getBean(DeletaProdutoPortaEntrada.class);
+        DeletaProdutoCasoDeUso bean = context.getBean(DeletaProdutoCasoDeUso.class);
 
         assertNotNull(bean);
-        assertInstanceOf(DeletaProdutoCasoDeUso.class, bean);
+        assertInstanceOf(DeletaProdutoCasoDeUsoImpl.class, bean);
     }
 
     @Test
     @DisplayName("Dado a configuração de beans, quando listar Produtos, então deve retornar a instância correta")
     void dadoConfiguracaoDeBeans_quandoListarProdutos_entaoDeveRetornarInstanciaCorreta() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TestConfig.class);
-        BuscaProdutosPortaEntrada bean = context.getBean(BuscaProdutosPortaEntrada.class);
+        BuscaProdutosCasoDeUso bean = context.getBean(BuscaProdutosCasoDeUso.class);
 
         assertNotNull(bean);
-        assertInstanceOf(BuscaProdutosPortaEntrada.class, bean);
+        assertInstanceOf(BuscaProdutosCasoDeUso.class, bean);
     }
 
     @Configuration

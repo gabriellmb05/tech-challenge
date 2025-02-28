@@ -1,6 +1,6 @@
 package br.com.on.fiap.hexagono.datapool;
 
-import br.com.on.fiap.hexagono.dominio.Cliente;
+import br.com.on.fiap.hexagono.entities.entidades.Cliente;
 
 public class DataPoolCliente {
 
@@ -27,6 +27,14 @@ public class DataPoolCliente {
     public static Cliente clienteValido() {
         Cliente cliente = new Cliente();
         cliente.setId(1L);
+        cliente.setCpf("12345678900");
+        cliente.setNome("Carlos Souza");
+        cliente.setEmail("carlos.souza@example.com");
+        return cliente;
+    }
+
+    public static Cliente clienteValidoSemId() {
+        Cliente cliente = new Cliente();
         cliente.setCpf("12345678900");
         cliente.setNome("Carlos Souza");
         cliente.setEmail("carlos.souza@example.com");

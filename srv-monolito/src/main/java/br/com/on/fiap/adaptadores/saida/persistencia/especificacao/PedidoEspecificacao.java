@@ -2,12 +2,15 @@ package br.com.on.fiap.adaptadores.saida.persistencia.especificacao;
 
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.ClienteEntidade;
 import br.com.on.fiap.adaptadores.saida.persistencia.entidade.PedidoEntidade;
-import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
+import br.com.on.fiap.hexagono.entities.entidades.PedidoFiltro;
 import jakarta.persistence.criteria.*;
 import java.time.LocalDateTime;
 import org.springframework.data.jpa.domain.Specification;
 
 public class PedidoEspecificacao {
+
+    private PedidoEspecificacao() {
+    }
 
     public static Specification<PedidoEntidade> filtroPorDataInicioEDataFim(PedidoFiltro filtro) {
         return (Root<PedidoEntidade> root, CriteriaQuery<?> query, CriteriaBuilder builder) -> {

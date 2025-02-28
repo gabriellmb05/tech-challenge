@@ -1,6 +1,6 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.hexagono.dominio.PedidoFiltro;
+import br.com.on.fiap.hexagono.entities.entidades.PedidoFiltro;
 import java.time.LocalDate;
 
 public class DataPoolPedidoFiltro {
