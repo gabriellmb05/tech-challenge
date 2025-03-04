@@ -3,7 +3,7 @@ package br.com.on.fiap.hexagono.adapter.controller.impl;
 import br.com.on.fiap.hexagono.adapter.controller.CategoriaController;
 import br.com.on.fiap.hexagono.adapter.presenter.CategoriaPresenter;
 import br.com.on.fiap.hexagono.application.dto.CategoriaSaidaDTO;
-import br.com.on.fiap.hexagono.application.usecase.categoria.CategoriaBuscaUseCase;
+import br.com.on.fiap.hexagono.usecase.categoria.CategoriaBuscaUseCase;
 import br.com.on.fiap.hexagono.domain.entity.Categoria;
 import java.util.List;
 

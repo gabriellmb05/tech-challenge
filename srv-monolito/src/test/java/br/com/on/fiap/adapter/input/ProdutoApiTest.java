@@ -10,7 +10,6 @@ import br.com.on.fiap.adapter.input.dto.response.ProdutoRespostaDTO;
 import br.com.on.fiap.adapter.input.mapper.ProdutoFiltroInputMapper;
 import br.com.on.fiap.adapter.input.mapper.ProdutoInputMapper;
 import br.com.on.fiap.datapool.*;
-import br.com.on.fiap.hexagono.application.usecase.produto.*;
 import br.com.on.fiap.hexagono.domain.entity.Produto;
 import br.com.on.fiap.hexagono.domain.entity.ProdutoFiltro;
 import java.util.Collections;

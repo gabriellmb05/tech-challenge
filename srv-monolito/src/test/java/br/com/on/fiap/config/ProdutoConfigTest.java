@@ -3,7 +3,6 @@ package br.com.on.fiap.config;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import br.com.on.fiap.hexagono.application.usecase.produto.*;
 import br.com.on.fiap.hexagono.application.usecase.produto.impl.ProdutoAlteraUseCaseImpl;
 import br.com.on.fiap.hexagono.application.usecase.produto.impl.ProdutoBuscaPorIdUseCaseImpl;
 import br.com.on.fiap.hexagono.application.usecase.produto.impl.ProdutoDeletaUseCaseImpl;
