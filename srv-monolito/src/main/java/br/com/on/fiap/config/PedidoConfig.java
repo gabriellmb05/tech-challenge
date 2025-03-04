@@ -1,18 +1,18 @@
 package br.com.on.fiap.config;
 
-import br.com.on.fiap.hexagono.adapter.datasource.PedidoDataSource;
-import br.com.on.fiap.hexagono.adapter.gateway.ClienteGateway;
-import br.com.on.fiap.hexagono.adapter.gateway.PagamentoGateway;
-import br.com.on.fiap.hexagono.adapter.gateway.PedidoGateway;
-import br.com.on.fiap.hexagono.adapter.gateway.impl.PedidoGatewayImpl;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoAtualizaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoDetalhaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoInsereUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoListaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoAtualizaUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoDetalhaUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoInsereUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoListaUseCaseImpl;
+import br.com.on.fiap.core.adapter.datasource.PedidoDataSource;
+import br.com.on.fiap.core.adapter.gateway.ClienteGateway;
+import br.com.on.fiap.core.adapter.gateway.PagamentoGateway;
+import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
+import br.com.on.fiap.core.adapter.gateway.impl.PedidoGatewayImpl;
+import br.com.on.fiap.core.application.usecase.pedido.PedidoAtualizaUseCase;
+import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;
+import br.com.on.fiap.core.application.usecase.pedido.PedidoInsereUseCase;
+import br.com.on.fiap.core.application.usecase.pedido.PedidoListaUseCase;
+import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoAtualizaUseCaseImpl;
+import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoDetalhaUseCaseImpl;
+import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoInsereUseCaseImpl;
+import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoListaUseCaseImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

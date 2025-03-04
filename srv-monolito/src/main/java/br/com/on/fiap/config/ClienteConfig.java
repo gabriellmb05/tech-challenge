@@ -1,16 +1,16 @@
 package br.com.on.fiap.config;
 
-import br.com.on.fiap.hexagono.adapter.controller.ClienteController;
-import br.com.on.fiap.hexagono.adapter.controller.impl.ClienteControllerImpl;
-import br.com.on.fiap.hexagono.adapter.datasource.ClienteDataSource;
-import br.com.on.fiap.hexagono.adapter.gateway.ClienteGateway;
-import br.com.on.fiap.hexagono.adapter.gateway.impl.ClienteGatewayImpl;
-import br.com.on.fiap.hexagono.adapter.presenter.ClientePresenter;
-import br.com.on.fiap.hexagono.adapter.presenter.impl.ClientePresenterImpl;
-import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
-import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteInsereUseCase;
-import br.com.on.fiap.hexagono.application.usecase.cliente.impl.ClienteBuscaPorCpfUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.cliente.impl.ClienteInsereUseCaseImpl;
+import br.com.on.fiap.core.adapter.controller.ClienteController;
+import br.com.on.fiap.core.adapter.controller.impl.ClienteControllerImpl;
+import br.com.on.fiap.core.adapter.datasource.ClienteDataSource;
+import br.com.on.fiap.core.adapter.gateway.ClienteGateway;
+import br.com.on.fiap.core.adapter.gateway.impl.ClienteGatewayImpl;
+import br.com.on.fiap.core.adapter.presenter.ClientePresenter;
+import br.com.on.fiap.core.adapter.presenter.impl.ClientePresenterImpl;
+import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
+import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
+import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteBuscaPorCpfUseCaseImpl;
+import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteInsereUseCaseImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

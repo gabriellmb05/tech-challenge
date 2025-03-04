@@ -1,12 +1,12 @@
 package br.com.on.fiap.config;
 
-import br.com.on.fiap.hexagono.adapter.datasource.PagamentoDataSource;
-import br.com.on.fiap.hexagono.adapter.gateway.PagamentoGateway;
-import br.com.on.fiap.hexagono.adapter.gateway.impl.PagamentoGatewayImpl;
-import br.com.on.fiap.hexagono.application.usecase.pagamento.PagamentoAtualizaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pagamento.PagamentoValidaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pagamento.impl.PagamentoAtualizaUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.pagamento.impl.PagamentoValidaUseCaseImpl;
+import br.com.on.fiap.core.adapter.datasource.PagamentoDataSource;
+import br.com.on.fiap.core.adapter.gateway.PagamentoGateway;
+import br.com.on.fiap.core.adapter.gateway.impl.PagamentoGatewayImpl;
+import br.com.on.fiap.core.application.usecase.pagamento.PagamentoAtualizaUseCase;
+import br.com.on.fiap.core.application.usecase.pagamento.PagamentoValidaUseCase;
+import br.com.on.fiap.core.application.usecase.pagamento.impl.PagamentoAtualizaUseCaseImpl;
+import br.com.on.fiap.core.application.usecase.pagamento.impl.PagamentoValidaUseCaseImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
