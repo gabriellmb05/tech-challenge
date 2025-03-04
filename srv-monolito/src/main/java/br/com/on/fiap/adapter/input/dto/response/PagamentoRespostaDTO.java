@@ -1,9 +1,10 @@
 package br.com.on.fiap.adapter.input.dto.response;
 
-import br.com.on.fiap.hexagono.domain.entity.SituacaoPagamento;
-import br.com.on.fiap.hexagono.domain.entity.TipoPagamento;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import br.com.on.fiap.core.domain.entity.SituacaoPagamento;
+import br.com.on.fiap.core.domain.entity.TipoPagamento;
 import lombok.Builder;
 
 @Builder

@@ -1,8 +1,7 @@
 package br.com.on.fiap.adapter.input.swagger;
 
 import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
-import br.com.on.fiap.hexagono.application.dto.ClienteRespostaDTO;
-import br.com.on.fiap.hexagono.domain.entity.Cliente;
+import br.com.on.fiap.core.application.dto.ClienteRespostaDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -23,7 +22,7 @@ public interface ClienteApiSwagger {
                         content =
                                 @Content(
                                         mediaType = "application/json",
-                                        schema = @Schema(implementation = Cliente.class))),
+                                        schema = @Schema(implementation = ClienteRespostaDTO.class))),
                 @ApiResponse(responseCode = "400", description = "Dados inválidos"),
                 @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
             })
@@ -38,7 +37,7 @@ public interface ClienteApiSwagger {
                         content =
                                 @Content(
                                         mediaType = "application/json",
-                                        schema = @Schema(implementation = Cliente.class))),
+                                        schema = @Schema(implementation = ClienteRespostaDTO.class))),
                 @ApiResponse(responseCode = "404", description = "Cliente não encontrado"),
                 @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
             })
