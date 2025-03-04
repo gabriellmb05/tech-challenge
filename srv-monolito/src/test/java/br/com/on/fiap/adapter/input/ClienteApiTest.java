@@ -1,10 +1,9 @@
-package br.com.on.fiap.adapter.cliente.entrada;
+package br.com.on.fiap.adapter.input;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.adapter.input.ClienteApi;
 import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.mapper.ClienteInputMapper;
 import br.com.on.fiap.datapool.DataPoolClienteEntradaDTO;

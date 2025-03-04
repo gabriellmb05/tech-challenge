@@ -1,10 +1,9 @@
-package br.com.on.fiap.adapter.pedido.entrada;
+package br.com.on.fiap.adapter.input;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.adapter.input.PedidoApi;
 import br.com.on.fiap.adapter.input.dto.filter.PedidoFiltroDTO;
 import br.com.on.fiap.adapter.input.dto.response.PedidoDetalhadoRespostaDTO;
 import br.com.on.fiap.adapter.input.dto.response.PedidoRespostaDTO;

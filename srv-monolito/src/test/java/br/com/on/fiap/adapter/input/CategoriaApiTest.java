@@ -1,9 +1,8 @@
-package br.com.on.fiap.adapter.categoria.entrada;
+package br.com.on.fiap.adapter.input;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.adapter.input.CategoriaApi;
 import br.com.on.fiap.hexagono.adapter.controller.impl.CategoriaControllerImpl;
 import br.com.on.fiap.hexagono.application.dto.CategoriaSaidaDTO;
 import br.com.on.fiap.hexagono.domain.entity.Categoria;
@@ -19,13 +18,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 @ExtendWith(MockitoExtension.class)
-class CategoriaHandlerTest {
+class CategoriaApiTest {
 
     @Mock
-    private CategoriaControllerImpl categoriaControladorImpl;
+    private CategoriaControllerImpl categoriaController;
 
     @InjectMocks
-    private CategoriaApi categoriaHandler;
+    private CategoriaApi categoriaApi;
 
     @Test
     @DisplayName("Dado categorias de produtos, quando buscar as categorias, então elas devem ser retornadas")
@@ -33,9 +32,9 @@ class CategoriaHandlerTest {
         List<String> categoriasEsperadas =
                 Arrays.stream(Categoria.values()).map(Categoria::name).toList();
         CategoriaSaidaDTO respostaEsperada = new CategoriaSaidaDTO(categoriasEsperadas);
-        when(categoriaControladorImpl.buscaCategorias()).thenReturn(respostaEsperada);
+        when(categoriaController.buscaCategorias()).thenReturn(respostaEsperada);
 
-        ResponseEntity<CategoriaSaidaDTO> response = categoriaHandler.buscaCategorias();
+        ResponseEntity<CategoriaSaidaDTO> response = categoriaApi.buscaCategorias();
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(new CategoriaSaidaDTO(categoriasEsperadas), response.getBody());

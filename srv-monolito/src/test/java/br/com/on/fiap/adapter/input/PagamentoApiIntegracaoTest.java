@@ -1,4 +1,4 @@
-package br.com.on.fiap.adapter.pagamento.entrada;
+package br.com.on.fiap.adapter.input;
 
 import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.Mockito.when;

@@ -1,4 +1,4 @@
-package br.com.on.fiap.adapter.cliente.entrada;
+package br.com.on.fiap.adapter.input;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

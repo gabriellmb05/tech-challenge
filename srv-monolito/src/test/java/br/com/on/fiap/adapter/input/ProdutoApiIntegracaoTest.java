@@ -1,4 +1,4 @@
-package br.com.on.fiap.adapter.produto.entrada;
+package br.com.on.fiap.adapter.input;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;

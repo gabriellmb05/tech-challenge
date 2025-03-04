@@ -15,13 +15,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.WebRequest;
 
 @ExtendWith(MockitoExtension.class)
-class ExcecaoGlobalManipuladorTest {
+class RestExceptionHandlerTest {
 
     @Mock
     private WebRequest request;
 
     @InjectMocks
-    private ExcecaoGlobalManipulador manipuladorExcecaoGlobal;
+    private RestExceptionHandler exceptionHandler;
 
     @Test
     @DisplayName("Dado uma exceção ProdutoExistenteExcecao, quando manipulada, então deve retornar BAD_REQUEST")
@@ -29,8 +29,7 @@ class ExcecaoGlobalManipuladorTest {
         ProdutoExistenteExcecao ex =
                 new ProdutoExistenteExcecao(MessageError.MSG_ERRO_PRODUTO_JA_CADASTRADO.getMensagem(), 1L);
 
-        ResponseEntity<DetalhesErrosGeraisDTO> response =
-                manipuladorExcecaoGlobal.handleProdutoExistenteExcecao(ex, request);
+        ResponseEntity<DetalhesErrosGeraisDTO> response = exceptionHandler.handleProdutoExistenteExcecao(ex, request);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals(
@@ -44,8 +43,7 @@ class ExcecaoGlobalManipuladorTest {
         ClienteExistenteExcecao ex = new ClienteExistenteExcecao(
                 MessageError.MSG_ERRO_CLIENTE_CPF_JA_CADASTRADO.getMensagem(), "75864522023");
 
-        ResponseEntity<DetalhesErrosGeraisDTO> response =
-                manipuladorExcecaoGlobal.handleClienteExistenteExcecao(ex, request);
+        ResponseEntity<DetalhesErrosGeraisDTO> response = exceptionHandler.handleClienteExistenteExcecao(ex, request);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals(
@@ -59,8 +57,7 @@ class ExcecaoGlobalManipuladorTest {
         ClienteExistenteExcecao ex = new ClienteExistenteExcecao(
                 MessageError.MSG_ERRO_CLIENTE_EMAIL_JA_CADASTRADO.getMensagem(), "teste@gmail.com");
 
-        ResponseEntity<DetalhesErrosGeraisDTO> response =
-                manipuladorExcecaoGlobal.handleClienteExistenteExcecao(ex, request);
+        ResponseEntity<DetalhesErrosGeraisDTO> response = exceptionHandler.handleClienteExistenteExcecao(ex, request);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals(
@@ -75,7 +72,7 @@ class ExcecaoGlobalManipuladorTest {
                 new ProdutoNaoEncontradoExcecao(MessageError.MSG_ERRO_PRODUTO_NAO_CADASTRADO.getMensagem(), 0L);
 
         ResponseEntity<DetalhesErrosGeraisDTO> response =
-                manipuladorExcecaoGlobal.handleProdutoNaoEncontradoExcecao(ex, request);
+                exceptionHandler.handleProdutoNaoEncontradoExcecao(ex, request);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(
@@ -89,7 +86,7 @@ class ExcecaoGlobalManipuladorTest {
                 MessageError.MSG_ERRO_CLIENTE_NAO_CADASTRADO.getMensagem(), "75864522023");
 
         ResponseEntity<DetalhesErrosGeraisDTO> response =
-                manipuladorExcecaoGlobal.handleClienteNaoEncontradoExcecao(ex, request);
+                exceptionHandler.handleClienteNaoEncontradoExcecao(ex, request);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(
@@ -102,7 +99,7 @@ class ExcecaoGlobalManipuladorTest {
     void dadoExcecaoGenerica_quandoManipulada_entaoDeveRetornarInternalServerError() {
         Exception ex = new Exception("Erro interno da aplicação");
 
-        ResponseEntity<DetalhesErrosGeraisDTO> response = manipuladorExcecaoGlobal.handleGlobalException(ex, request);
+        ResponseEntity<DetalhesErrosGeraisDTO> response = exceptionHandler.handleGlobalException(ex, request);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Erro interno da aplicação", response.getBody().getErrors().getFirst());
@@ -115,7 +112,7 @@ class ExcecaoGlobalManipuladorTest {
                 MessageError.MSG_ERRO_PRODUTO_CATEGORIA_NAO_CADASTRADA.getMensagem(), 1L);
 
         ResponseEntity<DetalhesErrosGeraisDTO> response =
-                manipuladorExcecaoGlobal.handleCategoriaNaoEncontradaExcecao(ex, request);
+                exceptionHandler.handleCategoriaNaoEncontradaExcecao(ex, request);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals(

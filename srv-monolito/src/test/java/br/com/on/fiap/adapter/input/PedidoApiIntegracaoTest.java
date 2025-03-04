@@ -1,4 +1,4 @@
-package br.com.on.fiap.adapter.pedido.entrada;
+package br.com.on.fiap.adapter.input;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

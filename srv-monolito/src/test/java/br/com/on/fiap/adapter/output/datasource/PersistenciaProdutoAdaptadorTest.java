@@ -1,4 +1,4 @@
-package br.com.on.fiap.adapter.produto.saida;
+package br.com.on.fiap.adapter.output.datasource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,7 +27,7 @@ class PersistenciaProdutoAdaptadorTest {
     private ProdutoSaidaMapeador produtoSaidaMapeador;
 
     @InjectMocks
-    private PersistenciaProdutoAdaptador persistenciaProdutoAdaptador;
+    private ProdutoDataSourceImpl produtoDataSource;
 
     @Test
     @DisplayName("Dado um produto existente, quando buscar por ID, então ele deve ser retornado")
@@ -38,7 +38,7 @@ class PersistenciaProdutoAdaptadorTest {
         when(produtoRepository.findById(id)).thenReturn(Optional.of(produtoEntity));
         when(produtoSaidaMapeador.paraProduto(produtoEntity)).thenReturn(produto);
 
-        Optional<Produto> resultado = persistenciaProdutoAdaptador.buscaProdutoPorId(id);
+        Optional<Produto> resultado = produtoDataSource.buscaProdutoPorId(id);
 
         assertTrue(resultado.isPresent());
         assertEquals(produto, resultado.get());
@@ -57,7 +57,7 @@ class PersistenciaProdutoAdaptadorTest {
         when(produtoRepository.save(produtoEntity)).thenReturn(produtoPersistidoEntidade);
         when(produtoSaidaMapeador.paraProduto(produtoPersistidoEntidade)).thenReturn(produtoPersistido);
 
-        Produto resultado = persistenciaProdutoAdaptador.salvaProduto(produto);
+        Produto resultado = produtoDataSource.salvaProduto(produto);
 
         assertEquals(produtoPersistido, resultado);
         verify(produtoSaidaMapeador).paraEntidade(produto);
@@ -74,7 +74,7 @@ class PersistenciaProdutoAdaptadorTest {
         when(produtoRepository.findByNmNome(nome)).thenReturn(Optional.of(produtoEntity));
         when(produtoSaidaMapeador.paraProduto(produtoEntity)).thenReturn(produto);
 
-        Optional<Produto> resultado = persistenciaProdutoAdaptador.buscaProdutoPorNome(nome);
+        Optional<Produto> resultado = produtoDataSource.buscaProdutoPorNome(nome);
 
         assertTrue(resultado.isPresent());
         assertEquals(produto, resultado.get());
@@ -87,7 +87,7 @@ class PersistenciaProdutoAdaptadorTest {
     void dadoProdutoExistente_quandoDeletarPorId_entaoDeveSerRemovido() {
         Long id = 1L;
 
-        persistenciaProdutoAdaptador.deletaProdutoPorId(id);
+        produtoDataSource.deletaProdutoPorId(id);
 
         verify(produtoRepository).deleteById(id);
     }

@@ -1,4 +1,4 @@
-package br.com.on.fiap.adapter.categoria.entrada;
+package br.com.on.fiap.adapter.input;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("integration-test")
-class CategoriaHandlerIntegracaoTest {
+class CategoriaApiIntegracaoTest {
 
     @Autowired
     private MockMvc mockMvc;
