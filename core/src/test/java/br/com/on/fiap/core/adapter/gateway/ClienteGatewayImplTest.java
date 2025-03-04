@@ -7,8 +7,8 @@ import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.datasource.ClienteDataSource;
 import br.com.on.fiap.core.adapter.gateway.impl.ClienteGatewayImpl;
-import br.com.on.fiap.core.datapool.DataPoolCliente;
 import br.com.on.fiap.core.domain.entity.Cliente;
+import br.com.on.fiap.datapool.DataPoolCliente;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
