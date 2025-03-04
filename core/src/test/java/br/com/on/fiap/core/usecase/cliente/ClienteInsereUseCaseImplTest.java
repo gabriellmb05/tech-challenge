@@ -10,7 +10,7 @@ import br.com.on.fiap.core.datapool.DataPoolCliente;
 import br.com.on.fiap.core.datapool.DataPoolClienteEntradaDTO;
 import br.com.on.fiap.core.domain.entity.Cliente;
 import br.com.on.fiap.core.domain.exception.ClienteExistenteExcecao;
-import br.com.on.fiap.core.usecase.cliente.impl.ClienteInsereUseCaseImpl;
+import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteInsereUseCaseImpl;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

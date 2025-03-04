@@ -1,8 +1,6 @@
 package br.com.on.fiap.adapter.input;
 
 import br.com.on.fiap.adapter.input.swagger.CategoriaApiSwagger;
-import br.com.on.fiap.hexagono.adapter.controller.CategoriaController;
-import br.com.on.fiap.hexagono.application.dto.CategoriaSaidaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

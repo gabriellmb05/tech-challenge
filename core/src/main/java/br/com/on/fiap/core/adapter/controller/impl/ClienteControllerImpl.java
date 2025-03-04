@@ -5,8 +5,8 @@ import br.com.on.fiap.core.adapter.presenter.ClientePresenter;
 import br.com.on.fiap.core.application.dto.ClienteEntradaDTO;
 import br.com.on.fiap.core.application.dto.ClienteRespostaDTO;
 import br.com.on.fiap.core.application.dto.ClienteSaidaDTO;
-import br.com.on.fiap.core.usecase.cliente.ClienteBuscaPorCpfUseCase;
-import br.com.on.fiap.core.usecase.cliente.ClienteInsereUseCase;
+import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
+import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
 
 public class ClienteControllerImpl implements ClienteController {
 

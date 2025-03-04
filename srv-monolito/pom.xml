@@ -52,7 +52,7 @@
         </dependency>
         <dependency>
             <groupId>br.com.on.fiap</groupId>
-            <artifactId>hexagono</artifactId>
+            <artifactId>core</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

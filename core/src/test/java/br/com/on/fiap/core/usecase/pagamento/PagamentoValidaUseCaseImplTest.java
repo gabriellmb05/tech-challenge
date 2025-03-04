@@ -6,7 +6,7 @@ import br.com.on.fiap.core.datapool.DataPoolPagamento;
 import br.com.on.fiap.core.domain.entity.Pagamento;
 import br.com.on.fiap.core.domain.entity.SituacaoPagamento;
 import br.com.on.fiap.core.domain.exception.PagamentoJaRealizadoExcecao;
-import br.com.on.fiap.core.usecase.pagamento.impl.PagamentoValidaUseCaseImpl;
+import br.com.on.fiap.core.application.usecase.pagamento.impl.PagamentoValidaUseCaseImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

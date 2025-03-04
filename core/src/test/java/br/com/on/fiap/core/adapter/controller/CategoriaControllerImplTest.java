@@ -9,7 +9,7 @@ import br.com.on.fiap.core.adapter.controller.impl.CategoriaControllerImpl;
 import br.com.on.fiap.core.adapter.presenter.CategoriaPresenter;
 import br.com.on.fiap.core.application.dto.CategoriaSaidaDTO;
 import br.com.on.fiap.core.domain.entity.Categoria;
-import br.com.on.fiap.core.usecase.categoria.CategoriaBuscaUseCase;
+import br.com.on.fiap.core.application.usecase.categoria.CategoriaBuscaUseCase;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

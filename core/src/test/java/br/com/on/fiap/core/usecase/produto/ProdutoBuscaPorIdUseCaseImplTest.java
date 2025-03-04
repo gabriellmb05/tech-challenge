@@ -9,7 +9,7 @@ import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
 import br.com.on.fiap.core.datapool.DataPoolProduto;
 import br.com.on.fiap.core.domain.entity.Produto;
 import br.com.on.fiap.core.domain.exception.ProdutoNaoEncontradoExcecao;
-import br.com.on.fiap.core.usecase.produto.impl.ProdutoBuscaPorIdUseCaseImpl;
+import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoBuscaPorIdUseCaseImpl;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

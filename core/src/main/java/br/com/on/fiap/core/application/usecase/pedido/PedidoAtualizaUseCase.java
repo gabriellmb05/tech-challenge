@@ -1,0 +1,7 @@
+package br.com.on.fiap.core.application.usecase.pedido;
+
+import br.com.on.fiap.core.domain.entity.Pedido;
+
+public interface PedidoAtualizaUseCase {
+    Pedido atualizarPedido(String protocolo);
+}

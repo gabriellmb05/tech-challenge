@@ -11,7 +11,7 @@ import br.com.on.fiap.core.datapool.DataPoolPedidoFiltro;
 import br.com.on.fiap.core.domain.entity.Pedido;
 import br.com.on.fiap.core.domain.entity.PedidoFiltro;
 import br.com.on.fiap.core.domain.entity.SituacaoPedido;
-import br.com.on.fiap.core.usecase.pedido.impl.PedidoListaUseCaseImpl;
+import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoListaUseCaseImpl;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;

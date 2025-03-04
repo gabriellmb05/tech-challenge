@@ -8,7 +8,7 @@ import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.core.datapool.DataPoolPedido;
 import br.com.on.fiap.core.domain.entity.Pedido;
 import br.com.on.fiap.core.domain.exception.PedidoNaoEncontradoExcecao;
-import br.com.on.fiap.core.usecase.pedido.impl.PedidoDetalhaUseCaseImpl;
+import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoDetalhaUseCaseImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
