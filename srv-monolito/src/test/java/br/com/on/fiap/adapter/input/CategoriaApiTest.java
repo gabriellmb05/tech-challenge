@@ -3,11 +3,12 @@ package br.com.on.fiap.adapter.input;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.hexagono.adapter.controller.impl.CategoriaControllerImpl;
-import br.com.on.fiap.hexagono.application.dto.CategoriaSaidaDTO;
-import br.com.on.fiap.hexagono.domain.entity.Categoria;
 import java.util.Arrays;
 import java.util.List;
+
+import br.com.on.fiap.core.adapter.controller.impl.CategoriaControllerImpl;
+import br.com.on.fiap.core.application.dto.CategoriaRespostaDTO;
+import br.com.on.fiap.core.domain.entity.Categoria;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,12 +32,12 @@ class CategoriaApiTest {
     void dadoCategoriasDeProdutos_quandoBuscarCategorias_entaoDevemSerRetornadas() {
         List<String> categoriasEsperadas =
                 Arrays.stream(Categoria.values()).map(Categoria::name).toList();
-        CategoriaSaidaDTO respostaEsperada = new CategoriaSaidaDTO(categoriasEsperadas);
+        CategoriaRespostaDTO respostaEsperada = new CategoriaRespostaDTO(categoriasEsperadas);
         when(categoriaController.buscaCategorias()).thenReturn(respostaEsperada);
 
-        ResponseEntity<CategoriaSaidaDTO> response = categoriaApi.buscaCategorias();
+        ResponseEntity<CategoriaRespostaDTO> response = categoriaApi.buscaCategorias();
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(new CategoriaSaidaDTO(categoriasEsperadas), response.getBody());
+        assertEquals(new CategoriaRespostaDTO(categoriasEsperadas), response.getBody());
     }
 }

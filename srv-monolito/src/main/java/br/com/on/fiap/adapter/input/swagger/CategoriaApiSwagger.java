@@ -1,5 +1,6 @@
 package br.com.on.fiap.adapter.input.swagger;
 
+import br.com.on.fiap.core.application.dto.CategoriaRespostaDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -11,5 +12,5 @@ public interface CategoriaApiSwagger {
 
     @Operation(summary = "Busca categorias", description = "Retorna uma lista de categorias")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Categorias disponíveis")})
-    ResponseEntity<CategoriaSaidaDTO> buscaCategorias();
+    ResponseEntity<CategoriaRespostaDTO> buscaCategorias();
 }

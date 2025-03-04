@@ -1,8 +1,8 @@
 package br.com.on.fiap.adapter.input.mapper;
 
 import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
-import br.com.on.fiap.hexagono.application.dto.ClienteEntradaDTO;
-import br.com.on.fiap.hexagono.domain.entity.Cliente;
+import br.com.on.fiap.core.application.dto.ClienteEntradaDTO;
+import br.com.on.fiap.core.domain.entity.Cliente;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
