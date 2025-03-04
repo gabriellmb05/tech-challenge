@@ -20,19 +20,19 @@ public interface ProdutoRepository extends JpaRepository<ProdutoEntity, Long> {
 
     @Query(
             """
-			SELECT
-			    p
-			FROM
-			    ProdutoEntity p
-			WHERE
-			    (
-			        :#{#filtro.nome} IS NULL
-			            OR p.nmNome = :#{#filtro.nome}
-			    )
-			    AND (
-			        :#{#filtro.categoria} IS NULL
-			            OR p.tpCategoria = :#{#filtro.categoria}
-			    )
-			""")
+                    SELECT
+                        p
+                    FROM
+                        ProdutoEntity p
+                    WHERE
+                        (
+                            :#{#filtro.nome} IS NULL
+                                OR p.nmNome = :#{#filtro.nome}
+                        )
+                        AND (
+                            :#{#filtro.categoria} IS NULL
+                                OR p.tpCategoria = :#{#filtro.categoria}
+                        )
+                    """)
     Page<ProdutoEntity> buscarComFiltro(@Param(value = "filtro") ProdutoFiltro filtro, Pageable page);
 }

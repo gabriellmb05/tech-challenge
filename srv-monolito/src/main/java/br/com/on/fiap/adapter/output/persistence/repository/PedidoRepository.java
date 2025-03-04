@@ -14,15 +14,15 @@ public interface PedidoRepository extends JpaRepository<PedidoEntity, Long>, Jpa
     @Query(
             value =
                     """
-            SELECT
-                p
-            FROM
-                PedidoEntity p
-            LEFT JOIN FETCH p.relPedPro
-            LEFT JOIN FETCH p.cliId
-            LEFT JOIN FETCH p.pagId
-            WHERE
-                p.nmProtocolo = :protocolo
-            """)
+                            SELECT
+                                p
+                            FROM
+                                PedidoEntity p
+                            LEFT JOIN FETCH p.relPedPro
+                            LEFT JOIN FETCH p.cliId
+                            LEFT JOIN FETCH p.pagId
+                            WHERE
+                                p.nmProtocolo = :protocolo
+                            """)
     Optional<PedidoEntity> findByNmProtocolo(@Param("protocolo") String protocolo);
 }
