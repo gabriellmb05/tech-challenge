@@ -14,13 +14,7 @@ public class DataPoolPagamentoRespostaDTO {
             SituacaoPagamento stPagamento,
             TipoPagamento tpPagamento,
             LocalDateTime dhPagamento) {
-        return PagamentoRespostaDTO.builder()
-                .id(id)
-                .vlCompra(vlCompra)
-                .stPagamento(stPagamento)
-                .tpPagamento(tpPagamento)
-                .dhPagamento(dhPagamento)
-                .build();
+        return new PagamentoRespostaDTO(id, vlCompra, stPagamento, tpPagamento, dhPagamento);
     }
 
     public static PagamentoRespostaDTO gerarPagamento() {
