@@ -1,6 +1,6 @@
 package br.com.on.fiap.infraestrutura.excecao;
 
-import br.com.on.fiap.hexagono.excecao.message.MessageManager;
+import br.com.on.fiap.hexagono.domain.exception.message.MessageManager;
 
 public class IntegracaoPagamentoExcecao extends RuntimeException {
     public IntegracaoPagamentoExcecao(String chave, Object... args) {

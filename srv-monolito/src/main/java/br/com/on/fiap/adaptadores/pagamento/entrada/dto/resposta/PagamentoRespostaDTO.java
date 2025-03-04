@@ -1,7 +1,7 @@
 package br.com.on.fiap.adaptadores.pagamento.entrada.dto.resposta;
 
-import br.com.on.fiap.hexagono.entidades.SituacaoPagamento;
-import br.com.on.fiap.hexagono.entidades.TipoPagamento;
+import br.com.on.fiap.hexagono.domain.entity.SituacaoPagamento;
+import br.com.on.fiap.hexagono.domain.entity.TipoPagamento;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import lombok.Builder;

@@ -1,7 +1,7 @@
 package br.com.on.fiap.adaptadores.pagamento;
 
 import br.com.on.fiap.adaptadores.pagamento.entrada.dto.resposta.PagamentoRespostaDTO;
-import br.com.on.fiap.hexagono.entidades.Cliente;
+import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

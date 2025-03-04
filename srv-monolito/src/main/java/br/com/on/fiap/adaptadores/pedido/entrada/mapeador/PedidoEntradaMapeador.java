@@ -8,9 +8,9 @@ import br.com.on.fiap.adaptadores.pedido.entrada.dto.solicitacao.PedidoQuantidad
 import br.com.on.fiap.adaptadores.pedido.entrada.dto.solicitacao.PedidoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.produto.entrada.dto.resposta.ProdutoRespostaDTO;
 import br.com.on.fiap.adaptadores.produto.entrada.mapeador.ProdutoEntradaMapeador;
-import br.com.on.fiap.hexagono.entidades.Pedido;
-import br.com.on.fiap.hexagono.entidades.Produto;
-import br.com.on.fiap.hexagono.entidades.RelPedidoProduto;
+import br.com.on.fiap.hexagono.domain.entity.Pedido;
+import br.com.on.fiap.hexagono.domain.entity.Produto;
+import br.com.on.fiap.hexagono.domain.entity.RelPedidoProduto;
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

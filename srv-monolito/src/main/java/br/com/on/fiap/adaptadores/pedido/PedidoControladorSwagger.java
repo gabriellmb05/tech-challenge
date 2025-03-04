@@ -4,7 +4,7 @@ import br.com.on.fiap.adaptadores.pedido.entrada.dto.filtro.PedidoFiltroDTO;
 import br.com.on.fiap.adaptadores.pedido.entrada.dto.resposta.PedidoDetalhadoRespostaDTO;
 import br.com.on.fiap.adaptadores.pedido.entrada.dto.resposta.PedidoRespostaDTO;
 import br.com.on.fiap.adaptadores.pedido.entrada.dto.solicitacao.PedidoSolicitacaoDTO;
-import br.com.on.fiap.hexagono.entidades.Cliente;
+import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

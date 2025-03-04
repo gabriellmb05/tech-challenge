@@ -1,7 +1,7 @@
 package br.com.on.fiap.entidade;
 
 import br.com.on.fiap.entidade.conversor.TipoCategoriaConversor;
-import br.com.on.fiap.hexagono.entidades.Categoria;
+import br.com.on.fiap.hexagono.domain.entity.Categoria;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;

@@ -3,11 +3,11 @@ package br.com.on.fiap.configuracao;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import br.com.on.fiap.hexagono.casodeuso.produto.AlteraProdutoCasoDeUsoImpl;
-import br.com.on.fiap.hexagono.casodeuso.produto.BuscaProdutoCasoDeUsoImpl;
-import br.com.on.fiap.hexagono.casodeuso.produto.DeletaProdutoCasoDeUsoImpl;
-import br.com.on.fiap.hexagono.casodeuso.produto.InsereProdutoCasoDeUsoImpl;
-import br.com.on.fiap.hexagono.casodeuso.produto.entrada.*;
+import br.com.on.fiap.hexagono.usecase.produto.ProdutoAlteraUseCaseImpl;
+import br.com.on.fiap.hexagono.usecase.produto.ProdutoBuscaImpl;
+import br.com.on.fiap.hexagono.usecase.produto.ProdutoDeletaUseCaseImpl;
+import br.com.on.fiap.hexagono.usecase.produto.ProdutoInsereUseCaseImpl;
+import br.com.on.fiap.hexagono.usecase.produto.base.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -19,10 +19,10 @@ class ProdutoBeanConfiguracaoTest {
     void dadoConfiguracaoDeBeans_quandoBuscarProdutoPorId_entaoDeveRetornarInstanciaCorreta() {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(ProdutoBeanConfiguracao.class);
-        BuscaProdutoPorIdCasoDeUso bean = context.getBean(BuscaProdutoPorIdCasoDeUso.class);
+        ProdutoBuscaPorIdUseCase bean = context.getBean(ProdutoBuscaPorIdUseCase.class);
 
         assertNotNull(bean);
-        assertInstanceOf(BuscaProdutoCasoDeUsoImpl.class, bean);
+        assertInstanceOf(ProdutoBuscaImpl.class, bean);
     }
 
     @Test
@@ -30,10 +30,10 @@ class ProdutoBeanConfiguracaoTest {
     void dadoConfiguracaoDeBeans_quandoInserirProduto_entaoDeveRetornarInstanciaCorreta() {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(ProdutoBeanConfiguracao.class);
-        InsereProdutoCasoDeUso bean = context.getBean(InsereProdutoCasoDeUso.class);
+        ProdutoInsereUseCase bean = context.getBean(ProdutoInsereUseCase.class);
 
         assertNotNull(bean);
-        assertInstanceOf(InsereProdutoCasoDeUsoImpl.class, bean);
+        assertInstanceOf(ProdutoInsereUseCaseImpl.class, bean);
     }
 
     @Test
@@ -41,10 +41,10 @@ class ProdutoBeanConfiguracaoTest {
     void dadoConfiguracaoDeBeans_quandoAlterarProduto_entaoDeveRetornarInstanciaCorreta() {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(ProdutoBeanConfiguracao.class);
-        AlteraProdutoCasoDeUso bean = context.getBean(AlteraProdutoCasoDeUso.class);
+        ProdutoAlteraUseCase bean = context.getBean(ProdutoAlteraUseCase.class);
 
         assertNotNull(bean);
-        assertInstanceOf(AlteraProdutoCasoDeUsoImpl.class, bean);
+        assertInstanceOf(ProdutoAlteraUseCaseImpl.class, bean);
     }
 
     @Test
@@ -52,10 +52,10 @@ class ProdutoBeanConfiguracaoTest {
     void dadoConfiguracaoDeBeans_quandoDeletarProduto_entaoDeveRetornarInstanciaCorreta() {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(ProdutoBeanConfiguracao.class);
-        DeletaProdutoCasoDeUso bean = context.getBean(DeletaProdutoCasoDeUso.class);
+        ProdutoDeletaUseCase bean = context.getBean(ProdutoDeletaUseCase.class);
 
         assertNotNull(bean);
-        assertInstanceOf(DeletaProdutoCasoDeUsoImpl.class, bean);
+        assertInstanceOf(ProdutoDeletaUseCaseImpl.class, bean);
     }
 
     @Test
@@ -63,9 +63,9 @@ class ProdutoBeanConfiguracaoTest {
     void dadoConfiguracaoDeBeans_quandoListarProdutos_entaoDeveRetornarInstanciaCorreta() {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(ProdutoBeanConfiguracao.class);
-        BuscaProdutosCasoDeUso bean = context.getBean(BuscaProdutosCasoDeUso.class);
+        ProdutoListaUseCase bean = context.getBean(ProdutoListaUseCase.class);
 
         assertNotNull(bean);
-        assertInstanceOf(BuscaProdutosCasoDeUso.class, bean);
+        assertInstanceOf(ProdutoListaUseCase.class, bean);
     }
 }

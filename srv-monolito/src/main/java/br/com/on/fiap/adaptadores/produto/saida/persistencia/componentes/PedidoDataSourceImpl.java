@@ -6,15 +6,13 @@ import br.com.on.fiap.adaptadores.pedido.saida.persistencia.repositorio.PedidoPr
 import br.com.on.fiap.adaptadores.pedido.saida.persistencia.repositorio.PedidoRepositorio;
 import br.com.on.fiap.entidade.PedidoEntidade;
 import br.com.on.fiap.entidade.PedidoProdutoEntidade;
-import br.com.on.fiap.hexagono.adaptadores.datasource.PedidoDataSource;
-import br.com.on.fiap.hexagono.entidades.Pedido;
-import br.com.on.fiap.hexagono.entidades.PedidoFiltro;
-import br.com.on.fiap.hexagono.entidades.RelPedidoProduto;
-import br.com.on.fiap.hexagono.entidades.SituacaoPedido;
-
+import br.com.on.fiap.hexagono.adapter.datasource.PedidoDataSource;
+import br.com.on.fiap.hexagono.domain.entity.Pedido;
+import br.com.on.fiap.hexagono.domain.entity.PedidoFiltro;
+import br.com.on.fiap.hexagono.domain.entity.RelPedidoProduto;
+import br.com.on.fiap.hexagono.domain.entity.SituacaoPedido;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -28,7 +26,9 @@ public class PedidoDataSourceImpl implements PedidoDataSource {
     private final PedidoProdutoSaidaMapeador pedidoProdutoSaidaMapeador;
 
     public PedidoDataSourceImpl(
-            PedidoRepositorio pedidoRepositorio, PedidoProdutoRepositorio pedidoProdutoRepositorio, PedidoProdutoSaidaMapeador pedidoProdutoSaidaMapeador) {
+            PedidoRepositorio pedidoRepositorio,
+            PedidoProdutoRepositorio pedidoProdutoRepositorio,
+            PedidoProdutoSaidaMapeador pedidoProdutoSaidaMapeador) {
         this.pedidoRepositorio = pedidoRepositorio;
         this.pedidoProdutoRepositorio = pedidoProdutoRepositorio;
         this.pedidoProdutoSaidaMapeador = pedidoProdutoSaidaMapeador;

@@ -1,16 +1,14 @@
 package br.com.on.fiap.configuracao;
 
-import br.com.on.fiap.hexagono.adaptadores.apresentadores.ClienteApresentador;
-import br.com.on.fiap.hexagono.adaptadores.apresentadores.impl.ClienteApresentadorImpl;
-import br.com.on.fiap.hexagono.adaptadores.controladores.ClienteControlador;
-import br.com.on.fiap.hexagono.adaptadores.controladores.impl.ClienteControladorImpl;
-import br.com.on.fiap.hexagono.adaptadores.datasource.ClienteDataSource;
-import br.com.on.fiap.hexagono.adaptadores.gateways.ClienteGateway;
-import br.com.on.fiap.hexagono.adaptadores.gateways.impl.ClienteGatewayImpl;
-import br.com.on.fiap.hexagono.casodeuso.cliente.BuscaClienteCasoDeUsoImpl;
-import br.com.on.fiap.hexagono.casodeuso.cliente.InsereClienteCasoDeUsoImpl;
-import br.com.on.fiap.hexagono.casodeuso.cliente.entrada.BuscaClientePorCpfCasoDeUso;
-import br.com.on.fiap.hexagono.casodeuso.cliente.entrada.InsereClienteCasoDeUso;
+import br.com.on.fiap.hexagono.adapter.controller.ClienteControllerImpl;
+import br.com.on.fiap.hexagono.adapter.controller.base.ClienteController;
+import br.com.on.fiap.hexagono.adapter.datasource.ClienteDataSource;
+import br.com.on.fiap.hexagono.adapter.gateway.ClienteGatewayImpl;
+import br.com.on.fiap.hexagono.adapter.gateway.base.ClienteGateway;
+import br.com.on.fiap.hexagono.adapter.presenter.ClientePresenter;
+import br.com.on.fiap.hexagono.adapter.presenter.base.ClienteBasePresenter;
+import br.com.on.fiap.hexagono.usecase.cliente.base.ClienteBuscaPorCpfUseCase;
+import br.com.on.fiap.hexagono.usecase.cliente.base.ClienteInsereUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -20,26 +18,24 @@ public class ClienteBeanConfiguracao {
 
     private final ClienteGateway clienteGateway;
     private final ClienteDataSource clienteDataSource;
-    private final ClienteApresentador clienteApresentador;
+    private final ClienteBasePresenter clientePresenter;
 
     @Lazy
     public ClienteBeanConfiguracao(
-            ClienteGateway clienteGateway,
-            ClienteDataSource clienteDataSource,
-            ClienteApresentador clienteApresentador) {
+            ClienteGateway clienteGateway, ClienteDataSource clienteDataSource, ClienteBasePresenter clientePresenter) {
         this.clienteGateway = clienteGateway;
         this.clienteDataSource = clienteDataSource;
-        this.clienteApresentador = clienteApresentador;
+        this.clientePresenter = clientePresenter;
     }
 
     @Bean
-    public BuscaClientePorCpfCasoDeUso buscaCliente() {
-        return new BuscaClienteCasoDeUsoImpl(clienteGateway);
+    public ClienteBuscaPorCpfUseCase buscaCliente() {
+        return new br.com.on.fiap.hexagono.usecase.cliente.ClienteBuscaPorCpfUseCase(clienteGateway);
     }
 
     @Bean
-    public InsereClienteCasoDeUso insereCliente() {
-        return new InsereClienteCasoDeUsoImpl(clienteGateway);
+    public ClienteInsereUseCase insereCliente() {
+        return new br.com.on.fiap.hexagono.usecase.cliente.ClienteInsereUseCase(clienteGateway);
     }
 
     @Bean
@@ -48,12 +44,12 @@ public class ClienteBeanConfiguracao {
     }
 
     @Bean
-    public ClienteApresentador clienteApresentador() {
-        return new ClienteApresentadorImpl();
+    public ClienteBasePresenter clienteApresentador() {
+        return new ClientePresenter();
     }
 
     @Bean
-    public ClienteControlador clienteControlador() {
-        return new ClienteControladorImpl(insereCliente(), buscaCliente(), clienteApresentador);
+    public ClienteController clienteControlador() {
+        return new ClienteControllerImpl(insereCliente(), buscaCliente(), clientePresenter);
     }
 }

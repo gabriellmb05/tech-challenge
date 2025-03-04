@@ -1,6 +1,6 @@
 package br.com.on.fiap.adaptadores.pedido.entrada.dto.resposta;
 
-import br.com.on.fiap.hexagono.entidades.SituacaoPedido;
+import br.com.on.fiap.hexagono.domain.entity.SituacaoPedido;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,8 +1,8 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.hexagono.entidades.Pagamento;
-import br.com.on.fiap.hexagono.entidades.SituacaoPagamento;
-import br.com.on.fiap.hexagono.entidades.TipoPagamento;
+import br.com.on.fiap.hexagono.domain.entity.Pagamento;
+import br.com.on.fiap.hexagono.domain.entity.SituacaoPagamento;
+import br.com.on.fiap.hexagono.domain.entity.TipoPagamento;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 

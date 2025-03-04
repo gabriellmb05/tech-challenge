@@ -1,13 +1,13 @@
 package br.com.on.fiap.configuracao;
 
-import br.com.on.fiap.hexagono.adaptadores.apresentadores.CategoriaApresentador;
-import br.com.on.fiap.hexagono.adaptadores.apresentadores.impl.CategoriaApresentadorImpl;
-import br.com.on.fiap.hexagono.adaptadores.controladores.CategoriaControlador;
-import br.com.on.fiap.hexagono.adaptadores.controladores.impl.CategoriaControladorImpl;
-import br.com.on.fiap.hexagono.adaptadores.gateways.CategoriaGateway;
-import br.com.on.fiap.hexagono.adaptadores.gateways.impl.CategoriaGatewayImpl;
-import br.com.on.fiap.hexagono.casodeuso.categoria.BuscaCategoriasCasoDeUsoImpl;
-import br.com.on.fiap.hexagono.casodeuso.categoria.entrada.BuscaCategoriaCasoDeUso;
+import br.com.on.fiap.hexagono.adapter.controller.CategoriaControllerImpl;
+import br.com.on.fiap.hexagono.adapter.controller.base.CategoriaController;
+import br.com.on.fiap.hexagono.adapter.gateway.CategoriaGatewayImpl;
+import br.com.on.fiap.hexagono.adapter.gateway.base.CategoriaGateway;
+import br.com.on.fiap.hexagono.adapter.presenter.CategoriaPresenter;
+import br.com.on.fiap.hexagono.adapter.presenter.base.CategoriaBasePresenter;
+import br.com.on.fiap.hexagono.usecase.categoria.CategoriaBuscaUseCase;
+import br.com.on.fiap.hexagono.usecase.categoria.entrada.BuscaCategoriaCasoDeUso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -16,22 +16,22 @@ import org.springframework.context.annotation.Lazy;
 public class CategoriaBeanConfiguracao {
 
     private final CategoriaGateway categoriaGateway;
-    private final CategoriaApresentador categoriaApresentador;
+    private final CategoriaBasePresenter categoriaBasePresenter;
 
     @Lazy
-    public CategoriaBeanConfiguracao(CategoriaGateway categoriaGateway, CategoriaApresentador categoriaApresentador) {
+    public CategoriaBeanConfiguracao(CategoriaGateway categoriaGateway, CategoriaBasePresenter categoriaBasePresenter) {
         this.categoriaGateway = categoriaGateway;
-        this.categoriaApresentador = categoriaApresentador;
+        this.categoriaBasePresenter = categoriaBasePresenter;
     }
 
     @Bean
     public BuscaCategoriaCasoDeUso buscaCategorias() {
-        return new BuscaCategoriasCasoDeUsoImpl(categoriaGateway);
+        return new CategoriaBuscaUseCase(categoriaGateway);
     }
 
     @Bean
-    public CategoriaControlador categoriaControlador() {
-        return new CategoriaControladorImpl(buscaCategorias(), categoriaApresentador);
+    public CategoriaController categoriaControlador() {
+        return new CategoriaControllerImpl(buscaCategorias(), categoriaBasePresenter);
     }
 
     @Bean
@@ -40,7 +40,7 @@ public class CategoriaBeanConfiguracao {
     }
 
     @Bean
-    public CategoriaApresentador categoriaApresentador() {
-        return new CategoriaApresentadorImpl();
+    public CategoriaBasePresenter categoriaApresentador() {
+        return new CategoriaPresenter();
     }
 }

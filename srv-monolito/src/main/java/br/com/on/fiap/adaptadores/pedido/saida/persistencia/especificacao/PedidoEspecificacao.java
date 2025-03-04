@@ -2,7 +2,7 @@ package br.com.on.fiap.adaptadores.pedido.saida.persistencia.especificacao;
 
 import br.com.on.fiap.entidade.ClienteEntidade;
 import br.com.on.fiap.entidade.PedidoEntidade;
-import br.com.on.fiap.hexagono.entidades.PedidoFiltro;
+import br.com.on.fiap.hexagono.domain.entity.PedidoFiltro;
 import jakarta.persistence.criteria.*;
 import java.time.LocalDateTime;
 import org.springframework.data.jpa.domain.Specification;

@@ -3,8 +3,8 @@ package br.com.on.fiap.adaptadores.cliente.saida.persistencia.componentes;
 import br.com.on.fiap.adaptadores.cliente.saida.persistencia.mapeador.ClienteSaidaMapeador;
 import br.com.on.fiap.adaptadores.cliente.saida.persistencia.repositorio.ClienteRepositorio;
 import br.com.on.fiap.entidade.ClienteEntidade;
-import br.com.on.fiap.hexagono.adaptadores.datasource.ClienteDataSource;
-import br.com.on.fiap.hexagono.entidades.Cliente;
+import br.com.on.fiap.hexagono.adapter.datasource.ClienteDataSource;
+import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
 

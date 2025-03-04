@@ -1,8 +1,8 @@
 package br.com.on.fiap.adaptadores.pedido.entrada.mapeador;
 
 import br.com.on.fiap.adaptadores.produto.entrada.dto.filtro.ProdutoFiltroDTO;
-import br.com.on.fiap.hexagono.entidades.Categoria;
-import br.com.on.fiap.hexagono.entidades.ProdutoFiltro;
+import br.com.on.fiap.hexagono.domain.entity.Categoria;
+import br.com.on.fiap.hexagono.domain.entity.ProdutoFiltro;
 import java.util.Objects;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

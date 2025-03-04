@@ -3,10 +3,10 @@ package br.com.on.fiap.adaptadores.pagamento.entrada;
 import br.com.on.fiap.adaptadores.pagamento.PagamentoControladorSwagger;
 import br.com.on.fiap.adaptadores.pagamento.entrada.dto.resposta.PagamentoRespostaDTO;
 import br.com.on.fiap.adaptadores.pagamento.entrada.mapeador.PagamentoEntradaMapeador;
-import br.com.on.fiap.hexagono.casodeuso.pagamento.entrada.AtualizaPagamentoCasoDeUso;
-import br.com.on.fiap.hexagono.casodeuso.pagamento.entrada.ValidaPagamentoCasoDeUso;
-import br.com.on.fiap.hexagono.casodeuso.pedido.entrada.DetalhaPedidoCasoDeUso;
-import br.com.on.fiap.hexagono.entidades.Pagamento;
+import br.com.on.fiap.hexagono.domain.entity.Pagamento;
+import br.com.on.fiap.hexagono.usecase.pagamento.base.PagamentoAtualizaUseCase;
+import br.com.on.fiap.hexagono.usecase.pagamento.base.PagamentoValidaUseCase;
+import br.com.on.fiap.hexagono.usecase.pedido.base.PedidoDetalhaUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,28 +18,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("pagamentos")
 public class PagamentoManipulador implements PagamentoControladorSwagger {
 
-    private final AtualizaPagamentoCasoDeUso atualizaPagamentoCasoDeUso;
+    private final PagamentoAtualizaUseCase pagamentoAtualizaUseCase;
     private final PagamentoEntradaMapeador pagamentoEntradaMapeador;
-    private final DetalhaPedidoCasoDeUso detalhaPedidoCasoDeUso;
-    private final ValidaPagamentoCasoDeUso validaPagamentoCasoDeUso;
+    private final PedidoDetalhaUseCase pedidoDetalhaUseCase;
+    private final PagamentoValidaUseCase pagamentoValidaUseCase;
 
     public PagamentoManipulador(
-            AtualizaPagamentoCasoDeUso atualizaPagamentoCasoDeUso,
+            PagamentoAtualizaUseCase pagamentoAtualizaUseCase,
             PagamentoEntradaMapeador pagamentoEntradaMapeador,
-            DetalhaPedidoCasoDeUso detalhaPedidoCasoDeUso,
-            ValidaPagamentoCasoDeUso validaPagamentoCasoDeUso) {
-        this.atualizaPagamentoCasoDeUso = atualizaPagamentoCasoDeUso;
+            PedidoDetalhaUseCase pedidoDetalhaUseCase,
+            PagamentoValidaUseCase pagamentoValidaUseCase) {
+        this.pagamentoAtualizaUseCase = pagamentoAtualizaUseCase;
         this.pagamentoEntradaMapeador = pagamentoEntradaMapeador;
-        this.detalhaPedidoCasoDeUso = detalhaPedidoCasoDeUso;
-        this.validaPagamentoCasoDeUso = validaPagamentoCasoDeUso;
+        this.pedidoDetalhaUseCase = pedidoDetalhaUseCase;
+        this.pagamentoValidaUseCase = pagamentoValidaUseCase;
     }
 
     @Override
     @PutMapping("/{nrProtocolo}")
     public ResponseEntity<PagamentoRespostaDTO> atualizaPagamento(@PathVariable("nrProtocolo") String nrProtocolo) {
-        Pagamento pagamento = detalhaPedidoCasoDeUso.detalhaPedido(nrProtocolo).getPagamento();
-        validaPagamentoCasoDeUso.validarPagamentoJaRealizado(pagamento, nrProtocolo);
-        Pagamento pagamentoAtualizado = atualizaPagamentoCasoDeUso.atualizaPagamento(pagamento);
+        Pagamento pagamento = pedidoDetalhaUseCase.detalhaPedido(nrProtocolo).getPagamento();
+        pagamentoValidaUseCase.validarPagamentoJaRealizado(pagamento, nrProtocolo);
+        Pagamento pagamentoAtualizado = pagamentoAtualizaUseCase.atualizaPagamento(pagamento);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(pagamentoEntradaMapeador.paraPagamentoDTO(pagamentoAtualizado));
     }

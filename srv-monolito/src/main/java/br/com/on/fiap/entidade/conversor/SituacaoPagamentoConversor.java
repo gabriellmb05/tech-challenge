@@ -1,6 +1,6 @@
 package br.com.on.fiap.entidade.conversor;
 
-import br.com.on.fiap.hexagono.entidades.SituacaoPagamento;
+import br.com.on.fiap.hexagono.domain.entity.SituacaoPagamento;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 import java.util.Objects;

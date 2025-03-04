@@ -1,6 +1,6 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.hexagono.adaptadores.dto.ClienteRespostaDTO;
+import br.com.on.fiap.hexagono.adapter.dto.ClienteRespostaDTO;
 import java.time.LocalDate;
 
 public class DataPoolClienteRespostaDTO {

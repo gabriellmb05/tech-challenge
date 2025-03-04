@@ -10,11 +10,11 @@ import br.com.on.fiap.adaptadores.pedido.entrada.dto.resposta.PedidoRespostaDTO;
 import br.com.on.fiap.adaptadores.pedido.entrada.mapeador.PedidoEntradaMapeador;
 import br.com.on.fiap.adaptadores.pedido.entrada.mapeador.PedidoFiltroEntradaMapeador;
 import br.com.on.fiap.datapool.*;
-import br.com.on.fiap.hexagono.casodeuso.pedido.entrada.AtualizaPedidoCasoDeUso;
-import br.com.on.fiap.hexagono.casodeuso.pedido.entrada.BuscaPedidosCasoDeUso;
-import br.com.on.fiap.hexagono.casodeuso.pedido.entrada.DetalhaPedidoCasoDeUso;
-import br.com.on.fiap.hexagono.entidades.Pedido;
-import br.com.on.fiap.hexagono.entidades.PedidoFiltro;
+import br.com.on.fiap.hexagono.domain.entity.Pedido;
+import br.com.on.fiap.hexagono.domain.entity.PedidoFiltro;
+import br.com.on.fiap.hexagono.usecase.pedido.base.PedidoAtualizaUseCase;
+import br.com.on.fiap.hexagono.usecase.pedido.base.PedidoBuscaUseCase;
+import br.com.on.fiap.hexagono.usecase.pedido.base.PedidoDetalhaUseCase;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -39,19 +39,19 @@ import org.springframework.http.ResponseEntity;
 class PedidoManipuladorTest {
 
     @Mock
-    private AtualizaPedidoCasoDeUso atualizaPedidoCasoDeUso;
+    private PedidoAtualizaUseCase pedidoAtualizaUseCase;
 
     @Mock
     private PedidoEntradaMapeador pedidoEntradaMapeador;
 
     @Mock
-    private DetalhaPedidoCasoDeUso detalhaPedidoCasoDeUso;
+    private PedidoDetalhaUseCase pedidoDetalhaUseCase;
 
     @Mock
     private PedidoFiltroEntradaMapeador pedidoFiltroEntradaMapeador;
 
     @Mock
-    private BuscaPedidosCasoDeUso buscaPedidosCasoDeUso;
+    private PedidoBuscaUseCase pedidoBuscaUseCase;
 
     @InjectMocks
     private PedidoManipulador pedidoControlador;
@@ -82,7 +82,7 @@ class PedidoManipuladorTest {
         String protocolo = "2025012010424756339";
         Pedido pedido = new Pedido();
         PedidoRespostaDTO pedidoRespostaDTO = DataPoolPedidoRespostaDTO.gerarPedido();
-        when(atualizaPedidoCasoDeUso.atualizarPedido(protocolo)).thenReturn(pedido);
+        when(pedidoAtualizaUseCase.atualizarPedido(protocolo)).thenReturn(pedido);
         when(pedidoEntradaMapeador.paraPedidoDTO(pedido)).thenReturn(pedidoRespostaDTO);
 
         ResponseEntity<PedidoRespostaDTO> response = pedidoControlador.atualizarPedido(protocolo);
@@ -98,7 +98,7 @@ class PedidoManipuladorTest {
         String protocolo = "2025012010424756339";
         Pedido pedido = new Pedido();
         PedidoDetalhadoRespostaDTO pedidoRespostaDTO = DataPoolPedidoDetalheRespostaDTO.gerarPedidoDetalhe();
-        when(detalhaPedidoCasoDeUso.detalhaPedido(protocolo)).thenReturn(pedido);
+        when(pedidoDetalhaUseCase.detalhaPedido(protocolo)).thenReturn(pedido);
         when(pedidoEntradaMapeador.paraPedidoDetalheDTO(pedido)).thenReturn(pedidoRespostaDTO);
 
         ResponseEntity<PedidoDetalhadoRespostaDTO> response = pedidoControlador.detalhaPedido(protocolo);
@@ -122,7 +122,7 @@ class PedidoManipuladorTest {
                 new PageImpl<>(pedidoRespostaDTOs, paginacao, pedidoRespostaDTOs.size());
 
         when(pedidoFiltroEntradaMapeador.paraPedidoFiltro(filtroDTO)).thenReturn(filtro);
-        when(buscaPedidosCasoDeUso.buscarPedidosComFiltro(filtro, paginacao)).thenReturn(pedidoPAge);
+        when(pedidoBuscaUseCase.buscarPedidosComFiltro(filtro, paginacao)).thenReturn(pedidoPAge);
         pedidos.forEach(pedido -> when(pedidoEntradaMapeador.paraPedidoDTO(pedido))
                 .thenReturn(pedidoRespostaDTOs.get(pedidos.indexOf(pedido))));
 
@@ -132,7 +132,7 @@ class PedidoManipuladorTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(pedidoRespostaPage.getContent(), response.getBody().getContent());
         verify(pedidoFiltroEntradaMapeador).paraPedidoFiltro(filtroDTO);
-        verify(buscaPedidosCasoDeUso).buscarPedidosComFiltro(filtro, paginacao);
+        verify(pedidoBuscaUseCase).buscarPedidosComFiltro(filtro, paginacao);
         pedidos.forEach(pedido -> verify(pedidoEntradaMapeador).paraPedidoDTO(pedido));
     }
 }

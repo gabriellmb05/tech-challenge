@@ -1,6 +1,6 @@
 package br.com.on.fiap.infraestrutura.manipulador;
 
-import br.com.on.fiap.hexagono.excecao.*;
+import br.com.on.fiap.hexagono.domain.exception.*;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import org.springframework.context.support.DefaultMessageSourceResolvable;

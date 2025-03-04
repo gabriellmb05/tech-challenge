@@ -1,8 +1,8 @@
 package br.com.on.fiap.adaptadores.categoria.entrada;
 
 import br.com.on.fiap.adaptadores.categoria.CategoriaManipuladorSwagger;
-import br.com.on.fiap.hexagono.adaptadores.controladores.CategoriaControlador;
-import br.com.on.fiap.hexagono.adaptadores.dto.CategoriaSaidaDTO;
+import br.com.on.fiap.hexagono.adapter.controller.base.CategoriaController;
+import br.com.on.fiap.hexagono.adapter.dto.CategoriaSaidaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("categorias")
 public class CategoriaManipulador implements CategoriaManipuladorSwagger {
 
-    private final CategoriaControlador categoriaControlador;
+    private final CategoriaController categoriaController;
 
     @Autowired
-    public CategoriaManipulador(CategoriaControlador categoriaControlador) {
-        this.categoriaControlador = categoriaControlador;
+    public CategoriaManipulador(CategoriaController categoriaController) {
+        this.categoriaController = categoriaController;
     }
 
     @Override
     @GetMapping
     public ResponseEntity<CategoriaSaidaDTO> buscaCategorias() {
-        CategoriaSaidaDTO categoriaSaidaDTO = categoriaControlador.buscaCategorias();
+        CategoriaSaidaDTO categoriaSaidaDTO = categoriaController.buscaCategorias();
         return ResponseEntity.ok().body(categoriaSaidaDTO);
     }
 }

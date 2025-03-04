@@ -1,7 +1,7 @@
 package br.com.on.fiap.entidade;
 
 import br.com.on.fiap.entidade.conversor.SituacaoPedidoConversor;
-import br.com.on.fiap.hexagono.entidades.SituacaoPedido;
+import br.com.on.fiap.hexagono.domain.entity.SituacaoPedido;
 import jakarta.persistence.*;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;

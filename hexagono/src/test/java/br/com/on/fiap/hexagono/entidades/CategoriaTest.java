@@ -2,7 +2,8 @@ package br.com.on.fiap.hexagono.entidades;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import br.com.on.fiap.hexagono.excecao.CategoriaNaoEncontradaExcecao;
+import br.com.on.fiap.hexagono.domain.entity.Categoria;
+import br.com.on.fiap.hexagono.domain.exception.CategoriaNaoEncontradaExcecao;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

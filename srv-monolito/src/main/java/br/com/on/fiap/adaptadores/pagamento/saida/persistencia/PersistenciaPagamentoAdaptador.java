@@ -3,8 +3,7 @@ package br.com.on.fiap.adaptadores.pagamento.saida.persistencia;
 import br.com.on.fiap.adaptadores.pagamento.saida.persistencia.mapeador.PagamentoSaidaMapeador;
 import br.com.on.fiap.adaptadores.pagamento.saida.persistencia.repositorio.PagamentoRepositorio;
 import br.com.on.fiap.entidade.PagamentoEntidade;
-import br.com.on.fiap.hexagono.casodeuso.pagamento.saida.PersistePagamentoPortaSaida;
-import br.com.on.fiap.hexagono.entidades.Pagamento;
+import br.com.on.fiap.hexagono.domain.entity.Pagamento;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -2,8 +2,8 @@ package br.com.on.fiap.infraestrutura.manipulador;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import br.com.on.fiap.hexagono.excecao.*;
-import br.com.on.fiap.hexagono.excecao.message.MessageError;
+import br.com.on.fiap.hexagono.domain.exception.*;
+import br.com.on.fiap.hexagono.domain.exception.message.MessageError;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

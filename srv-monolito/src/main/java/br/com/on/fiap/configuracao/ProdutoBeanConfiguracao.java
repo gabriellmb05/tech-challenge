@@ -1,8 +1,8 @@
 package br.com.on.fiap.configuracao;
 
-import br.com.on.fiap.hexagono.adaptadores.gateways.ProdutoGateway;
-import br.com.on.fiap.hexagono.casodeuso.produto.*;
-import br.com.on.fiap.hexagono.casodeuso.produto.entrada.*;
+import br.com.on.fiap.hexagono.adapter.gateway.base.ProdutoGateway;
+import br.com.on.fiap.hexagono.usecase.produto.*;
+import br.com.on.fiap.hexagono.usecase.produto.base.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,32 +16,32 @@ public class ProdutoBeanConfiguracao {
     }
 
     @Bean
-    public BuscaProdutoPorIdCasoDeUso buscaProduto() {
-        return new BuscaProdutoCasoDeUsoImpl(produtoGateway);
+    public ProdutoBuscaPorIdUseCase buscaProduto() {
+        return new ProdutoBuscaImpl(produtoGateway);
     }
 
     @Bean
-    public InsereProdutoCasoDeUso insereProduto() {
-        return new InsereProdutoCasoDeUsoImpl(produtoGateway);
+    public ProdutoInsereUseCase insereProduto() {
+        return new ProdutoInsereUseCaseImpl(produtoGateway);
     }
 
     @Bean
-    public AlteraProdutoCasoDeUso alteraProduto() {
-        return new AlteraProdutoCasoDeUsoImpl(produtoGateway);
+    public ProdutoAlteraUseCase alteraProduto() {
+        return new ProdutoAlteraUseCaseImpl(produtoGateway);
     }
 
     @Bean
-    public DeletaProdutoCasoDeUso deletaProduto() {
-        return new DeletaProdutoCasoDeUsoImpl(produtoGateway);
+    public ProdutoDeletaUseCase deletaProduto() {
+        return new ProdutoDeletaUseCaseImpl(produtoGateway);
     }
 
     @Bean
-    public BuscaProdutosCasoDeUso listarProduto() {
-        return new BuscaProdutosCasoDeUsoImpl(produtoGateway);
+    public ProdutoListaUseCase listarProduto() {
+        return new ProdutoListaUseCaseImpl(produtoGateway);
     }
 
     @Bean
-    public ValidaProdutosDoPedidoCasoDeUso validaProdutosCasoDeUso() {
-        return new ValidaProdutosDoPedidoCasoDeUsoImpl(produtoGateway);
+    public ProdutoValidaPedidoUseCase validaProdutosCasoDeUso() {
+        return new ProdutoValidaPedidoUseCaseImpl(produtoGateway);
     }
 }

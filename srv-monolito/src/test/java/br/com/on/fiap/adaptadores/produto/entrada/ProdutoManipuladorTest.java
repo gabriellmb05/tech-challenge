@@ -10,10 +10,10 @@ import br.com.on.fiap.adaptadores.produto.entrada.dto.resposta.ProdutoRespostaDT
 import br.com.on.fiap.adaptadores.produto.entrada.dto.solicitacao.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.produto.entrada.mapeador.ProdutoEntradaMapeador;
 import br.com.on.fiap.datapool.*;
-import br.com.on.fiap.hexagono.casodeuso.categoria.entrada.BuscaCategoriaCasoDeUso;
-import br.com.on.fiap.hexagono.casodeuso.produto.entrada.*;
-import br.com.on.fiap.hexagono.entidades.Produto;
-import br.com.on.fiap.hexagono.entidades.ProdutoFiltro;
+import br.com.on.fiap.hexagono.domain.entity.Produto;
+import br.com.on.fiap.hexagono.domain.entity.ProdutoFiltro;
+import br.com.on.fiap.hexagono.usecase.categoria.entrada.BuscaCategoriaCasoDeUso;
+import br.com.on.fiap.hexagono.usecase.produto.base.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -37,16 +37,16 @@ import org.springframework.http.ResponseEntity;
 class ProdutoManipuladorTest {
 
     @Mock
-    private BuscaProdutoPorIdCasoDeUso buscaProdutoPorIdCasoDeUso;
+    private ProdutoBuscaPorIdUseCase produtoBuscaPorIdUseCase;
 
     @Mock
-    private InsereProdutoCasoDeUso insereProdutoCasoDeUso;
+    private ProdutoInsereUseCase produtoInsereUseCase;
 
     @Mock
-    private AlteraProdutoCasoDeUso alteraProdutoCasoDeUso;
+    private ProdutoAlteraUseCase produtoAlteraUseCase;
 
     @Mock
-    private DeletaProdutoCasoDeUso deletaProdutoCasoDeUso;
+    private ProdutoDeletaUseCase produtoDeletaUseCase;
 
     @Mock
     private ProdutoEntradaMapeador produtoEntradaMapeador;
@@ -55,7 +55,7 @@ class ProdutoManipuladorTest {
     private ProdutoFiltroEntradaMapeador produtoFiltroEntradaMapeador;
 
     @Mock
-    private BuscaProdutosCasoDeUso buscaProdutosCasoDeUso;
+    private ProdutoListaUseCase produtoListaUseCase;
 
     @Mock
     private BuscaCategoriaCasoDeUso buscaCategoriaCasoDeUso;
@@ -96,14 +96,14 @@ class ProdutoManipuladorTest {
     void dadoProdutoExistente_quandoBuscarProduto_entaoDeveSerRetornado(ProdutoRespostaDTO produtoRespostaDTO) {
         Long id = produtoRespostaDTO.getId();
         Produto produto = new Produto();
-        when(buscaProdutoPorIdCasoDeUso.buscar(id)).thenReturn(produto);
+        when(produtoBuscaPorIdUseCase.buscar(id)).thenReturn(produto);
         when(produtoEntradaMapeador.paraProdutoDTO(produto)).thenReturn(produtoRespostaDTO);
 
         ResponseEntity<ProdutoRespostaDTO> response = produtoControlador.buscaProdutoPorId(id);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(produtoRespostaDTO, response.getBody());
-        verify(buscaProdutoPorIdCasoDeUso).buscar(id);
+        verify(produtoBuscaPorIdUseCase).buscar(id);
         verify(produtoEntradaMapeador).paraProdutoDTO(produto);
     }
 
@@ -115,7 +115,7 @@ class ProdutoManipuladorTest {
         Produto produto = new Produto();
         Produto produtoPersistido = new Produto();
         when(produtoEntradaMapeador.paraProduto(produtoSolicitacaoDTO)).thenReturn(produto);
-        when(insereProdutoCasoDeUso.inserir(produto)).thenReturn(produtoPersistido);
+        when(produtoInsereUseCase.inserir(produto)).thenReturn(produtoPersistido);
         when(produtoEntradaMapeador.paraProdutoDTO(produtoPersistido)).thenReturn(produtoRespostaDTO);
 
         ResponseEntity<ProdutoRespostaDTO> response = produtoControlador.insereProduto(produtoSolicitacaoDTO);
@@ -123,7 +123,7 @@ class ProdutoManipuladorTest {
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(produtoRespostaDTO, response.getBody());
         verify(produtoEntradaMapeador).paraProduto(produtoSolicitacaoDTO);
-        verify(insereProdutoCasoDeUso).inserir(produto);
+        verify(produtoInsereUseCase).inserir(produto);
         verify(produtoEntradaMapeador).paraProdutoDTO(produtoPersistido);
     }
 
@@ -137,7 +137,7 @@ class ProdutoManipuladorTest {
         Produto produtoPersistido = new Produto();
 
         when(produtoEntradaMapeador.paraProduto(produtoSolicitacaoDTO)).thenReturn(produto);
-        when(alteraProdutoCasoDeUso.alterar(id, produto)).thenReturn(produtoPersistido);
+        when(produtoAlteraUseCase.alterar(id, produto)).thenReturn(produtoPersistido);
         when(produtoEntradaMapeador.paraProdutoDTO(produtoPersistido)).thenReturn(produtoRespotaDTO);
 
         ResponseEntity<ProdutoRespostaDTO> response = produtoControlador.alteraProduto(id, produtoSolicitacaoDTO);
@@ -145,7 +145,7 @@ class ProdutoManipuladorTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(produtoRespotaDTO, response.getBody());
         verify(produtoEntradaMapeador).paraProduto(produtoSolicitacaoDTO);
-        verify(alteraProdutoCasoDeUso).alterar(id, produto);
+        verify(produtoAlteraUseCase).alterar(id, produto);
         verify(produtoEntradaMapeador).paraProdutoDTO(produtoPersistido);
     }
 
@@ -158,7 +158,7 @@ class ProdutoManipuladorTest {
         ResponseEntity<Void> response = produtoControlador.deletaProduto(id);
 
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
-        verify(deletaProdutoCasoDeUso).deleta(id);
+        verify(produtoDeletaUseCase).deleta(id);
     }
 
     @ParameterizedTest
@@ -176,7 +176,7 @@ class ProdutoManipuladorTest {
                 new PageImpl<>(produtoRespostaDTOs, paginacao, produtoRespostaDTOs.size());
 
         when(produtoFiltroEntradaMapeador.paraProdutoFiltro(filtroDTO)).thenReturn(filtro);
-        when(buscaProdutosCasoDeUso.listarComFiltro(filtro, paginacao)).thenReturn(produtoPage);
+        when(produtoListaUseCase.listarComFiltro(filtro, paginacao)).thenReturn(produtoPage);
         produtos.forEach(produto -> when(produtoEntradaMapeador.paraProdutoDTO(produto))
                 .thenReturn(produtoRespostaDTOs.get(produtos.indexOf(produto))));
 
@@ -185,7 +185,7 @@ class ProdutoManipuladorTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(produtoRespostaPage.getContent(), response.getBody().getContent());
-        verify(buscaProdutosCasoDeUso).listarComFiltro(filtro, paginacao);
+        verify(produtoListaUseCase).listarComFiltro(filtro, paginacao);
         verify(produtoFiltroEntradaMapeador).paraProdutoFiltro(filtroDTO);
         produtos.forEach(produto -> verify(produtoEntradaMapeador).paraProdutoDTO(produto));
     }

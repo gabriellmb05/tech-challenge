@@ -9,9 +9,9 @@ import br.com.on.fiap.adaptadores.cliente.entrada.mapeador.ClienteEntradaMapeado
 import br.com.on.fiap.datapool.DataPoolClienteEntradaDTO;
 import br.com.on.fiap.datapool.DataPoolClienteRespostaDTO;
 import br.com.on.fiap.datapool.DataPoolClienteSolicitacaoDTO;
-import br.com.on.fiap.hexagono.adaptadores.controladores.ClienteControlador;
-import br.com.on.fiap.hexagono.adaptadores.dto.ClienteRespostaDTO;
-import br.com.on.fiap.hexagono.casodeuso.cliente.dto.ClienteEntradaDTO;
+import br.com.on.fiap.hexagono.adapter.controller.base.ClienteController;
+import br.com.on.fiap.hexagono.adapter.dto.ClienteEntradaDTO;
+import br.com.on.fiap.hexagono.adapter.dto.ClienteRespostaDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,7 +28,7 @@ class ClienteManipuladorTest {
     private ClienteEntradaMapeador clienteEntradaMapeador;
 
     @Mock
-    private ClienteControlador clienteControlador;
+    private ClienteController clienteController;
 
     @InjectMocks
     private ClienteManipulador clienteManipulador;
@@ -38,12 +38,12 @@ class ClienteManipuladorTest {
     void dadoClienteExistente_quandoBuscarCliente_entaoDeveSerRetornado() {
         String cpf = "43316652616";
         ClienteRespostaDTO clienteRespostaDTO = DataPoolClienteRespostaDTO.gerarCliente();
-        when(clienteControlador.buscaClientePorCpf(cpf)).thenReturn(clienteRespostaDTO);
+        when(clienteController.buscaClientePorCpf(cpf)).thenReturn(clienteRespostaDTO);
         ResponseEntity<ClienteRespostaDTO> response = clienteManipulador.buscaClientePorCpf(cpf);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(clienteRespostaDTO, response.getBody());
-        verify(clienteControlador).buscaClientePorCpf(cpf);
+        verify(clienteController).buscaClientePorCpf(cpf);
     }
 
     @Test
@@ -53,7 +53,7 @@ class ClienteManipuladorTest {
         ClienteSolicitacaoDTO clienteSolicitacaoDTO = DataPoolClienteSolicitacaoDTO.gerarCliente();
         ClienteRespostaDTO clienteRespostaDTO = DataPoolClienteRespostaDTO.gerarCliente();
         when(clienteEntradaMapeador.paraClienteDTO(clienteSolicitacaoDTO)).thenReturn(clienteEntradaDTO);
-        when(clienteControlador.insereCliente(clienteEntradaDTO)).thenReturn(clienteRespostaDTO);
+        when(clienteController.insereCliente(clienteEntradaDTO)).thenReturn(clienteRespostaDTO);
 
         ResponseEntity<ClienteRespostaDTO> response = clienteManipulador.insereCliente(clienteSolicitacaoDTO);
 

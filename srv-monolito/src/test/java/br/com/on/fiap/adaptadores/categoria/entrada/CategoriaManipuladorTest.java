@@ -3,9 +3,9 @@ package br.com.on.fiap.adaptadores.categoria.entrada;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.hexagono.adaptadores.controladores.impl.CategoriaControladorImpl;
-import br.com.on.fiap.hexagono.adaptadores.dto.CategoriaSaidaDTO;
-import br.com.on.fiap.hexagono.entidades.Categoria;
+import br.com.on.fiap.hexagono.adapter.controller.CategoriaControllerImpl;
+import br.com.on.fiap.hexagono.adapter.dto.CategoriaSaidaDTO;
+import br.com.on.fiap.hexagono.domain.entity.Categoria;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +21,7 @@ import org.springframework.http.ResponseEntity;
 class CategoriaManipuladorTest {
 
     @Mock
-    private CategoriaControladorImpl categoriaControladorImpl;
+    private CategoriaControllerImpl categoriaControladorImpl;
 
     @InjectMocks
     private CategoriaManipulador categoriaManipulador;
