@@ -6,16 +6,18 @@ import static org.mockito.Mockito.when;
 
 import br.com.on.datapool.*;
 import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroDTO;
-import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoDTO;
+import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacao;
 import br.com.on.fiap.adapter.input.mapper.ProdutoFiltroInputMapper;
 import br.com.on.fiap.adapter.input.mapper.ProdutoInputMapper;
-import br.com.on.fiap.core.application.dto.ProdutoRespostaDTO;
+import br.com.on.fiap.core.domain.model.ProdutoRespostaDTO;
 import br.com.on.fiap.core.application.usecase.produto.*;
-import br.com.on.fiap.core.domain.entity.Produto;
-import br.com.on.fiap.core.domain.entity.ProdutoFiltro;
+import br.com.on.fiap.core.domain.model.Produto;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
+
+import br.com.on.fiap.core.usecase.produto.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -107,7 +109,7 @@ class ProdutoApiTest {
     @MethodSource("produtoDTOProvider")
     @DisplayName("Dado um produto novo, quando inserir o produto, então ele deve ser salvo")
     void dadoProdutoNovo_quandoInserirProduto_entaoDeveSerSalvo(
-            ProdutoRespostaDTO produtoRespostaDTO, ProdutoSolicitacaoDTO produtoSolicitacaoDTO) {
+            ProdutoRespostaDTO produtoRespostaDTO, ProdutoSolicitacao produtoSolicitacaoDTO) {
         Produto produto = new Produto();
         Produto produtoPersistido = new Produto();
         when(produtoInputMapper.paraProduto(produtoSolicitacaoDTO)).thenReturn(produto);
@@ -127,7 +129,7 @@ class ProdutoApiTest {
     @MethodSource("produtoDTOProvider")
     @DisplayName("Dado um produto existente, quando alterar o produto, então ele deve ser atualizado")
     void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado(
-            ProdutoRespostaDTO produtoRespotaDTO, ProdutoSolicitacaoDTO produtoSolicitacaoDTO) {
+            ProdutoRespostaDTO produtoRespotaDTO, ProdutoSolicitacao produtoSolicitacaoDTO) {
         Long id = produtoRespotaDTO.getId();
         Produto produto = new Produto();
         Produto produtoPersistido = new Produto();

@@ -7,10 +7,10 @@ import br.com.on.fiap.adapter.output.persistence.repository.PedidoProdutoReposit
 import br.com.on.fiap.adapter.output.persistence.repository.PedidoRepository;
 import br.com.on.fiap.adapter.output.persistence.specification.PedidoSpecification;
 import br.com.on.fiap.core.adapter.datasource.PedidoDataSource;
-import br.com.on.fiap.core.domain.entity.Pedido;
-import br.com.on.fiap.core.domain.entity.PedidoFiltro;
-import br.com.on.fiap.core.domain.entity.RelPedidoProduto;
-import br.com.on.fiap.core.domain.entity.SituacaoPedido;
+import br.com.on.fiap.core.domain.model.Pedido;
+import br.com.on.fiap.core.domain.model.PedidoFiltro;
+import br.com.on.fiap.core.domain.model.RelPedidoProduto;
+import br.com.on.fiap.core.domain.model.SituacaoPedido;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;

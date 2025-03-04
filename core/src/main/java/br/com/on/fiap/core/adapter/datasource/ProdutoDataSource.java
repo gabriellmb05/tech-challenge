@@ -1,9 +1,9 @@
 package br.com.on.fiap.core.adapter.datasource;
 
-import br.com.on.fiap.core.application.dto.Pagina;
-import br.com.on.fiap.core.application.dto.Paginacao;
-import br.com.on.fiap.core.application.dto.ProdutoFiltro;
-import br.com.on.fiap.core.domain.entity.Produto;
+import br.com.on.fiap.core.domain.model.Pagina;
+import br.com.on.fiap.core.domain.model.Paginacao;
+import br.com.on.fiap.core.domain.model.ProdutoFiltro;
+import br.com.on.fiap.core.domain.model.Produto;
 import java.util.List;
 import java.util.Optional;
 

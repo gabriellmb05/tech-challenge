@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.output.persistence.mapper;
 
 import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
-import br.com.on.fiap.core.domain.entity.Produto;
+import br.com.on.fiap.core.domain.model.Produto;
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

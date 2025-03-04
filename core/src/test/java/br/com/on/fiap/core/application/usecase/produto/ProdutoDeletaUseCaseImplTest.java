@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
-import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoDeletaUseCaseImpl;
-import br.com.on.fiap.core.domain.entity.Produto;
+import br.com.on.fiap.core.usecase.produto.impl.ProdutoDeletaUseCaseImpl;
+import br.com.on.fiap.core.domain.model.Produto;
 import br.com.on.fiap.core.domain.exception.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.datapool.DataPoolProduto;
 import java.util.Optional;

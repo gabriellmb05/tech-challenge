@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.input.dto.filter;
 
-import br.com.on.fiap.core.application.dto.ProdutoFiltro;
-import br.com.on.fiap.core.domain.entity.Categoria;
+import br.com.on.fiap.core.domain.model.ProdutoFiltro;
+import br.com.on.fiap.core.domain.model.Categoria;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

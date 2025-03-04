@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.core.adapter.gateway.ClienteGateway;
-import br.com.on.fiap.core.application.dto.ClienteEntradaDTO;
-import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteInsereUseCaseImpl;
-import br.com.on.fiap.core.domain.entity.Cliente;
+import br.com.on.fiap.core.domain.model.ClienteEntradaDTO;
+import br.com.on.fiap.core.usecase.cliente.impl.ClienteInsereUseCaseImpl;
+import br.com.on.fiap.core.domain.model.Cliente;
 import br.com.on.fiap.core.domain.exception.ClienteExistenteExcecao;
 import br.com.on.fiap.datapool.DataPoolCliente;
 import br.com.on.fiap.datapool.DataPoolClienteEntradaDTO;
@@ -52,7 +52,7 @@ class ClienteInsereUseCaseImplTest {
     @DisplayName(
             "Dado um cliente com CPF existente, quando inserir o cliente, então deve lançar exceção ClienteExistenteExcecao")
     void dadoClienteComCpfExistente_quandoInserirCliente_entaoDeveLancarExcecao() {
-        br.com.on.fiap.core.domain.entity.Cliente cliente = DataPoolCliente.clienteValido();
+        br.com.on.fiap.core.domain.model.Cliente cliente = DataPoolCliente.clienteValido();
         ClienteEntradaDTO clienteEntradaDTO = DataPoolClienteEntradaDTO.clienteValido();
 
         when(clienteGateway.buscaClientePorCpf(cliente.getCpf())).thenReturn(Optional.of(cliente));
@@ -70,7 +70,7 @@ class ClienteInsereUseCaseImplTest {
     @DisplayName(
             "Dado um cliente com email existente, quando inserir o cliente, então deve lançar exceção ClienteExistenteExcecao")
     void dadoClienteComEmailExistente_quandoInserirCliente_entaoDeveLancarExcecao() {
-        br.com.on.fiap.core.domain.entity.Cliente cliente = DataPoolCliente.clienteValido();
+        br.com.on.fiap.core.domain.model.Cliente cliente = DataPoolCliente.clienteValido();
         ClienteEntradaDTO clienteEntradaDTO = DataPoolClienteEntradaDTO.clienteValido();
 
         when(clienteGateway.buscaClientePorCpf(cliente.getCpf())).thenReturn(Optional.empty());

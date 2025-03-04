@@ -1,8 +1,8 @@
 package br.com.on.fiap.core.adapter.datasource;
 
-import br.com.on.fiap.core.domain.entity.Pedido;
-import br.com.on.fiap.core.domain.entity.PedidoFiltro;
-import br.com.on.fiap.core.domain.entity.RelPedidoProduto;
+import br.com.on.fiap.core.domain.model.Pedido;
+import br.com.on.fiap.core.domain.model.PedidoFiltro;
+import br.com.on.fiap.core.domain.model.RelPedidoProduto;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;

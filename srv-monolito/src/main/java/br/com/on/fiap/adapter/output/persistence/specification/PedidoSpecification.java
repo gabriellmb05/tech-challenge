@@ -2,7 +2,7 @@ package br.com.on.fiap.adapter.output.persistence.specification;
 
 import br.com.on.fiap.adapter.output.persistence.entity.ClienteEntity;
 import br.com.on.fiap.adapter.output.persistence.entity.PedidoEntity;
-import br.com.on.fiap.core.domain.entity.PedidoFiltro;
+import br.com.on.fiap.core.domain.model.PedidoFiltro;
 import jakarta.persistence.criteria.*;
 import java.time.LocalDateTime;
 import org.springframework.data.jpa.domain.Specification;

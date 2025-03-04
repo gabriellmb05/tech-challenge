@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.adapter.gateway;
 
-import br.com.on.fiap.core.domain.entity.Pagamento;
+import br.com.on.fiap.core.domain.model.Pagamento;
 
 public interface PagamentoGateway {
 

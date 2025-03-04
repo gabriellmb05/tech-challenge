@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.controller.impl.CategoriaControllerImpl;
-import br.com.on.fiap.core.application.dto.CategoriaRespostaDTO;
-import br.com.on.fiap.core.domain.entity.Categoria;
+import br.com.on.fiap.core.domain.model.CategoriaRespostaDTO;
+import br.com.on.fiap.core.domain.model.Categoria;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

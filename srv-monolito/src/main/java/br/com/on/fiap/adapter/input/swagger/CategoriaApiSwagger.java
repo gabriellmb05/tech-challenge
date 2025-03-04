@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.input.swagger;
 
-import br.com.on.fiap.core.application.dto.CategoriaRespostaDTO;
+import br.com.on.fiap.core.domain.model.CategoriaRespostaDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

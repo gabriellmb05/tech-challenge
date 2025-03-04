@@ -1,8 +1,8 @@
 package br.com.on.fiap.core.adapter.presenter.impl;
 
 import br.com.on.fiap.core.adapter.presenter.ProdutoPresenter;
-import br.com.on.fiap.core.application.dto.ProdutoRespostaDTO;
-import br.com.on.fiap.core.domain.entity.Produto;
+import br.com.on.fiap.core.domain.model.ProdutoRespostaDTO;
+import br.com.on.fiap.core.domain.model.Produto;
 
 public class ProdutoPresenterImpl implements ProdutoPresenter {
     @Override

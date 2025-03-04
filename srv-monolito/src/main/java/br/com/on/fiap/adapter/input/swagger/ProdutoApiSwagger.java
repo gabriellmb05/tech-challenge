@@ -1,9 +1,9 @@
 package br.com.on.fiap.adapter.input.swagger;
 
 import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroDTO;
-import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoDTO;
-import br.com.on.fiap.core.application.dto.Pagina;
-import br.com.on.fiap.core.application.dto.ProdutoRespostaDTO;
+import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacao;
+import br.com.on.fiap.core.domain.model.Pagina;
+import br.com.on.fiap.core.domain.model.ProdutoRespostaDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -38,7 +38,7 @@ public interface ProdutoApiSwagger {
                 @ApiResponse(responseCode = "201", description = "Produto criado"),
                 @ApiResponse(responseCode = "400", description = "Dados inválidos")
             })
-    ResponseEntity<ProdutoRespostaDTO> insereProduto(ProdutoSolicitacaoDTO produtoSolicitacaoDTO);
+    ResponseEntity<ProdutoRespostaDTO> insereProduto(ProdutoSolicitacao produtoSolicitacaoDTO);
 
     @Operation(summary = "Altera um produto", description = "Altera um produto existente no sistema")
     @ApiResponses(
@@ -46,7 +46,7 @@ public interface ProdutoApiSwagger {
                 @ApiResponse(responseCode = "200", description = "Produto alterado"),
                 @ApiResponse(responseCode = "404", description = "Produto não encontrado")
             })
-    ResponseEntity<ProdutoRespostaDTO> alteraProduto(Long id, ProdutoSolicitacaoDTO produtoSolicitacaoDTO);
+    ResponseEntity<ProdutoRespostaDTO> alteraProduto(Long id, ProdutoSolicitacao produtoSolicitacaoDTO);
 
     @Operation(summary = "Deleta um produto", description = "Deleta um produto existente no sistema")
     @ApiResponses(

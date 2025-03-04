@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.adapter.controller;
 
-import br.com.on.fiap.core.application.dto.*;
+import br.com.on.fiap.core.domain.model.*;
 
 public interface ProdutoController {
 
@@ -8,9 +8,9 @@ public interface ProdutoController {
 
     Pagina<ProdutoRespostaDTO> listarProdutosComFiltro(ProdutoFiltro filtro, Paginacao paginacao);
 
-    ProdutoRespostaDTO insereProduto(ProdutoEntradaDTO produtoSolicitacaoDTO);
+    ProdutoRespostaDTO insereProduto(ProdutoEntrada produtoSolicitacaoDTO);
 
-    ProdutoRespostaDTO alteraProduto(Long id, ProdutoEntradaDTO produtoSolicitacaoDTO);
+    ProdutoRespostaDTO alteraProduto(Long id, ProdutoEntrada produtoSolicitacaoDTO);
 
     void deletaProduto(Long id);
 }

@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.adapter.gateway;
 
-import br.com.on.fiap.core.domain.entity.Cliente;
+import br.com.on.fiap.core.domain.model.Cliente;
 import java.util.Optional;
 
 public interface ClienteGateway {

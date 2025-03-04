@@ -7,10 +7,10 @@ import br.com.on.fiap.core.adapter.gateway.ClienteGateway;
 import br.com.on.fiap.core.adapter.gateway.impl.ClienteGatewayImpl;
 import br.com.on.fiap.core.adapter.presenter.ClientePresenter;
 import br.com.on.fiap.core.adapter.presenter.impl.ClientePresenterImpl;
-import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
-import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
-import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteBuscaPorCpfUseCaseImpl;
-import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteInsereUseCaseImpl;
+import br.com.on.fiap.core.usecase.cliente.ClienteBuscaPorCpfUseCase;
+import br.com.on.fiap.core.usecase.cliente.ClienteInsereUseCase;
+import br.com.on.fiap.core.usecase.cliente.impl.ClienteBuscaPorCpfUseCaseImpl;
+import br.com.on.fiap.core.usecase.cliente.impl.ClienteInsereUseCaseImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

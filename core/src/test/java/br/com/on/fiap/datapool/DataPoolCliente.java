@@ -1,6 +1,6 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.core.domain.entity.Cliente;
+import br.com.on.fiap.core.domain.model.Cliente;
 
 public class DataPoolCliente {
 

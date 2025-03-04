@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import br.com.on.fiap.core.adapter.gateway.impl.CategoriaGatewayImpl;
-import br.com.on.fiap.core.domain.entity.Categoria;
+import br.com.on.fiap.core.domain.model.Categoria;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

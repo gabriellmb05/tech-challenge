@@ -1,8 +1,8 @@
 package br.com.on.fiap.adapter.input.mapper;
 
 import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroDTO;
-import br.com.on.fiap.core.domain.entity.Categoria;
-import br.com.on.fiap.core.domain.entity.ProdutoFiltro;
+import br.com.on.fiap.core.domain.model.Categoria;
+
 import java.util.Objects;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -4,10 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import br.com.on.fiap.core.application.usecase.produto.*;
-import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoAlteraUseCaseImpl;
-import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoBuscaPorIdUseCaseImpl;
-import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoDeletaUseCaseImpl;
-import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoInsereUseCaseImpl;
+import br.com.on.fiap.core.usecase.produto.*;
+import br.com.on.fiap.core.usecase.produto.impl.ProdutoAlteraUseCaseImpl;
+import br.com.on.fiap.core.usecase.produto.impl.ProdutoBuscaPorIdUseCaseImpl;
+import br.com.on.fiap.core.usecase.produto.impl.ProdutoDeletaUseCaseImpl;
+import br.com.on.fiap.core.usecase.produto.impl.ProdutoInsereUseCaseImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

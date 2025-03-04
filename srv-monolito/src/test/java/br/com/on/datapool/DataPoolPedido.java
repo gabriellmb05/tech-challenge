@@ -1,7 +1,7 @@
 package br.com.on.datapool;
 
-import br.com.on.fiap.core.domain.entity.Pedido;
-import br.com.on.fiap.core.domain.entity.SituacaoPedido;
+import br.com.on.fiap.core.domain.model.Pedido;
+import br.com.on.fiap.core.domain.model.SituacaoPedido;
 import java.time.LocalDateTime;
 import java.util.List;
 

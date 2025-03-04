@@ -2,7 +2,7 @@ package br.com.on.fiap.adapter.input;
 
 import br.com.on.fiap.adapter.input.swagger.CategoriaApiSwagger;
 import br.com.on.fiap.core.adapter.controller.CategoriaController;
-import br.com.on.fiap.core.application.dto.CategoriaRespostaDTO;
+import br.com.on.fiap.core.domain.model.CategoriaRespostaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

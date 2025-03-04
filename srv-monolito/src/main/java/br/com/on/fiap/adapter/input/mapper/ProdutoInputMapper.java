@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.input.mapper;
 
-import br.com.on.fiap.core.application.dto.ProdutoRespostaDTO;
-import br.com.on.fiap.core.domain.entity.Produto;
+import br.com.on.fiap.core.domain.model.ProdutoRespostaDTO;
+import br.com.on.fiap.core.domain.model.Produto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

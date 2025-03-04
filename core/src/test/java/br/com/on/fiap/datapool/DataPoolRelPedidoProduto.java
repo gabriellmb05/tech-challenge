@@ -1,7 +1,7 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.core.domain.entity.Produto;
-import br.com.on.fiap.core.domain.entity.RelPedidoProduto;
+import br.com.on.fiap.core.domain.model.Produto;
+import br.com.on.fiap.core.domain.model.RelPedidoProduto;
 import java.util.List;
 import java.util.stream.LongStream;
 

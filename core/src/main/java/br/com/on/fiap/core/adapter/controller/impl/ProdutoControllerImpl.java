@@ -2,9 +2,10 @@ package br.com.on.fiap.core.adapter.controller.impl;
 
 import br.com.on.fiap.core.adapter.controller.ProdutoController;
 import br.com.on.fiap.core.adapter.presenter.ProdutoPresenter;
-import br.com.on.fiap.core.application.dto.*;
 import br.com.on.fiap.core.application.usecase.produto.*;
-import br.com.on.fiap.core.domain.entity.Produto;
+import br.com.on.fiap.core.domain.model.*;
+import br.com.on.fiap.core.usecase.produto.*;
+
 import java.util.List;
 
 public class ProdutoControllerImpl implements ProdutoController {
@@ -53,14 +54,14 @@ public class ProdutoControllerImpl implements ProdutoController {
     }
 
     @Override
-    public ProdutoRespostaDTO insereProduto(ProdutoEntradaDTO produtoEntradaDTO) {
-        Produto produtoPersistido = produtoInsereUseCase.inserir(produtoEntradaDTO);
+    public ProdutoRespostaDTO insereProduto(ProdutoEntrada produtoEntrada) {
+        Produto produtoPersistido = produtoInsereUseCase.inserir(produtoEntrada);
         return produtoPresenter.formatar(produtoPersistido);
     }
 
     @Override
-    public ProdutoRespostaDTO alteraProduto(Long id, ProdutoEntradaDTO produtoEntradaDTO) {
-        Produto produtoAtualizado = produtoAlteraUseCase.alterar(id, produtoEntradaDTO);
+    public ProdutoRespostaDTO alteraProduto(Long id, ProdutoEntrada produtoEntrada) {
+        Produto produtoAtualizado = produtoAlteraUseCase.alterar(id, produtoEntrada);
         return produtoPresenter.formatar(produtoAtualizado);
     }
 

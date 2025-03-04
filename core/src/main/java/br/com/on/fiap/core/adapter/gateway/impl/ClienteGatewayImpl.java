@@ -2,7 +2,7 @@ package br.com.on.fiap.core.adapter.gateway.impl;
 
 import br.com.on.fiap.core.adapter.datasource.ClienteDataSource;
 import br.com.on.fiap.core.adapter.gateway.ClienteGateway;
-import br.com.on.fiap.core.domain.entity.Cliente;
+import br.com.on.fiap.core.domain.model.Cliente;
 import java.util.Optional;
 
 public class ClienteGatewayImpl implements ClienteGateway {

@@ -1,9 +1,9 @@
 package br.com.on.fiap.adapter.input.mapper;
 
 import br.com.on.fiap.adapter.input.dto.request.PagamentoSolicitacaoDTO;
-import br.com.on.fiap.core.application.dto.PagamentoRespostaDTO;
-import br.com.on.fiap.core.domain.entity.Pagamento;
-import br.com.on.fiap.core.domain.entity.TipoPagamento;
+import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
+import br.com.on.fiap.core.domain.model.Pagamento;
+import br.com.on.fiap.core.domain.model.TipoPagamento;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

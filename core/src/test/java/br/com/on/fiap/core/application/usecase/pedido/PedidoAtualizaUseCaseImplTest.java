@@ -5,11 +5,11 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
-import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoAtualizaUseCaseImpl;
-import br.com.on.fiap.core.domain.entity.Pagamento;
-import br.com.on.fiap.core.domain.entity.Pedido;
-import br.com.on.fiap.core.domain.entity.SituacaoPagamento;
-import br.com.on.fiap.core.domain.entity.TipoPagamento;
+import br.com.on.fiap.core.usecase.pedido.impl.PedidoAtualizaUseCaseImpl;
+import br.com.on.fiap.core.domain.model.Pagamento;
+import br.com.on.fiap.core.domain.model.Pedido;
+import br.com.on.fiap.core.domain.model.SituacaoPagamento;
+import br.com.on.fiap.core.domain.model.TipoPagamento;
 import br.com.on.fiap.core.domain.exception.PedidoNaoEncontradoExcecao;
 import br.com.on.fiap.core.domain.exception.message.MessageError;
 import br.com.on.fiap.core.domain.exception.message.MessageManager;

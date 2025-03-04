@@ -1,8 +1,8 @@
 package br.com.on.fiap.adapter.output.persistence.mapper;
 
 import br.com.on.fiap.adapter.output.persistence.entity.PagamentoEntity;
-import br.com.on.fiap.core.domain.entity.Pagamento;
-import br.com.on.fiap.core.domain.entity.SituacaoPagamento;
+import br.com.on.fiap.core.domain.model.Pagamento;
+import br.com.on.fiap.core.domain.model.SituacaoPagamento;
 import java.time.LocalDateTime;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
