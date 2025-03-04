@@ -4,10 +4,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.hexagono.adapter.dto.ClienteEntradaDTO;
-import br.com.on.fiap.hexagono.adapter.dto.ClienteRespostaDTO;
-import br.com.on.fiap.hexagono.adapter.dto.ClienteSaidaDTO;
-import br.com.on.fiap.hexagono.adapter.presenter.base.ClientePresenter;
+import br.com.on.fiap.hexagono.adapter.controller.impl.ClienteControllerImpl;
+import br.com.on.fiap.hexagono.usecase.dto.ClienteEntradaDTO;
+import br.com.on.fiap.hexagono.usecase.dto.ClienteRespostaDTO;
+import br.com.on.fiap.hexagono.usecase.dto.ClienteSaidaDTO;
+import br.com.on.fiap.hexagono.adapter.presenter.ClientePresenter;
 import br.com.on.fiap.hexagono.datapool.DataPoolClienteEntradaDTO;
 import br.com.on.fiap.hexagono.datapool.DataPoolClienteRespostaDTO;
 import br.com.on.fiap.hexagono.datapool.DataPoolClienteSaidaDTO;

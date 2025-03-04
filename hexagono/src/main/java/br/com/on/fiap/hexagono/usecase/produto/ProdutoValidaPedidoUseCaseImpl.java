@@ -1,6 +1,6 @@
 package br.com.on.fiap.hexagono.usecase.produto;
 
-import br.com.on.fiap.hexagono.adapter.gateway.base.ProdutoGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.ProdutoGateway;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.entity.Produto;
 import br.com.on.fiap.hexagono.domain.entity.RelPedidoProduto;

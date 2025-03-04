@@ -1,6 +1,6 @@
 package br.com.on.fiap.hexagono.usecase.categoria;
 
-import br.com.on.fiap.hexagono.adapter.gateway.base.CategoriaGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.CategoriaGateway;
 import br.com.on.fiap.hexagono.domain.entity.Categoria;
 import br.com.on.fiap.hexagono.usecase.categoria.base.CategoriaBuscaUseCase;
 import java.util.List;

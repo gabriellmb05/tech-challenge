@@ -1,6 +1,6 @@
 package br.com.on.fiap.adaptadores.categoria;
 
-import br.com.on.fiap.hexagono.adapter.dto.CategoriaSaidaDTO;
+import br.com.on.fiap.hexagono.usecase.dto.CategoriaSaidaDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

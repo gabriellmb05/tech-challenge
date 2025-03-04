@@ -1,10 +1,10 @@
-package br.com.on.fiap.hexagono.adapter.controller;
+package br.com.on.fiap.hexagono.adapter.controller.impl;
 
-import br.com.on.fiap.hexagono.adapter.controller.base.ClienteController;
-import br.com.on.fiap.hexagono.adapter.dto.ClienteEntradaDTO;
-import br.com.on.fiap.hexagono.adapter.dto.ClienteRespostaDTO;
-import br.com.on.fiap.hexagono.adapter.dto.ClienteSaidaDTO;
-import br.com.on.fiap.hexagono.adapter.presenter.base.ClientePresenter;
+import br.com.on.fiap.hexagono.adapter.controller.ClienteController;
+import br.com.on.fiap.hexagono.usecase.dto.ClienteEntradaDTO;
+import br.com.on.fiap.hexagono.usecase.dto.ClienteRespostaDTO;
+import br.com.on.fiap.hexagono.usecase.dto.ClienteSaidaDTO;
+import br.com.on.fiap.hexagono.adapter.presenter.ClientePresenter;
 import br.com.on.fiap.hexagono.usecase.cliente.base.ClienteBuscaPorCpfUseCase;
 import br.com.on.fiap.hexagono.usecase.cliente.base.ClienteInsereUseCase;
 

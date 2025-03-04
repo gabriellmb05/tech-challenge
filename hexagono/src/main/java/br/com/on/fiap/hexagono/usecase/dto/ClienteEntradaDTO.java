@@ -1,4 +1,4 @@
-package br.com.on.fiap.hexagono.adapter.dto;
+package br.com.on.fiap.hexagono.usecase.dto;
 
 import java.time.LocalDate;
 import java.util.Objects;

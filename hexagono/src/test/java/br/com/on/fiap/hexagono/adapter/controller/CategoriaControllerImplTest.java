@@ -5,8 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.hexagono.adapter.dto.CategoriaSaidaDTO;
-import br.com.on.fiap.hexagono.adapter.presenter.base.CategoriaPresenter;
+import br.com.on.fiap.hexagono.adapter.controller.impl.CategoriaControllerImpl;
+import br.com.on.fiap.hexagono.usecase.dto.CategoriaSaidaDTO;
+import br.com.on.fiap.hexagono.adapter.presenter.CategoriaPresenter;
 import br.com.on.fiap.hexagono.domain.entity.Categoria;
 import br.com.on.fiap.hexagono.usecase.categoria.base.CategoriaBuscaUseCase;
 import java.util.Arrays;

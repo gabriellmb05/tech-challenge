@@ -1,7 +1,7 @@
-package br.com.on.fiap.hexagono.adapter.gateway;
+package br.com.on.fiap.hexagono.adapter.gateway.impl;
 
 import br.com.on.fiap.hexagono.adapter.datasource.ProdutoDataSource;
-import br.com.on.fiap.hexagono.adapter.gateway.base.ProdutoGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.ProdutoGateway;
 import br.com.on.fiap.hexagono.domain.entity.Produto;
 import br.com.on.fiap.hexagono.domain.entity.ProdutoFiltro;
 import java.util.List;

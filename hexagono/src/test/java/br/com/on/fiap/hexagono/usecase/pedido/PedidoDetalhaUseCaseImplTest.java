@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.hexagono.adapter.gateway.base.PedidoGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.hexagono.datapool.DataPoolPedido;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.exception.PedidoNaoEncontradoExcecao;

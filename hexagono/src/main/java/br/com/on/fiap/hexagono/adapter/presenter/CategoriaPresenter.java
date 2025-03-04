@@ -1,6 +1,6 @@
-package br.com.on.fiap.hexagono.adapter.presenter.base;
+package br.com.on.fiap.hexagono.adapter.presenter;
 
-import br.com.on.fiap.hexagono.adapter.dto.CategoriaSaidaDTO;
+import br.com.on.fiap.hexagono.usecase.dto.CategoriaSaidaDTO;
 import br.com.on.fiap.hexagono.domain.entity.Categoria;
 import java.util.List;
 

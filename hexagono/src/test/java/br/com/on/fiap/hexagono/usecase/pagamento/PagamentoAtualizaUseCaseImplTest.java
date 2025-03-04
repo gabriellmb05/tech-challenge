@@ -3,7 +3,7 @@ package br.com.on.fiap.hexagono.usecase.pagamento;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import br.com.on.fiap.hexagono.adapter.gateway.base.PagamentoGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.PagamentoGateway;
 import br.com.on.fiap.hexagono.datapool.DataPoolPagamento;
 import br.com.on.fiap.hexagono.domain.entity.Pagamento;
 import org.junit.jupiter.api.DisplayName;

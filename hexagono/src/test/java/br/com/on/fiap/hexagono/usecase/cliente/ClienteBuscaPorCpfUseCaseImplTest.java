@@ -3,8 +3,8 @@ package br.com.on.fiap.hexagono.usecase.cliente;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import br.com.on.fiap.hexagono.adapter.dto.ClienteSaidaDTO;
-import br.com.on.fiap.hexagono.adapter.gateway.base.ClienteGateway;
+import br.com.on.fiap.hexagono.usecase.dto.ClienteSaidaDTO;
+import br.com.on.fiap.hexagono.adapter.gateway.ClienteGateway;
 import br.com.on.fiap.hexagono.datapool.DataPoolCliente;
 import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import br.com.on.fiap.hexagono.domain.exception.ClienteNaoEncontradoExcecao;

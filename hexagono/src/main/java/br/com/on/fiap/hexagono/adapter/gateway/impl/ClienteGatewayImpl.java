@@ -1,7 +1,7 @@
-package br.com.on.fiap.hexagono.adapter.gateway;
+package br.com.on.fiap.hexagono.adapter.gateway.impl;
 
 import br.com.on.fiap.hexagono.adapter.datasource.ClienteDataSource;
-import br.com.on.fiap.hexagono.adapter.gateway.base.ClienteGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.ClienteGateway;
 import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import java.util.Optional;
 

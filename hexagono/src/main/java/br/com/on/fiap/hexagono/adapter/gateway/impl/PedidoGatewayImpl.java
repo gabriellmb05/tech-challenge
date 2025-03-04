@@ -1,6 +1,6 @@
-package br.com.on.fiap.hexagono.adapter.gateway;
+package br.com.on.fiap.hexagono.adapter.gateway.impl;
 
-import br.com.on.fiap.hexagono.adapter.gateway.base.PedidoGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.entity.PedidoFiltro;
 import br.com.on.fiap.hexagono.domain.entity.RelPedidoProduto;

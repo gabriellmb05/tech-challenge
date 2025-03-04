@@ -9,9 +9,9 @@ import br.com.on.fiap.adaptadores.cliente.entrada.mapeador.ClienteEntradaMapeado
 import br.com.on.fiap.datapool.DataPoolClienteEntradaDTO;
 import br.com.on.fiap.datapool.DataPoolClienteRespostaDTO;
 import br.com.on.fiap.datapool.DataPoolClienteSolicitacaoDTO;
-import br.com.on.fiap.hexagono.adapter.controller.base.ClienteController;
-import br.com.on.fiap.hexagono.adapter.dto.ClienteEntradaDTO;
-import br.com.on.fiap.hexagono.adapter.dto.ClienteRespostaDTO;
+import br.com.on.fiap.hexagono.adapter.controller.ClienteController;
+import br.com.on.fiap.hexagono.usecase.dto.ClienteEntradaDTO;
+import br.com.on.fiap.hexagono.usecase.dto.ClienteRespostaDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

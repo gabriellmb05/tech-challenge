@@ -1,7 +1,7 @@
 package br.com.on.fiap.adaptadores.cliente.entrada.mapeador;
 
 import br.com.on.fiap.adaptadores.cliente.entrada.dto.solicitacao.ClienteSolicitacaoDTO;
-import br.com.on.fiap.hexagono.adapter.dto.ClienteEntradaDTO;
+import br.com.on.fiap.hexagono.usecase.dto.ClienteEntradaDTO;
 import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import org.mapstruct.Mapper;
 

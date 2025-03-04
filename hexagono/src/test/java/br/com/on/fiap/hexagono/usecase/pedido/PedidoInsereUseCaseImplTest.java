@@ -3,9 +3,9 @@ package br.com.on.fiap.hexagono.usecase.pedido;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import br.com.on.fiap.hexagono.adapter.gateway.base.ClienteGateway;
-import br.com.on.fiap.hexagono.adapter.gateway.base.PagamentoGateway;
-import br.com.on.fiap.hexagono.adapter.gateway.base.PedidoGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.ClienteGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.PagamentoGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.hexagono.datapool.*;
 import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import br.com.on.fiap.hexagono.domain.entity.Pagamento;

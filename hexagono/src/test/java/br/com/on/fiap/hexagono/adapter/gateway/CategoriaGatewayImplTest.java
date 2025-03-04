@@ -3,6 +3,7 @@ package br.com.on.fiap.hexagono.adapter.gateway;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import br.com.on.fiap.hexagono.adapter.gateway.impl.CategoriaGatewayImpl;
 import br.com.on.fiap.hexagono.domain.entity.Categoria;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

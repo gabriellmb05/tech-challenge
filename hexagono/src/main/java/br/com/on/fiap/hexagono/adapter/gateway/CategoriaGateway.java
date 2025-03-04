@@ -1,4 +1,4 @@
-package br.com.on.fiap.hexagono.adapter.gateway.base;
+package br.com.on.fiap.hexagono.adapter.gateway;
 
 import br.com.on.fiap.hexagono.domain.entity.Categoria;
 import java.util.List;

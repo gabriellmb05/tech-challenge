@@ -1,6 +1,6 @@
 package br.com.on.fiap.hexagono.usecase.pedido;
 
-import br.com.on.fiap.hexagono.adapter.gateway.base.PedidoGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.exception.PedidoNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.domain.exception.message.MessageError;

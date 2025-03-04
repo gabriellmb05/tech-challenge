@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.hexagono.adapter.datasource.ClienteDataSource;
+import br.com.on.fiap.hexagono.adapter.gateway.impl.ClienteGatewayImpl;
 import br.com.on.fiap.hexagono.datapool.DataPoolCliente;
 import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import java.util.Optional;

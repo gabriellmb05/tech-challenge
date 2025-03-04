@@ -1,8 +1,8 @@
-package br.com.on.fiap.hexagono.adapter.presenter;
+package br.com.on.fiap.hexagono.adapter.presenter.impl;
 
-import br.com.on.fiap.hexagono.adapter.dto.ClienteRespostaDTO;
-import br.com.on.fiap.hexagono.adapter.dto.ClienteSaidaDTO;
-import br.com.on.fiap.hexagono.adapter.presenter.base.ClientePresenter;
+import br.com.on.fiap.hexagono.usecase.dto.ClienteRespostaDTO;
+import br.com.on.fiap.hexagono.usecase.dto.ClienteSaidaDTO;
+import br.com.on.fiap.hexagono.adapter.presenter.ClientePresenter;
 
 public class ClientePresenterImpl implements ClientePresenter {
 

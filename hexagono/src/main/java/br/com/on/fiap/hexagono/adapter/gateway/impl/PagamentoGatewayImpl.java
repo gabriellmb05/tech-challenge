@@ -1,7 +1,7 @@
-package br.com.on.fiap.hexagono.adapter.gateway;
+package br.com.on.fiap.hexagono.adapter.gateway.impl;
 
 import br.com.on.fiap.hexagono.adapter.datasource.PagamentoDataSource;
-import br.com.on.fiap.hexagono.adapter.gateway.base.PagamentoGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.PagamentoGateway;
 import br.com.on.fiap.hexagono.domain.entity.Pagamento;
 
 public class PagamentoGatewayImpl implements PagamentoGateway {
