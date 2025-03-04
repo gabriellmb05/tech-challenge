@@ -16,7 +16,11 @@ public class PagamentoControllerImpl implements PagamentoController {
 
     private final PagamentoPresenter pagamentoPresenter;
 
-    public PagamentoControllerImpl(PedidoDetalhaUseCase pedidoDetalhaUseCase, PagamentoValidaUseCase pagamentoValidaUseCase, PagamentoAtualizaUseCase pagamentoAtualizaUseCase, PagamentoPresenter pagamentoPresenter) {
+    public PagamentoControllerImpl(
+            PedidoDetalhaUseCase pedidoDetalhaUseCase,
+            PagamentoValidaUseCase pagamentoValidaUseCase,
+            PagamentoAtualizaUseCase pagamentoAtualizaUseCase,
+            PagamentoPresenter pagamentoPresenter) {
         this.pedidoDetalhaUseCase = pedidoDetalhaUseCase;
         this.pagamentoValidaUseCase = pagamentoValidaUseCase;
         this.pagamentoAtualizaUseCase = pagamentoAtualizaUseCase;
