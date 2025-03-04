@@ -13,10 +13,10 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class PagamentoValidaUseCaseTest {
+class PagamentoValidaUseCaseImplTest {
 
     @InjectMocks
-    private PagamentoValidaUseCase validaPagamentoCasoDeUsoImpl;
+    private PagamentoValidaUseCaseImpl validaPagamentoCasoDeUsoImpl;
 
     @Test
     @DisplayName(

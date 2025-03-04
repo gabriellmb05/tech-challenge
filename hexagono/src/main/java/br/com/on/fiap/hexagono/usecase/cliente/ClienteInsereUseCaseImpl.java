@@ -6,13 +6,14 @@ import br.com.on.fiap.hexagono.adapter.gateway.base.ClienteGateway;
 import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import br.com.on.fiap.hexagono.domain.exception.ClienteExistenteExcecao;
 import br.com.on.fiap.hexagono.domain.exception.message.MessageError;
+import br.com.on.fiap.hexagono.usecase.cliente.base.ClienteInsereUseCase;
 import br.com.on.fiap.hexagono.util.FormatadorCpf;
 
-public class ClienteInsereUseCase implements br.com.on.fiap.hexagono.usecase.cliente.base.ClienteInsereUseCase {
+public class ClienteInsereUseCaseImpl implements ClienteInsereUseCase {
 
     private final ClienteGateway clienteGateway;
 
-    public ClienteInsereUseCase(ClienteGateway clienteGateway) {
+    public ClienteInsereUseCaseImpl(ClienteGateway clienteGateway) {
         this.clienteGateway = clienteGateway;
     }
 

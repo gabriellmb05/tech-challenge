@@ -2,13 +2,14 @@ package br.com.on.fiap.hexagono.usecase.categoria;
 
 import br.com.on.fiap.hexagono.adapter.gateway.base.CategoriaGateway;
 import br.com.on.fiap.hexagono.domain.entity.Categoria;
+import br.com.on.fiap.hexagono.usecase.categoria.base.CategoriaBuscaUseCase;
 import java.util.List;
 
-public class CategoriaBuscaUseCase implements br.com.on.fiap.hexagono.usecase.categoria.base.CategoriaBuscaUseCase {
+public class CategoriaBuscaUseCaseImpl implements CategoriaBuscaUseCase {
 
     private final CategoriaGateway categoriaGateway;
 
-    public CategoriaBuscaUseCase(CategoriaGateway categoriaGateway) {
+    public CategoriaBuscaUseCaseImpl(CategoriaGateway categoriaGateway) {
         this.categoriaGateway = categoriaGateway;
     }
 

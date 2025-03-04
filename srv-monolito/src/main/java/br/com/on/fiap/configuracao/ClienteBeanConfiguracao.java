@@ -7,6 +7,8 @@ import br.com.on.fiap.hexagono.adapter.gateway.ClienteGatewayImpl;
 import br.com.on.fiap.hexagono.adapter.gateway.base.ClienteGateway;
 import br.com.on.fiap.hexagono.adapter.presenter.ClientePresenter;
 import br.com.on.fiap.hexagono.adapter.presenter.base.ClienteBasePresenter;
+import br.com.on.fiap.hexagono.usecase.cliente.ClienteBuscaPorCpfUseCaseImpl;
+import br.com.on.fiap.hexagono.usecase.cliente.ClienteInsereUseCaseImpl;
 import br.com.on.fiap.hexagono.usecase.cliente.base.ClienteBuscaPorCpfUseCase;
 import br.com.on.fiap.hexagono.usecase.cliente.base.ClienteInsereUseCase;
 import org.springframework.context.annotation.Bean;
@@ -30,12 +32,12 @@ public class ClienteBeanConfiguracao {
 
     @Bean
     public ClienteBuscaPorCpfUseCase buscaCliente() {
-        return new br.com.on.fiap.hexagono.usecase.cliente.ClienteBuscaPorCpfUseCase(clienteGateway);
+        return new ClienteBuscaPorCpfUseCaseImpl(clienteGateway);
     }
 
     @Bean
     public ClienteInsereUseCase insereCliente() {
-        return new br.com.on.fiap.hexagono.usecase.cliente.ClienteInsereUseCase(clienteGateway);
+        return new ClienteInsereUseCaseImpl(clienteGateway);
     }
 
     @Bean

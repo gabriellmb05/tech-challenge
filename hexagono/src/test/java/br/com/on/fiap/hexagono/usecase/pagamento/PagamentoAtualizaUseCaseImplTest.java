@@ -13,7 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class PagamentoAtualizaUseCaseTest {
+class PagamentoAtualizaUseCaseImplTest {
 
     @Mock
     private IntegracaoPagamentoSaida integracaoPagamentoSaida;
@@ -22,7 +22,7 @@ class PagamentoAtualizaUseCaseTest {
     private PersistePagamentoPortaSaida persistePagamentoPortaSaida;
 
     @InjectMocks
-    private PagamentoAtualizaUseCase atualizaPagamentoCasoDeUsoImpl;
+    private PagamentoAtualizaUseCaseImpl atualizaPagamentoCasoDeUsoImpl;
 
     @Test
     @DisplayName(

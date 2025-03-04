@@ -4,9 +4,10 @@ import br.com.on.fiap.hexagono.domain.entity.Pagamento;
 import br.com.on.fiap.hexagono.domain.entity.SituacaoPagamento;
 import br.com.on.fiap.hexagono.domain.exception.PagamentoJaRealizadoExcecao;
 import br.com.on.fiap.hexagono.domain.exception.message.MessageError;
+import br.com.on.fiap.hexagono.usecase.pagamento.base.PagamentoValidaUseCase;
 import java.util.Objects;
 
-public class PagamentoValidaUseCase implements br.com.on.fiap.hexagono.usecase.pagamento.base.PagamentoValidaUseCase {
+public class PagamentoValidaUseCaseImpl implements PagamentoValidaUseCase {
 
     @Override
     public void validarPagamentoJaRealizado(Pagamento pagamento, String nrProtocolo) {

@@ -23,7 +23,7 @@ class BuscaClienteCasoDeUsoImplTest {
     private ClienteGateway clienteGateway;
 
     @InjectMocks
-    private ClienteBuscaPorCpfUseCase buscaClienteCasoDeUsoImpl;
+    private ClienteBuscaPorCpfUseCaseImpl buscaClienteCasoDeUsoImpl;
 
     @Test
     @DisplayName("Dado um CPF válido, quando buscar cliente, então o cliente deve ser encontrado")

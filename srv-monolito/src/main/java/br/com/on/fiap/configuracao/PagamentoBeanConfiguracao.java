@@ -1,5 +1,7 @@
 package br.com.on.fiap.configuracao;
 
+import br.com.on.fiap.hexagono.usecase.pagamento.PagamentoAtualizaUseCaseImpl;
+import br.com.on.fiap.hexagono.usecase.pagamento.PagamentoValidaUseCaseImpl;
 import br.com.on.fiap.hexagono.usecase.pagamento.base.PagamentoAtualizaUseCase;
 import br.com.on.fiap.hexagono.usecase.pagamento.base.PagamentoValidaUseCase;
 import org.springframework.context.annotation.Bean;
@@ -20,12 +22,11 @@ public class PagamentoBeanConfiguracao {
 
     @Bean
     public PagamentoAtualizaUseCase atualizaPagamento() {
-        return new br.com.on.fiap.hexagono.usecase.pagamento.PagamentoAtualizaUseCase(
-                integracaoPagamentoSaida, persistePagamentoPortaSaida);
+        return new PagamentoAtualizaUseCaseImpl(integracaoPagamentoSaida, persistePagamentoPortaSaida);
     }
 
     @Bean
     public PagamentoValidaUseCase validaPagamentoJaRealizado() {
-        return new br.com.on.fiap.hexagono.usecase.pagamento.PagamentoValidaUseCase();
+        return new PagamentoValidaUseCaseImpl();
     }
 }

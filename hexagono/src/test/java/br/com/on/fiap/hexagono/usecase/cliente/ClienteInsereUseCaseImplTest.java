@@ -19,13 +19,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class ClienteInsereUseCaseTest {
+class ClienteInsereUseCaseImplTest {
 
     @Mock
     private ClienteGateway clienteGateway;
 
     @InjectMocks
-    private ClienteInsereUseCase clienteInsereUseCase;
+    private ClienteInsereUseCaseImpl clienteInsereUseCaseImpl;
 
     @Test
     @DisplayName("Dado um cliente válido, quando inserir o cliente, então o cliente deve ser salvo com sucesso")
@@ -37,7 +37,7 @@ class ClienteInsereUseCaseTest {
         when(clienteGateway.buscaClientePorEmail(cliente.getEmail())).thenReturn(Optional.empty());
         when(clienteGateway.salvaCliente(any())).thenReturn(cliente);
 
-        ClienteSaidaDTO clienteSaidaDTO = clienteInsereUseCase.inserir(clienteEntradaDTO);
+        ClienteSaidaDTO clienteSaidaDTO = clienteInsereUseCaseImpl.inserir(clienteEntradaDTO);
 
         assertNotNull(clienteSaidaDTO);
         assertEquals(cliente.getCpf(), clienteSaidaDTO.getCpf());
@@ -58,7 +58,7 @@ class ClienteInsereUseCaseTest {
         when(clienteGateway.buscaClientePorCpf(cliente.getCpf())).thenReturn(Optional.of(cliente));
 
         ClienteExistenteExcecao exception =
-                assertThrows(ClienteExistenteExcecao.class, () -> clienteInsereUseCase.inserir(clienteEntradaDTO));
+                assertThrows(ClienteExistenteExcecao.class, () -> clienteInsereUseCaseImpl.inserir(clienteEntradaDTO));
 
         assertEquals("O CPF de número 123.456.789-00 já foi utilizado", exception.getMessage());
 
@@ -77,7 +77,7 @@ class ClienteInsereUseCaseTest {
         when(clienteGateway.buscaClientePorEmail(cliente.getEmail())).thenReturn(Optional.of(cliente));
 
         ClienteExistenteExcecao exception = assertThrows(ClienteExistenteExcecao.class, () -> {
-            clienteInsereUseCase.inserir(clienteEntradaDTO);
+            clienteInsereUseCaseImpl.inserir(clienteEntradaDTO);
         });
 
         assertEquals("O E-mail carlos.souza@example.com já foi utilizado", exception.getMessage());

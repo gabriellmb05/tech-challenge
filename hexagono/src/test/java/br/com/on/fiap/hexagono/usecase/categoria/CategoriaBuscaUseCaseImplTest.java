@@ -15,10 +15,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class CategoriaBuscaUseCaseTest {
+class CategoriaBuscaUseCaseImplTest {
 
     @InjectMocks
-    private CategoriaBuscaUseCase categoriaBuscaUseCase;
+    private CategoriaBuscaUseCaseImpl categoriaBuscaUseCaseImpl;
 
     @Mock
     private CategoriaGateway categoriaGateway;
@@ -28,7 +28,7 @@ class CategoriaBuscaUseCaseTest {
     void dadoCategorias_quandoBuscarCategorias_entaoDeveSerRetornado() {
         List<Categoria> categoriaRetorno = List.of(Categoria.values());
         when(categoriaGateway.buscaCategorias()).thenReturn(categoriaRetorno);
-        List<Categoria> categorias = categoriaBuscaUseCase.buscaCategorias();
+        List<Categoria> categorias = categoriaBuscaUseCaseImpl.buscaCategorias();
         assertNotNull(categorias);
         assertArrayEquals(Categoria.values(), categorias.toArray());
     }

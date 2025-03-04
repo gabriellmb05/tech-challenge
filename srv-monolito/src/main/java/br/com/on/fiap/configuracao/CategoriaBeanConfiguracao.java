@@ -6,7 +6,7 @@ import br.com.on.fiap.hexagono.adapter.gateway.CategoriaGatewayImpl;
 import br.com.on.fiap.hexagono.adapter.gateway.base.CategoriaGateway;
 import br.com.on.fiap.hexagono.adapter.presenter.CategoriaPresenter;
 import br.com.on.fiap.hexagono.adapter.presenter.base.CategoriaBasePresenter;
-import br.com.on.fiap.hexagono.usecase.categoria.CategoriaBuscaUseCase;
+import br.com.on.fiap.hexagono.usecase.categoria.CategoriaBuscaUseCaseImpl;
 import br.com.on.fiap.hexagono.usecase.categoria.entrada.BuscaCategoriaCasoDeUso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +26,7 @@ public class CategoriaBeanConfiguracao {
 
     @Bean
     public BuscaCategoriaCasoDeUso buscaCategorias() {
-        return new CategoriaBuscaUseCase(categoriaGateway);
+        return new CategoriaBuscaUseCaseImpl(categoriaGateway);
     }
 
     @Bean
