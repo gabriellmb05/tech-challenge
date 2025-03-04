@@ -1,6 +1,5 @@
 package br.com.on.fiap.infrastructure.handler;
 
-import br.com.on.fiap.hexagono.domain.exception.*;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
