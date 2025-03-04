@@ -83,6 +83,10 @@ class ProdutoBeanConfiguracaoTest {
     @Configuration
     static class TestConfig extends ProdutoBeanConfiguracao {
 
+        TestConfig() {
+            super();
+        }
+
         @Bean
         public PersistenciaProdutoAdaptador persistenciaProdutoAdaptador() {
             return new PersistenciaProdutoAdaptador(mock(ProdutoRepositorio.class), mock(ProdutoSaidaMapeador.class));

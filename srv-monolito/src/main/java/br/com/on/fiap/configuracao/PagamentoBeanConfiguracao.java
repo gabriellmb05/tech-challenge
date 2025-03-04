@@ -12,10 +12,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PagamentoBeanConfiguracao {
 
-    @Bean
-    public AtualizaPagamentoCasoDeUso atualizaPagamento(
+    private final IntegracaoPagamentoSaida integracaoPagamentoSaida;
+    private final PersistePagamentoPortaSaida persistePagamentoPortaSaida;
+
+    public PagamentoBeanConfiguracao(
             IntegracaoPagamentoSaida integracaoPagamentoSaida,
             PersistePagamentoPortaSaida persistePagamentoPortaSaida) {
+        this.integracaoPagamentoSaida = integracaoPagamentoSaida;
+        this.persistePagamentoPortaSaida = persistePagamentoPortaSaida;
+    }
+
+    @Bean
+    public AtualizaPagamentoCasoDeUso atualizaPagamento() {
         return new AtualizaPagamentoCasoDeUsoImpl(integracaoPagamentoSaida, persistePagamentoPortaSaida);
     }
 

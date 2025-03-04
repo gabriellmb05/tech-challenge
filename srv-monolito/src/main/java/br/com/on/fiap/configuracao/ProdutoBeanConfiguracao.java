@@ -9,34 +9,39 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ProdutoBeanConfiguracao {
 
+    private final PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+
+    public ProdutoBeanConfiguracao(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+        this.persisteProdutoPortaSaida = persisteProdutoPortaSaida;
+    }
+
     @Bean
-    public BuscaProdutoPorIdCasoDeUso buscaProduto(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+    public BuscaProdutoPorIdCasoDeUso buscaProduto() {
         return new BuscaProdutoCasoDeUsoImpl(persisteProdutoPortaSaida);
     }
 
     @Bean
-    public InsereProdutoCasoDeUso insereProduto(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+    public InsereProdutoCasoDeUso insereProduto() {
         return new InsereProdutoCasoDeUsoImpl(persisteProdutoPortaSaida);
     }
 
     @Bean
-    public AlteraProdutoCasoDeUso alteraProduto(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+    public AlteraProdutoCasoDeUso alteraProduto() {
         return new AlteraProdutoCasoDeUsoImpl(persisteProdutoPortaSaida);
     }
 
     @Bean
-    public DeletaProdutoCasoDeUso deletaProduto(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+    public DeletaProdutoCasoDeUso deletaProduto() {
         return new DeletaProdutoCasoDeUsoImpl(persisteProdutoPortaSaida);
     }
 
     @Bean
-    public BuscaProdutosCasoDeUso listarProduto(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+    public BuscaProdutosCasoDeUso listarProduto() {
         return new BuscaProdutosCasoDeUsoImpl(persisteProdutoPortaSaida);
     }
 
     @Bean
-    public ValidaProdutosDoPedidoCasoDeUso validaProdutosCasoDeUso(
-            PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
+    public ValidaProdutosDoPedidoCasoDeUso validaProdutosCasoDeUso() {
         return new ValidaProdutosDoPedidoCasoDeUsoImpl(persisteProdutoPortaSaida);
     }
 }
