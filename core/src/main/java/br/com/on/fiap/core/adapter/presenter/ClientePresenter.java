@@ -1,8 +1,8 @@
 package br.com.on.fiap.core.adapter.presenter;
 
 import br.com.on.fiap.core.application.dto.ClienteRespostaDTO;
-import br.com.on.fiap.core.application.dto.ClienteSaidaDTO;
+import br.com.on.fiap.core.domain.entity.Cliente;
 
 public interface ClientePresenter {
-    ClienteRespostaDTO formatar(ClienteSaidaDTO cliente);
+    ClienteRespostaDTO formatar(Cliente cliente);
 }

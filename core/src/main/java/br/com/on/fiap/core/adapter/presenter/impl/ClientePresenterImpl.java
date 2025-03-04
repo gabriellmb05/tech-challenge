@@ -2,17 +2,13 @@ package br.com.on.fiap.core.adapter.presenter.impl;
 
 import br.com.on.fiap.core.adapter.presenter.ClientePresenter;
 import br.com.on.fiap.core.application.dto.ClienteRespostaDTO;
-import br.com.on.fiap.core.application.dto.ClienteSaidaDTO;
+import br.com.on.fiap.core.domain.entity.Cliente;
 
 public class ClientePresenterImpl implements ClientePresenter {
 
     @Override
-    public ClienteRespostaDTO formatar(ClienteSaidaDTO clienteSaidaDTO) {
+    public ClienteRespostaDTO formatar(Cliente cliente) {
         return new ClienteRespostaDTO(
-                clienteSaidaDTO.getId(),
-                clienteSaidaDTO.getNome(),
-                clienteSaidaDTO.getCpf(),
-                clienteSaidaDTO.getEmail(),
-                clienteSaidaDTO.getDataNascimento());
+                cliente.getId(), cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getDataNascimento());
     }
 }

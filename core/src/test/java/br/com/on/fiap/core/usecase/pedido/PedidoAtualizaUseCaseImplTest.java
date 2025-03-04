@@ -5,6 +5,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
+import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoAtualizaUseCaseImpl;
 import br.com.on.fiap.core.datapool.DataPoolPagamento;
 import br.com.on.fiap.core.datapool.DataPoolPedido;
 import br.com.on.fiap.core.domain.entity.Pagamento;
@@ -14,7 +15,6 @@ import br.com.on.fiap.core.domain.entity.TipoPagamento;
 import br.com.on.fiap.core.domain.exception.PedidoNaoEncontradoExcecao;
 import br.com.on.fiap.core.domain.exception.message.MessageError;
 import br.com.on.fiap.core.domain.exception.message.MessageManager;
-import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoAtualizaUseCaseImpl;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

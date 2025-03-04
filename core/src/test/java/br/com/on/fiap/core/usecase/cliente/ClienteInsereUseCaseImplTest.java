@@ -5,12 +5,11 @@ import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.core.adapter.gateway.ClienteGateway;
 import br.com.on.fiap.core.application.dto.ClienteEntradaDTO;
-import br.com.on.fiap.core.application.dto.ClienteSaidaDTO;
+import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteInsereUseCaseImpl;
 import br.com.on.fiap.core.datapool.DataPoolCliente;
 import br.com.on.fiap.core.datapool.DataPoolClienteEntradaDTO;
 import br.com.on.fiap.core.domain.entity.Cliente;
 import br.com.on.fiap.core.domain.exception.ClienteExistenteExcecao;
-import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteInsereUseCaseImpl;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,7 +37,7 @@ class ClienteInsereUseCaseImplTest {
         when(clienteGateway.buscaClientePorEmail(cliente.getEmail())).thenReturn(Optional.empty());
         when(clienteGateway.salvaCliente(any())).thenReturn(cliente);
 
-        ClienteSaidaDTO clienteSaidaDTO = clienteInsereUseCase.inserir(clienteEntradaDTO);
+        Cliente clienteSaidaDTO = clienteInsereUseCase.inserir(clienteEntradaDTO);
 
         assertNotNull(clienteSaidaDTO);
         assertEquals(cliente.getCpf(), clienteSaidaDTO.getCpf());
@@ -53,7 +52,7 @@ class ClienteInsereUseCaseImplTest {
     @DisplayName(
             "Dado um cliente com CPF existente, quando inserir o cliente, então deve lançar exceção ClienteExistenteExcecao")
     void dadoClienteComCpfExistente_quandoInserirCliente_entaoDeveLancarExcecao() {
-        Cliente cliente = DataPoolCliente.clienteValido();
+        br.com.on.fiap.core.domain.entity.Cliente cliente = DataPoolCliente.clienteValido();
         ClienteEntradaDTO clienteEntradaDTO = DataPoolClienteEntradaDTO.clienteValido();
 
         when(clienteGateway.buscaClientePorCpf(cliente.getCpf())).thenReturn(Optional.of(cliente));
@@ -71,15 +70,14 @@ class ClienteInsereUseCaseImplTest {
     @DisplayName(
             "Dado um cliente com email existente, quando inserir o cliente, então deve lançar exceção ClienteExistenteExcecao")
     void dadoClienteComEmailExistente_quandoInserirCliente_entaoDeveLancarExcecao() {
-        Cliente cliente = DataPoolCliente.clienteValido();
+        br.com.on.fiap.core.domain.entity.Cliente cliente = DataPoolCliente.clienteValido();
         ClienteEntradaDTO clienteEntradaDTO = DataPoolClienteEntradaDTO.clienteValido();
 
         when(clienteGateway.buscaClientePorCpf(cliente.getCpf())).thenReturn(Optional.empty());
         when(clienteGateway.buscaClientePorEmail(cliente.getEmail())).thenReturn(Optional.of(cliente));
 
-        ClienteExistenteExcecao exception = assertThrows(ClienteExistenteExcecao.class, () -> {
-            clienteInsereUseCase.inserir(clienteEntradaDTO);
-        });
+        ClienteExistenteExcecao exception =
+                assertThrows(ClienteExistenteExcecao.class, () -> clienteInsereUseCase.inserir(clienteEntradaDTO));
 
         assertEquals("O E-mail carlos.souza@example.com já foi utilizado", exception.getMessage());
 

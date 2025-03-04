@@ -4,11 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.core.adapter.gateway.ClienteGateway;
-import br.com.on.fiap.core.application.dto.ClienteSaidaDTO;
+import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteBuscaPorCpfUseCaseImpl;
 import br.com.on.fiap.core.datapool.DataPoolCliente;
 import br.com.on.fiap.core.domain.entity.Cliente;
 import br.com.on.fiap.core.domain.exception.ClienteNaoEncontradoExcecao;
-import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteBuscaPorCpfUseCaseImpl;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,13 +30,13 @@ class ClienteBuscaPorCpfUseCaseImplTest {
     void dadoCpfValido_quandoBuscarCliente_entaoClienteDeveSerEncontrado() {
         String cpf = "12345678900";
         Cliente clienteEsperado = DataPoolCliente.clienteComCpf(cpf);
-        when(clienteGateway.buscaClientePorCpf(cpf)).thenReturn(java.util.Optional.of(clienteEsperado));
+        when(clienteGateway.buscaClientePorCpf(cpf)).thenReturn(Optional.of(clienteEsperado));
 
-        ClienteSaidaDTO clienteSaidaDTO = clienteBuscaPorCpfUseCase.buscar(cpf);
+        Cliente cliente = clienteBuscaPorCpfUseCase.buscar(cpf);
 
-        assertNotNull(clienteSaidaDTO);
-        assertEquals(cpf, clienteSaidaDTO.getCpf());
-        assertEquals(clienteEsperado.getNome(), clienteSaidaDTO.getNome());
+        assertNotNull(cliente);
+        assertEquals(cpf, cliente.getCpf());
+        assertEquals(clienteEsperado.getNome(), cliente.getNome());
         verify(clienteGateway).buscaClientePorCpf(cpf);
     }
 

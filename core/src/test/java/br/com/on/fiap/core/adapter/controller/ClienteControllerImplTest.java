@@ -8,12 +8,12 @@ import br.com.on.fiap.core.adapter.controller.impl.ClienteControllerImpl;
 import br.com.on.fiap.core.adapter.presenter.ClientePresenter;
 import br.com.on.fiap.core.application.dto.ClienteEntradaDTO;
 import br.com.on.fiap.core.application.dto.ClienteRespostaDTO;
-import br.com.on.fiap.core.application.dto.ClienteSaidaDTO;
-import br.com.on.fiap.core.datapool.DataPoolClienteEntradaDTO;
-import br.com.on.fiap.core.datapool.DataPoolClienteRespostaDTO;
-import br.com.on.fiap.core.datapool.DataPoolClienteSaidaDTO;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
+import br.com.on.fiap.core.datapool.DataPoolCliente;
+import br.com.on.fiap.core.datapool.DataPoolClienteEntradaDTO;
+import br.com.on.fiap.core.datapool.DataPoolClienteRespostaDTO;
+import br.com.on.fiap.core.domain.entity.Cliente;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,18 +40,18 @@ class ClienteControllerImplTest {
     @DisplayName(
             "Dado um cpf, quando buscar o cliente pelo CPF, então um cliente deve ser retornado no formato esperado")
     void dadoCpf_quandoBuscarClientePorCpf_entaoDeveSerRetornadoClienteFormatado() {
-        ClienteSaidaDTO clienteSaidaDTO = DataPoolClienteSaidaDTO.clienteValido();
+        Cliente cliente = DataPoolCliente.clienteValido();
         ClienteRespostaDTO clienteRespostaDTO = DataPoolClienteRespostaDTO.clienteValido();
-        String cpf = clienteSaidaDTO.getCpf();
-        when(clienteBuscaPorCpfUseCase.buscar(cpf)).thenReturn(clienteSaidaDTO);
-        when(clientePresenter.formatar(clienteSaidaDTO)).thenReturn(clienteRespostaDTO);
+        String cpf = cliente.getCpf();
+        when(clienteBuscaPorCpfUseCase.buscar(cpf)).thenReturn(cliente);
+        when(clientePresenter.formatar(cliente)).thenReturn(clienteRespostaDTO);
 
         ClienteRespostaDTO resultado = clienteController.buscaClientePorCpf(cpf);
 
         assertNotNull(resultado);
         assertEquals(clienteRespostaDTO.getCpf(), resultado.getCpf());
         verify(clienteBuscaPorCpfUseCase).buscar(cpf);
-        verify(clientePresenter).formatar(clienteSaidaDTO);
+        verify(clientePresenter).formatar(cliente);
     }
 
     @Test
@@ -59,16 +59,16 @@ class ClienteControllerImplTest {
             "Dado um objecto de dados de entrada, quando inserir ele, então um objeto de dados de saída deve ser retornado no formato esperado")
     void dadoObjetoDeDadosDeEntrada_quandoInserir_entaoDeveSerRetornadoNoFormatoEsperado() {
         ClienteEntradaDTO clienteEntradaDTO = DataPoolClienteEntradaDTO.clienteValido();
-        ClienteSaidaDTO clienteSaidaDTO = DataPoolClienteSaidaDTO.clienteValido();
+        Cliente cliente = DataPoolCliente.clienteValido();
         ClienteRespostaDTO clienteRespostaDTO = DataPoolClienteRespostaDTO.clienteValido();
-        when(clienteInsereUseCase.inserir(clienteEntradaDTO)).thenReturn(clienteSaidaDTO);
-        when(clientePresenter.formatar(clienteSaidaDTO)).thenReturn(clienteRespostaDTO);
+        when(clienteInsereUseCase.inserir(clienteEntradaDTO)).thenReturn(cliente);
+        when(clientePresenter.formatar(cliente)).thenReturn(clienteRespostaDTO);
 
         ClienteRespostaDTO resultado = clienteController.insereCliente(clienteEntradaDTO);
 
         assertNotNull(resultado);
         assertEquals(clienteRespostaDTO.getCpf(), resultado.getCpf());
         verify(clienteInsereUseCase).inserir(clienteEntradaDTO);
-        verify(clientePresenter).formatar(clienteSaidaDTO);
+        verify(clientePresenter).formatar(cliente);
     }
 }

@@ -1,7 +1,7 @@
 package br.com.on.fiap.core.application.usecase.cliente;
 
-import br.com.on.fiap.core.application.dto.ClienteSaidaDTO;
+import br.com.on.fiap.core.domain.entity.Cliente;
 
 public interface ClienteBuscaPorCpfUseCase {
-    ClienteSaidaDTO buscar(String cpf);
+    Cliente buscar(String cpf);
 }

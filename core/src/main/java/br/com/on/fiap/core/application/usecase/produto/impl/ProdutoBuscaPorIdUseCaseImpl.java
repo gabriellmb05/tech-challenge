@@ -1,10 +1,10 @@
 package br.com.on.fiap.core.application.usecase.produto.impl;
 
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
+import br.com.on.fiap.core.application.usecase.produto.ProdutoBuscaPorIdUseCase;
 import br.com.on.fiap.core.domain.entity.Produto;
 import br.com.on.fiap.core.domain.exception.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.core.domain.exception.message.MessageError;
-import br.com.on.fiap.core.application.usecase.produto.ProdutoBuscaPorIdUseCase;
 import java.util.Optional;
 
 public class ProdutoBuscaPorIdUseCaseImpl implements ProdutoBuscaPorIdUseCase {

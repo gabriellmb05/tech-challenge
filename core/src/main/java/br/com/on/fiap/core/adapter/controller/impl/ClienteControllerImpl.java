@@ -4,9 +4,9 @@ import br.com.on.fiap.core.adapter.controller.ClienteController;
 import br.com.on.fiap.core.adapter.presenter.ClientePresenter;
 import br.com.on.fiap.core.application.dto.ClienteEntradaDTO;
 import br.com.on.fiap.core.application.dto.ClienteRespostaDTO;
-import br.com.on.fiap.core.application.dto.ClienteSaidaDTO;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
+import br.com.on.fiap.core.domain.entity.Cliente;
 
 public class ClienteControllerImpl implements ClienteController {
 
@@ -25,13 +25,13 @@ public class ClienteControllerImpl implements ClienteController {
 
     @Override
     public ClienteRespostaDTO buscaClientePorCpf(String cpf) {
-        ClienteSaidaDTO clienteSaidaDTO = clienteBuscaPorCpfUseCase.buscar(cpf);
-        return clientePresenter.formatar(clienteSaidaDTO);
+        Cliente cliente = clienteBuscaPorCpfUseCase.buscar(cpf);
+        return clientePresenter.formatar(cliente);
     }
 
     @Override
     public ClienteRespostaDTO insereCliente(ClienteEntradaDTO clienteEntradaDTO) {
-        ClienteSaidaDTO clienteSaidaDTO = clienteInsereUseCase.inserir(clienteEntradaDTO);
-        return clientePresenter.formatar(clienteSaidaDTO);
+        Cliente cliente = clienteInsereUseCase.inserir(clienteEntradaDTO);
+        return clientePresenter.formatar(cliente);
     }
 }

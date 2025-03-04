@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.gateway.CategoriaGateway;
-import br.com.on.fiap.core.domain.entity.Categoria;
 import br.com.on.fiap.core.application.usecase.categoria.impl.CategoriaBuscaUseCaseImpl;
+import br.com.on.fiap.core.domain.entity.Categoria;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
