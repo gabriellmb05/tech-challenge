@@ -1,10 +1,10 @@
 package br.com.on.fiap.hexagono.application.usecase.produto.impl;
 
 import br.com.on.fiap.hexagono.adapter.gateway.ProdutoGateway;
+import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoBuscaPorIdUseCase;
 import br.com.on.fiap.hexagono.domain.entity.Produto;
 import br.com.on.fiap.hexagono.domain.exception.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.domain.exception.message.MessageError;
-import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoBuscaPorIdUseCase;
 import java.util.Optional;
 
 public class ProdutoBuscaPorIdUseCaseImpl implements ProdutoBuscaPorIdUseCase {

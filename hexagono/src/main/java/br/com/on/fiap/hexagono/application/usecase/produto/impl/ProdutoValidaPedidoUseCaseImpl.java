@@ -1,12 +1,12 @@
 package br.com.on.fiap.hexagono.application.usecase.produto.impl;
 
 import br.com.on.fiap.hexagono.adapter.gateway.ProdutoGateway;
+import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoValidaPedidoUseCase;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.entity.Produto;
 import br.com.on.fiap.hexagono.domain.entity.RelPedidoProduto;
 import br.com.on.fiap.hexagono.domain.exception.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.domain.exception.message.MessageError;
-import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoValidaPedidoUseCase;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;

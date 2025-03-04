@@ -1,9 +1,9 @@
 package br.com.on.fiap.hexagono.application.usecase.pedido.impl;
 
 import br.com.on.fiap.hexagono.adapter.gateway.PedidoGateway;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoListaUseCase;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.entity.PedidoFiltro;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoListaUseCase;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

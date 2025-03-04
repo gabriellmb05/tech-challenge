@@ -1,13 +1,13 @@
 package br.com.on.fiap.config;
 
-import br.com.on.fiap.hexagono.adapter.controller.impl.CategoriaControllerImpl;
 import br.com.on.fiap.hexagono.adapter.controller.CategoriaController;
-import br.com.on.fiap.hexagono.adapter.gateway.impl.CategoriaGatewayImpl;
+import br.com.on.fiap.hexagono.adapter.controller.impl.CategoriaControllerImpl;
 import br.com.on.fiap.hexagono.adapter.gateway.CategoriaGateway;
-import br.com.on.fiap.hexagono.adapter.presenter.impl.CategoriaPresenterImpl;
+import br.com.on.fiap.hexagono.adapter.gateway.impl.CategoriaGatewayImpl;
 import br.com.on.fiap.hexagono.adapter.presenter.CategoriaPresenter;
-import br.com.on.fiap.hexagono.application.usecase.categoria.impl.CategoriaBuscaUseCaseImpl;
+import br.com.on.fiap.hexagono.adapter.presenter.impl.CategoriaPresenterImpl;
 import br.com.on.fiap.hexagono.application.usecase.categoria.CategoriaBuscaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.categoria.impl.CategoriaBuscaUseCaseImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

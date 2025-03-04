@@ -1,8 +1,8 @@
 package br.com.on.fiap.hexagono.application.usecase.cliente.impl;
 
+import br.com.on.fiap.hexagono.adapter.gateway.ClienteGateway;
 import br.com.on.fiap.hexagono.application.dto.ClienteEntradaDTO;
 import br.com.on.fiap.hexagono.application.dto.ClienteSaidaDTO;
-import br.com.on.fiap.hexagono.adapter.gateway.ClienteGateway;
 import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteInsereUseCase;
 import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import br.com.on.fiap.hexagono.domain.exception.ClienteExistenteExcecao;

@@ -5,15 +5,15 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.hexagono.adapter.controller.impl.ClienteControllerImpl;
+import br.com.on.fiap.hexagono.adapter.presenter.ClientePresenter;
 import br.com.on.fiap.hexagono.application.dto.ClienteEntradaDTO;
 import br.com.on.fiap.hexagono.application.dto.ClienteRespostaDTO;
 import br.com.on.fiap.hexagono.application.dto.ClienteSaidaDTO;
-import br.com.on.fiap.hexagono.adapter.presenter.ClientePresenter;
+import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
+import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteInsereUseCase;
 import br.com.on.fiap.hexagono.datapool.DataPoolClienteEntradaDTO;
 import br.com.on.fiap.hexagono.datapool.DataPoolClienteRespostaDTO;
 import br.com.on.fiap.hexagono.datapool.DataPoolClienteSaidaDTO;
-import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
-import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteInsereUseCase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

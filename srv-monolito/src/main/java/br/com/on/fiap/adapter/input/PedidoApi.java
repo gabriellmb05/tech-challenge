@@ -1,21 +1,21 @@
 package br.com.on.fiap.adapter.input;
 
-import br.com.on.fiap.adapter.input.mapper.PagamentoInputMapper;
-import br.com.on.fiap.adapter.input.swagger.PedidoApiSwagger;
 import br.com.on.fiap.adapter.input.dto.filter.PedidoFiltroDTO;
+import br.com.on.fiap.adapter.input.dto.request.PedidoSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.dto.response.PedidoDetalhadoRespostaDTO;
 import br.com.on.fiap.adapter.input.dto.response.PedidoRespostaDTO;
-import br.com.on.fiap.adapter.input.dto.request.PedidoSolicitacaoDTO;
-import br.com.on.fiap.adapter.input.mapper.PedidoInputMapper;
+import br.com.on.fiap.adapter.input.mapper.PagamentoInputMapper;
 import br.com.on.fiap.adapter.input.mapper.PedidoFiltroInputMapper;
+import br.com.on.fiap.adapter.input.mapper.PedidoInputMapper;
+import br.com.on.fiap.adapter.input.swagger.PedidoApiSwagger;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoAtualizaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoDetalhaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoInsereUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoListaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoValidaPedidoUseCase;
 import br.com.on.fiap.hexagono.domain.entity.Pagamento;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.entity.PedidoFiltro;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoAtualizaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoListaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoDetalhaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoInsereUseCase;
-import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoValidaPedidoUseCase;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;
@@ -67,8 +67,7 @@ public class PedidoApi implements PedidoApiSwagger {
     @GetMapping("/{protocolo}/detalhar")
     public ResponseEntity<PedidoDetalhadoRespostaDTO> detalhaPedido(@PathVariable("protocolo") String protocolo) {
         Pedido pedidoDetalhado = pedidoDetalhaUseCase.detalhaPedido(protocolo);
-        PedidoDetalhadoRespostaDTO pedidoDetalhadoRespostaDTO =
-                pedidoInputMapper.paraPedidoDetalheDTO(pedidoDetalhado);
+        PedidoDetalhadoRespostaDTO pedidoDetalhadoRespostaDTO = pedidoInputMapper.paraPedidoDetalheDTO(pedidoDetalhado);
         return ResponseEntity.ok(pedidoDetalhadoRespostaDTO);
     }
 

@@ -7,8 +7,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import br.com.on.fiap.adapter.output.api.mercadopago.dto.PagamentoRespostaIntegracaoDTO;
 import br.com.on.fiap.adapter.output.api.mercadopago.client.IntegracaoPagamento;
+import br.com.on.fiap.adapter.output.api.mercadopago.dto.PagamentoRespostaIntegracaoDTO;
 import br.com.on.fiap.datapool.DataPoolPagamentoSolicitacaoDTO;
 import br.com.on.fiap.datapool.DataPoolPedidoSolicitacaoDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;

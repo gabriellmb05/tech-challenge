@@ -9,8 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PedidoRepository
-        extends JpaRepository<PedidoEntity, Long>, JpaSpecificationExecutor<PedidoEntity> {
+public interface PedidoRepository extends JpaRepository<PedidoEntity, Long>, JpaSpecificationExecutor<PedidoEntity> {
 
     @Query(
             value =
@@ -18,7 +17,7 @@ public interface PedidoRepository
             SELECT
                 p
             FROM
-                PedidoEntidade p
+                PedidoEntity p
             LEFT JOIN FETCH p.relPedPro
             LEFT JOIN FETCH p.cliId
             LEFT JOIN FETCH p.pagId

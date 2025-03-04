@@ -1,11 +1,11 @@
 package br.com.on.fiap.hexagono.application.usecase.cliente.impl;
 
-import br.com.on.fiap.hexagono.application.dto.ClienteSaidaDTO;
 import br.com.on.fiap.hexagono.adapter.gateway.ClienteGateway;
+import br.com.on.fiap.hexagono.application.dto.ClienteSaidaDTO;
+import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
 import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import br.com.on.fiap.hexagono.domain.exception.ClienteNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.domain.exception.message.MessageError;
-import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
 import br.com.on.fiap.hexagono.util.FormatadorCpf;
 
 public class ClienteBuscaPorCpfUseCaseImpl implements ClienteBuscaPorCpfUseCase {

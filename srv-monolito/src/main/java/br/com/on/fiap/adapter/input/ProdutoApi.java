@@ -1,11 +1,11 @@
 package br.com.on.fiap.adapter.input;
 
-import br.com.on.fiap.adapter.input.mapper.ProdutoFiltroInputMapper;
-import br.com.on.fiap.adapter.input.swagger.ProdutoApiSwagger;
 import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroDTO;
-import br.com.on.fiap.adapter.input.dto.response.ProdutoRespostaDTO;
 import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoDTO;
+import br.com.on.fiap.adapter.input.dto.response.ProdutoRespostaDTO;
+import br.com.on.fiap.adapter.input.mapper.ProdutoFiltroInputMapper;
 import br.com.on.fiap.adapter.input.mapper.ProdutoInputMapper;
+import br.com.on.fiap.adapter.input.swagger.ProdutoApiSwagger;
 import br.com.on.fiap.hexagono.application.usecase.produto.*;
 import br.com.on.fiap.hexagono.domain.entity.Produto;
 import br.com.on.fiap.hexagono.domain.entity.ProdutoFiltro;
@@ -60,9 +60,8 @@ public class ProdutoApi implements ProdutoApiSwagger {
     public ResponseEntity<PagedModel<ProdutoRespostaDTO>> listarProdutosComFiltro(
             @ParameterObject ProdutoFiltroDTO filtro, Pageable pageable) {
         ProdutoFiltro produtoFiltro = produtoFiltroInputMapper.paraProdutoFiltro(filtro);
-        Page<ProdutoRespostaDTO> produtos = produtoListaUseCase
-                .listarComFiltro(produtoFiltro, pageable)
-                .map(produtoInputMapper::paraProdutoDTO);
+        Page<ProdutoRespostaDTO> produtos =
+                produtoListaUseCase.listarComFiltro(produtoFiltro, pageable).map(produtoInputMapper::paraProdutoDTO);
         return ResponseEntity.ok().body(new PagedModel<>(produtos));
     }
 

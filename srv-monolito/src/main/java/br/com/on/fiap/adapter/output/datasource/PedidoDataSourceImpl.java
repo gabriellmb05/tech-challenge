@@ -1,11 +1,11 @@
 package br.com.on.fiap.adapter.output.datasource;
 
-import br.com.on.fiap.adapter.output.persistence.specification.PedidoSpecification;
+import br.com.on.fiap.adapter.output.persistence.entity.PedidoEntity;
+import br.com.on.fiap.adapter.output.persistence.entity.PedidoProdutoEntity;
 import br.com.on.fiap.adapter.output.persistence.mapper.PedidoProdutoSaidaMapeador;
 import br.com.on.fiap.adapter.output.persistence.repository.PedidoProdutoRepository;
 import br.com.on.fiap.adapter.output.persistence.repository.PedidoRepository;
-import br.com.on.fiap.adapter.output.persistence.entity.PedidoEntity;
-import br.com.on.fiap.adapter.output.persistence.entity.PedidoProdutoEntity;
+import br.com.on.fiap.adapter.output.persistence.specification.PedidoSpecification;
 import br.com.on.fiap.hexagono.adapter.datasource.PedidoDataSource;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.entity.PedidoFiltro;

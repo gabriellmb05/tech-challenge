@@ -1,8 +1,8 @@
 package br.com.on.fiap.adapter.output.datasource;
 
+import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
 import br.com.on.fiap.adapter.output.persistence.mapper.ProdutoSaidaMapeador;
 import br.com.on.fiap.adapter.output.persistence.repository.ProdutoRepository;
-import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
 import br.com.on.fiap.hexagono.adapter.datasource.ProdutoDataSource;
 import br.com.on.fiap.hexagono.domain.entity.Produto;
 import br.com.on.fiap.hexagono.domain.entity.ProdutoFiltro;

@@ -1,9 +1,9 @@
 package br.com.on.fiap.hexagono.application.usecase.produto.impl;
 
 import br.com.on.fiap.hexagono.adapter.gateway.ProdutoGateway;
+import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoDeletaUseCase;
 import br.com.on.fiap.hexagono.domain.exception.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.hexagono.domain.exception.message.MessageError;
-import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoDeletaUseCase;
 
 public class ProdutoDeletaUseCaseImpl implements ProdutoDeletaUseCase {
 

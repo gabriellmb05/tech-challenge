@@ -23,7 +23,7 @@ public interface ProdutoRepository extends JpaRepository<ProdutoEntity, Long> {
 			SELECT
 			    p
 			FROM
-			    ProdutoEntidade p
+			    ProdutoEntity p
 			WHERE
 			    (
 			        :#{#filtro.nome} IS NULL

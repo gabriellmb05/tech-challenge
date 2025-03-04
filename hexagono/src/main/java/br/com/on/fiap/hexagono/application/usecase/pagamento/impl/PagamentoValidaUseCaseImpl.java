@@ -5,7 +5,6 @@ import br.com.on.fiap.hexagono.domain.entity.Pagamento;
 import br.com.on.fiap.hexagono.domain.entity.SituacaoPagamento;
 import br.com.on.fiap.hexagono.domain.exception.PagamentoJaRealizadoExcecao;
 import br.com.on.fiap.hexagono.domain.exception.message.MessageError;
-
 import java.util.Objects;
 
 public class PagamentoValidaUseCaseImpl implements PagamentoValidaUseCase {

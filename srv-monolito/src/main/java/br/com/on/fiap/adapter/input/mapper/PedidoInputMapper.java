@@ -1,9 +1,9 @@
 package br.com.on.fiap.adapter.input.mapper;
 
-import br.com.on.fiap.adapter.input.dto.response.PedidoDetalhadoRespostaDTO;
-import br.com.on.fiap.adapter.input.dto.response.PedidoRespostaDTO;
 import br.com.on.fiap.adapter.input.dto.request.PedidoQuantidadeSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.dto.request.PedidoSolicitacaoDTO;
+import br.com.on.fiap.adapter.input.dto.response.PedidoDetalhadoRespostaDTO;
+import br.com.on.fiap.adapter.input.dto.response.PedidoRespostaDTO;
 import br.com.on.fiap.adapter.input.dto.response.ProdutoRespostaDTO;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.entity.Produto;

@@ -1,8 +1,8 @@
 package br.com.on.fiap.adapter.input;
 
-import br.com.on.fiap.adapter.input.swagger.ClienteApiSwagger;
 import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.mapper.ClienteInputMapper;
+import br.com.on.fiap.adapter.input.swagger.ClienteApiSwagger;
 import br.com.on.fiap.hexagono.adapter.controller.ClienteController;
 import br.com.on.fiap.hexagono.application.dto.ClienteEntradaDTO;
 import br.com.on.fiap.hexagono.application.dto.ClienteRespostaDTO;

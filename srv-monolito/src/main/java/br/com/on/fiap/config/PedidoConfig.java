@@ -5,14 +5,14 @@ import br.com.on.fiap.hexagono.adapter.gateway.ClienteGateway;
 import br.com.on.fiap.hexagono.adapter.gateway.PagamentoGateway;
 import br.com.on.fiap.hexagono.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.hexagono.adapter.gateway.impl.PedidoGatewayImpl;
-import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoAtualizaUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoListaUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoDetalhaUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoInsereUseCaseImpl;
 import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoAtualizaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoListaUseCase;
 import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoDetalhaUseCase;
 import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoInsereUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoListaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoAtualizaUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoDetalhaUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoInsereUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoListaUseCaseImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -24,7 +24,8 @@ public class PedidoConfig {
 
     private final PedidoDataSource pedidoDataSource;
 
-    public PedidoConfig(ClienteGateway clienteGateway, PagamentoGateway pagamentoGateway, PedidoDataSource pedidoDataSource) {
+    public PedidoConfig(
+            ClienteGateway clienteGateway, PagamentoGateway pagamentoGateway, PedidoDataSource pedidoDataSource) {
         this.clienteGateway = clienteGateway;
         this.pagamentoGateway = pagamentoGateway;
         this.pedidoDataSource = pedidoDataSource;
@@ -41,17 +42,17 @@ public class PedidoConfig {
     }
 
     @Bean
-    public PedidoListaUseCase listaPedidos() {
+    public PedidoListaUseCase pedidoListaUseCase() {
         return new PedidoListaUseCaseImpl(pedidoGateway());
     }
 
     @Bean
-    public PedidoDetalhaUseCase detalhaPedido() {
+    public PedidoDetalhaUseCase pedidoDetalhaUseCase() {
         return new PedidoDetalhaUseCaseImpl(pedidoGateway());
     }
 
     @Bean
-    public PedidoAtualizaUseCase atualizaPedido() {
+    public PedidoAtualizaUseCase pedidoAtualizaUseCase() {
         return new PedidoAtualizaUseCaseImpl(pedidoGateway());
     }
 }

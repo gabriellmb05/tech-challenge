@@ -13,8 +13,7 @@ class CategoriaConfigTest {
     @Test
     @DisplayName("Dado a configuração de beans, quando bucar categorias, então deve retornar a instância correta")
     void dadoConfiguracaoDeBeans_quandoListarCategorias_entaoDeveRetornarInstanciaCorreta() {
-        AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(CategoriaConfig.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(CategoriaConfig.class);
         BuscaCategoriaCasoDeUso bean = context.getBean(BuscaCategoriaCasoDeUso.class);
 
         assertNotNull(bean);

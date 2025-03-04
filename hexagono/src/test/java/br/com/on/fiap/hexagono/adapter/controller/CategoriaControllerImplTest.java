@@ -6,10 +6,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.hexagono.adapter.controller.impl.CategoriaControllerImpl;
-import br.com.on.fiap.hexagono.application.dto.CategoriaSaidaDTO;
 import br.com.on.fiap.hexagono.adapter.presenter.CategoriaPresenter;
-import br.com.on.fiap.hexagono.domain.entity.Categoria;
+import br.com.on.fiap.hexagono.application.dto.CategoriaSaidaDTO;
 import br.com.on.fiap.hexagono.application.usecase.categoria.CategoriaBuscaUseCase;
+import br.com.on.fiap.hexagono.domain.entity.Categoria;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
