@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import br.com.on.fiap.hexagono.adapter.gateway.base.ProdutoGateway;
 import br.com.on.fiap.hexagono.datapool.DataPoolPedido;
 import br.com.on.fiap.hexagono.datapool.DataPoolProduto;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
@@ -21,10 +22,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class ProdutoValidaPedidoUseCaseImplTest {
 
     @Mock
-    private PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+    private ProdutoGateway produtoGateway;
 
     @InjectMocks
-    private ProdutoValidaPedidoUseCaseImpl validaProdutosDoPedidoCasoDeUsoImpl;
+    private ProdutoValidaPedidoUseCaseImpl produtoValidaPedidoUseCase;
 
     @Test
     @DisplayName(
@@ -32,13 +33,13 @@ class ProdutoValidaPedidoUseCaseImplTest {
     void dadoPedidoComProdutosValidos_quandoValidarProdutos_entaoDeveSerValido() {
         Pedido pedido = DataPoolPedido.pedidoComProdutosValidos();
 
-        when(persisteProdutoPortaSaida.buscaProdutoPorIdsLista(List.of(1L, 2L)))
+        when(produtoGateway.buscaProdutoPorIdsLista(List.of(1L, 2L)))
                 .thenReturn(DataPoolProduto.produtosComIdsDinamicos(2));
 
-        Pedido resultado = validaProdutosDoPedidoCasoDeUsoImpl.validarProdutosDoPedido(pedido);
+        Pedido resultado = produtoValidaPedidoUseCase.validarProdutosDoPedido(pedido);
 
         assertEquals(pedido, resultado);
-        verify(persisteProdutoPortaSaida).buscaProdutoPorIdsLista(List.of(1L, 2L));
+        verify(produtoGateway).buscaProdutoPorIdsLista(List.of(1L, 2L));
     }
 
     @Test
@@ -47,14 +48,13 @@ class ProdutoValidaPedidoUseCaseImplTest {
     void dadoPedidoComProdutosInvalidos_quandoValidarProdutos_entaoDeveLancarExcecaoProdutoNaoEncontrado() {
         Pedido pedido = DataPoolPedido.pedidoComProdutosInvalidos();
 
-        when(persisteProdutoPortaSaida.buscaProdutoPorIdsLista(List.of(1L))).thenReturn(List.of());
+        when(produtoGateway.buscaProdutoPorIdsLista(List.of(1L))).thenReturn(List.of());
 
         ProdutoNaoEncontradoExcecao exception = assertThrows(
-                ProdutoNaoEncontradoExcecao.class,
-                () -> validaProdutosDoPedidoCasoDeUsoImpl.validarProdutosDoPedido(pedido));
+                ProdutoNaoEncontradoExcecao.class, () -> produtoValidaPedidoUseCase.validarProdutosDoPedido(pedido));
 
         assertEquals(
                 "Os seguintes produtos informados para o pedido, não existem no estoque: [1]", exception.getMessage());
-        verify(persisteProdutoPortaSaida).buscaProdutoPorIdsLista(List.of(1L));
+        verify(produtoGateway).buscaProdutoPorIdsLista(List.of(1L));
     }
 }

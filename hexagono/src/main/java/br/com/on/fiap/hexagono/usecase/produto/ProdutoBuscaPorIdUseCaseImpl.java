@@ -7,11 +7,11 @@ import br.com.on.fiap.hexagono.domain.exception.message.MessageError;
 import br.com.on.fiap.hexagono.usecase.produto.base.ProdutoBuscaPorIdUseCase;
 import java.util.Optional;
 
-public class ProdutoBuscaImpl implements ProdutoBuscaPorIdUseCase {
+public class ProdutoBuscaPorIdUseCaseImpl implements ProdutoBuscaPorIdUseCase {
 
     private final ProdutoGateway produtoGateway;
 
-    public ProdutoBuscaImpl(ProdutoGateway produtoGateway) {
+    public ProdutoBuscaPorIdUseCaseImpl(ProdutoGateway produtoGateway) {
         this.produtoGateway = produtoGateway;
     }
 

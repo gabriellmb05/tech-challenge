@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import br.com.on.fiap.hexagono.usecase.produto.ProdutoAlteraUseCaseImpl;
-import br.com.on.fiap.hexagono.usecase.produto.ProdutoBuscaImpl;
+import br.com.on.fiap.hexagono.usecase.produto.ProdutoBuscaPorIdUseCaseImpl;
 import br.com.on.fiap.hexagono.usecase.produto.ProdutoDeletaUseCaseImpl;
 import br.com.on.fiap.hexagono.usecase.produto.ProdutoInsereUseCaseImpl;
 import br.com.on.fiap.hexagono.usecase.produto.base.*;
@@ -22,7 +22,7 @@ class ProdutoBeanConfiguracaoTest {
         ProdutoBuscaPorIdUseCase bean = context.getBean(ProdutoBuscaPorIdUseCase.class);
 
         assertNotNull(bean);
-        assertInstanceOf(ProdutoBuscaImpl.class, bean);
+        assertInstanceOf(ProdutoBuscaPorIdUseCaseImpl.class, bean);
     }
 
     @Test

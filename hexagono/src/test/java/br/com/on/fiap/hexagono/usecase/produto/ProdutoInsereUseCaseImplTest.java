@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
+import br.com.on.fiap.hexagono.adapter.gateway.base.ProdutoGateway;
 import br.com.on.fiap.hexagono.datapool.DataPoolProduto;
 import br.com.on.fiap.hexagono.domain.entity.Produto;
 import br.com.on.fiap.hexagono.domain.exception.ProdutoExistenteExcecao;
@@ -19,33 +20,33 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class ProdutoInsereUseCaseImplTest {
 
     @Mock
-    private PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+    private ProdutoGateway produtoGateway;
 
     @InjectMocks
-    private ProdutoInsereUseCaseImpl insereProdutoCasoDeUsoImpl;
+    private ProdutoInsereUseCaseImpl produtoInsereUseCase;
 
     @Test
     @DisplayName("Dado um produto novo, quando inserir o produto, então ele deve ser salvo")
     void dadoProdutoNovo_quandoInserirProduto_entaoDeveSerSalvo() {
         Produto produto = DataPoolProduto.produtoNovo();
-        when(persisteProdutoPortaSaida.buscaProdutoPorNome(produto.getNome())).thenReturn(Optional.empty());
-        when(persisteProdutoPortaSaida.salvaProduto(produto)).thenReturn(produto);
+        when(produtoGateway.buscaProdutoPorNome(produto.getNome())).thenReturn(Optional.empty());
+        when(produtoGateway.salvaProduto(produto)).thenReturn(produto);
 
-        Produto resultado = insereProdutoCasoDeUsoImpl.inserir(produto);
+        Produto resultado = produtoInsereUseCase.inserir(produto);
 
         assertEquals(produto.getNome(), resultado.getNome());
-        verify(persisteProdutoPortaSaida).buscaProdutoPorNome(produto.getNome());
-        verify(persisteProdutoPortaSaida).salvaProduto(produto);
+        verify(produtoGateway).buscaProdutoPorNome(produto.getNome());
+        verify(produtoGateway).salvaProduto(produto);
     }
 
     @Test
     @DisplayName("Dado um produto existente, quando inserir o produto, então deve lançar uma exceção")
     void dadoProdutoExistente_quandoInserirProduto_entaoDeveLancarExcecao() {
         Produto produto = DataPoolProduto.produtoNovo();
-        when(persisteProdutoPortaSaida.buscaProdutoPorNome(produto.getNome())).thenReturn(Optional.of(produto));
+        when(produtoGateway.buscaProdutoPorNome(produto.getNome())).thenReturn(Optional.of(produto));
 
-        assertThrows(ProdutoExistenteExcecao.class, () -> insereProdutoCasoDeUsoImpl.inserir(produto));
-        verify(persisteProdutoPortaSaida).buscaProdutoPorNome(produto.getNome());
-        verify(persisteProdutoPortaSaida, never()).salvaProduto(produto);
+        assertThrows(ProdutoExistenteExcecao.class, () -> produtoInsereUseCase.inserir(produto));
+        verify(produtoGateway).buscaProdutoPorNome(produto.getNome());
+        verify(produtoGateway, never()).salvaProduto(produto);
     }
 }

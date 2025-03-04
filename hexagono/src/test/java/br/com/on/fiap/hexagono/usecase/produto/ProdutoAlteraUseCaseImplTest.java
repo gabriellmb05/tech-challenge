@@ -3,6 +3,7 @@ package br.com.on.fiap.hexagono.usecase.produto;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import br.com.on.fiap.hexagono.adapter.gateway.base.ProdutoGateway;
 import br.com.on.fiap.hexagono.datapool.DataPoolProduto;
 import br.com.on.fiap.hexagono.domain.entity.Produto;
 import br.com.on.fiap.hexagono.domain.exception.ProdutoNaoEncontradoExcecao;
@@ -18,10 +19,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class ProdutoAlteraUseCaseImplTest {
 
     @Mock
-    private PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+    private ProdutoGateway produtoGateway;
 
     @InjectMocks
-    private ProdutoAlteraUseCaseImpl alteraProdutoCasoDeUsoImpl;
+    private ProdutoAlteraUseCaseImpl produtoAlteraUseCase;
 
     @Test
     @DisplayName("Dado um produto existente, quando alterar o produto, então ele deve ser atualizado")
@@ -32,15 +33,15 @@ class ProdutoAlteraUseCaseImplTest {
         Produto produtoAlterado = DataPoolProduto.produtoExistente(id);
         produtoAlterado.setNome("Produto Alterado");
 
-        when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.of(produto));
-        when(persisteProdutoPortaSaida.salvaProduto(produto)).thenReturn(produtoAlterado);
+        when(produtoGateway.buscaProdutoPorId(id)).thenReturn(Optional.of(produto));
+        when(produtoGateway.salvaProduto(produto)).thenReturn(produtoAlterado);
 
-        Produto resultado = alteraProdutoCasoDeUsoImpl.alterar(id, produto);
+        Produto resultado = produtoAlteraUseCase.alterar(id, produto);
 
         assertAll(
                 () -> assertEquals(id, resultado.getId()), () -> assertEquals("Produto Alterado", resultado.getNome()));
-        verify(persisteProdutoPortaSaida).buscaProdutoPorId(id);
-        verify(persisteProdutoPortaSaida).salvaProduto(produto);
+        verify(produtoGateway).buscaProdutoPorId(id);
+        verify(produtoGateway).salvaProduto(produto);
     }
 
     @Test
@@ -49,11 +50,11 @@ class ProdutoAlteraUseCaseImplTest {
         Long id = 1L;
         Produto produto = DataPoolProduto.produtoExistente(id);
 
-        when(persisteProdutoPortaSaida.buscaProdutoPorId(id)).thenReturn(Optional.empty());
+        when(produtoGateway.buscaProdutoPorId(id)).thenReturn(Optional.empty());
 
-        assertThrows(ProdutoNaoEncontradoExcecao.class, () -> alteraProdutoCasoDeUsoImpl.alterar(id, produto));
+        assertThrows(ProdutoNaoEncontradoExcecao.class, () -> produtoAlteraUseCase.alterar(id, produto));
 
-        verify(persisteProdutoPortaSaida).buscaProdutoPorId(id);
-        verify(persisteProdutoPortaSaida, never()).salvaProduto(produto);
+        verify(produtoGateway).buscaProdutoPorId(id);
+        verify(produtoGateway, never()).salvaProduto(produto);
     }
 }

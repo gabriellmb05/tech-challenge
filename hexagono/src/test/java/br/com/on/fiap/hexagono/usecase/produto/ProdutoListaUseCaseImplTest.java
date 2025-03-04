@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import br.com.on.fiap.hexagono.adapter.gateway.base.ProdutoGateway;
 import br.com.on.fiap.hexagono.datapool.DataPoolProduto;
 import br.com.on.fiap.hexagono.datapool.DataPoolProdutoFiltro;
 import br.com.on.fiap.hexagono.domain.entity.Categoria;
@@ -24,10 +25,10 @@ import org.springframework.data.domain.Sort.Order;
 class ProdutoListaUseCaseImplTest {
 
     @Mock
-    private PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+    private ProdutoGateway produtoGateway;
 
     @InjectMocks
-    private ProdutoListaUseCaseImpl buscaProdutosCasoDeUsoImpl;
+    private ProdutoListaUseCaseImpl produtoListaUseCase;
 
     @Test
     @DisplayName("Dado filtro por categoria, quando listar produtos, então produtos da categoria devem ser retornados")
@@ -35,14 +36,14 @@ class ProdutoListaUseCaseImplTest {
         ProdutoFiltro filtro = DataPoolProdutoFiltro.filtroPorNomeECategoria(null, Categoria.LANCHE);
         Pageable paginacao = PageRequest.of(0, 10);
         List<Produto> produtos = DataPoolProduto.produtosComIdsDinamicos(1);
-        when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao))
+        when(produtoGateway.listarComFiltros(filtro, paginacao))
                 .thenReturn(new PageImpl<>(produtos, paginacao, produtos.size()));
 
-        Page<Produto> result = buscaProdutosCasoDeUsoImpl.listarComFiltro(filtro, paginacao);
+        Page<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacao);
 
         assertEquals(1, result.getTotalElements());
         assertEquals(Categoria.LANCHE, result.getContent().getFirst().getCategoria());
-        verify(persisteProdutoPortaSaida).listarComFiltros(filtro, paginacao);
+        verify(produtoGateway).listarComFiltros(filtro, paginacao);
     }
 
     @Test
@@ -52,12 +53,12 @@ class ProdutoListaUseCaseImplTest {
         ProdutoFiltro filtro = DataPoolProdutoFiltro.filtroPorNomeECategoria("x-burguer", Categoria.LANCHE);
         Pageable paginacao = PageRequest.of(0, 10);
         List<Produto> produtos = DataPoolProduto.produtosComIdsDinamicos(10);
-        when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao))
+        when(produtoGateway.listarComFiltros(filtro, paginacao))
                 .thenReturn(new PageImpl<>(produtos, paginacao, produtos.size()));
 
-        Page<Produto> result = buscaProdutosCasoDeUsoImpl.listarComFiltro(filtro, paginacao);
+        Page<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacao);
         assertEquals(10, result.getTotalElements());
-        verify(persisteProdutoPortaSaida).listarComFiltros(filtro, paginacao);
+        verify(produtoGateway).listarComFiltros(filtro, paginacao);
     }
 
     @Test
@@ -66,13 +67,13 @@ class ProdutoListaUseCaseImplTest {
         ProdutoFiltro filtro = DataPoolProdutoFiltro.filtroVazio();
         Pageable paginacao = PageRequest.of(0, 10);
         List<Produto> produtos = DataPoolProduto.produtosComIdsDinamicos(2);
-        when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao))
+        when(produtoGateway.listarComFiltros(filtro, paginacao))
                 .thenReturn(new PageImpl<>(produtos, paginacao, produtos.size()));
 
-        Page<Produto> result = buscaProdutosCasoDeUsoImpl.listarComFiltro(filtro, paginacao);
+        Page<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacao);
 
         assertEquals(2, result.getTotalElements());
-        verify(persisteProdutoPortaSaida).listarComFiltros(filtro, paginacao);
+        verify(produtoGateway).listarComFiltros(filtro, paginacao);
     }
 
     @Test
@@ -80,13 +81,13 @@ class ProdutoListaUseCaseImplTest {
     void dadoFiltroDeProdutoInexistente_quandoListarProdutos_entaoNenhumProdutoDeveSerRetornado() {
         ProdutoFiltro filtro = DataPoolProdutoFiltro.filtroPorNomeECategoria("inexistente", Categoria.LANCHE);
         Pageable paginacao = PageRequest.of(0, 10);
-        when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao))
+        when(produtoGateway.listarComFiltros(filtro, paginacao))
                 .thenReturn(new PageImpl<>(Collections.emptyList(), paginacao, 0L));
 
-        Page<Produto> result = buscaProdutosCasoDeUsoImpl.listarComFiltro(filtro, paginacao);
+        Page<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacao);
 
         assertEquals(0, result.getTotalElements());
-        verify(persisteProdutoPortaSaida).listarComFiltros(filtro, paginacao);
+        verify(produtoGateway).listarComFiltros(filtro, paginacao);
     }
 
     @Test
@@ -96,12 +97,12 @@ class ProdutoListaUseCaseImplTest {
         ProdutoFiltro filtro = DataPoolProdutoFiltro.filtroPorNomeECategoria(null, Categoria.LANCHE);
         Pageable paginacao = PageRequest.of(0, 10, Sort.by(Order.asc("nome")));
         List<Produto> produtos = DataPoolProduto.produtosComIdsDinamicos(2);
-        when(persisteProdutoPortaSaida.listarComFiltros(filtro, paginacao))
+        when(produtoGateway.listarComFiltros(filtro, paginacao))
                 .thenReturn(new PageImpl<>(produtos, paginacao, produtos.size()));
 
-        Page<Produto> result = buscaProdutosCasoDeUsoImpl.listarComFiltro(filtro, paginacao);
+        Page<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacao);
 
         assertEquals(2, result.getTotalElements());
-        verify(persisteProdutoPortaSaida).listarComFiltros(filtro, paginacao);
+        verify(produtoGateway).listarComFiltros(filtro, paginacao);
     }
 }

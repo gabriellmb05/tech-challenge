@@ -17,7 +17,7 @@ public class ProdutoBeanConfiguracao {
 
     @Bean
     public ProdutoBuscaPorIdUseCase buscaProduto() {
-        return new ProdutoBuscaImpl(produtoGateway);
+        return new ProdutoBuscaPorIdUseCaseImpl(produtoGateway);
     }
 
     @Bean
