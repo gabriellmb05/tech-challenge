@@ -7,10 +7,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import br.com.on.fiap.adapter.output.api.mercadopago.client.IntegracaoPagamento;
-import br.com.on.fiap.adapter.output.api.mercadopago.dto.PagamentoRespostaIntegracaoDTO;
 import br.com.on.datapool.DataPoolPagamentoSolicitacaoDTO;
 import br.com.on.datapool.DataPoolPedidoSolicitacaoDTO;
+import br.com.on.fiap.adapter.output.api.mercadopago.client.IntegracaoPagamento;
+import br.com.on.fiap.adapter.output.api.mercadopago.dto.PagamentoRespostaIntegracaoDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;

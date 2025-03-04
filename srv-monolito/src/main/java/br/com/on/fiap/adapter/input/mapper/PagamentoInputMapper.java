@@ -15,9 +15,7 @@ public interface PagamentoInputMapper {
     PagamentoRespostaDTO paraPagamentoDTO(Pagamento pagamento);
 
     @Mapping(target = "tpPagamento", source = "tpPagamento", qualifiedByName = "definirTpPagamento")
-    @Mapping(
-            target = "stPagamento",
-            expression = "java(br.com.on.fiap.core.domain.entity.SituacaoPagamento.PENDENTE)")
+    @Mapping(target = "stPagamento", expression = "java(br.com.on.fiap.core.domain.entity.SituacaoPagamento.PENDENTE)")
     Pagamento paraPagamento(PagamentoSolicitacaoDTO pagamentoSolicitacaoDTO);
 
     default Pagamento map(Long id) {

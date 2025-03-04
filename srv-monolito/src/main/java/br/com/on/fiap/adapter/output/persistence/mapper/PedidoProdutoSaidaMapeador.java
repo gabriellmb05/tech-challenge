@@ -2,10 +2,9 @@ package br.com.on.fiap.adapter.output.persistence.mapper;
 
 import br.com.on.fiap.adapter.output.persistence.entity.PedidoEntity;
 import br.com.on.fiap.adapter.output.persistence.entity.PedidoProdutoEntity;
-import java.util.List;
-
 import br.com.on.fiap.core.domain.entity.Pedido;
 import br.com.on.fiap.core.domain.entity.RelPedidoProduto;
+import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

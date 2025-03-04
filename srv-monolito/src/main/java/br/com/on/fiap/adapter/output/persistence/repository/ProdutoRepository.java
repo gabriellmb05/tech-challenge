@@ -1,10 +1,9 @@
 package br.com.on.fiap.adapter.output.persistence.repository;
 
 import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
+import br.com.on.fiap.core.domain.entity.ProdutoFiltro;
 import java.util.List;
 import java.util.Optional;
-
-import br.com.on.fiap.core.domain.entity.ProdutoFiltro;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

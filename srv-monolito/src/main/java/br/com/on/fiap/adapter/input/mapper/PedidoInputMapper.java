@@ -5,11 +5,10 @@ import br.com.on.fiap.adapter.input.dto.request.PedidoSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.dto.response.PedidoDetalhadoRespostaDTO;
 import br.com.on.fiap.adapter.input.dto.response.PedidoRespostaDTO;
 import br.com.on.fiap.adapter.input.dto.response.ProdutoRespostaDTO;
-import java.util.List;
-
 import br.com.on.fiap.core.domain.entity.Pedido;
 import br.com.on.fiap.core.domain.entity.Produto;
 import br.com.on.fiap.core.domain.entity.RelPedidoProduto;
+import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
