@@ -3,9 +3,10 @@ package br.com.on.fiap.adapter.output.datasource;
 import br.com.on.fiap.adapter.output.persistence.entity.ClienteEntity;
 import br.com.on.fiap.adapter.output.persistence.mapper.ClienteSaidaMapper;
 import br.com.on.fiap.adapter.output.persistence.repository.ClienteRepository;
-import br.com.on.fiap.hexagono.adapter.datasource.ClienteDataSource;
-import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import java.util.Optional;
+
+import br.com.on.fiap.core.adapter.datasource.ClienteDataSource;
+import br.com.on.fiap.core.domain.entity.Cliente;
 import org.springframework.stereotype.Component;
 
 @Component

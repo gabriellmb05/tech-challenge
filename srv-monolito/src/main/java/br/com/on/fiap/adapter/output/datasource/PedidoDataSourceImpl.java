@@ -6,13 +6,14 @@ import br.com.on.fiap.adapter.output.persistence.mapper.PedidoProdutoSaidaMapead
 import br.com.on.fiap.adapter.output.persistence.repository.PedidoProdutoRepository;
 import br.com.on.fiap.adapter.output.persistence.repository.PedidoRepository;
 import br.com.on.fiap.adapter.output.persistence.specification.PedidoSpecification;
-import br.com.on.fiap.hexagono.adapter.datasource.PedidoDataSource;
-import br.com.on.fiap.hexagono.domain.entity.Pedido;
-import br.com.on.fiap.hexagono.domain.entity.PedidoFiltro;
-import br.com.on.fiap.hexagono.domain.entity.RelPedidoProduto;
-import br.com.on.fiap.hexagono.domain.entity.SituacaoPedido;
 import java.util.List;
 import java.util.Optional;
+
+import br.com.on.fiap.core.adapter.datasource.PedidoDataSource;
+import br.com.on.fiap.core.domain.entity.Pedido;
+import br.com.on.fiap.core.domain.entity.PedidoFiltro;
+import br.com.on.fiap.core.domain.entity.RelPedidoProduto;
+import br.com.on.fiap.core.domain.entity.SituacaoPedido;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;

@@ -2,7 +2,8 @@ package br.com.on.fiap.infrastructure.handler;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import br.com.on.fiap.hexagono.domain.exception.message.MessageError;
+import br.com.on.fiap.core.domain.exception.*;
+import br.com.on.fiap.core.domain.exception.message.MessageError;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

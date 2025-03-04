@@ -1,4 +1,4 @@
-package br.com.on.fiap.datapool;
+package br.com.on.datapool;
 
 import br.com.on.fiap.core.domain.entity.Cliente;
 import java.time.LocalDate;

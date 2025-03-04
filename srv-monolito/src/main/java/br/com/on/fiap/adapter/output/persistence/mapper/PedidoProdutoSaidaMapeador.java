@@ -2,9 +2,10 @@ package br.com.on.fiap.adapter.output.persistence.mapper;
 
 import br.com.on.fiap.adapter.output.persistence.entity.PedidoEntity;
 import br.com.on.fiap.adapter.output.persistence.entity.PedidoProdutoEntity;
-import br.com.on.fiap.hexagono.domain.entity.Pedido;
-import br.com.on.fiap.hexagono.domain.entity.RelPedidoProduto;
 import java.util.List;
+
+import br.com.on.fiap.core.domain.entity.Pedido;
+import br.com.on.fiap.core.domain.entity.RelPedidoProduto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -15,7 +16,7 @@ public interface PedidoProdutoSaidaMapeador {
 
     @Mapping(target = "relPedPro", ignore = true)
     @Mapping(target = "cliId", source = "cliente")
-    @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.hexagono.domain.entity.SituacaoPedido.REALIZADO)")
+    @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.core.domain.entity.SituacaoPedido.REALIZADO)")
     @Mapping(target = "dhPedido", expression = "java(java.time.LocalDateTime.now())")
     PedidoEntity paraEntidade(Pedido pedido);
 
@@ -39,7 +40,7 @@ public interface PedidoProdutoSaidaMapeador {
     @Mapping(target = "pedId", source = "id")
     @Mapping(target = "cliId", source = "cliente")
     @Mapping(target = "pagId", source = "pagamento")
-    @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.hexagono.domain.entity.SituacaoPedido.REALIZADO)")
+    @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.core.domain.entity.SituacaoPedido.REALIZADO)")
     @Mapping(target = "nmProtocolo", source = "protocolo")
     @Mapping(target = "dhPedido", expression = "java(java.time.LocalDateTime.now())")
     @Mapping(target = "relPedPro", source = "relPedidoProdutos")

@@ -1,4 +1,4 @@
-package br.com.on.fiap.datapool;
+package br.com.on.datapool;
 
 import br.com.on.fiap.adapter.input.dto.request.PagamentoSolicitacaoDTO;
 

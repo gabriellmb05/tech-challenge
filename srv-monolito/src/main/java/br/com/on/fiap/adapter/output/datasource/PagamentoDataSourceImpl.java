@@ -6,9 +6,9 @@ import br.com.on.fiap.adapter.output.api.mercadopago.dto.PagamentoSolicitacaoInt
 import br.com.on.fiap.adapter.output.persistence.entity.PagamentoEntity;
 import br.com.on.fiap.adapter.output.persistence.mapper.PagamentoSaidaMapper;
 import br.com.on.fiap.adapter.output.persistence.repository.PagamentoRepository;
-import br.com.on.fiap.hexagono.adapter.datasource.PagamentoDataSource;
-import br.com.on.fiap.hexagono.domain.entity.Pagamento;
-import br.com.on.fiap.hexagono.domain.exception.message.MessageError;
+import br.com.on.fiap.core.adapter.datasource.PagamentoDataSource;
+import br.com.on.fiap.core.domain.entity.Pagamento;
+import br.com.on.fiap.core.domain.exception.message.MessageError;
 import br.com.on.fiap.infrastructure.exception.IntegracaoPagamentoExcecao;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;

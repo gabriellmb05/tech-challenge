@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.output.persistence.mapper;
 
 import br.com.on.fiap.adapter.output.persistence.entity.ClienteEntity;
-import br.com.on.fiap.hexagono.domain.entity.Cliente;
+import br.com.on.fiap.core.domain.entity.Cliente;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

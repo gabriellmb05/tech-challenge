@@ -4,14 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import br.com.on.datapool.*;
 import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroDTO;
 import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.dto.response.ProdutoRespostaDTO;
 import br.com.on.fiap.adapter.input.mapper.ProdutoFiltroInputMapper;
 import br.com.on.fiap.adapter.input.mapper.ProdutoInputMapper;
-import br.com.on.fiap.datapool.*;
-import br.com.on.fiap.hexagono.domain.entity.Produto;
-import br.com.on.fiap.hexagono.domain.entity.ProdutoFiltro;
+import br.com.on.fiap.core.application.usecase.produto.*;
+import br.com.on.fiap.core.domain.entity.Produto;
+import br.com.on.fiap.core.domain.entity.ProdutoFiltro;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;

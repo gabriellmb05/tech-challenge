@@ -1,4 +1,4 @@
-package br.com.on.fiap.datapool;
+package br.com.on.datapool;
 
 import br.com.on.fiap.adapter.input.dto.response.PagamentoRespostaDTO;
 import br.com.on.fiap.adapter.input.dto.response.PedidoDetalhadoRespostaDTO;

@@ -1,7 +1,6 @@
 package br.com.on.fiap.adapter.input.swagger;
 
 import br.com.on.fiap.adapter.input.dto.response.PagamentoRespostaDTO;
-import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -22,7 +21,7 @@ public interface PagamentoApiSwagger {
                         content =
                                 @Content(
                                         mediaType = "application/json",
-                                        schema = @Schema(implementation = Cliente.class))),
+                                        schema = @Schema(implementation = PagamentoRespostaDTO.class))),
                 @ApiResponse(responseCode = "400", description = "Dados inválidos"),
                 @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
             })

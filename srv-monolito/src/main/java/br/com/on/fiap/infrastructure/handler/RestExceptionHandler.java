@@ -2,6 +2,8 @@ package br.com.on.fiap.infrastructure.handler;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
+
+import br.com.on.fiap.core.domain.exception.*;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

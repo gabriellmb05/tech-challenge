@@ -1,4 +1,4 @@
-package br.com.on.fiap.datapool;
+package br.com.on.datapool;
 
 import br.com.on.fiap.core.application.dto.ClienteRespostaDTO;
 import java.time.LocalDate;

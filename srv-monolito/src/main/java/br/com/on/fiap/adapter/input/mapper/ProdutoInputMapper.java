@@ -2,7 +2,7 @@ package br.com.on.fiap.adapter.input.mapper;
 
 import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.dto.response.ProdutoRespostaDTO;
-import br.com.on.fiap.hexagono.domain.entity.Produto;
+import br.com.on.fiap.core.domain.entity.Produto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -17,6 +17,6 @@ public interface ProdutoInputMapper {
     @Mapping(
             target = "categoria",
             expression =
-                    "java(br.com.on.fiap.hexagono.domain.entity.Categoria.deString(produtoSolicitacaoDTO.getCategoria()))")
+                    "java(br.com.on.fiap.core.domain.entity.Categoria.deString(produtoSolicitacaoDTO.getCategoria()))")
     Produto paraProduto(ProdutoSolicitacaoDTO produtoSolicitacaoDTO);
 }
