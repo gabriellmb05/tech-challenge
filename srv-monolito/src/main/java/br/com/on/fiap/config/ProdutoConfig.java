@@ -2,7 +2,7 @@ package br.com.on.fiap.config;
 
 import br.com.on.fiap.hexagono.adapter.gateway.ProdutoGateway;
 import br.com.on.fiap.hexagono.application.usecase.produto.*;
-import br.com.on.fiap.hexagono.application.usecase.produto.base.*;
+import br.com.on.fiap.hexagono.application.usecase.produto.impl.*;
 import br.com.on.fiap.hexagono.usecase.produto.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

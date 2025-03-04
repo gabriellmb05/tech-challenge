@@ -1,45 +1,57 @@
 package br.com.on.fiap.config;
 
+import br.com.on.fiap.hexagono.adapter.datasource.PedidoDataSource;
 import br.com.on.fiap.hexagono.adapter.gateway.ClienteGateway;
 import br.com.on.fiap.hexagono.adapter.gateway.PagamentoGateway;
 import br.com.on.fiap.hexagono.adapter.gateway.PedidoGateway;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoAtualizaUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoBuscaUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoDetalhaUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoInsereUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoAtualizaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoBuscaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoDetalhaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoInsereUseCase;
-import lombok.RequiredArgsConstructor;
+import br.com.on.fiap.hexagono.adapter.gateway.impl.PedidoGatewayImpl;
+import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoAtualizaUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoListaUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoDetalhaUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.pedido.impl.PedidoInsereUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoAtualizaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoListaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoDetalhaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoInsereUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@RequiredArgsConstructor
 public class PedidoConfig {
 
     private final ClienteGateway clienteGateway;
-    private final PedidoGateway pedidoGateway;
     private final PagamentoGateway pagamentoGateway;
 
-    @Bean
-    public PedidoInsereUseCase inserePedido() {
-        return new PedidoInsereUseCaseImpl(clienteGateway, pedidoGateway, pagamentoGateway);
+    private final PedidoDataSource pedidoDataSource;
+
+    public PedidoConfig(ClienteGateway clienteGateway, PagamentoGateway pagamentoGateway, PedidoDataSource pedidoDataSource) {
+        this.clienteGateway = clienteGateway;
+        this.pagamentoGateway = pagamentoGateway;
+        this.pedidoDataSource = pedidoDataSource;
     }
 
     @Bean
-    public PedidoBuscaUseCase listaPedidos() {
-        return new PedidoBuscaUseCaseImpl(pedidoGateway);
+    public PedidoGateway pedidoGateway() {
+        return new PedidoGatewayImpl(pedidoDataSource);
+    }
+
+    @Bean
+    public PedidoInsereUseCase pedidoInsereUseCase() {
+        return new PedidoInsereUseCaseImpl(clienteGateway, pedidoGateway(), pagamentoGateway);
+    }
+
+    @Bean
+    public PedidoListaUseCase listaPedidos() {
+        return new PedidoListaUseCaseImpl(pedidoGateway());
     }
 
     @Bean
     public PedidoDetalhaUseCase detalhaPedido() {
-        return new PedidoDetalhaUseCaseImpl(pedidoGateway);
+        return new PedidoDetalhaUseCaseImpl(pedidoGateway());
     }
 
     @Bean
     public PedidoAtualizaUseCase atualizaPedido() {
-        return new PedidoAtualizaUseCaseImpl(pedidoGateway);
+        return new PedidoAtualizaUseCaseImpl(pedidoGateway());
     }
 }

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.adapter.input.PedidoApiApi;
+import br.com.on.fiap.adapter.input.PedidoApi;
 import br.com.on.fiap.adapter.input.dto.filter.PedidoFiltroDTO;
 import br.com.on.fiap.adapter.input.dto.response.PedidoDetalhadoRespostaDTO;
 import br.com.on.fiap.adapter.input.dto.response.PedidoRespostaDTO;
@@ -13,9 +13,9 @@ import br.com.on.fiap.adapter.input.mapper.PedidoFiltroInputMapper;
 import br.com.on.fiap.datapool.*;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.entity.PedidoFiltro;
-import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoAtualizaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoBuscaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoDetalhaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoAtualizaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoListaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoDetalhaUseCase;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -52,10 +52,10 @@ class PedidoApiTest {
     private PedidoFiltroInputMapper pedidoFiltroInputMapper;
 
     @Mock
-    private PedidoBuscaUseCase pedidoBuscaUseCase;
+    private PedidoListaUseCase pedidoListaUseCase;
 
     @InjectMocks
-    private PedidoApiApi pedidoControlador;
+    private PedidoApi pedidoControlador;
 
     static Stream<Arguments> pedidoFiltroProvider() {
         return Stream.of(
@@ -123,7 +123,7 @@ class PedidoApiTest {
                 new PageImpl<>(pedidoRespostaDTOs, paginacao, pedidoRespostaDTOs.size());
 
         when(pedidoFiltroInputMapper.paraPedidoFiltro(filtroDTO)).thenReturn(filtro);
-        when(pedidoBuscaUseCase.buscarPedidosComFiltro(filtro, paginacao)).thenReturn(pedidoPAge);
+        when(pedidoListaUseCase.buscarPedidosComFiltro(filtro, paginacao)).thenReturn(pedidoPAge);
         pedidos.forEach(pedido -> when(pedidoInputMapper.paraPedidoDTO(pedido))
                 .thenReturn(pedidoRespostaDTOs.get(pedidos.indexOf(pedido))));
 
@@ -133,7 +133,7 @@ class PedidoApiTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(pedidoRespostaPage.getContent(), response.getBody().getContent());
         verify(pedidoFiltroInputMapper).paraPedidoFiltro(filtroDTO);
-        verify(pedidoBuscaUseCase).buscarPedidosComFiltro(filtro, paginacao);
+        verify(pedidoListaUseCase).buscarPedidosComFiltro(filtro, paginacao);
         pedidos.forEach(pedido -> verify(pedidoInputMapper).paraPedidoDTO(pedido));
     }
 }

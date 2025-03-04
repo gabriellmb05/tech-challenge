@@ -7,51 +7,44 @@ import br.com.on.fiap.hexagono.adapter.gateway.impl.ClienteGatewayImpl;
 import br.com.on.fiap.hexagono.adapter.gateway.ClienteGateway;
 import br.com.on.fiap.hexagono.adapter.presenter.impl.ClientePresenterImpl;
 import br.com.on.fiap.hexagono.adapter.presenter.ClientePresenter;
-import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteBuscaPorCpfUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteInsereUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.cliente.base.ClienteBuscaPorCpfUseCase;
-import br.com.on.fiap.hexagono.application.usecase.cliente.base.ClienteInsereUseCase;
+import br.com.on.fiap.hexagono.application.usecase.cliente.impl.ClienteBuscaPorCpfUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.cliente.impl.ClienteInsereUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
+import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteInsereUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 
 @Configuration
 public class ClienteConfig {
 
-    private final ClienteGateway clienteGateway;
     private final ClienteDataSource clienteDataSource;
-    private final ClientePresenter clientePresenter;
 
-    @Lazy
-    public ClienteConfig(
-            ClienteGateway clienteGateway, ClienteDataSource clienteDataSource, ClientePresenter clientePresenter) {
-        this.clienteGateway = clienteGateway;
+    public ClienteConfig(ClienteDataSource clienteDataSource) {
         this.clienteDataSource = clienteDataSource;
-        this.clientePresenter = clientePresenter;
     }
 
     @Bean
-    public ClienteBuscaPorCpfUseCase buscaCliente() {
-        return new ClienteBuscaPorCpfUseCaseImpl(clienteGateway);
-    }
-
-    @Bean
-    public ClienteInsereUseCase insereCliente() {
-        return new ClienteInsereUseCaseImpl(clienteGateway);
-    }
-
-    @Bean
-    public ClienteGateway persisteClienteGateway() {
+    public ClienteGateway clienteGateway() {
         return new ClienteGatewayImpl(clienteDataSource);
     }
 
     @Bean
-    public ClientePresenter clienteApresentador() {
+    public ClientePresenter clientePresenter() {
         return new ClientePresenterImpl();
     }
 
     @Bean
+    public ClienteBuscaPorCpfUseCase buscaCliente() {
+        return new ClienteBuscaPorCpfUseCaseImpl(clienteGateway());
+    }
+
+    @Bean
+    public ClienteInsereUseCase insereCliente() {
+        return new ClienteInsereUseCaseImpl(clienteGateway());
+    }
+
+    @Bean
     public ClienteController clienteControlador() {
-        return new ClienteControllerImpl(insereCliente(), buscaCliente(), clientePresenter);
+        return new ClienteControllerImpl(insereCliente(), buscaCliente(), clientePresenter());
     }
 }

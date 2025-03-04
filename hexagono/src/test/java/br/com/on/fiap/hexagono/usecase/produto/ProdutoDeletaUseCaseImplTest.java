@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.hexagono.adapter.gateway.ProdutoGateway;
-import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoDeletaUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.produto.impl.ProdutoDeletaUseCaseImpl;
 import br.com.on.fiap.hexagono.datapool.DataPoolProduto;
 import br.com.on.fiap.hexagono.domain.entity.Produto;
 import br.com.on.fiap.hexagono.domain.exception.ProdutoNaoEncontradoExcecao;

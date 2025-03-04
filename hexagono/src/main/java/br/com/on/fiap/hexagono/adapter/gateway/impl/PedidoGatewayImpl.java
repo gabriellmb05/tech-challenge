@@ -1,5 +1,6 @@
 package br.com.on.fiap.hexagono.adapter.gateway.impl;
 
+import br.com.on.fiap.hexagono.adapter.datasource.PedidoDataSource;
 import br.com.on.fiap.hexagono.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.entity.PedidoFiltro;
@@ -11,29 +12,39 @@ import org.springframework.data.domain.Pageable;
 
 public class PedidoGatewayImpl implements PedidoGateway {
 
+    private final PedidoDataSource pedidoDataSource;
+
+    public PedidoGatewayImpl(PedidoDataSource pedidoDataSource) {
+        this.pedidoDataSource = pedidoDataSource;
+    }
+
     @Override
     public Optional<Pedido> atualizarPedido(String protocolo) {
-        return Optional.empty();
+        return pedidoDataSource.atualizarPedido(protocolo);
     }
 
     @Override
     public Page<Pedido> listarComFiltros(PedidoFiltro filtro, Pageable page) {
-        return null;
+        return pedidoDataSource.listarComFiltros(filtro, page);
     }
 
     @Override
     public Optional<Pedido> detalhaPedido(String protocolo) {
-        return Optional.empty();
+        return pedidoDataSource.detalhaPedido(protocolo);
     }
 
     @Override
-    public void salvaPedidoPagamento(Pedido pedido) {}
+    public void salvaPedidoPagamento(Pedido pedido) {
+        pedidoDataSource.salvaPedidoPagamento(pedido);
+    }
 
     @Override
     public Pedido salvaPedido(Pedido pedido) {
-        return null;
+        return pedidoDataSource.salvaPedido(pedido);
     }
 
     @Override
-    public void vincularPedido(List<RelPedidoProduto> pedidoProdutos) {}
+    public void vincularPedido(List<RelPedidoProduto> pedidoProdutos) {
+        pedidoDataSource.vincularPedido(pedidoProdutos);
+    }
 }

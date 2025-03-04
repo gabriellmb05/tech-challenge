@@ -9,7 +9,7 @@ import br.com.on.fiap.hexagono.adapter.controller.impl.CategoriaControllerImpl;
 import br.com.on.fiap.hexagono.application.dto.CategoriaSaidaDTO;
 import br.com.on.fiap.hexagono.adapter.presenter.CategoriaPresenter;
 import br.com.on.fiap.hexagono.domain.entity.Categoria;
-import br.com.on.fiap.hexagono.application.usecase.categoria.base.CategoriaBuscaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.categoria.CategoriaBuscaUseCase;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

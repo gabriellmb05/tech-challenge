@@ -5,8 +5,8 @@ import br.com.on.fiap.hexagono.application.dto.ClienteEntradaDTO;
 import br.com.on.fiap.hexagono.application.dto.ClienteRespostaDTO;
 import br.com.on.fiap.hexagono.application.dto.ClienteSaidaDTO;
 import br.com.on.fiap.hexagono.adapter.presenter.ClientePresenter;
-import br.com.on.fiap.hexagono.application.usecase.cliente.base.ClienteBuscaPorCpfUseCase;
-import br.com.on.fiap.hexagono.application.usecase.cliente.base.ClienteInsereUseCase;
+import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
+import br.com.on.fiap.hexagono.application.usecase.cliente.ClienteInsereUseCase;
 
 public class ClienteControllerImpl implements ClienteController {
 

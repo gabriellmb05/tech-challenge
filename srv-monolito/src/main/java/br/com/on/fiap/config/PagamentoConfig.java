@@ -1,32 +1,36 @@
 package br.com.on.fiap.config;
 
-import br.com.on.fiap.hexagono.application.usecase.pagamento.PagamentoAtualizaUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.pagamento.PagamentoValidaUseCaseImpl;
-import br.com.on.fiap.hexagono.application.usecase.pagamento.base.PagamentoAtualizaUseCase;
-import br.com.on.fiap.hexagono.application.usecase.pagamento.base.PagamentoValidaUseCase;
+import br.com.on.fiap.hexagono.adapter.datasource.PagamentoDataSource;
+import br.com.on.fiap.hexagono.adapter.gateway.PagamentoGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.impl.PagamentoGatewayImpl;
+import br.com.on.fiap.hexagono.application.usecase.pagamento.impl.PagamentoAtualizaUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.pagamento.impl.PagamentoValidaUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.pagamento.PagamentoAtualizaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pagamento.PagamentoValidaUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class PagamentoConfig {
 
-    private final IntegracaoPagamentoSaida integracaoPagamentoSaida;
-    private final PersistePagamentoPortaSaida persistePagamentoPortaSaida;
+    private final PagamentoDataSource pagamentoDataSource;
 
-    public PagamentoConfig(
-            IntegracaoPagamentoSaida integracaoPagamentoSaida,
-            PersistePagamentoPortaSaida persistePagamentoPortaSaida) {
-        this.integracaoPagamentoSaida = integracaoPagamentoSaida;
-        this.persistePagamentoPortaSaida = persistePagamentoPortaSaida;
+    public PagamentoConfig(PagamentoDataSource pagamentoDataSource) {
+        this.pagamentoDataSource = pagamentoDataSource;
     }
 
     @Bean
-    public PagamentoAtualizaUseCase atualizaPagamento() {
-        return new PagamentoAtualizaUseCaseImpl(integracaoPagamentoSaida, persistePagamentoPortaSaida);
+    public PagamentoGateway pagamentoGateway() {
+        return new PagamentoGatewayImpl(pagamentoDataSource);
     }
 
     @Bean
-    public PagamentoValidaUseCase validaPagamentoJaRealizado() {
+    public PagamentoAtualizaUseCase pagamentoAtualizaUseCase() {
+        return new PagamentoAtualizaUseCaseImpl(pagamentoGateway());
+    }
+
+    @Bean
+    public PagamentoValidaUseCase pagamentoValidaUseCase() {
         return new PagamentoValidaUseCaseImpl();
     }
 }
