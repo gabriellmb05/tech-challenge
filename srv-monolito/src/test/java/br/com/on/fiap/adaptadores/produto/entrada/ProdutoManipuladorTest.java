@@ -10,10 +10,11 @@ import br.com.on.fiap.adaptadores.produto.entrada.dto.resposta.ProdutoRespostaDT
 import br.com.on.fiap.adaptadores.produto.entrada.dto.solicitacao.ProdutoSolicitacaoDTO;
 import br.com.on.fiap.adaptadores.produto.entrada.mapeador.ProdutoEntradaMapeador;
 import br.com.on.fiap.datapool.*;
+import br.com.on.fiap.hexagono.application.usecase.produto.base.*;
 import br.com.on.fiap.hexagono.domain.entity.Produto;
 import br.com.on.fiap.hexagono.domain.entity.ProdutoFiltro;
 import br.com.on.fiap.hexagono.usecase.categoria.entrada.BuscaCategoriaCasoDeUso;
-import br.com.on.fiap.hexagono.usecase.produto.base.*;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;

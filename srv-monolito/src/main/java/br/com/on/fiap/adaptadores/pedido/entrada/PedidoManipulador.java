@@ -11,11 +11,11 @@ import br.com.on.fiap.adaptadores.pedido.entrada.mapeador.PedidoFiltroEntradaMap
 import br.com.on.fiap.hexagono.domain.entity.Pagamento;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.entity.PedidoFiltro;
-import br.com.on.fiap.hexagono.usecase.pedido.base.PedidoAtualizaUseCase;
-import br.com.on.fiap.hexagono.usecase.pedido.base.PedidoBuscaUseCase;
-import br.com.on.fiap.hexagono.usecase.pedido.base.PedidoDetalhaUseCase;
-import br.com.on.fiap.hexagono.usecase.pedido.base.PedidoInsereUseCase;
-import br.com.on.fiap.hexagono.usecase.produto.base.ProdutoValidaPedidoUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoAtualizaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoBuscaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoDetalhaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoInsereUseCase;
+import br.com.on.fiap.hexagono.application.usecase.produto.base.ProdutoValidaPedidoUseCase;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;

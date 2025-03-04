@@ -2,6 +2,7 @@ package br.com.on.fiap.hexagono.usecase.pagamento;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import br.com.on.fiap.hexagono.application.usecase.pagamento.PagamentoValidaUseCaseImpl;
 import br.com.on.fiap.hexagono.datapool.DataPoolPagamento;
 import br.com.on.fiap.hexagono.domain.entity.Pagamento;
 import br.com.on.fiap.hexagono.domain.entity.SituacaoPagamento;

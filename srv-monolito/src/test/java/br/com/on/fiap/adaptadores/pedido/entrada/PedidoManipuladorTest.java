@@ -12,9 +12,9 @@ import br.com.on.fiap.adaptadores.pedido.entrada.mapeador.PedidoFiltroEntradaMap
 import br.com.on.fiap.datapool.*;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.entity.PedidoFiltro;
-import br.com.on.fiap.hexagono.usecase.pedido.base.PedidoAtualizaUseCase;
-import br.com.on.fiap.hexagono.usecase.pedido.base.PedidoBuscaUseCase;
-import br.com.on.fiap.hexagono.usecase.pedido.base.PedidoDetalhaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoAtualizaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoBuscaUseCase;
+import br.com.on.fiap.hexagono.application.usecase.pedido.base.PedidoDetalhaUseCase;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;

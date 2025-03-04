@@ -3,11 +3,11 @@ package br.com.on.fiap.configuracao;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import br.com.on.fiap.hexagono.usecase.produto.ProdutoAlteraUseCaseImpl;
-import br.com.on.fiap.hexagono.usecase.produto.ProdutoBuscaPorIdUseCaseImpl;
-import br.com.on.fiap.hexagono.usecase.produto.ProdutoDeletaUseCaseImpl;
-import br.com.on.fiap.hexagono.usecase.produto.ProdutoInsereUseCaseImpl;
-import br.com.on.fiap.hexagono.usecase.produto.base.*;
+import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoAlteraUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoBuscaPorIdUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoDeletaUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoInsereUseCaseImpl;
+import br.com.on.fiap.hexagono.application.usecase.produto.base.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

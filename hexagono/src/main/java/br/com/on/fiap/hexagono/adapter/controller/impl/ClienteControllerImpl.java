@@ -1,12 +1,12 @@
 package br.com.on.fiap.hexagono.adapter.controller.impl;
 
 import br.com.on.fiap.hexagono.adapter.controller.ClienteController;
-import br.com.on.fiap.hexagono.usecase.dto.ClienteEntradaDTO;
-import br.com.on.fiap.hexagono.usecase.dto.ClienteRespostaDTO;
-import br.com.on.fiap.hexagono.usecase.dto.ClienteSaidaDTO;
+import br.com.on.fiap.hexagono.application.dto.ClienteEntradaDTO;
+import br.com.on.fiap.hexagono.application.dto.ClienteRespostaDTO;
+import br.com.on.fiap.hexagono.application.dto.ClienteSaidaDTO;
 import br.com.on.fiap.hexagono.adapter.presenter.ClientePresenter;
-import br.com.on.fiap.hexagono.usecase.cliente.base.ClienteBuscaPorCpfUseCase;
-import br.com.on.fiap.hexagono.usecase.cliente.base.ClienteInsereUseCase;
+import br.com.on.fiap.hexagono.application.usecase.cliente.base.ClienteBuscaPorCpfUseCase;
+import br.com.on.fiap.hexagono.application.usecase.cliente.base.ClienteInsereUseCase;
 
 public class ClienteControllerImpl implements ClienteController {
 

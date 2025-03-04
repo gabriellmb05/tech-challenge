@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.hexagono.adapter.gateway.ProdutoGateway;
+import br.com.on.fiap.hexagono.application.usecase.produto.ProdutoBuscaPorIdUseCaseImpl;
 import br.com.on.fiap.hexagono.datapool.DataPoolProduto;
 import br.com.on.fiap.hexagono.domain.entity.Produto;
 import br.com.on.fiap.hexagono.domain.exception.ProdutoNaoEncontradoExcecao;

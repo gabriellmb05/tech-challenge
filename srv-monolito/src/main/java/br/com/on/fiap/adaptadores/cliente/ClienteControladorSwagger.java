@@ -1,7 +1,7 @@
 package br.com.on.fiap.adaptadores.cliente;
 
 import br.com.on.fiap.adaptadores.cliente.entrada.dto.solicitacao.ClienteSolicitacaoDTO;
-import br.com.on.fiap.hexagono.usecase.dto.ClienteRespostaDTO;
+import br.com.on.fiap.hexagono.application.dto.ClienteRespostaDTO;
 import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

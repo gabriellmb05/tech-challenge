@@ -4,6 +4,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import br.com.on.fiap.hexagono.adapter.gateway.PagamentoGateway;
+import br.com.on.fiap.hexagono.application.usecase.pagamento.PagamentoAtualizaUseCaseImpl;
 import br.com.on.fiap.hexagono.datapool.DataPoolPagamento;
 import br.com.on.fiap.hexagono.domain.entity.Pagamento;
 import org.junit.jupiter.api.DisplayName;

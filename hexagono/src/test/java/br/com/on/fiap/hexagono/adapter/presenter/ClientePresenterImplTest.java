@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import br.com.on.fiap.hexagono.adapter.presenter.impl.ClientePresenterImpl;
-import br.com.on.fiap.hexagono.usecase.dto.ClienteRespostaDTO;
-import br.com.on.fiap.hexagono.usecase.dto.ClienteSaidaDTO;
+import br.com.on.fiap.hexagono.application.dto.ClienteRespostaDTO;
+import br.com.on.fiap.hexagono.application.dto.ClienteSaidaDTO;
 import br.com.on.fiap.hexagono.datapool.DataPoolClienteSaidaDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

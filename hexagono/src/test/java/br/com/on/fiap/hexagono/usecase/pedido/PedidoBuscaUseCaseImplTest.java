@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.hexagono.adapter.gateway.PedidoGateway;
+import br.com.on.fiap.hexagono.application.usecase.pedido.PedidoBuscaUseCaseImpl;
 import br.com.on.fiap.hexagono.datapool.DataPoolPedido;
 import br.com.on.fiap.hexagono.datapool.DataPoolPedidoFiltro;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;

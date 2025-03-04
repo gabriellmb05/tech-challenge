@@ -1,6 +1,6 @@
 package br.com.on.fiap.hexagono.datapool;
 
-import br.com.on.fiap.hexagono.usecase.dto.ClienteRespostaDTO;
+import br.com.on.fiap.hexagono.application.dto.ClienteRespostaDTO;
 
 public class DataPoolClienteRespostaDTO {
 
