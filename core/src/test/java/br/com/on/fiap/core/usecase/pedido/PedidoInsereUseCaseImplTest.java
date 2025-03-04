@@ -15,7 +15,6 @@ import br.com.on.fiap.core.domain.entity.Pagamento;
 import br.com.on.fiap.core.domain.entity.Pedido;
 import br.com.on.fiap.core.domain.exception.ClienteNaoEncontradoExcecao;
 import br.com.on.fiap.core.usecase.pedido.impl.PedidoInsereUseCaseImpl;
-import br.com.on.fiap.hexagono.datapool.*;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
