@@ -10,13 +10,28 @@ import br.com.on.fiap.hexagono.casodeuso.categoria.BuscaCategoriasCasoDeUsoImpl;
 import br.com.on.fiap.hexagono.casodeuso.categoria.entrada.BuscaCategoriaCasoDeUso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 @Configuration
 public class CategoriaBeanConfiguracao {
 
+    private final CategoriaGateway categoriaGateway;
+    private final CategoriaApresentador categoriaApresentador;
+
+    @Lazy
+    public CategoriaBeanConfiguracao(CategoriaGateway categoriaGateway, CategoriaApresentador categoriaApresentador) {
+        this.categoriaGateway = categoriaGateway;
+        this.categoriaApresentador = categoriaApresentador;
+    }
+
     @Bean
-    public BuscaCategoriaCasoDeUso buscaCategorias(CategoriaGateway categoriaGateway) {
+    public BuscaCategoriaCasoDeUso buscaCategorias() {
         return new BuscaCategoriasCasoDeUsoImpl(categoriaGateway);
+    }
+
+    @Bean
+    public CategoriaControlador categoriaControlador() {
+        return new CategoriaControladorImpl(buscaCategorias(), categoriaApresentador);
     }
 
     @Bean
@@ -27,11 +42,5 @@ public class CategoriaBeanConfiguracao {
     @Bean
     public CategoriaApresentador categoriaApresentador() {
         return new CategoriaApresentadorImpl();
-    }
-
-    @Bean
-    public CategoriaControlador categoriaControlador(
-            BuscaCategoriaCasoDeUso buscaCategoriaCasoDeUso, CategoriaApresentador categoriaApresentador) {
-        return new CategoriaControladorImpl(buscaCategoriaCasoDeUso, categoriaApresentador);
     }
 }
