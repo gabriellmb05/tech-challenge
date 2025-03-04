@@ -1,8 +1,8 @@
 package br.com.on.fiap.configuracao;
 
-import br.com.on.fiap.hexagono.usecases.casodeuso.produto.*;
-import br.com.on.fiap.hexagono.usecases.interfaces.entrada.produto.*;
-import br.com.on.fiap.hexagono.usecases.interfaces.saida.produto.PersisteProdutoPortaSaida;
+import br.com.on.fiap.hexagono.casodeuso.produto.*;
+import br.com.on.fiap.hexagono.casodeuso.produto.entrada.*;
+import br.com.on.fiap.hexagono.casodeuso.produto.saida.PersisteProdutoPortaSaida;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

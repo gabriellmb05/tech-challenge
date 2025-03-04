@@ -1,16 +1,16 @@
 package br.com.on.fiap.configuracao;
 
-import br.com.on.fiap.hexagono.interfaceadapters.apresentadores.ClienteApresentadorImpl;
-import br.com.on.fiap.hexagono.interfaceadapters.controladores.ClienteControladorImpl;
-import br.com.on.fiap.hexagono.interfaceadapters.gateways.ClienteGatewayImpl;
-import br.com.on.fiap.hexagono.interfaceadapters.interfaces.controller.ClienteControlador;
-import br.com.on.fiap.hexagono.interfaceadapters.interfaces.datasource.ClienteDataSource;
-import br.com.on.fiap.hexagono.interfaceadapters.interfaces.presenter.ClienteApresentador;
-import br.com.on.fiap.hexagono.usecases.casodeuso.cliente.BuscaClienteCasoDeUsoImpl;
-import br.com.on.fiap.hexagono.usecases.casodeuso.cliente.InsereClienteCasoDeUsoImpl;
-import br.com.on.fiap.hexagono.usecases.interfaces.entrada.cliente.BuscaClientePorCpfCasoDeUso;
-import br.com.on.fiap.hexagono.usecases.interfaces.entrada.cliente.InsereClienteCasoDeUso;
-import br.com.on.fiap.hexagono.usecases.interfaces.gateway.cliente.ClienteGateway;
+import br.com.on.fiap.hexagono.adaptadores.apresentadores.ClienteApresentador;
+import br.com.on.fiap.hexagono.adaptadores.apresentadores.impl.ClienteApresentadorImpl;
+import br.com.on.fiap.hexagono.adaptadores.controladores.ClienteControlador;
+import br.com.on.fiap.hexagono.adaptadores.controladores.impl.ClienteControladorImpl;
+import br.com.on.fiap.hexagono.adaptadores.datasource.ClienteDataSource;
+import br.com.on.fiap.hexagono.adaptadores.gateways.ClienteGateway;
+import br.com.on.fiap.hexagono.adaptadores.gateways.impl.ClienteGatewayImpl;
+import br.com.on.fiap.hexagono.casodeuso.cliente.BuscaClienteCasoDeUsoImpl;
+import br.com.on.fiap.hexagono.casodeuso.cliente.InsereClienteCasoDeUsoImpl;
+import br.com.on.fiap.hexagono.casodeuso.cliente.entrada.BuscaClientePorCpfCasoDeUso;
+import br.com.on.fiap.hexagono.casodeuso.cliente.entrada.InsereClienteCasoDeUso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

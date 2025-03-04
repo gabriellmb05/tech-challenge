@@ -1,6 +1,6 @@
 package br.com.on.fiap.hexagono.datapool;
 
-import br.com.on.fiap.hexagono.entities.entidades.Cliente;
+import br.com.on.fiap.hexagono.entidades.Cliente;
 
 public class DataPoolCliente {
 

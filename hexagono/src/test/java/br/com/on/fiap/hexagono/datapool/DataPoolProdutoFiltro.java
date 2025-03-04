@@ -1,7 +1,7 @@
 package br.com.on.fiap.hexagono.datapool;
 
-import br.com.on.fiap.hexagono.entities.entidades.Categoria;
-import br.com.on.fiap.hexagono.entities.entidades.ProdutoFiltro;
+import br.com.on.fiap.hexagono.entidades.Categoria;
+import br.com.on.fiap.hexagono.entidades.ProdutoFiltro;
 
 public class DataPoolProdutoFiltro {
 

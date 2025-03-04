@@ -1,7 +1,7 @@
 package br.com.on.fiap.hexagono.datapool;
 
-import br.com.on.fiap.hexagono.entities.entidades.Produto;
-import br.com.on.fiap.hexagono.entities.entidades.RelPedidoProduto;
+import br.com.on.fiap.hexagono.entidades.Produto;
+import br.com.on.fiap.hexagono.entidades.RelPedidoProduto;
 import java.util.List;
 import java.util.stream.LongStream;
 

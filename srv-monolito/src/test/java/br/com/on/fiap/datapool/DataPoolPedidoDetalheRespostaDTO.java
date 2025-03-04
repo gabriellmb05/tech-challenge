@@ -1,8 +1,10 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.adaptadores.entrada.manipulador.dto.resposta.*;
-import br.com.on.fiap.hexagono.entities.entidades.SituacaoPedido;
-import br.com.on.fiap.hexagono.interfaceadapters.interfaces.dto.ClienteRespostaDTO;
+import br.com.on.fiap.adaptadores.pagamento.entrada.dto.resposta.PagamentoRespostaDTO;
+import br.com.on.fiap.adaptadores.pedido.entrada.dto.resposta.PedidoDetalhadoRespostaDTO;
+import br.com.on.fiap.adaptadores.produto.entrada.dto.resposta.ProdutoRespostaDTO;
+import br.com.on.fiap.hexagono.adaptadores.dto.ClienteRespostaDTO;
+import br.com.on.fiap.hexagono.entidades.SituacaoPedido;
 import java.util.List;
 
 public class DataPoolPedidoDetalheRespostaDTO {

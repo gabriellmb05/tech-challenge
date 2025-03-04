@@ -1,0 +1,25 @@
+package br.com.on.fiap.adaptadores.produto.saida.persistencia.mapeador;
+
+import br.com.on.fiap.entidades.ProdutoEntidade;
+import br.com.on.fiap.hexagono.entidades.Produto;
+import java.util.List;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+@Mapper(componentModel = "spring")
+public interface ProdutoSaidaMapeador {
+
+    List<Produto> paraListaProdutos(List<ProdutoEntidade> produtoEntidades);
+
+    @Mapping(target = "id", source = "proId")
+    @Mapping(target = "nome", source = "nmNome")
+    @Mapping(target = "categoria", source = "tpCategoria")
+    @Mapping(target = "preco", source = "vlProduto")
+    Produto paraProduto(ProdutoEntidade produtoEntidade);
+
+    @Mapping(target = "proId", source = "id")
+    @Mapping(target = "nmNome", source = "nome")
+    @Mapping(target = "tpCategoria", source = "categoria")
+    @Mapping(target = "vlProduto", source = "preco")
+    ProdutoEntidade paraEntidade(Produto produto);
+}

@@ -1,13 +1,13 @@
 package br.com.on.fiap.configuracao;
 
-import br.com.on.fiap.hexagono.interfaceadapters.apresentadores.CategoriaApresentadorImpl;
-import br.com.on.fiap.hexagono.interfaceadapters.controladores.CategoriaControladorImpl;
-import br.com.on.fiap.hexagono.interfaceadapters.gateways.CategoriaGatewayImpl;
-import br.com.on.fiap.hexagono.interfaceadapters.interfaces.controller.CategoriaControlador;
-import br.com.on.fiap.hexagono.interfaceadapters.interfaces.presenter.CategoriaApresentador;
-import br.com.on.fiap.hexagono.usecases.casodeuso.categoria.BuscaCategoriasCasoDeUsoImpl;
-import br.com.on.fiap.hexagono.usecases.interfaces.entrada.categoria.BuscaCategoriaCasoDeUso;
-import br.com.on.fiap.hexagono.usecases.interfaces.gateway.categoria.CategoriaGateway;
+import br.com.on.fiap.hexagono.adaptadores.apresentadores.CategoriaApresentador;
+import br.com.on.fiap.hexagono.adaptadores.apresentadores.impl.CategoriaApresentadorImpl;
+import br.com.on.fiap.hexagono.adaptadores.controladores.CategoriaControlador;
+import br.com.on.fiap.hexagono.adaptadores.controladores.impl.CategoriaControladorImpl;
+import br.com.on.fiap.hexagono.adaptadores.gateways.CategoriaGateway;
+import br.com.on.fiap.hexagono.adaptadores.gateways.impl.CategoriaGatewayImpl;
+import br.com.on.fiap.hexagono.casodeuso.categoria.BuscaCategoriasCasoDeUsoImpl;
+import br.com.on.fiap.hexagono.casodeuso.categoria.entrada.BuscaCategoriaCasoDeUso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -31,9 +31,7 @@ public class CategoriaBeanConfiguracao {
 
     @Bean
     public CategoriaControlador categoriaControlador(
-            BuscaCategoriaCasoDeUso buscaCategoriaCasoDeUso,
-            CategoriaGateway categoriaGateway,
-            CategoriaApresentador categoriaApresentador) {
+            BuscaCategoriaCasoDeUso buscaCategoriaCasoDeUso, CategoriaApresentador categoriaApresentador) {
         return new CategoriaControladorImpl(buscaCategoriaCasoDeUso, categoriaApresentador);
     }
 }

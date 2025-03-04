@@ -1,6 +1,6 @@
 package br.com.on.fiap.hexagono.datapool;
 
-import br.com.on.fiap.hexagono.usecases.dto.ClienteSaidaDTO;
+import br.com.on.fiap.hexagono.casodeuso.cliente.dto.ClienteSaidaDTO;
 
 public class DataPoolClienteSaidaDTO {
 

@@ -1,11 +1,11 @@
 package br.com.on.fiap.configuracao;
 
-import br.com.on.fiap.hexagono.usecases.casodeuso.pagamento.AtualizaPagamentoCasoDeUsoImpl;
-import br.com.on.fiap.hexagono.usecases.casodeuso.pagamento.ValidaPagamentoCasoDeUsoImpl;
-import br.com.on.fiap.hexagono.usecases.interfaces.entrada.pagamento.AtualizaPagamentoCasoDeUso;
-import br.com.on.fiap.hexagono.usecases.interfaces.entrada.pagamento.ValidaPagamentoCasoDeUso;
-import br.com.on.fiap.hexagono.usecases.interfaces.saida.integracao.IntegracaoPagamentoSaida;
-import br.com.on.fiap.hexagono.usecases.interfaces.saida.pagamento.PersistePagamentoPortaSaida;
+import br.com.on.fiap.hexagono.casodeuso.pagamento.AtualizaPagamentoCasoDeUsoImpl;
+import br.com.on.fiap.hexagono.casodeuso.pagamento.ValidaPagamentoCasoDeUsoImpl;
+import br.com.on.fiap.hexagono.casodeuso.pagamento.entrada.AtualizaPagamentoCasoDeUso;
+import br.com.on.fiap.hexagono.casodeuso.pagamento.entrada.ValidaPagamentoCasoDeUso;
+import br.com.on.fiap.hexagono.casodeuso.pagamento.saida.IntegracaoPagamentoSaida;
+import br.com.on.fiap.hexagono.casodeuso.pagamento.saida.PersistePagamentoPortaSaida;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
