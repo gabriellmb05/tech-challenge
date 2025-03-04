@@ -25,7 +25,7 @@ class ClienteInsereUseCaseImplTest {
     private ClienteGateway clienteGateway;
 
     @InjectMocks
-    private ClienteInsereUseCaseImpl clienteInsereUseCaseImpl;
+    private ClienteInsereUseCaseImpl clienteInsereUseCase;
 
     @Test
     @DisplayName("Dado um cliente válido, quando inserir o cliente, então o cliente deve ser salvo com sucesso")
@@ -37,7 +37,7 @@ class ClienteInsereUseCaseImplTest {
         when(clienteGateway.buscaClientePorEmail(cliente.getEmail())).thenReturn(Optional.empty());
         when(clienteGateway.salvaCliente(any())).thenReturn(cliente);
 
-        ClienteSaidaDTO clienteSaidaDTO = clienteInsereUseCaseImpl.inserir(clienteEntradaDTO);
+        ClienteSaidaDTO clienteSaidaDTO = clienteInsereUseCase.inserir(clienteEntradaDTO);
 
         assertNotNull(clienteSaidaDTO);
         assertEquals(cliente.getCpf(), clienteSaidaDTO.getCpf());
@@ -58,7 +58,7 @@ class ClienteInsereUseCaseImplTest {
         when(clienteGateway.buscaClientePorCpf(cliente.getCpf())).thenReturn(Optional.of(cliente));
 
         ClienteExistenteExcecao exception =
-                assertThrows(ClienteExistenteExcecao.class, () -> clienteInsereUseCaseImpl.inserir(clienteEntradaDTO));
+                assertThrows(ClienteExistenteExcecao.class, () -> clienteInsereUseCase.inserir(clienteEntradaDTO));
 
         assertEquals("O CPF de número 123.456.789-00 já foi utilizado", exception.getMessage());
 
@@ -77,7 +77,7 @@ class ClienteInsereUseCaseImplTest {
         when(clienteGateway.buscaClientePorEmail(cliente.getEmail())).thenReturn(Optional.of(cliente));
 
         ClienteExistenteExcecao exception = assertThrows(ClienteExistenteExcecao.class, () -> {
-            clienteInsereUseCaseImpl.inserir(clienteEntradaDTO);
+            clienteInsereUseCase.inserir(clienteEntradaDTO);
         });
 
         assertEquals("O E-mail carlos.souza@example.com já foi utilizado", exception.getMessage());

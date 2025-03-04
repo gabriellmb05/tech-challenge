@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import br.com.on.fiap.hexagono.adapter.gateway.base.PedidoGateway;
 import br.com.on.fiap.hexagono.datapool.DataPoolPedido;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
 import br.com.on.fiap.hexagono.domain.exception.PedidoNaoEncontradoExcecao;
@@ -18,10 +19,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class PedidoDetalhaUseCaseImplTest {
 
     @Mock
-    private DetalhaPedidoPortaSaida detalhaPedidoPortaSaida;
+    private PedidoGateway pedidoGateway;
 
     @InjectMocks
-    private PedidoDetalhaUseCaseImpl detalhaPedidoCasoDeUsoImpl;
+    private PedidoDetalhaUseCaseImpl pedidoDetalhaUseCase;
 
     @Test
     @DisplayName("Dado um protocolo válido, ao detalhar o pedido, o pedido deve ser retornado")
@@ -29,13 +30,13 @@ class PedidoDetalhaUseCaseImplTest {
         String protocolo = "20250118213724238248";
         Pedido pedido = DataPoolPedido.pedidoExistente(1L);
 
-        when(detalhaPedidoPortaSaida.detalhaPedido(protocolo)).thenReturn(java.util.Optional.of(pedido));
+        when(pedidoGateway.detalhaPedido(protocolo)).thenReturn(java.util.Optional.of(pedido));
 
-        Pedido result = detalhaPedidoCasoDeUsoImpl.detalhaPedido(protocolo);
+        Pedido result = pedidoDetalhaUseCase.detalhaPedido(protocolo);
 
         assertNotNull(result);
         assertEquals(protocolo, result.getProtocolo());
-        verify(detalhaPedidoPortaSaida).detalhaPedido(protocolo);
+        verify(pedidoGateway).detalhaPedido(protocolo);
     }
 
     @Test
@@ -43,12 +44,12 @@ class PedidoDetalhaUseCaseImplTest {
     void dadoProtocoloInvalido_quandoDetalharPedido_entaoPedidoNaoEncontradoExcecaoDeveSerLancada() {
         String protocoloInvalido = "PROTOCOLO_INEXISTENTE";
 
-        when(detalhaPedidoPortaSaida.detalhaPedido(protocoloInvalido)).thenReturn(java.util.Optional.empty());
+        when(pedidoGateway.detalhaPedido(protocoloInvalido)).thenReturn(java.util.Optional.empty());
 
         PedidoNaoEncontradoExcecao exception = assertThrows(
-                PedidoNaoEncontradoExcecao.class, () -> detalhaPedidoCasoDeUsoImpl.detalhaPedido(protocoloInvalido));
+                PedidoNaoEncontradoExcecao.class, () -> pedidoDetalhaUseCase.detalhaPedido(protocoloInvalido));
 
         assertEquals("Não foi encontrado o pedido para protocolo: " + protocoloInvalido, exception.getMessage());
-        verify(detalhaPedidoPortaSaida).detalhaPedido(protocoloInvalido);
+        verify(pedidoGateway).detalhaPedido(protocoloInvalido);
     }
 }

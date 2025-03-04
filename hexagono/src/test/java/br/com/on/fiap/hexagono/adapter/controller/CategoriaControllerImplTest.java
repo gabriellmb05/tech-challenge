@@ -6,9 +6,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.hexagono.adapter.dto.CategoriaSaidaDTO;
-import br.com.on.fiap.hexagono.adapter.presenter.base.CategoriaBasePresenter;
+import br.com.on.fiap.hexagono.adapter.presenter.base.CategoriaPresenter;
 import br.com.on.fiap.hexagono.domain.entity.Categoria;
-import br.com.on.fiap.hexagono.usecase.categoria.entrada.BuscaCategoriaCasoDeUso;
+import br.com.on.fiap.hexagono.usecase.categoria.base.CategoriaBuscaUseCase;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -19,16 +19,16 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class CategoriaControladorImplTest {
+class CategoriaControllerImplTest {
 
     @Mock
-    private BuscaCategoriaCasoDeUso buscaCategoriaCasoDeUso;
+    private CategoriaBuscaUseCase categoriaBuscaUseCase;
 
     @Mock
-    private CategoriaBasePresenter categoriaBasePresenter;
+    private CategoriaPresenter categoriaPresenter;
 
     @InjectMocks
-    private CategoriaControllerImpl categoriaControlador;
+    private CategoriaControllerImpl categoriaController;
 
     @Test
     @DisplayName(
@@ -36,14 +36,14 @@ class CategoriaControladorImplTest {
     void dadoDesejoDeBuscarCategorias_quandoBuscar_entaoCategoriasDevemSerRetornadas() {
         List<Categoria> categorias = Arrays.asList(Categoria.BEBIDA, Categoria.SOBREMESA);
         CategoriaSaidaDTO categoriaSaidaDTO = new CategoriaSaidaDTO(Arrays.asList("BEBIDA", "SOBREMESA"));
-        when(buscaCategoriaCasoDeUso.buscaCategorias()).thenReturn(categorias);
-        when(categoriaBasePresenter.formatar(categorias)).thenReturn(categoriaSaidaDTO);
+        when(categoriaBuscaUseCase.buscaCategorias()).thenReturn(categorias);
+        when(categoriaPresenter.formatar(categorias)).thenReturn(categoriaSaidaDTO);
 
-        CategoriaSaidaDTO resultado = categoriaControlador.buscaCategorias();
+        CategoriaSaidaDTO resultado = categoriaController.buscaCategorias();
 
         assertNotNull(resultado);
         assertEquals(categoriaSaidaDTO, resultado);
-        verify(buscaCategoriaCasoDeUso).buscaCategorias();
-        verify(categoriaBasePresenter).formatar(categorias);
+        verify(categoriaBuscaUseCase).buscaCategorias();
+        verify(categoriaPresenter).formatar(categorias);
     }
 }

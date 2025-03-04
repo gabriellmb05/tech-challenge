@@ -5,8 +5,8 @@ import br.com.on.fiap.hexagono.adapter.controller.base.ClienteController;
 import br.com.on.fiap.hexagono.adapter.datasource.ClienteDataSource;
 import br.com.on.fiap.hexagono.adapter.gateway.ClienteGatewayImpl;
 import br.com.on.fiap.hexagono.adapter.gateway.base.ClienteGateway;
-import br.com.on.fiap.hexagono.adapter.presenter.ClientePresenter;
-import br.com.on.fiap.hexagono.adapter.presenter.base.ClienteBasePresenter;
+import br.com.on.fiap.hexagono.adapter.presenter.ClientePresenterImpl;
+import br.com.on.fiap.hexagono.adapter.presenter.base.ClientePresenter;
 import br.com.on.fiap.hexagono.usecase.cliente.ClienteBuscaPorCpfUseCaseImpl;
 import br.com.on.fiap.hexagono.usecase.cliente.ClienteInsereUseCaseImpl;
 import br.com.on.fiap.hexagono.usecase.cliente.base.ClienteBuscaPorCpfUseCase;
@@ -20,11 +20,11 @@ public class ClienteBeanConfiguracao {
 
     private final ClienteGateway clienteGateway;
     private final ClienteDataSource clienteDataSource;
-    private final ClienteBasePresenter clientePresenter;
+    private final ClientePresenter clientePresenter;
 
     @Lazy
     public ClienteBeanConfiguracao(
-            ClienteGateway clienteGateway, ClienteDataSource clienteDataSource, ClienteBasePresenter clientePresenter) {
+            ClienteGateway clienteGateway, ClienteDataSource clienteDataSource, ClientePresenter clientePresenter) {
         this.clienteGateway = clienteGateway;
         this.clienteDataSource = clienteDataSource;
         this.clientePresenter = clientePresenter;
@@ -46,8 +46,8 @@ public class ClienteBeanConfiguracao {
     }
 
     @Bean
-    public ClienteBasePresenter clienteApresentador() {
-        return new ClientePresenter();
+    public ClientePresenter clienteApresentador() {
+        return new ClientePresenterImpl();
     }
 
     @Bean

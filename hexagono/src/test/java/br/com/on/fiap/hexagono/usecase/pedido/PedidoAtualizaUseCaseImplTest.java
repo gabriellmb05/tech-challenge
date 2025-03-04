@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import br.com.on.fiap.hexagono.adapter.gateway.base.PedidoGateway;
 import br.com.on.fiap.hexagono.datapool.DataPoolPagamento;
 import br.com.on.fiap.hexagono.datapool.DataPoolPedido;
 import br.com.on.fiap.hexagono.domain.entity.Pagamento;
@@ -25,10 +26,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class PedidoAtualizaUseCaseImplTest {
 
     @Mock
-    private AtualizaPedidoPortaSaida atualizaPedidoPortaSaida;
+    private PedidoGateway pedidoGateway;
 
     @InjectMocks
-    private PedidoAtualizaUseCaseImpl atualizaPedidoCasoDeUsoImpl;
+    private PedidoAtualizaUseCaseImpl pedidoAtualizaUseCase;
 
     @Test
     @DisplayName("Dado um pedido existente, ao atualizar, deve retornar o pedido atualizado")
@@ -36,13 +37,13 @@ class PedidoAtualizaUseCaseImplTest {
         String protocolo = "12345";
         Pedido pedidoExistente = DataPoolPedido.pedidoComProtocolo(protocolo);
 
-        when(atualizaPedidoPortaSaida.atualizarPedido(protocolo)).thenReturn(Optional.of(pedidoExistente));
+        when(pedidoGateway.atualizarPedido(protocolo)).thenReturn(Optional.of(pedidoExistente));
 
-        Pedido pedidoAtualizado = atualizaPedidoCasoDeUsoImpl.atualizarPedido(protocolo);
+        Pedido pedidoAtualizado = pedidoAtualizaUseCase.atualizarPedido(protocolo);
 
         assertNotNull(pedidoAtualizado);
         assertEquals(protocolo, pedidoAtualizado.getProtocolo());
-        verify(atualizaPedidoPortaSaida).atualizarPedido(protocolo);
+        verify(pedidoGateway).atualizarPedido(protocolo);
     }
 
     @Test
@@ -50,16 +51,16 @@ class PedidoAtualizaUseCaseImplTest {
     void dadoPedidoNaoExistente_quandoAtualizarPedido_entaoDeveLancarExcecao() {
         String protocolo = "99999";
 
-        when(atualizaPedidoPortaSaida.atualizarPedido(protocolo)).thenReturn(Optional.empty());
+        when(pedidoGateway.atualizarPedido(protocolo)).thenReturn(Optional.empty());
 
-        PedidoNaoEncontradoExcecao exception = assertThrows(
-                PedidoNaoEncontradoExcecao.class, () -> atualizaPedidoCasoDeUsoImpl.atualizarPedido(protocolo));
+        PedidoNaoEncontradoExcecao exception =
+                assertThrows(PedidoNaoEncontradoExcecao.class, () -> pedidoAtualizaUseCase.atualizarPedido(protocolo));
 
         assertEquals(
                 MessageManager.getMessage(
                         MessageError.MSG_ERRO_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO.getMensagem(), protocolo),
                 exception.getMessage());
-        verify(atualizaPedidoPortaSaida).atualizarPedido(protocolo);
+        verify(pedidoGateway).atualizarPedido(protocolo);
     }
 
     @Test
@@ -72,14 +73,14 @@ class PedidoAtualizaUseCaseImplTest {
         Pedido pedidoExistente = DataPoolPedido.pedidoComProtocolo(protocolo);
         pedidoExistente.setPagamento(pagamento);
 
-        when(atualizaPedidoPortaSaida.atualizarPedido(protocolo)).thenReturn(Optional.of(pedidoExistente));
+        when(pedidoGateway.atualizarPedido(protocolo)).thenReturn(Optional.of(pedidoExistente));
 
-        Pedido pedidoAtualizado = atualizaPedidoCasoDeUsoImpl.atualizarPedido(protocolo);
+        Pedido pedidoAtualizado = pedidoAtualizaUseCase.atualizarPedido(protocolo);
 
         assertNotNull(pedidoAtualizado);
         assertEquals(protocolo, pedidoAtualizado.getProtocolo());
         assertEquals(pagamento.getPagId(), pedidoAtualizado.getPagamento().getPagId());
-        verify(atualizaPedidoPortaSaida).atualizarPedido(protocolo);
+        verify(pedidoGateway).atualizarPedido(protocolo);
     }
 
     @Test
@@ -93,15 +94,15 @@ class PedidoAtualizaUseCaseImplTest {
         Pedido pedidoExistente = DataPoolPedido.pedidoComProtocolo(protocolo);
         pedidoExistente.setPagamento(pagamento);
 
-        when(atualizaPedidoPortaSaida.atualizarPedido(protocolo)).thenReturn(Optional.empty());
+        when(pedidoGateway.atualizarPedido(protocolo)).thenReturn(Optional.empty());
 
-        PedidoNaoEncontradoExcecao exception = assertThrows(
-                PedidoNaoEncontradoExcecao.class, () -> atualizaPedidoCasoDeUsoImpl.atualizarPedido(protocolo));
+        PedidoNaoEncontradoExcecao exception =
+                assertThrows(PedidoNaoEncontradoExcecao.class, () -> pedidoAtualizaUseCase.atualizarPedido(protocolo));
 
         assertEquals(
                 MessageManager.getMessage(
                         MessageError.MSG_ERRO_PEDIDO_NAO_ENCONTRADO_PARA_PROTOCOLO.getMensagem(), protocolo),
                 exception.getMessage());
-        verify(atualizaPedidoPortaSaida).atualizarPedido(protocolo);
+        verify(pedidoGateway).atualizarPedido(protocolo);
     }
 }

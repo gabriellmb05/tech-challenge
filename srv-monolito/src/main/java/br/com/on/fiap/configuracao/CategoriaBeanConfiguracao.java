@@ -4,8 +4,8 @@ import br.com.on.fiap.hexagono.adapter.controller.CategoriaControllerImpl;
 import br.com.on.fiap.hexagono.adapter.controller.base.CategoriaController;
 import br.com.on.fiap.hexagono.adapter.gateway.CategoriaGatewayImpl;
 import br.com.on.fiap.hexagono.adapter.gateway.base.CategoriaGateway;
-import br.com.on.fiap.hexagono.adapter.presenter.CategoriaPresenter;
-import br.com.on.fiap.hexagono.adapter.presenter.base.CategoriaBasePresenter;
+import br.com.on.fiap.hexagono.adapter.presenter.CategoriaPresenterImpl;
+import br.com.on.fiap.hexagono.adapter.presenter.base.CategoriaPresenter;
 import br.com.on.fiap.hexagono.usecase.categoria.CategoriaBuscaUseCaseImpl;
 import br.com.on.fiap.hexagono.usecase.categoria.entrada.BuscaCategoriaCasoDeUso;
 import org.springframework.context.annotation.Bean;
@@ -16,12 +16,12 @@ import org.springframework.context.annotation.Lazy;
 public class CategoriaBeanConfiguracao {
 
     private final CategoriaGateway categoriaGateway;
-    private final CategoriaBasePresenter categoriaBasePresenter;
+    private final CategoriaPresenter categoriaPresenter;
 
     @Lazy
-    public CategoriaBeanConfiguracao(CategoriaGateway categoriaGateway, CategoriaBasePresenter categoriaBasePresenter) {
+    public CategoriaBeanConfiguracao(CategoriaGateway categoriaGateway, CategoriaPresenter categoriaPresenter) {
         this.categoriaGateway = categoriaGateway;
-        this.categoriaBasePresenter = categoriaBasePresenter;
+        this.categoriaPresenter = categoriaPresenter;
     }
 
     @Bean
@@ -31,7 +31,7 @@ public class CategoriaBeanConfiguracao {
 
     @Bean
     public CategoriaController categoriaControlador() {
-        return new CategoriaControllerImpl(buscaCategorias(), categoriaBasePresenter);
+        return new CategoriaControllerImpl(buscaCategorias(), categoriaPresenter);
     }
 
     @Bean
@@ -40,7 +40,7 @@ public class CategoriaBeanConfiguracao {
     }
 
     @Bean
-    public CategoriaBasePresenter categoriaApresentador() {
-        return new CategoriaPresenter();
+    public CategoriaPresenter categoriaApresentador() {
+        return new CategoriaPresenterImpl();
     }
 }

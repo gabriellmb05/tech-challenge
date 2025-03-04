@@ -4,6 +4,6 @@ import br.com.on.fiap.hexagono.adapter.dto.CategoriaSaidaDTO;
 import br.com.on.fiap.hexagono.domain.entity.Categoria;
 import java.util.List;
 
-public interface CategoriaBasePresenter {
+public interface CategoriaPresenter {
     CategoriaSaidaDTO formatar(List<Categoria> categorias);
 }

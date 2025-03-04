@@ -5,19 +5,23 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import br.com.on.fiap.hexagono.adapter.dto.ClienteRespostaDTO;
 import br.com.on.fiap.hexagono.adapter.dto.ClienteSaidaDTO;
-import br.com.on.fiap.hexagono.adapter.presenter.base.ClienteBasePresenter;
 import br.com.on.fiap.hexagono.datapool.DataPoolClienteSaidaDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-class ClientePresenterTest {
+@ExtendWith(MockitoExtension.class)
+class ClientePresenterImplTest {
+
+    @InjectMocks
+    private ClientePresenterImpl clientePresenter;
 
     @Test
     @DisplayName("Dado um objeto de dados de saída, quando formatá-lo, então um objeto formatado deve ser retornado")
     void dadoUmObjetoDeDadosDeSaida_quandoFormatalo_entaoUmObjetoFormatadoDeveSerRetornado() {
         ClienteSaidaDTO clienteSaidaDTO = DataPoolClienteSaidaDTO.clienteValido();
-        ClienteBasePresenter clientePresenter = new ClientePresenter();
-
         ClienteRespostaDTO resultado = clientePresenter.formatar(clienteSaidaDTO);
 
         assertNotNull(resultado);

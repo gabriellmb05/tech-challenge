@@ -16,7 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class PagamentoValidaUseCaseImplTest {
 
     @InjectMocks
-    private PagamentoValidaUseCaseImpl validaPagamentoCasoDeUsoImpl;
+    private PagamentoValidaUseCaseImpl pagamentoValidaUseCase;
 
     @Test
     @DisplayName(
@@ -27,7 +27,7 @@ class PagamentoValidaUseCaseImplTest {
 
         assertThrows(
                 PagamentoJaRealizadoExcecao.class,
-                () -> validaPagamentoCasoDeUsoImpl.validarPagamentoJaRealizado(pagamento, nrProtocolo));
+                () -> pagamentoValidaUseCase.validarPagamentoJaRealizado(pagamento, nrProtocolo));
     }
 
     @Test
@@ -36,7 +36,7 @@ class PagamentoValidaUseCaseImplTest {
         Pagamento pagamento = DataPoolPagamento.pagamentoValidoSemData();
         String nrProtocolo = "123ABC";
 
-        assertDoesNotThrow(() -> validaPagamentoCasoDeUsoImpl.validarPagamentoJaRealizado(pagamento, nrProtocolo));
+        assertDoesNotThrow(() -> pagamentoValidaUseCase.validarPagamentoJaRealizado(pagamento, nrProtocolo));
     }
 
     @Test
@@ -45,9 +45,9 @@ class PagamentoValidaUseCaseImplTest {
         Pagamento pagamento = DataPoolPagamento.pagamentoPendente();
         String nrProtocolo = "123ABC";
 
-        validaPagamentoCasoDeUsoImpl.validarPagamentoJaRealizado(pagamento, nrProtocolo);
+        pagamentoValidaUseCase.validarPagamentoJaRealizado(pagamento, nrProtocolo);
 
-        assertDoesNotThrow(() -> validaPagamentoCasoDeUsoImpl.validarPagamentoJaRealizado(pagamento, nrProtocolo));
+        assertDoesNotThrow(() -> pagamentoValidaUseCase.validarPagamentoJaRealizado(pagamento, nrProtocolo));
         assertEquals(SituacaoPagamento.PENDENTE, pagamento.getStPagamento());
     }
 }

@@ -2,8 +2,9 @@ package br.com.on.fiap.hexagono.adapter.presenter;
 
 import br.com.on.fiap.hexagono.adapter.dto.ClienteRespostaDTO;
 import br.com.on.fiap.hexagono.adapter.dto.ClienteSaidaDTO;
+import br.com.on.fiap.hexagono.adapter.presenter.base.ClientePresenter;
 
-public class ClientePresenter implements br.com.on.fiap.hexagono.adapter.presenter.base.ClienteBasePresenter {
+public class ClientePresenterImpl implements ClientePresenter {
 
     @Override
     public ClienteRespostaDTO formatar(ClienteSaidaDTO clienteSaidaDTO) {

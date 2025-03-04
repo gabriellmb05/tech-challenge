@@ -17,13 +17,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class BuscaClienteCasoDeUsoImplTest {
+class ClienteBuscaPorCpfUseCaseImplTest {
 
     @Mock
     private ClienteGateway clienteGateway;
 
     @InjectMocks
-    private ClienteBuscaPorCpfUseCaseImpl buscaClienteCasoDeUsoImpl;
+    private ClienteBuscaPorCpfUseCaseImpl clienteBuscaPorCpfUseCase;
 
     @Test
     @DisplayName("Dado um CPF válido, quando buscar cliente, então o cliente deve ser encontrado")
@@ -32,7 +32,7 @@ class BuscaClienteCasoDeUsoImplTest {
         Cliente clienteEsperado = DataPoolCliente.clienteComCpf(cpf);
         when(clienteGateway.buscaClientePorCpf(cpf)).thenReturn(java.util.Optional.of(clienteEsperado));
 
-        ClienteSaidaDTO clienteSaidaDTO = buscaClienteCasoDeUsoImpl.buscar(cpf);
+        ClienteSaidaDTO clienteSaidaDTO = clienteBuscaPorCpfUseCase.buscar(cpf);
 
         assertNotNull(clienteSaidaDTO);
         assertEquals(cpf, clienteSaidaDTO.getCpf());
@@ -48,7 +48,7 @@ class BuscaClienteCasoDeUsoImplTest {
         when(clienteGateway.buscaClientePorCpf(cpf)).thenReturn(Optional.empty());
 
         ClienteNaoEncontradoExcecao exception =
-                assertThrows(ClienteNaoEncontradoExcecao.class, () -> buscaClienteCasoDeUsoImpl.buscar(cpf));
+                assertThrows(ClienteNaoEncontradoExcecao.class, () -> clienteBuscaPorCpfUseCase.buscar(cpf));
 
         assertEquals("Não foi encontrado Cliente para o cpf: 000.000.000-00", exception.getMessage());
 

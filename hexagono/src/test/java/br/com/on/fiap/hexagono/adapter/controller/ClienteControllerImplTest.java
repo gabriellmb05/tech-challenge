@@ -7,7 +7,7 @@ import static org.mockito.Mockito.when;
 import br.com.on.fiap.hexagono.adapter.dto.ClienteEntradaDTO;
 import br.com.on.fiap.hexagono.adapter.dto.ClienteRespostaDTO;
 import br.com.on.fiap.hexagono.adapter.dto.ClienteSaidaDTO;
-import br.com.on.fiap.hexagono.adapter.presenter.base.ClienteBasePresenter;
+import br.com.on.fiap.hexagono.adapter.presenter.base.ClientePresenter;
 import br.com.on.fiap.hexagono.datapool.DataPoolClienteEntradaDTO;
 import br.com.on.fiap.hexagono.datapool.DataPoolClienteRespostaDTO;
 import br.com.on.fiap.hexagono.datapool.DataPoolClienteSaidaDTO;
@@ -30,10 +30,10 @@ class ClienteControllerImplTest {
     private ClienteBuscaPorCpfUseCase clienteBuscaPorCpfUseCase;
 
     @Mock
-    private ClienteBasePresenter clientePresenter;
+    private ClientePresenter clientePresenter;
 
     @InjectMocks
-    private ClienteControllerImpl clienteControlador;
+    private ClienteControllerImpl clienteController;
 
     @Test
     @DisplayName(
@@ -45,7 +45,7 @@ class ClienteControllerImplTest {
         when(clienteBuscaPorCpfUseCase.buscar(cpf)).thenReturn(clienteSaidaDTO);
         when(clientePresenter.formatar(clienteSaidaDTO)).thenReturn(clienteRespostaDTO);
 
-        ClienteRespostaDTO resultado = clienteControlador.buscaClientePorCpf(cpf);
+        ClienteRespostaDTO resultado = clienteController.buscaClientePorCpf(cpf);
 
         assertNotNull(resultado);
         assertEquals(clienteRespostaDTO.getCpf(), resultado.getCpf());
@@ -63,7 +63,7 @@ class ClienteControllerImplTest {
         when(clienteInsereUseCase.inserir(clienteEntradaDTO)).thenReturn(clienteSaidaDTO);
         when(clientePresenter.formatar(clienteSaidaDTO)).thenReturn(clienteRespostaDTO);
 
-        ClienteRespostaDTO resultado = clienteControlador.insereCliente(clienteEntradaDTO);
+        ClienteRespostaDTO resultado = clienteController.insereCliente(clienteEntradaDTO);
 
         assertNotNull(resultado);
         assertEquals(clienteRespostaDTO.getCpf(), resultado.getCpf());

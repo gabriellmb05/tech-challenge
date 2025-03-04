@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.hexagono.adapter.gateway.base.ClienteGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.base.PagamentoGateway;
+import br.com.on.fiap.hexagono.adapter.gateway.base.PedidoGateway;
 import br.com.on.fiap.hexagono.datapool.*;
 import br.com.on.fiap.hexagono.domain.entity.Cliente;
 import br.com.on.fiap.hexagono.domain.entity.Pagamento;
@@ -24,19 +26,13 @@ class PedidoInsereUseCaseImplTest {
     private ClienteGateway clienteGateway;
 
     @Mock
-    private PersistePedidoPortaSaida persistePedidoPortaSaida;
+    private PedidoGateway pedidoGateway;
 
     @Mock
-    private PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida;
-
-    @Mock
-    private PersistePagamentoPortaSaida persistePagamentoPortaSaida;
-
-    @Mock
-    private PersistePedidoPagamentoPortaSaida persistePedidoPagamentoPortaSaida;
+    private PagamentoGateway pagamentoGateway;
 
     @InjectMocks
-    private PedidoInsereUseCaseImpl inserePedidoCasoDeUso;
+    private PedidoInsereUseCaseImpl pedidoInsereUseCase;
 
     @Test
     @DisplayName("Dado um pedido válido, quando inserir o pedido, então o pedido deve ser inserido com sucesso")
@@ -47,18 +43,18 @@ class PedidoInsereUseCaseImplTest {
         pedido.setRelPedidoProdutos(DataPoolRelPedidoProduto.relPedidoProdutosComProdutos(1));
 
         when(clienteGateway.buscaClientePorId(cliente.getId())).thenReturn(java.util.Optional.of(cliente));
-        when(persistePedidoPortaSaida.salvaPedido(pedido)).thenReturn(pedido);
-        doNothing().when(persistePedidoProdutoPortaSaida).vincularPedido(pedido.getRelPedidoProdutos());
-        when(persistePagamentoPortaSaida.salvaPagamento(pagamento)).thenReturn(pagamento);
-        doNothing().when(persistePedidoPagamentoPortaSaida).salvaPedidoPagamento(pedido);
+        when(pedidoGateway.salvaPedido(pedido)).thenReturn(pedido);
+        doNothing().when(pedidoGateway).vincularPedido(pedido.getRelPedidoProdutos());
+        when(pagamentoGateway.salvaPagamento(pagamento)).thenReturn(pagamento);
+        doNothing().when(pedidoGateway).salvaPedidoPagamento(pedido);
 
-        Pedido pedidoSalvo = inserePedidoCasoDeUso.inserir(pedido, pagamento);
+        Pedido pedidoSalvo = pedidoInsereUseCase.inserir(pedido, pagamento);
 
         verify(clienteGateway).buscaClientePorId(cliente.getId());
-        verify(persistePedidoPortaSaida).salvaPedido(pedido);
-        verify(persistePedidoProdutoPortaSaida).vincularPedido(pedido.getRelPedidoProdutos());
-        verify(persistePagamentoPortaSaida).salvaPagamento(pagamento);
-        verify(persistePedidoPagamentoPortaSaida).salvaPedidoPagamento(pedido);
+        verify(pedidoGateway).salvaPedido(pedido);
+        verify(pedidoGateway).vincularPedido(pedido.getRelPedidoProdutos());
+        verify(pagamentoGateway).salvaPagamento(pagamento);
+        verify(pedidoGateway).salvaPedidoPagamento(pedido);
 
         assertNotNull(pedidoSalvo);
         assertEquals(cliente.getId(), pedidoSalvo.getCliente().getId());
@@ -76,7 +72,7 @@ class PedidoInsereUseCaseImplTest {
         when(clienteGateway.buscaClientePorId(cliente.getId())).thenReturn(Optional.empty());
 
         ClienteNaoEncontradoExcecao exception = assertThrows(
-                ClienteNaoEncontradoExcecao.class, () -> inserePedidoCasoDeUso.inserir(pedido, new Pagamento()));
+                ClienteNaoEncontradoExcecao.class, () -> pedidoInsereUseCase.inserir(pedido, new Pagamento()));
 
         assertEquals("Não foi encontrado o Cliente para o id: 999", exception.getMessage());
         verify(clienteGateway).buscaClientePorId(cliente.getId());

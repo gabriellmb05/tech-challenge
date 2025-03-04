@@ -4,7 +4,7 @@ import br.com.on.fiap.hexagono.adapter.controller.base.ClienteController;
 import br.com.on.fiap.hexagono.adapter.dto.ClienteEntradaDTO;
 import br.com.on.fiap.hexagono.adapter.dto.ClienteRespostaDTO;
 import br.com.on.fiap.hexagono.adapter.dto.ClienteSaidaDTO;
-import br.com.on.fiap.hexagono.adapter.presenter.base.ClienteBasePresenter;
+import br.com.on.fiap.hexagono.adapter.presenter.base.ClientePresenter;
 import br.com.on.fiap.hexagono.usecase.cliente.base.ClienteBuscaPorCpfUseCase;
 import br.com.on.fiap.hexagono.usecase.cliente.base.ClienteInsereUseCase;
 
@@ -12,12 +12,12 @@ public class ClienteControllerImpl implements ClienteController {
 
     private final ClienteInsereUseCase clienteInsereUseCase;
     private final ClienteBuscaPorCpfUseCase clienteBuscaPorCpfUseCase;
-    private final ClienteBasePresenter clientePresenter;
+    private final ClientePresenter clientePresenter;
 
     public ClienteControllerImpl(
             ClienteInsereUseCase clienteInsereUseCase,
             ClienteBuscaPorCpfUseCase clienteBuscaPorCpfUseCase,
-            ClienteBasePresenter clientePresenter) {
+            ClientePresenter clientePresenter) {
         this.clienteInsereUseCase = clienteInsereUseCase;
         this.clienteBuscaPorCpfUseCase = clienteBuscaPorCpfUseCase;
         this.clientePresenter = clientePresenter;

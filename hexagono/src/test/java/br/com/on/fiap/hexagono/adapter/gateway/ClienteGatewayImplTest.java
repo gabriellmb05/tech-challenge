@@ -17,13 +17,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class ClienteGatewayImplImplTest {
+class ClienteGatewayImplTest {
 
     @Mock
     private ClienteDataSource clienteDataSource;
 
     @InjectMocks
-    private ClienteGatewayImpl clienteGatewayImpl;
+    private ClienteGatewayImpl clienteGateway;
 
     @Test
     @DisplayName("Dado um CPF válido, quando buscar cliente por CPF, então deve retornar o cliente")
@@ -32,7 +32,7 @@ class ClienteGatewayImplImplTest {
         String cpf = cliente.getCpf();
         when(clienteDataSource.findByNmCpf(cpf)).thenReturn(Optional.of(cliente));
 
-        Optional<Cliente> resultado = clienteGatewayImpl.buscaClientePorCpf(cpf);
+        Optional<Cliente> resultado = clienteGateway.buscaClientePorCpf(cpf);
 
         assertTrue(resultado.isPresent());
         assertEquals(cliente, resultado.get());
@@ -46,7 +46,7 @@ class ClienteGatewayImplImplTest {
         Long id = cliente.getId();
         when(clienteDataSource.findById(id)).thenReturn(Optional.of(cliente));
 
-        Optional<Cliente> resultado = clienteGatewayImpl.buscaClientePorId(id);
+        Optional<Cliente> resultado = clienteGateway.buscaClientePorId(id);
 
         assertTrue(resultado.isPresent());
         assertEquals(cliente, resultado.get());
@@ -60,7 +60,7 @@ class ClienteGatewayImplImplTest {
         String email = cliente.getEmail();
         when(clienteDataSource.findByNmEmail(email)).thenReturn(Optional.of(cliente));
 
-        Optional<Cliente> resultado = clienteGatewayImpl.buscaClientePorEmail(email);
+        Optional<Cliente> resultado = clienteGateway.buscaClientePorEmail(email);
 
         assertTrue(resultado.isPresent());
         assertEquals(cliente, resultado.get());
@@ -73,7 +73,7 @@ class ClienteGatewayImplImplTest {
         Cliente cliente = DataPoolCliente.clienteValido();
         when(clienteDataSource.persist(cliente)).thenReturn(cliente);
 
-        Cliente resultado = clienteGatewayImpl.salvaCliente(cliente);
+        Cliente resultado = clienteGateway.salvaCliente(cliente);
 
         assertNotNull(resultado);
         assertEquals(cliente, resultado);

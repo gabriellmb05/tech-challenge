@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import br.com.on.fiap.hexagono.adapter.gateway.base.PedidoGateway;
 import br.com.on.fiap.hexagono.datapool.DataPoolPedido;
 import br.com.on.fiap.hexagono.datapool.DataPoolPedidoFiltro;
 import br.com.on.fiap.hexagono.domain.entity.Pedido;
@@ -28,10 +29,10 @@ import org.springframework.data.domain.Pageable;
 class PedidoBuscaUseCaseImplTest {
 
     @Mock
-    private BuscaPedidosPortaSaida buscaPedidosPortaSaida;
+    private PedidoGateway pedidoGateway;
 
     @InjectMocks
-    private PedidoBuscaUseCaseImpl buscaPedidosCasoDeUsoImpl;
+    private PedidoBuscaUseCaseImpl pedidoBuscaUseCase;
 
     @Test
     @DisplayName(
@@ -45,14 +46,14 @@ class PedidoBuscaUseCaseImplTest {
         Pedido pedido = DataPoolPedido.pedidoExistenteComDataHora(1L, LocalDateTime.of(2025, 1, 15, 12, 0));
         Page<Pedido> page = new PageImpl<>(List.of(pedido), pageable, 1L);
 
-        when(buscaPedidosPortaSaida.listarComFiltros(filtro, pageable)).thenReturn(page);
+        when(pedidoGateway.listarComFiltros(filtro, pageable)).thenReturn(page);
 
-        Page<Pedido> result = buscaPedidosCasoDeUsoImpl.buscarPedidosComFiltro(filtro, pageable);
+        Page<Pedido> result = pedidoBuscaUseCase.buscarPedidosComFiltro(filtro, pageable);
 
         assertEquals(1, result.getTotalElements());
         assertTrue(result.getContent().getFirst().getDataHora().isAfter(dataInicio.atStartOfDay()));
         assertTrue(result.getContent().getFirst().getDataHora().isBefore(dataFim.atTime(23, 59, 59)));
-        verify(buscaPedidosPortaSaida).listarComFiltros(filtro, pageable);
+        verify(pedidoGateway).listarComFiltros(filtro, pageable);
     }
 
     @Test
@@ -66,15 +67,15 @@ class PedidoBuscaUseCaseImplTest {
         Pedido pedido = DataPoolPedido.pedidoExistente(1L);
         Page<Pedido> page = new PageImpl<>(List.of(pedido), pageable, 1L);
 
-        when(buscaPedidosPortaSaida.listarComFiltros(filtro, pageable)).thenReturn(page);
+        when(pedidoGateway.listarComFiltros(filtro, pageable)).thenReturn(page);
 
-        Page<Pedido> result = buscaPedidosCasoDeUsoImpl.buscarPedidosComFiltro(filtro, pageable);
+        Page<Pedido> result = pedidoBuscaUseCase.buscarPedidosComFiltro(filtro, pageable);
 
         assertEquals(1, result.getTotalElements());
         assertEquals(
                 situacao.getCodigo(),
                 result.getContent().getFirst().getSituacao().getCodigo());
-        verify(buscaPedidosPortaSaida).listarComFiltros(filtro, pageable);
+        verify(pedidoGateway).listarComFiltros(filtro, pageable);
     }
 
     @Test
@@ -88,13 +89,13 @@ class PedidoBuscaUseCaseImplTest {
         Pedido pedido = DataPoolPedido.pedidoExistente(1L);
         Page<Pedido> page = new PageImpl<>(List.of(pedido), pageable, 1L);
 
-        when(buscaPedidosPortaSaida.listarComFiltros(filtro, pageable)).thenReturn(page);
+        when(pedidoGateway.listarComFiltros(filtro, pageable)).thenReturn(page);
 
-        Page<Pedido> result = buscaPedidosCasoDeUsoImpl.buscarPedidosComFiltro(filtro, pageable);
+        Page<Pedido> result = pedidoBuscaUseCase.buscarPedidosComFiltro(filtro, pageable);
 
         assertEquals(1, result.getTotalElements());
         assertEquals(cpfCliente, result.getContent().getFirst().getCliente().getCpf());
-        verify(buscaPedidosPortaSaida).listarComFiltros(filtro, pageable);
+        verify(pedidoGateway).listarComFiltros(filtro, pageable);
     }
 
     @Test
@@ -107,11 +108,11 @@ class PedidoBuscaUseCaseImplTest {
         Pedido pedido2 = DataPoolPedido.pedidoExistente(2L);
         Page<Pedido> page = new PageImpl<>(List.of(pedido1, pedido2), pageable, 2L);
 
-        when(buscaPedidosPortaSaida.listarComFiltros(filtro, pageable)).thenReturn(page);
+        when(pedidoGateway.listarComFiltros(filtro, pageable)).thenReturn(page);
 
-        Page<Pedido> result = buscaPedidosCasoDeUsoImpl.buscarPedidosComFiltro(filtro, pageable);
+        Page<Pedido> result = pedidoBuscaUseCase.buscarPedidosComFiltro(filtro, pageable);
 
         assertEquals(2, result.getTotalElements());
-        verify(buscaPedidosPortaSaida).listarComFiltros(filtro, pageable);
+        verify(pedidoGateway).listarComFiltros(filtro, pageable);
     }
 }

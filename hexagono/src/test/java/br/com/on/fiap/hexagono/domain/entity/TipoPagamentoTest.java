@@ -1,8 +1,7 @@
-package br.com.on.fiap.hexagono.entidades;
+package br.com.on.fiap.hexagono.domain.entity;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import br.com.on.fiap.hexagono.domain.entity.TipoPagamento;
 import br.com.on.fiap.hexagono.domain.exception.TipoPagamentoNaoEncontradoExcecao;
 import java.util.Arrays;
 import java.util.List;
