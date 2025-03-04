@@ -1,4 +1,4 @@
-package br.com.on.fiap.entidades.relacionamento;
+package br.com.on.fiap.entidade.relacionamento;
 
 import jakarta.persistence.*;
 import java.io.Serializable;

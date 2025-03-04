@@ -1,6 +1,6 @@
 package br.com.on.fiap.adaptadores.cliente.saida.persistencia.mapeador;
 
-import br.com.on.fiap.entidades.ClienteEntidade;
+import br.com.on.fiap.entidade.ClienteEntidade;
 import br.com.on.fiap.hexagono.entidades.Cliente;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

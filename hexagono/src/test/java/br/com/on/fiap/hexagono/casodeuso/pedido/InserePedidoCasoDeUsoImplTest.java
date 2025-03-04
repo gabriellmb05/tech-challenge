@@ -5,9 +5,6 @@ import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.hexagono.adaptadores.gateways.ClienteGateway;
 import br.com.on.fiap.hexagono.casodeuso.pagamento.saida.PersistePagamentoPortaSaida;
-import br.com.on.fiap.hexagono.casodeuso.pedido.saida.PersistePedidoPagamentoPortaSaida;
-import br.com.on.fiap.hexagono.casodeuso.pedido.saida.PersistePedidoPortaSaida;
-import br.com.on.fiap.hexagono.casodeuso.pedido.saida.PersistePedidoProdutoPortaSaida;
 import br.com.on.fiap.hexagono.datapool.*;
 import br.com.on.fiap.hexagono.entidades.Cliente;
 import br.com.on.fiap.hexagono.entidades.Pagamento;

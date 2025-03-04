@@ -1,6 +1,6 @@
 package br.com.on.fiap.adaptadores.pagamento.saida.persistencia.mapeador;
 
-import br.com.on.fiap.entidades.PagamentoEntidade;
+import br.com.on.fiap.entidade.PagamentoEntidade;
 import br.com.on.fiap.hexagono.entidades.Pagamento;
 import br.com.on.fiap.hexagono.entidades.SituacaoPagamento;
 import java.time.LocalDateTime;

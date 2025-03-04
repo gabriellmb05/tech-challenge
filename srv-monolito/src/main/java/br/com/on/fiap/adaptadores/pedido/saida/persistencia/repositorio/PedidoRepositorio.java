@@ -1,6 +1,6 @@
 package br.com.on.fiap.adaptadores.pedido.saida.persistencia.repositorio;
 
-import br.com.on.fiap.entidades.PedidoEntidade;
+import br.com.on.fiap.entidade.PedidoEntidade;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

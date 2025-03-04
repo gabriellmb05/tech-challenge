@@ -1,7 +1,7 @@
 package br.com.on.fiap.hexagono.casodeuso.produto;
 
+import br.com.on.fiap.hexagono.adaptadores.gateways.ProdutoGateway;
 import br.com.on.fiap.hexagono.casodeuso.produto.entrada.ValidaProdutosDoPedidoCasoDeUso;
-import br.com.on.fiap.hexagono.casodeuso.produto.saida.PersisteProdutoPortaSaida;
 import br.com.on.fiap.hexagono.entidades.Pedido;
 import br.com.on.fiap.hexagono.entidades.Produto;
 import br.com.on.fiap.hexagono.entidades.RelPedidoProduto;
@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 
 public class ValidaProdutosDoPedidoCasoDeUsoImpl implements ValidaProdutosDoPedidoCasoDeUso {
 
-    private final PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+    private final ProdutoGateway produtoGateway;
 
-    public ValidaProdutosDoPedidoCasoDeUsoImpl(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
-        this.persisteProdutoPortaSaida = persisteProdutoPortaSaida;
+    public ValidaProdutosDoPedidoCasoDeUsoImpl(ProdutoGateway produtoGateway) {
+        this.produtoGateway = produtoGateway;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ValidaProdutosDoPedidoCasoDeUsoImpl implements ValidaProdutosDoPedi
     }
 
     private List<Produto> buscarProdutosExistentes(List<Long> idsProdutos) {
-        return persisteProdutoPortaSaida.buscaProdutoPorIdsLista(idsProdutos);
+        return produtoGateway.buscaProdutoPorIdsLista(idsProdutos);
     }
 
     private List<Produto> validarSeTodosProdutosExistem(List<Long> idsProdutos, List<Produto> produtosExistentes) {

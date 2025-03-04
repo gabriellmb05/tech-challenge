@@ -1,47 +1,47 @@
 package br.com.on.fiap.configuracao;
 
+import br.com.on.fiap.hexagono.adaptadores.gateways.ProdutoGateway;
 import br.com.on.fiap.hexagono.casodeuso.produto.*;
 import br.com.on.fiap.hexagono.casodeuso.produto.entrada.*;
-import br.com.on.fiap.hexagono.casodeuso.produto.saida.PersisteProdutoPortaSaida;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ProdutoBeanConfiguracao {
 
-    private final PersisteProdutoPortaSaida persisteProdutoPortaSaida;
+    private final ProdutoGateway produtoGateway;
 
-    public ProdutoBeanConfiguracao(PersisteProdutoPortaSaida persisteProdutoPortaSaida) {
-        this.persisteProdutoPortaSaida = persisteProdutoPortaSaida;
+    public ProdutoBeanConfiguracao(ProdutoGateway produtoGateway) {
+        this.produtoGateway = produtoGateway;
     }
 
     @Bean
     public BuscaProdutoPorIdCasoDeUso buscaProduto() {
-        return new BuscaProdutoCasoDeUsoImpl(persisteProdutoPortaSaida);
+        return new BuscaProdutoCasoDeUsoImpl(produtoGateway);
     }
 
     @Bean
     public InsereProdutoCasoDeUso insereProduto() {
-        return new InsereProdutoCasoDeUsoImpl(persisteProdutoPortaSaida);
+        return new InsereProdutoCasoDeUsoImpl(produtoGateway);
     }
 
     @Bean
     public AlteraProdutoCasoDeUso alteraProduto() {
-        return new AlteraProdutoCasoDeUsoImpl(persisteProdutoPortaSaida);
+        return new AlteraProdutoCasoDeUsoImpl(produtoGateway);
     }
 
     @Bean
     public DeletaProdutoCasoDeUso deletaProduto() {
-        return new DeletaProdutoCasoDeUsoImpl(persisteProdutoPortaSaida);
+        return new DeletaProdutoCasoDeUsoImpl(produtoGateway);
     }
 
     @Bean
     public BuscaProdutosCasoDeUso listarProduto() {
-        return new BuscaProdutosCasoDeUsoImpl(persisteProdutoPortaSaida);
+        return new BuscaProdutosCasoDeUsoImpl(produtoGateway);
     }
 
     @Bean
     public ValidaProdutosDoPedidoCasoDeUso validaProdutosCasoDeUso() {
-        return new ValidaProdutosDoPedidoCasoDeUsoImpl(persisteProdutoPortaSaida);
+        return new ValidaProdutosDoPedidoCasoDeUsoImpl(produtoGateway);
     }
 }

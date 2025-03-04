@@ -1,4 +1,4 @@
-package br.com.on.fiap.hexagono.casodeuso.produto.saida;
+package br.com.on.fiap.hexagono.adaptadores.gateways;
 
 import br.com.on.fiap.hexagono.entidades.Produto;
 import br.com.on.fiap.hexagono.entidades.ProdutoFiltro;
@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface PersisteProdutoPortaSaida {
+public interface ProdutoGateway {
 
     Optional<Produto> buscaProdutoPorId(Long id);
 

@@ -1,7 +1,7 @@
-package br.com.on.fiap.entidades;
+package br.com.on.fiap.entidade;
 
-import br.com.on.fiap.entidades.conversor.SituacaoPagamentoConversor;
-import br.com.on.fiap.entidades.conversor.TipoPagamentoConversor;
+import br.com.on.fiap.entidade.conversor.SituacaoPagamentoConversor;
+import br.com.on.fiap.entidade.conversor.TipoPagamentoConversor;
 import br.com.on.fiap.hexagono.entidades.SituacaoPagamento;
 import br.com.on.fiap.hexagono.entidades.TipoPagamento;
 import jakarta.persistence.Column;

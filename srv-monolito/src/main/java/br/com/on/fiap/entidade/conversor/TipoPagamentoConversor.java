@@ -1,4 +1,4 @@
-package br.com.on.fiap.entidades.conversor;
+package br.com.on.fiap.entidade.conversor;
 
 import br.com.on.fiap.hexagono.entidades.TipoPagamento;
 import jakarta.persistence.AttributeConverter;

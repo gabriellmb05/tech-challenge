@@ -1,11 +1,9 @@
 package br.com.on.fiap.hexagono.casodeuso.pedido;
 
 import br.com.on.fiap.hexagono.adaptadores.gateways.ClienteGateway;
+import br.com.on.fiap.hexagono.adaptadores.gateways.PedidoGateway;
 import br.com.on.fiap.hexagono.casodeuso.pagamento.saida.PersistePagamentoPortaSaida;
 import br.com.on.fiap.hexagono.casodeuso.pedido.entrada.InserePedidoCasoDeUso;
-import br.com.on.fiap.hexagono.casodeuso.pedido.saida.PersistePedidoPagamentoPortaSaida;
-import br.com.on.fiap.hexagono.casodeuso.pedido.saida.PersistePedidoPortaSaida;
-import br.com.on.fiap.hexagono.casodeuso.pedido.saida.PersistePedidoProdutoPortaSaida;
 import br.com.on.fiap.hexagono.entidades.Cliente;
 import br.com.on.fiap.hexagono.entidades.Pagamento;
 import br.com.on.fiap.hexagono.entidades.Pedido;
@@ -19,22 +17,16 @@ import java.util.concurrent.atomic.AtomicReference;
 public class InserePedidoCasoDeUsoImpl implements InserePedidoCasoDeUso {
 
     private final ClienteGateway clienteGateway;
-    private final PersistePedidoPortaSaida persistePedidoPortaSaida;
-    private final PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida;
+    private final PedidoGateway pedidoGateway;
     private final PersistePagamentoPortaSaida persistePagamentoPortaSaida;
-    private final PersistePedidoPagamentoPortaSaida persistePedidoPagamentoPortaSaida;
 
     public InserePedidoCasoDeUsoImpl(
             ClienteGateway clienteGateway,
-            PersistePedidoPortaSaida persistePedidoPortaSaida,
-            PersistePedidoProdutoPortaSaida persistePedidoProdutoPortaSaida,
-            PersistePagamentoPortaSaida persistePagamentoPortaSaida,
-            PersistePedidoPagamentoPortaSaida persistePedidoPagamentoPortaSaida) {
+            PedidoGateway pedidoGateway,
+            PersistePagamentoPortaSaida persistePagamentoPortaSaida) {
         this.clienteGateway = clienteGateway;
-        this.persistePedidoPortaSaida = persistePedidoPortaSaida;
-        this.persistePedidoProdutoPortaSaida = persistePedidoProdutoPortaSaida;
+        this.pedidoGateway = pedidoGateway;
         this.persistePagamentoPortaSaida = persistePagamentoPortaSaida;
-        this.persistePedidoPagamentoPortaSaida = persistePedidoPagamentoPortaSaida;
     }
 
     @Override
@@ -56,20 +48,20 @@ public class InserePedidoCasoDeUsoImpl implements InserePedidoCasoDeUso {
     }
 
     private Pedido salvarPedido(Pedido pedido) {
-        return persistePedidoPortaSaida.salvaPedido(pedido);
+        return pedidoGateway.salvaPedido(pedido);
     }
 
     private void vincularProdutosAoPedido(Pedido pedidoSalvo, List<RelPedidoProduto> pedidoProdutos) {
         pedidoProdutos.forEach(relPedidoProduto -> relPedidoProduto.setPedido(pedidoSalvo));
         pedidoSalvo.setRelPedidoProdutos(pedidoProdutos);
-        persistePedidoProdutoPortaSaida.vincularPedido(pedidoSalvo.getRelPedidoProdutos());
+        pedidoGateway.vincularPedido(pedidoSalvo.getRelPedidoProdutos());
     }
 
     private void vincularPedidoAoPagamento(Pedido pedidoSalvo, Pagamento pagamento) {
         pagamento.setVlCompra(definirValorPedido(pedidoSalvo));
         Pagamento pagamentoSalvo = persistePagamentoPortaSaida.salvaPagamento(pagamento);
         pedidoSalvo.setPagamento(pagamentoSalvo);
-        persistePedidoPagamentoPortaSaida.salvaPedidoPagamento(pedidoSalvo);
+        pedidoGateway.salvaPedidoPagamento(pedidoSalvo);
     }
 
     private BigDecimal definirValorPedido(Pedido pedidoSalvo) {

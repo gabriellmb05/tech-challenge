@@ -1,6 +1,6 @@
 package br.com.on.fiap.adaptadores.produto.saida.persistencia.repositorio;
 
-import br.com.on.fiap.entidades.ProdutoEntidade;
+import br.com.on.fiap.entidade.ProdutoEntidade;
 import br.com.on.fiap.hexagono.entidades.ProdutoFiltro;
 import java.util.List;
 import java.util.Optional;

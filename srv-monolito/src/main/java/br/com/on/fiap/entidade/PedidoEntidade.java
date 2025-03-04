@@ -1,6 +1,6 @@
-package br.com.on.fiap.entidades;
+package br.com.on.fiap.entidade;
 
-import br.com.on.fiap.entidades.conversor.SituacaoPedidoConversor;
+import br.com.on.fiap.entidade.conversor.SituacaoPedidoConversor;
 import br.com.on.fiap.hexagono.entidades.SituacaoPedido;
 import jakarta.persistence.*;
 import java.security.SecureRandom;

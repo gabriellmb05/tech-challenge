@@ -1,4 +1,4 @@
-package br.com.on.fiap.entidades;
+package br.com.on.fiap.entidade;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;

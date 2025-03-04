@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.hexagono.casodeuso.pedido.saida.BuscaPedidosPortaSaida;
 import br.com.on.fiap.hexagono.datapool.DataPoolPedido;
 import br.com.on.fiap.hexagono.datapool.DataPoolPedidoFiltro;
 import br.com.on.fiap.hexagono.entidades.Pedido;

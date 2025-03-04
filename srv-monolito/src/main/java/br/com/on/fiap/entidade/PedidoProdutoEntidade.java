@@ -1,6 +1,6 @@
-package br.com.on.fiap.entidades;
+package br.com.on.fiap.entidade;
 
-import br.com.on.fiap.entidades.relacionamento.RelPedId;
+import br.com.on.fiap.entidade.relacionamento.RelPedId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

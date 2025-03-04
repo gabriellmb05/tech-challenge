@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 import br.com.on.fiap.adaptadores.produto.saida.persistencia.PersistenciaProdutoAdaptador;
 import br.com.on.fiap.adaptadores.produto.saida.persistencia.mapeador.ProdutoSaidaMapeador;
 import br.com.on.fiap.adaptadores.produto.saida.persistencia.repositorio.ProdutoRepositorio;
-import br.com.on.fiap.entidades.ProdutoEntidade;
+import br.com.on.fiap.entidade.ProdutoEntidade;
 import br.com.on.fiap.hexagono.entidades.Produto;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;

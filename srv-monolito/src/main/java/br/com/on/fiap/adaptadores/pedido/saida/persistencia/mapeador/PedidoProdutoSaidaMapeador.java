@@ -2,8 +2,8 @@ package br.com.on.fiap.adaptadores.pedido.saida.persistencia.mapeador;
 
 import br.com.on.fiap.adaptadores.cliente.saida.persistencia.mapeador.ClienteSaidaMapeador;
 import br.com.on.fiap.adaptadores.produto.saida.persistencia.mapeador.ProdutoSaidaMapeador;
-import br.com.on.fiap.entidades.PedidoEntidade;
-import br.com.on.fiap.entidades.PedidoProdutoEntidade;
+import br.com.on.fiap.entidade.PedidoEntidade;
+import br.com.on.fiap.entidade.PedidoProdutoEntidade;
 import br.com.on.fiap.hexagono.entidades.Pedido;
 import br.com.on.fiap.hexagono.entidades.RelPedidoProduto;
 import java.util.List;

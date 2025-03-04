@@ -1,6 +1,6 @@
-package br.com.on.fiap.entidades;
+package br.com.on.fiap.entidade;
 
-import br.com.on.fiap.entidades.conversor.TipoCategoriaConversor;
+import br.com.on.fiap.entidade.conversor.TipoCategoriaConversor;
 import br.com.on.fiap.hexagono.entidades.Categoria;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
