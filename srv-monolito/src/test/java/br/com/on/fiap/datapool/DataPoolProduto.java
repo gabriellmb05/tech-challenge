@@ -2,7 +2,6 @@ package br.com.on.fiap.datapool;
 
 import br.com.on.fiap.core.domain.entity.Categoria;
 import br.com.on.fiap.core.domain.entity.Produto;
-
 import java.math.BigDecimal;
 import java.util.List;
 

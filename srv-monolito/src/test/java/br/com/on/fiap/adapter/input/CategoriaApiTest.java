@@ -3,12 +3,11 @@ package br.com.on.fiap.adapter.input;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
-import java.util.List;
-
 import br.com.on.fiap.core.adapter.controller.impl.CategoriaControllerImpl;
 import br.com.on.fiap.core.application.dto.CategoriaRespostaDTO;
 import br.com.on.fiap.core.domain.entity.Categoria;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

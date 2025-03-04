@@ -5,7 +5,6 @@ import br.com.on.fiap.adapter.input.dto.response.PedidoDetalhadoRespostaDTO;
 import br.com.on.fiap.adapter.input.dto.response.ProdutoRespostaDTO;
 import br.com.on.fiap.core.application.dto.ClienteRespostaDTO;
 import br.com.on.fiap.core.domain.entity.SituacaoPedido;
-
 import java.util.List;
 
 public class DataPoolPedidoDetalheRespostaDTO {

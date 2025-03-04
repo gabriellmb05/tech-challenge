@@ -3,7 +3,6 @@ package br.com.on.fiap.datapool;
 import br.com.on.fiap.core.domain.entity.Pagamento;
 import br.com.on.fiap.core.domain.entity.SituacaoPagamento;
 import br.com.on.fiap.core.domain.entity.TipoPagamento;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
