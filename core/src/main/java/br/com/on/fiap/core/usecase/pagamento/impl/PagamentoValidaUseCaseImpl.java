@@ -1,10 +1,10 @@
 package br.com.on.fiap.core.usecase.pagamento.impl;
 
-import br.com.on.fiap.core.usecase.pagamento.PagamentoValidaUseCase;
 import br.com.on.fiap.core.domain.entity.Pagamento;
 import br.com.on.fiap.core.domain.entity.SituacaoPagamento;
 import br.com.on.fiap.core.domain.exception.PagamentoJaRealizadoExcecao;
 import br.com.on.fiap.core.domain.exception.message.MessageError;
+import br.com.on.fiap.core.usecase.pagamento.PagamentoValidaUseCase;
 import java.util.Objects;
 
 public class PagamentoValidaUseCaseImpl implements PagamentoValidaUseCase {

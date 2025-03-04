@@ -1,10 +1,10 @@
 package br.com.on.fiap.core.usecase.pedido.impl;
 
 import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
-import br.com.on.fiap.core.usecase.pedido.PedidoAtualizaUseCase;
 import br.com.on.fiap.core.domain.entity.Pedido;
 import br.com.on.fiap.core.domain.exception.PedidoNaoEncontradoExcecao;
 import br.com.on.fiap.core.domain.exception.message.MessageError;
+import br.com.on.fiap.core.usecase.pedido.PedidoAtualizaUseCase;
 
 public class PedidoAtualizaUseCaseImpl implements PedidoAtualizaUseCase {
 

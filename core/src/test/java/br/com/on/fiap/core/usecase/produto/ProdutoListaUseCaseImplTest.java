@@ -5,12 +5,12 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
-import br.com.on.fiap.core.usecase.produto.impl.ProdutoListaUseCaseImpl;
 import br.com.on.fiap.core.datapool.DataPoolProduto;
 import br.com.on.fiap.core.datapool.DataPoolProdutoFiltro;
 import br.com.on.fiap.core.domain.entity.Categoria;
 import br.com.on.fiap.core.domain.entity.Produto;
 import br.com.on.fiap.core.domain.entity.ProdutoFiltro;
+import br.com.on.fiap.core.usecase.produto.impl.ProdutoListaUseCaseImpl;
 import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
