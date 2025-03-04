@@ -1,6 +1,7 @@
 package br.com.on.fiap.core.application.usecase.produto.impl;
 
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
+import br.com.on.fiap.core.application.dto.ProdutoEntradaDTO;
 import br.com.on.fiap.core.application.usecase.produto.ProdutoAlteraUseCase;
 import br.com.on.fiap.core.domain.entity.Produto;
 import br.com.on.fiap.core.domain.exception.ProdutoNaoEncontradoExcecao;
@@ -15,12 +16,12 @@ public class ProdutoAlteraUseCaseImpl implements ProdutoAlteraUseCase {
     }
 
     @Override
-    public Produto alterar(Long id, Produto produto) {
+    public Produto alterar(Long id, ProdutoEntradaDTO produtoEntradaDTO) {
         Produto produtoEncontrado = produtoGateway
                 .buscaProdutoPorId(id)
                 .orElseThrow(() -> new ProdutoNaoEncontradoExcecao(
                         MessageError.MSG_ERRO_PRODUTO_NAO_CADASTRADO.getMensagem(), id));
-        produtoEncontrado.atualizarDados(produto);
+        produtoEncontrado.atualizarDados(produtoEntradaDTO);
         return produtoGateway.salvaProduto(produtoEncontrado);
     }
 }

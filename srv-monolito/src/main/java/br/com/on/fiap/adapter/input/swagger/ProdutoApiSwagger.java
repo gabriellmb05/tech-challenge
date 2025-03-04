@@ -2,13 +2,13 @@ package br.com.on.fiap.adapter.input.swagger;
 
 import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroDTO;
 import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoDTO;
-import br.com.on.fiap.adapter.input.dto.response.ProdutoRespostaDTO;
+import br.com.on.fiap.core.application.dto.Pagina;
+import br.com.on.fiap.core.application.dto.ProdutoRespostaDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PagedModel;
 import org.springframework.http.ResponseEntity;
 
 @Tag(name = "Produto", description = "APIs relacionadas a produtos")
@@ -30,7 +30,7 @@ public interface ProdutoApiSwagger {
                 @ApiResponse(responseCode = "200", description = "Produtos encontrados"),
                 @ApiResponse(responseCode = "404", description = "Produtos não encontrados")
             })
-    ResponseEntity<PagedModel<ProdutoRespostaDTO>> listarProdutosComFiltro(ProdutoFiltroDTO filtro, Pageable pageable);
+    ResponseEntity<Pagina<ProdutoRespostaDTO>> listarProdutosComFiltro(ProdutoFiltroDTO filtro, Pageable pageable);
 
     @Operation(summary = "Insere um novo produto", description = "Insere um novo produto no sistema")
     @ApiResponses(

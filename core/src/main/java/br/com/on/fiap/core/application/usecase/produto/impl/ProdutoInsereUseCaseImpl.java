@@ -1,6 +1,7 @@
 package br.com.on.fiap.core.application.usecase.produto.impl;
 
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
+import br.com.on.fiap.core.application.dto.ProdutoEntradaDTO;
 import br.com.on.fiap.core.application.usecase.produto.ProdutoInsereUseCase;
 import br.com.on.fiap.core.domain.entity.Produto;
 import br.com.on.fiap.core.domain.exception.ProdutoExistenteExcecao;
@@ -16,12 +17,14 @@ public class ProdutoInsereUseCaseImpl implements ProdutoInsereUseCase {
     }
 
     @Override
-    public Produto inserir(Produto produto) {
-        Optional<Produto> produtoBancoDados = produtoGateway.buscaProdutoPorNome(produto.getNome());
+    public Produto inserir(ProdutoEntradaDTO produtoEntradaDTO) {
+        Optional<Produto> produtoBancoDados = produtoGateway.buscaProdutoPorNome(produtoEntradaDTO.getNome());
         produtoBancoDados.ifPresent(p -> {
             throw new ProdutoExistenteExcecao(
-                    MessageError.MSG_ERRO_PRODUTO_JA_CADASTRADO.getMensagem(), produto.getNome());
+                    MessageError.MSG_ERRO_PRODUTO_JA_CADASTRADO.getMensagem(), produtoEntradaDTO.getNome());
         });
+        Produto produto = new Produto();
+        produto.atualizarDados(produtoEntradaDTO);
         return produtoGateway.salvaProduto(produto);
     }
 }

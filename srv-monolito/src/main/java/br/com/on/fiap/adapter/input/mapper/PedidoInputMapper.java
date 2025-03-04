@@ -4,7 +4,7 @@ import br.com.on.fiap.adapter.input.dto.request.PedidoQuantidadeSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.dto.request.PedidoSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.dto.response.PedidoDetalhadoRespostaDTO;
 import br.com.on.fiap.adapter.input.dto.response.PedidoRespostaDTO;
-import br.com.on.fiap.adapter.input.dto.response.ProdutoRespostaDTO;
+import br.com.on.fiap.core.application.dto.ProdutoRespostaDTO;
 import br.com.on.fiap.core.domain.entity.Pedido;
 import br.com.on.fiap.core.domain.entity.Produto;
 import br.com.on.fiap.core.domain.entity.RelPedidoProduto;

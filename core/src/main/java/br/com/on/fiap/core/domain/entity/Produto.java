@@ -1,5 +1,6 @@
 package br.com.on.fiap.core.domain.entity;
 
+import br.com.on.fiap.core.application.dto.ProdutoEntradaDTO;
 import java.math.BigDecimal;
 
 public class Produto {
@@ -53,9 +54,9 @@ public class Produto {
         this.preco = preco;
     }
 
-    public void atualizarDados(Produto produto) {
-        this.nome = produto.getNome();
-        this.categoria = produto.getCategoria();
-        this.preco = produto.getPreco();
+    public void atualizarDados(ProdutoEntradaDTO produtoEntradaDTO) {
+        this.nome = produtoEntradaDTO.getNome();
+        this.categoria = Categoria.deString(produtoEntradaDTO.getCategoria());
+        this.preco = produtoEntradaDTO.getPreco();
     }
 }

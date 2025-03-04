@@ -1,11 +1,11 @@
 package br.com.on.fiap.core.application.usecase.produto.impl;
 
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
+import br.com.on.fiap.core.application.dto.Pagina;
+import br.com.on.fiap.core.application.dto.Paginacao;
+import br.com.on.fiap.core.application.dto.ProdutoFiltro;
 import br.com.on.fiap.core.application.usecase.produto.ProdutoListaUseCase;
 import br.com.on.fiap.core.domain.entity.Produto;
-import br.com.on.fiap.core.domain.entity.ProdutoFiltro;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 public class ProdutoListaUseCaseImpl implements ProdutoListaUseCase {
 
@@ -16,7 +16,7 @@ public class ProdutoListaUseCaseImpl implements ProdutoListaUseCase {
     }
 
     @Override
-    public Page<Produto> listarComFiltro(ProdutoFiltro filtro, Pageable pageable) {
-        return this.produtoGateway.listarComFiltros(filtro, pageable);
+    public Pagina<Produto> listarComFiltro(ProdutoFiltro filtro, Paginacao paginacao) {
+        return this.produtoGateway.listarComFiltros(filtro, paginacao);
     }
 }

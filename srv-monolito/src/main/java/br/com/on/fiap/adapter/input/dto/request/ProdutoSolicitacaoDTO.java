@@ -1,5 +1,6 @@
 package br.com.on.fiap.adapter.input.dto.request;
 
+import br.com.on.fiap.core.application.dto.ProdutoEntradaDTO;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdutoSolicitacaoDTO {
+public class ProdutoSolicitacaoDTO implements ProdutoEntradaDTO {
 
     @NotNull(message = "O atributo nome é obrigatório") private String nome;
 

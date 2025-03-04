@@ -2,12 +2,12 @@ package br.com.on.fiap.core.adapter.gateway.impl;
 
 import br.com.on.fiap.core.adapter.datasource.ProdutoDataSource;
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
+import br.com.on.fiap.core.application.dto.Pagina;
+import br.com.on.fiap.core.application.dto.Paginacao;
+import br.com.on.fiap.core.application.dto.ProdutoFiltro;
 import br.com.on.fiap.core.domain.entity.Produto;
-import br.com.on.fiap.core.domain.entity.ProdutoFiltro;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 public class ProdutoGatewayImpl implements ProdutoGateway {
 
@@ -43,7 +43,7 @@ public class ProdutoGatewayImpl implements ProdutoGateway {
     }
 
     @Override
-    public Page<Produto> listarComFiltros(ProdutoFiltro filtro, Pageable page) {
-        return produtoDataSource.listarComFiltros(filtro, page);
+    public Pagina<Produto> listarComFiltros(ProdutoFiltro filtro, Paginacao paginacao) {
+        return produtoDataSource.listarComFiltros(filtro, paginacao);
     }
 }

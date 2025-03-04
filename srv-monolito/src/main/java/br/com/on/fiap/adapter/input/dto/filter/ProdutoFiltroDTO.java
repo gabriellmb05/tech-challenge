@@ -1,5 +1,7 @@
 package br.com.on.fiap.adapter.input.dto.filter;
 
+import br.com.on.fiap.core.application.dto.ProdutoFiltro;
+import br.com.on.fiap.core.domain.entity.Categoria;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdutoFiltroDTO {
+public class ProdutoFiltroDTO implements ProdutoFiltro {
 
-    private String categoria;
+    private Categoria categoria;
     private String nome;
 }

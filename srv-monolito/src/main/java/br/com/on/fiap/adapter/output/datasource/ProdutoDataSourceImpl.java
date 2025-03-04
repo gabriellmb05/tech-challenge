@@ -4,12 +4,16 @@ import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
 import br.com.on.fiap.adapter.output.persistence.mapper.ProdutoSaidaMapeador;
 import br.com.on.fiap.adapter.output.persistence.repository.ProdutoRepository;
 import br.com.on.fiap.core.adapter.datasource.ProdutoDataSource;
+import br.com.on.fiap.core.application.dto.Pagina;
+import br.com.on.fiap.core.application.dto.Paginacao;
+import br.com.on.fiap.core.application.dto.ProdutoFiltro;
 import br.com.on.fiap.core.domain.entity.Produto;
-import br.com.on.fiap.core.domain.entity.ProdutoFiltro;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -51,7 +55,22 @@ public class ProdutoDataSourceImpl implements ProdutoDataSource {
     }
 
     @Override
-    public Page<Produto> listarComFiltros(ProdutoFiltro filtro, Pageable page) {
-        return produtoRepository.buscarComFiltro(filtro, page).map(produtoSaidaMapeador::paraProduto);
+    public Pagina<Produto> listarComFiltros(ProdutoFiltro filtro, Paginacao paginacao) {
+        PageRequest page = PageRequest.of(paginacao.getPagina(), paginacao.getTamanhoPagina());
+        if (Objects.nonNull(paginacao.getOrdenacao())) {
+            Sort.Direction direcao =
+                    Sort.Direction.valueOf(paginacao.getOrdenacao().getDirecao().name());
+            Sort sort = Sort.by(direcao, paginacao.getOrdenacao().getCampo());
+            page.withSort(sort);
+        }
+
+        Page<Produto> produto = produtoRepository.buscarComFiltro(filtro, page).map(produtoSaidaMapeador::paraProduto);
+
+        return new Pagina<>(
+                produto.getContent(),
+                produto.getTotalElements(),
+                produto.getTotalPages(),
+                produto.getSize(),
+                produto.getNumber());
     }
 }
