@@ -1,6 +1,6 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.adaptadores.pagamento.entrada.dto.solicitacao.PagamentoSolicitacaoDTO;
+import br.com.on.fiap.adapter.input.dto.request.PagamentoSolicitacaoDTO;
 
 public class DataPoolPagamentoSolicitacaoDTO {
 

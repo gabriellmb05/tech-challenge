@@ -1,6 +1,6 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.adaptadores.produto.entrada.dto.filtro.ProdutoFiltroDTO;
+import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroDTO;
 
 public class DataPoolProdutoFiltroDTO {
 

@@ -1,6 +1,6 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.adaptadores.pagamento.entrada.dto.resposta.PagamentoRespostaDTO;
+import br.com.on.fiap.adapter.input.dto.response.PagamentoRespostaDTO;
 import br.com.on.fiap.hexagono.domain.entity.SituacaoPagamento;
 import br.com.on.fiap.hexagono.domain.entity.TipoPagamento;
 import java.math.BigDecimal;

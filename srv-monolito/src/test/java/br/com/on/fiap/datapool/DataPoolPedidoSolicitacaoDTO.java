@@ -1,6 +1,6 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.adaptadores.pedido.entrada.dto.solicitacao.PedidoSolicitacaoDTO;
+import br.com.on.fiap.adapter.input.dto.request.PedidoSolicitacaoDTO;
 import java.util.List;
 
 public class DataPoolPedidoSolicitacaoDTO {

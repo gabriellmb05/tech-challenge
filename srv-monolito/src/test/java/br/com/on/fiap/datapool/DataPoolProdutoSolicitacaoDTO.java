@@ -1,6 +1,6 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.adaptadores.produto.entrada.dto.solicitacao.ProdutoSolicitacaoDTO;
+import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoDTO;
 import java.math.BigDecimal;
 import net.datafaker.Faker;
 
