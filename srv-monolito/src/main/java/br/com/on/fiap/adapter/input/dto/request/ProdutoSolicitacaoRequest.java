@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdutoSolicitacao implements ProdutoEntrada {
+public class ProdutoSolicitacaoRequest implements ProdutoEntrada {
 
     @NotNull(message = "O atributo nome é obrigatório") private String nome;
 

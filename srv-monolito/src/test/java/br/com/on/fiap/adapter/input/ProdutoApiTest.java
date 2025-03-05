@@ -5,7 +5,7 @@ import static org.mockito.Mockito.when;
 
 import br.com.on.datapool.*;
 import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroRequest;
-import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacao;
+import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoRequest;
 import br.com.on.fiap.adapter.input.dto.response.PaginaResponse;
 import br.com.on.fiap.adapter.input.dto.response.PaginacaoResponse;
 import br.com.on.fiap.core.adapter.controller.impl.ProdutoControllerImpl;
@@ -71,9 +71,9 @@ class ProdutoApiTest {
     @MethodSource("produtoDTOProvider")
     @DisplayName("Dado um produto novo, quando inserir o produto, então ele deve ser salvo")
     void dadoProdutoNovo_quandoInserirProduto_entaoDeveSerSalvo(
-            ProdutoResposta produtoResposta, ProdutoSolicitacao produtoSolicitacaoDTO) {
-        when(produtoController.insereProduto(produtoSolicitacaoDTO)).thenReturn(produtoResposta);
-        ResponseEntity<ProdutoResposta> response = produtoApi.insereProduto(produtoSolicitacaoDTO);
+            ProdutoResposta produtoResposta, ProdutoSolicitacaoRequest produtoSolicitacaoRequestDTO) {
+        when(produtoController.insereProduto(produtoSolicitacaoRequestDTO)).thenReturn(produtoResposta);
+        ResponseEntity<ProdutoResposta> response = produtoApi.insereProduto(produtoSolicitacaoRequestDTO);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(produtoResposta, response.getBody());
@@ -83,10 +83,10 @@ class ProdutoApiTest {
     @MethodSource("produtoDTOProvider")
     @DisplayName("Dado um produto existente, quando alterar o produto, então ele deve ser atualizado")
     void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado(
-            ProdutoResposta produtoRespotaDTO, ProdutoSolicitacao produtoSolicitacaoDTO) {
+            ProdutoResposta produtoRespotaDTO, ProdutoSolicitacaoRequest produtoSolicitacaoRequestDTO) {
         Long id = produtoRespotaDTO.getId();
-        when(produtoController.alteraProduto(id, produtoSolicitacaoDTO)).thenReturn(produtoRespotaDTO);
-        ResponseEntity<ProdutoResposta> response = produtoApi.alteraProduto(id, produtoSolicitacaoDTO);
+        when(produtoController.alteraProduto(id, produtoSolicitacaoRequestDTO)).thenReturn(produtoRespotaDTO);
+        ResponseEntity<ProdutoResposta> response = produtoApi.alteraProduto(id, produtoSolicitacaoRequestDTO);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(produtoRespotaDTO, response.getBody());

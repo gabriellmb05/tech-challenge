@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.input;
 
 import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroRequest;
-import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacao;
+import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoRequest;
 import br.com.on.fiap.adapter.input.dto.response.PaginacaoResponse;
 import br.com.on.fiap.adapter.input.swagger.ProdutoApiSwagger;
 import br.com.on.fiap.core.adapter.controller.ProdutoController;
@@ -41,16 +41,16 @@ public class ProdutoApi implements ProdutoApiSwagger {
 
     @Override
     @PostMapping
-    public ResponseEntity<ProdutoResposta> insereProduto(@Valid @RequestBody ProdutoSolicitacao produtoSolicitacaoDTO) {
-        ProdutoResposta produtoPersistido = produtoController.insereProduto(produtoSolicitacaoDTO);
+    public ResponseEntity<ProdutoResposta> insereProduto(@Valid @RequestBody ProdutoSolicitacaoRequest produtoSolicitacaoRequestDTO) {
+        ProdutoResposta produtoPersistido = produtoController.insereProduto(produtoSolicitacaoRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoPersistido);
     }
 
     @Override
     @PutMapping("/{id}")
     public ResponseEntity<ProdutoResposta> alteraProduto(
-            @PathVariable("id") Long id, @Valid @RequestBody ProdutoSolicitacao produtoSolicitacaoDTO) {
-        ProdutoResposta produtoAlterado = produtoController.alteraProduto(id, produtoSolicitacaoDTO);
+            @PathVariable("id") Long id, @Valid @RequestBody ProdutoSolicitacaoRequest produtoSolicitacaoRequestDTO) {
+        ProdutoResposta produtoAlterado = produtoController.alteraProduto(id, produtoSolicitacaoRequestDTO);
         return ResponseEntity.ok().body(produtoAlterado);
     }
 
