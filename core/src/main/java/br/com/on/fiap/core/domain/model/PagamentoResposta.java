@@ -5,17 +5,22 @@ import java.time.LocalDateTime;
 
 public interface PagamentoResposta {
 
-    Long getId() ;
+    Long getId();
+
     BigDecimal getVlCompra();
+
     SituacaoPagamento getStPagamento();
+
     TipoPagamento getTpPagamento();
+
     LocalDateTime getDhPagamento();
 
-    static PagamentoResposta create(Long id,
-                                    BigDecimal vlCompra,
-                                    SituacaoPagamento stPagamento,
-                                    TipoPagamento tpPagamento,
-                                    LocalDateTime dhPagamento) {
+    static PagamentoResposta create(
+            Long id,
+            BigDecimal vlCompra,
+            SituacaoPagamento stPagamento,
+            TipoPagamento tpPagamento,
+            LocalDateTime dhPagamento) {
         return new PagamentoResposta() {
             @Override
             public Long getId() {

@@ -2,7 +2,6 @@ package br.com.on.datapool;
 
 import br.com.on.fiap.adapter.input.dto.response.ProdutoResponse;
 import br.com.on.fiap.core.domain.model.ProdutoResposta;
-
 import java.math.BigDecimal;
 import java.util.List;
 

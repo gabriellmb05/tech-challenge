@@ -1,7 +1,6 @@
 package br.com.on.datapool;
 
 import br.com.on.fiap.adapter.input.dto.response.PedidoDetalhadoRespostaDTO;
-import br.com.on.fiap.adapter.input.dto.response.ProdutoResponse;
 import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
 import br.com.on.fiap.core.domain.model.PagamentoResposta;
 import br.com.on.fiap.core.domain.model.ProdutoResposta;
