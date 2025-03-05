@@ -17,32 +17,7 @@ public class ProdutoPresenterImpl implements ProdutoPresenter {
     public Pagina<ProdutoResposta> formatar(Pagina<Produto> obj) {
         List<ProdutoResposta> conteudo =
                 obj.getConteudo().stream().map(this::formatar).toList();
-
-        return new Pagina<>() {
-            @Override
-            public List<ProdutoResposta> getConteudo() {
-                return conteudo;
-            }
-
-            @Override
-            public Long getTotalElementos() {
-                return obj.getTotalElementos();
-            }
-
-            @Override
-            public Integer getTotalPaginas() {
-                return obj.getTotalPaginas();
-            }
-
-            @Override
-            public Integer getTamanhoPagina() {
-                return obj.getTamanhoPagina();
-            }
-
-            @Override
-            public Integer getPaginaAtual() {
-                return obj.getPaginaAtual();
-            }
-        };
+        return Pagina.create(
+                conteudo, obj.getTotalElementos(), obj.getTotalPaginas(), obj.getTamanhoPagina(), obj.getPaginaAtual());
     }
 }

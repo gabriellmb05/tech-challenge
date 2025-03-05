@@ -13,4 +13,34 @@ public interface Pagina<T> {
     Integer getTamanhoPagina();
 
     Integer getPaginaAtual();
+
+    static <T> Pagina<T> create(
+            List<T> conteudo, Long totalElementos, Integer totalPaginas, Integer tamanhoPagina, Integer paginaAtual) {
+        return new Pagina<>() {
+            @Override
+            public List<T> getConteudo() {
+                return conteudo;
+            }
+
+            @Override
+            public Long getTotalElementos() {
+                return totalElementos;
+            }
+
+            @Override
+            public Integer getTotalPaginas() {
+                return totalPaginas;
+            }
+
+            @Override
+            public Integer getTamanhoPagina() {
+                return tamanhoPagina;
+            }
+
+            @Override
+            public Integer getPaginaAtual() {
+                return paginaAtual;
+            }
+        };
+    }
 }

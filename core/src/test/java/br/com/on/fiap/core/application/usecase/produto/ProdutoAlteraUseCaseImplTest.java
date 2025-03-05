@@ -6,8 +6,10 @@ import static org.mockito.Mockito.*;
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
 import br.com.on.fiap.core.domain.exception.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.core.domain.model.Produto;
+import br.com.on.fiap.core.domain.model.ProdutoEntrada;
 import br.com.on.fiap.core.usecase.produto.impl.ProdutoAlteraUseCaseImpl;
 import br.com.on.fiap.datapool.DataPoolProduto;
+import br.com.on.fiap.datapool.DataPoolProdutoEntrada;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,6 +32,7 @@ class ProdutoAlteraUseCaseImplTest {
     void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado() {
         Long id = 1L;
         Produto produto = DataPoolProduto.produtoExistente(id);
+        ProdutoEntrada produtoEntrada = DataPoolProdutoEntrada.produtoExistente(id);
 
         Produto produtoAlterado = DataPoolProduto.produtoExistente(id);
         produtoAlterado.setNome("Produto Alterado");
@@ -37,7 +40,7 @@ class ProdutoAlteraUseCaseImplTest {
         when(produtoGateway.buscaProdutoPorId(id)).thenReturn(Optional.of(produto));
         when(produtoGateway.salvaProduto(produto)).thenReturn(produtoAlterado);
 
-        Produto resultado = produtoAlteraUseCase.alterar(id, produto);
+        Produto resultado = produtoAlteraUseCase.alterar(id, produtoEntrada);
 
         assertAll(
                 () -> assertEquals(id, resultado.getId()), () -> assertEquals("Produto Alterado", resultado.getNome()));
@@ -50,10 +53,11 @@ class ProdutoAlteraUseCaseImplTest {
     void dadoProdutoNaoExistente_quandoAlterarProduto_entaoDeveLancarExcecao() {
         Long id = 1L;
         Produto produto = DataPoolProduto.produtoExistente(id);
+        ProdutoEntrada produtoEntrada = DataPoolProdutoEntrada.produtoExistente(id);
 
         when(produtoGateway.buscaProdutoPorId(id)).thenReturn(Optional.empty());
 
-        assertThrows(ProdutoNaoEncontradoExcecao.class, () -> produtoAlteraUseCase.alterar(id, produto));
+        assertThrows(ProdutoNaoEncontradoExcecao.class, () -> produtoAlteraUseCase.alterar(id, produtoEntrada));
 
         verify(produtoGateway).buscaProdutoPorId(id);
         verify(produtoGateway, never()).salvaProduto(produto);
