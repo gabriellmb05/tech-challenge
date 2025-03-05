@@ -7,11 +7,11 @@ import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.controller.impl.ClienteControllerImpl;
 import br.com.on.fiap.core.adapter.presenter.ClientePresenter;
+import br.com.on.fiap.core.domain.model.Cliente;
 import br.com.on.fiap.core.domain.model.ClienteEntradaDTO;
 import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
 import br.com.on.fiap.core.usecase.cliente.ClienteBuscaPorCpfUseCase;
 import br.com.on.fiap.core.usecase.cliente.ClienteInsereUseCase;
-import br.com.on.fiap.core.domain.model.Cliente;
 import br.com.on.fiap.datapool.DataPoolCliente;
 import br.com.on.fiap.datapool.DataPoolClienteEntradaDTO;
 import br.com.on.fiap.datapool.DataPoolClienteRespostaDTO;

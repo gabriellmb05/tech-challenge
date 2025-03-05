@@ -1,10 +1,11 @@
 package br.com.on.datapool;
 
-import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroDTO;
+import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroRequest;
+import br.com.on.fiap.core.domain.model.Categoria;
 
 public class DataPoolProdutoFiltroDTO {
 
-    public static ProdutoFiltroDTO gerarProdutoXBurguer() {
-        return new ProdutoFiltroDTO("x-burguer", "LANCHE");
+    public static ProdutoFiltroRequest gerarProdutoXBurguer() {
+        return new ProdutoFiltroRequest(Categoria.ACOMPANHAMENTO, "LANCHE");
     }
 }

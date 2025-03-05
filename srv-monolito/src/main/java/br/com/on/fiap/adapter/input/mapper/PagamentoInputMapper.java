@@ -1,8 +1,8 @@
 package br.com.on.fiap.adapter.input.mapper;
 
 import br.com.on.fiap.adapter.input.dto.request.PagamentoSolicitacaoDTO;
-import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
 import br.com.on.fiap.core.domain.model.Pagamento;
+import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
 import br.com.on.fiap.core.domain.model.TipoPagamento;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,7 +15,7 @@ public interface PagamentoInputMapper {
     PagamentoRespostaDTO paraPagamentoDTO(Pagamento pagamento);
 
     @Mapping(target = "tpPagamento", source = "tpPagamento", qualifiedByName = "definirTpPagamento")
-    @Mapping(target = "stPagamento", expression = "java(br.com.on.fiap.core.domain.entity.SituacaoPagamento.PENDENTE)")
+    @Mapping(target = "stPagamento", expression = "java(br.com.on.fiap.core.domain.model.SituacaoPagamento.PENDENTE)")
     Pagamento paraPagamento(PagamentoSolicitacaoDTO pagamentoSolicitacaoDTO);
 
     default Pagamento map(Long id) {

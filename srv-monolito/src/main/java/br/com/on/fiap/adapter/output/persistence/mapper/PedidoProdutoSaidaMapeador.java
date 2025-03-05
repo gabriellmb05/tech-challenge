@@ -15,7 +15,7 @@ public interface PedidoProdutoSaidaMapeador {
 
     @Mapping(target = "relPedPro", ignore = true)
     @Mapping(target = "cliId", source = "cliente")
-    @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.core.domain.entity.SituacaoPedido.REALIZADO)")
+    @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.core.domain.model.SituacaoPedido.REALIZADO)")
     @Mapping(target = "dhPedido", expression = "java(java.time.LocalDateTime.now())")
     PedidoEntity paraEntidade(Pedido pedido);
 
@@ -39,7 +39,7 @@ public interface PedidoProdutoSaidaMapeador {
     @Mapping(target = "pedId", source = "id")
     @Mapping(target = "cliId", source = "cliente")
     @Mapping(target = "pagId", source = "pagamento")
-    @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.core.domain.entity.SituacaoPedido.REALIZADO)")
+    @Mapping(target = "stPedido", expression = "java(br.com.on.fiap.core.domain.model.SituacaoPedido.REALIZADO)")
     @Mapping(target = "nmProtocolo", source = "protocolo")
     @Mapping(target = "dhPedido", expression = "java(java.time.LocalDateTime.now())")
     @Mapping(target = "relPedPro", source = "relPedidoProdutos")

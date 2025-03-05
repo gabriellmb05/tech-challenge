@@ -5,9 +5,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.gateway.ClienteGateway;
-import br.com.on.fiap.core.usecase.cliente.impl.ClienteBuscaPorCpfUseCaseImpl;
-import br.com.on.fiap.core.domain.model.Cliente;
 import br.com.on.fiap.core.domain.exception.ClienteNaoEncontradoExcecao;
+import br.com.on.fiap.core.domain.model.Cliente;
+import br.com.on.fiap.core.usecase.cliente.impl.ClienteBuscaPorCpfUseCaseImpl;
 import br.com.on.fiap.datapool.DataPoolCliente;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;

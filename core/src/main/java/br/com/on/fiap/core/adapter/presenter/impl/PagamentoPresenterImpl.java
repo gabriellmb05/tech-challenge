@@ -1,8 +1,8 @@
 package br.com.on.fiap.core.adapter.presenter.impl;
 
 import br.com.on.fiap.core.adapter.presenter.PagamentoPresenter;
-import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
 import br.com.on.fiap.core.domain.model.Pagamento;
+import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
 
 public class PagamentoPresenterImpl implements PagamentoPresenter {
 

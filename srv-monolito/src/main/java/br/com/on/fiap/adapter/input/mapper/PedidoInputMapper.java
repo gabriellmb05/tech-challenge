@@ -4,7 +4,7 @@ import br.com.on.fiap.adapter.input.dto.request.PedidoQuantidadeSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.dto.request.PedidoSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.dto.response.PedidoDetalhadoRespostaDTO;
 import br.com.on.fiap.adapter.input.dto.response.PedidoRespostaDTO;
-import br.com.on.fiap.core.domain.model.ProdutoRespostaDTO;
+import br.com.on.fiap.adapter.input.dto.response.ProdutoResponse;
 import br.com.on.fiap.core.domain.model.Pedido;
 import br.com.on.fiap.core.domain.model.Produto;
 import br.com.on.fiap.core.domain.model.RelPedidoProduto;
@@ -42,7 +42,7 @@ public interface PedidoInputMapper {
         return produtos.stream().map(this::paraRelPedidoProduto).toList();
     }
 
-    default List<ProdutoRespostaDTO> mapearProdutos(List<RelPedidoProduto> relPedidoProdutos) {
+    default List<ProdutoResponse> mapearProdutos(List<RelPedidoProduto> relPedidoProdutos) {
         return relPedidoProdutos.stream()
                 .map(RelPedidoProduto::getProduto)
                 .map(ProdutoInputMapper.INSTANCE::paraProdutoDTO)

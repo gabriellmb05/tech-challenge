@@ -2,8 +2,8 @@ package br.com.on.fiap.core.adapter.gateway;
 
 import br.com.on.fiap.core.domain.model.Pagina;
 import br.com.on.fiap.core.domain.model.Paginacao;
-import br.com.on.fiap.core.domain.model.ProdutoFiltro;
 import br.com.on.fiap.core.domain.model.Produto;
+import br.com.on.fiap.core.domain.model.ProdutoFiltro;
 import java.util.List;
 import java.util.Optional;
 

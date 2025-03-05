@@ -5,9 +5,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
-import br.com.on.fiap.core.usecase.pedido.impl.PedidoDetalhaUseCaseImpl;
-import br.com.on.fiap.core.domain.model.Pedido;
 import br.com.on.fiap.core.domain.exception.PedidoNaoEncontradoExcecao;
+import br.com.on.fiap.core.domain.model.Pedido;
+import br.com.on.fiap.core.usecase.pedido.impl.PedidoDetalhaUseCaseImpl;
 import br.com.on.fiap.datapool.DataPoolPedido;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

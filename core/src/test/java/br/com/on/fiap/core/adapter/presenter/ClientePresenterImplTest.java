@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import br.com.on.fiap.core.adapter.presenter.impl.ClientePresenterImpl;
-import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
 import br.com.on.fiap.core.domain.model.Cliente;
+import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
 import br.com.on.fiap.datapool.DataPoolCliente;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

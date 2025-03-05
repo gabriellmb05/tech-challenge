@@ -7,7 +7,6 @@ import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
 import br.com.on.fiap.core.adapter.gateway.impl.ProdutoGatewayImpl;
 import br.com.on.fiap.core.adapter.presenter.ProdutoPresenter;
 import br.com.on.fiap.core.adapter.presenter.impl.ProdutoPresenterImpl;
-import br.com.on.fiap.core.application.usecase.produto.*;
 import br.com.on.fiap.core.usecase.produto.*;
 import br.com.on.fiap.core.usecase.produto.impl.*;
 import org.springframework.context.annotation.Bean;

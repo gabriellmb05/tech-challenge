@@ -2,62 +2,15 @@ package br.com.on.fiap.core.domain.model;
 
 import java.util.List;
 
-public class Pagina<T> {
+public interface Pagina<T> {
 
-    private List<T> conteudo;
-    private Long totalElementos;
-    private Integer totalPaginas;
-    private Integer tamanhoPagina;
-    private Integer paginaAtual;
+    List<T> getConteudo();
 
-    public Pagina() {}
+    Long getTotalElementos();
 
-    public Pagina(
-            List<T> conteudo, Long totalElementos, Integer totalPaginas, Integer tamanhoPagina, Integer paginaAtual) {
-        this.conteudo = conteudo;
-        this.totalElementos = totalElementos;
-        this.totalPaginas = totalPaginas;
-        this.tamanhoPagina = tamanhoPagina;
-        this.paginaAtual = paginaAtual;
-    }
+    Integer getTotalPaginas();
 
-    public List<T> getConteudo() {
-        return conteudo;
-    }
+    Integer getTamanhoPagina();
 
-    public void setConteudo(List<T> conteudo) {
-        this.conteudo = conteudo;
-    }
-
-    public Long getTotalElementos() {
-        return totalElementos;
-    }
-
-    public void setTotalElementos(Long totalElementos) {
-        this.totalElementos = totalElementos;
-    }
-
-    public Integer getTotalPaginas() {
-        return totalPaginas;
-    }
-
-    public void setTotalPaginas(Integer totalPaginas) {
-        this.totalPaginas = totalPaginas;
-    }
-
-    public Integer getTamanhoPagina() {
-        return tamanhoPagina;
-    }
-
-    public void setTamanhoPagina(Integer tamanhoPagina) {
-        this.tamanhoPagina = tamanhoPagina;
-    }
-
-    public Integer getPaginaAtual() {
-        return paginaAtual;
-    }
-
-    public void setPaginaAtual(Integer paginaAtual) {
-        this.paginaAtual = paginaAtual;
-    }
+    Integer getPaginaAtual();
 }

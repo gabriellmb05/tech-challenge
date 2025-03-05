@@ -2,10 +2,10 @@ package br.com.on.fiap.core.application.usecase.pagamento;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import br.com.on.fiap.core.usecase.pagamento.impl.PagamentoValidaUseCaseImpl;
+import br.com.on.fiap.core.domain.exception.PagamentoJaRealizadoExcecao;
 import br.com.on.fiap.core.domain.model.Pagamento;
 import br.com.on.fiap.core.domain.model.SituacaoPagamento;
-import br.com.on.fiap.core.domain.exception.PagamentoJaRealizadoExcecao;
+import br.com.on.fiap.core.usecase.pagamento.impl.PagamentoValidaUseCaseImpl;
 import br.com.on.fiap.datapool.DataPoolPagamento;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

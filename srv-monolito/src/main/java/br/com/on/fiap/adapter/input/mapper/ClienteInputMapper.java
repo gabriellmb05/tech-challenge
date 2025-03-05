@@ -1,8 +1,8 @@
 package br.com.on.fiap.adapter.input.mapper;
 
 import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
-import br.com.on.fiap.core.domain.model.ClienteEntradaDTO;
 import br.com.on.fiap.core.domain.model.Cliente;
+import br.com.on.fiap.core.domain.model.ClienteEntradaDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

@@ -6,9 +6,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
-import br.com.on.fiap.core.usecase.produto.impl.ProdutoBuscaPorIdUseCaseImpl;
-import br.com.on.fiap.core.domain.model.Produto;
 import br.com.on.fiap.core.domain.exception.ProdutoNaoEncontradoExcecao;
+import br.com.on.fiap.core.domain.model.Produto;
+import br.com.on.fiap.core.usecase.produto.impl.ProdutoBuscaPorIdUseCaseImpl;
 import br.com.on.fiap.datapool.DataPoolProduto;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;

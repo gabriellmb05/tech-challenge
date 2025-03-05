@@ -1,9 +1,9 @@
 package br.com.on.fiap.adapter.input.swagger;
 
-import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroDTO;
+import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroRequest;
 import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacao;
 import br.com.on.fiap.core.domain.model.Pagina;
-import br.com.on.fiap.core.domain.model.ProdutoRespostaDTO;
+import br.com.on.fiap.core.domain.model.ProdutoResposta;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -20,7 +20,7 @@ public interface ProdutoApiSwagger {
                 @ApiResponse(responseCode = "200", description = "Produto encontrado"),
                 @ApiResponse(responseCode = "404", description = "Produto não encontrado")
             })
-    ResponseEntity<ProdutoRespostaDTO> buscaProdutoPorId(Long id);
+    ResponseEntity<ProdutoResposta> buscaProdutoPorId(Long id);
 
     @Operation(
             summary = "Busca produtos",
@@ -30,7 +30,7 @@ public interface ProdutoApiSwagger {
                 @ApiResponse(responseCode = "200", description = "Produtos encontrados"),
                 @ApiResponse(responseCode = "404", description = "Produtos não encontrados")
             })
-    ResponseEntity<Pagina<ProdutoRespostaDTO>> listarProdutosComFiltro(ProdutoFiltroDTO filtro, Pageable pageable);
+    ResponseEntity<Pagina<ProdutoResposta>> listarProdutosComFiltro(ProdutoFiltroRequest filtro, Pageable pageable);
 
     @Operation(summary = "Insere um novo produto", description = "Insere um novo produto no sistema")
     @ApiResponses(
@@ -38,7 +38,7 @@ public interface ProdutoApiSwagger {
                 @ApiResponse(responseCode = "201", description = "Produto criado"),
                 @ApiResponse(responseCode = "400", description = "Dados inválidos")
             })
-    ResponseEntity<ProdutoRespostaDTO> insereProduto(ProdutoSolicitacao produtoSolicitacaoDTO);
+    ResponseEntity<ProdutoResposta> insereProduto(ProdutoSolicitacao produtoSolicitacaoDTO);
 
     @Operation(summary = "Altera um produto", description = "Altera um produto existente no sistema")
     @ApiResponses(
@@ -46,7 +46,7 @@ public interface ProdutoApiSwagger {
                 @ApiResponse(responseCode = "200", description = "Produto alterado"),
                 @ApiResponse(responseCode = "404", description = "Produto não encontrado")
             })
-    ResponseEntity<ProdutoRespostaDTO> alteraProduto(Long id, ProdutoSolicitacao produtoSolicitacaoDTO);
+    ResponseEntity<ProdutoResposta> alteraProduto(Long id, ProdutoSolicitacao produtoSolicitacaoDTO);
 
     @Operation(summary = "Deleta um produto", description = "Deleta um produto existente no sistema")
     @ApiResponses(

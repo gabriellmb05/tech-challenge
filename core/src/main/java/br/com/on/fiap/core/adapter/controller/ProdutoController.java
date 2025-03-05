@@ -4,13 +4,13 @@ import br.com.on.fiap.core.domain.model.*;
 
 public interface ProdutoController {
 
-    ProdutoRespostaDTO buscaProdutoPorId(Long id);
+    ProdutoResposta buscaProdutoPorId(Long id);
 
-    Pagina<ProdutoRespostaDTO> listarProdutosComFiltro(ProdutoFiltro filtro, Paginacao paginacao);
+    Pagina<ProdutoResposta> listarProdutosComFiltro(ProdutoFiltro filtro, Paginacao paginacao);
 
-    ProdutoRespostaDTO insereProduto(ProdutoEntrada produtoSolicitacaoDTO);
+    ProdutoResposta insereProduto(ProdutoEntrada produtoSolicitacaoDTO);
 
-    ProdutoRespostaDTO alteraProduto(Long id, ProdutoEntrada produtoSolicitacaoDTO);
+    ProdutoResposta alteraProduto(Long id, ProdutoEntrada produtoSolicitacaoDTO);
 
     void deletaProduto(Long id);
 }
