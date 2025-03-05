@@ -41,7 +41,8 @@ public class ProdutoApi implements ProdutoApiSwagger {
 
     @Override
     @PostMapping
-    public ResponseEntity<ProdutoResposta> insereProduto(@Valid @RequestBody ProdutoSolicitacaoRequest produtoSolicitacaoRequestDTO) {
+    public ResponseEntity<ProdutoResposta> insereProduto(
+            @Valid @RequestBody ProdutoSolicitacaoRequest produtoSolicitacaoRequestDTO) {
         ProdutoResposta produtoPersistido = produtoController.insereProduto(produtoSolicitacaoRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoPersistido);
     }
