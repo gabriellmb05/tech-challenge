@@ -1,4 +1,4 @@
-package br.com.on.fiap.core.application.twqt.produto;
+package br.com.on.fiap.core.application.usecase.produto;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

@@ -1,4 +1,4 @@
-package br.com.on.fiap.core.application.twqt.cliente;
+package br.com.on.fiap.core.application.usecase.cliente;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;

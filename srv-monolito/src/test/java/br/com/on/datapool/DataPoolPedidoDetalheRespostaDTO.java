@@ -1,6 +1,7 @@
 package br.com.on.datapool;
 
 import br.com.on.fiap.adapter.input.dto.response.PedidoDetalhadoRespostaDTO;
+import br.com.on.fiap.adapter.input.dto.response.ProdutoResponse;
 import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
 import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
 import br.com.on.fiap.core.domain.model.SituacaoPedido;
@@ -12,7 +13,7 @@ public class DataPoolPedidoDetalheRespostaDTO {
             Long id,
             ClienteRespostaDTO cliente,
             SituacaoPedido situacao,
-            List<ProdutoRespostaDTO> produtos,
+            List<ProdutoResponse> produtos,
             PagamentoRespostaDTO pagamento) {
         return PedidoDetalhadoRespostaDTO.builder()
                 .id(id)

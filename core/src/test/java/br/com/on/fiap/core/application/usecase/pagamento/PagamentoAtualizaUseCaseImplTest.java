@@ -1,4 +1,4 @@
-package br.com.on.fiap.core.application.twqt.pagamento;
+package br.com.on.fiap.core.application.usecase.pagamento;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;

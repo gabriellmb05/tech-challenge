@@ -1,4 +1,4 @@
-package br.com.on.fiap.core.application.twqt.categoria;
+package br.com.on.fiap.core.application.usecase.categoria;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

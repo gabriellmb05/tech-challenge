@@ -6,6 +6,6 @@ import br.com.on.fiap.core.domain.model.Categoria;
 public class DataPoolProdutoFiltroDTO {
 
     public static ProdutoFiltroRequest gerarProdutoXBurguer() {
-        return new ProdutoFiltroRequest(Categoria.ACOMPANHAMENTO, "LANCHE");
+        return new ProdutoFiltroRequest( "LANCHE", Categoria.ACOMPANHAMENTO);
     }
 }

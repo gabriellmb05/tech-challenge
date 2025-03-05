@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProdutoFiltroRequest implements ProdutoFiltro {
 
-    private Categoria categoria;
     private String nome;
+    private Categoria categoria;
 }

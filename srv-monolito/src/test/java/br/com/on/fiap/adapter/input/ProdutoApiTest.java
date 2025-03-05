@@ -1,15 +1,17 @@
 package br.com.on.fiap.adapter.input;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.datapool.*;
+import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroRequest;
 import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacao;
-import br.com.on.fiap.adapter.input.mapper.ProdutoInputMapper;
-import br.com.on.fiap.core.application.twqt.produto.*;
-import br.com.on.fiap.core.application.usecase.produto.*;
+import br.com.on.fiap.adapter.input.dto.response.PaginaResponse;
+import br.com.on.fiap.adapter.input.dto.response.PaginacaoResponse;
+import br.com.on.fiap.core.adapter.controller.impl.ProdutoControllerImpl;
+import br.com.on.fiap.core.domain.model.Pagina;
 import br.com.on.fiap.core.domain.model.Produto;
+import br.com.on.fiap.core.domain.model.ProdutoFiltro;
 import br.com.on.fiap.core.domain.model.ProdutoResposta;
 
 import java.util.Collections;
@@ -23,6 +25,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -30,28 +35,10 @@ import org.springframework.http.ResponseEntity;
 class ProdutoApiTest {
 
     @Mock
-    private ProdutoBuscaPorIdUseCase produtoBuscaPorIdUseCase;
-
-    @Mock
-    private ProdutoInsereUseCase produtoInsereUseCase;
-
-    @Mock
-    private ProdutoAlteraUseCase produtoAlteraUseCase;
-
-    @Mock
-    private ProdutoDeletaUseCase produtoDeletaUseCase;
-
-    @Mock
-    private ProdutoInputMapper produtoInputMapper;
-
-    @Mock
-    private ProdutoFiltroInputMapper produtoFiltroInputMapper;
-
-    @Mock
-    private ProdutoListaUseCase produtoListaUseCase;
+    private ProdutoControllerImpl produtoController;
 
     @InjectMocks
-    private ProdutoApi produtoControlador;
+    private ProdutoApi produtoApi;
 
     static Stream<Arguments> produtoDTOProvider() {
         return Stream.of(
@@ -65,18 +52,12 @@ class ProdutoApiTest {
         return Stream.of(
                 Arguments.of(
                         DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
-                        DataPoolProdutoFiltro.gerarProdutoXBurguer(),
-                        Collections.emptyList(),
                         Collections.emptyList()),
                 Arguments.of(
                         DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
-                        DataPoolProdutoFiltro.gerarProdutoXBurguer(),
-                        List.of(DataPoolProduto.gerarProdutoXBurguer()),
                         List.of(DataPoolProdutoRespostaDTO.gerarProdutoXBurguer())),
                 Arguments.of(
                         DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
-                        DataPoolProdutoFiltro.gerarProdutoXBurguer(),
-                        DataPoolProduto.gerarListaProdutos(),
                         DataPoolProdutoRespostaDTO.gerarListaProdutoRespostaDTO()));
     }
 
@@ -85,16 +66,12 @@ class ProdutoApiTest {
     @DisplayName("Dado um produto existente, quando buscar o produto, então ele deve ser retornado")
     void dadoProdutoExistente_quandoBuscarProduto_entaoDeveSerRetornado(ProdutoResposta produtoResposta) {
         Long id = produtoResposta.getId();
-        Produto produto = new Produto();
-        when(produtoBuscaPorIdUseCase.buscar(id)).thenReturn(produto);
-        when(produtoInputMapper.paraProdutoDTO(produto)).thenReturn(produtoResposta);
+        when(produtoController.buscaProdutoPorId(id)).thenReturn(produtoResposta);
 
-        ResponseEntity<ProdutoResposta> response = produtoControlador.buscaProdutoPorId(id);
+        ResponseEntity<ProdutoResposta> response = produtoApi.buscaProdutoPorId(id);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(produtoResposta, response.getBody());
-        verify(produtoBuscaPorIdUseCase).buscar(id);
-        verify(produtoInputMapper).paraProdutoDTO(produto);
     }
 
     @ParameterizedTest
@@ -102,19 +79,11 @@ class ProdutoApiTest {
     @DisplayName("Dado um produto novo, quando inserir o produto, então ele deve ser salvo")
     void dadoProdutoNovo_quandoInserirProduto_entaoDeveSerSalvo(
             ProdutoResposta produtoResposta, ProdutoSolicitacao produtoSolicitacaoDTO) {
-        Produto produto = new Produto();
-        Produto produtoPersistido = new Produto();
-        when(produtoInputMapper.paraProduto(produtoSolicitacaoDTO)).thenReturn(produto);
-        when(produtoInsereUseCase.inserir(produto)).thenReturn(produtoPersistido);
-        when(produtoInputMapper.paraProdutoDTO(produtoPersistido)).thenReturn(produtoResposta);
-
-        ResponseEntity<ProdutoResposta> response = produtoControlador.insereProduto(produtoSolicitacaoDTO);
+        when(produtoController.insereProduto(produtoSolicitacaoDTO)).thenReturn(produtoResposta);
+        ResponseEntity<ProdutoResposta> response = produtoApi.insereProduto(produtoSolicitacaoDTO);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(produtoResposta, response.getBody());
-        verify(produtoInputMapper).paraProduto(produtoSolicitacaoDTO);
-        verify(produtoInsereUseCase).inserir(produto);
-        verify(produtoInputMapper).paraProdutoDTO(produtoPersistido);
     }
 
     @ParameterizedTest
@@ -123,20 +92,11 @@ class ProdutoApiTest {
     void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado(
             ProdutoResposta produtoRespotaDTO, ProdutoSolicitacao produtoSolicitacaoDTO) {
         Long id = produtoRespotaDTO.getId();
-        Produto produto = new Produto();
-        Produto produtoPersistido = new Produto();
-
-        when(produtoInputMapper.paraProduto(produtoSolicitacaoDTO)).thenReturn(produto);
-        when(produtoAlteraUseCase.alterar(id, produto)).thenReturn(produtoPersistido);
-        when(produtoInputMapper.paraProdutoDTO(produtoPersistido)).thenReturn(produtoRespotaDTO);
-
-        ResponseEntity<ProdutoResposta> response = produtoControlador.alteraProduto(id, produtoSolicitacaoDTO);
+        when(produtoController.alteraProduto(id, produtoSolicitacaoDTO)).thenReturn(produtoRespotaDTO);
+        ResponseEntity<ProdutoResposta> response = produtoApi.alteraProduto(id, produtoSolicitacaoDTO);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(produtoRespotaDTO, response.getBody());
-        verify(produtoInputMapper).paraProduto(produtoSolicitacaoDTO);
-        verify(produtoAlteraUseCase).alterar(id, produto);
-        verify(produtoInputMapper).paraProdutoDTO(produtoPersistido);
     }
 
     @ParameterizedTest
@@ -144,40 +104,32 @@ class ProdutoApiTest {
     @DisplayName("Dado um produto existente, quando deletar o produto, então ele deve ser removido")
     void dadoProdutoExistente_quandoDeletarProduto_entaoDeveSerRemovido(ProdutoResposta produtoResposta) {
         Long id = produtoResposta.getId();
-
-        ResponseEntity<Void> response = produtoControlador.deletaProduto(id);
+        ResponseEntity<Void> response = produtoApi.deletaProduto(id);
 
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
-        verify(produtoDeletaUseCase).deleta(id);
     }
 
-    //    @ParameterizedTest
-    //    @MethodSource("produtoFiltroProvider")
-    //    @DisplayName("Dado produtos existentes, quando buscar o produto através do filtro, então ele deve ser
-    // retornado")
-    //    void dadoProdutosExistentes_quandoBuscarProdutoAtravesDoFiltro_entaoDeveSerRetornado(
-    //            ProdutoFiltroDTO filtroDTO,
-    //            ProdutoFiltro filtro,
-    //            List<Produto> produtos,
-    //            List<ProdutoResposta> produtoRespostas) {
-    //
-    //        Pageable paginacao = PageRequest.of(0, 10);
-    //        Page<Produto> produtoPage = new PageImpl<>(produtos, paginacao, produtos.size());
-    //        Page<ProdutoResposta> produtoRespostaPage =
-    //                new PageImpl<>(produtoRespostas, paginacao, produtoRespostas.size());
-    //
-    //        when(produtoFiltroInputMapper.paraProdutoFiltro(filtroDTO)).thenReturn(filtro);
-    //        when(produtoListaUseCase.listarComFiltro(filtro, paginacao)).thenReturn(produtoPage);
-    //        produtos.forEach(produto -> when(produtoInputMapper.paraProdutoDTO(produto))
-    //                .thenReturn(produtoRespostas.get(produtos.indexOf(produto))));
-    //
-    //        ResponseEntity<PagedModel<ProdutoResposta>> response =
-    //                produtoControlador.listarProdutosComFiltro(filtroDTO, paginacao);
-    //
-    //        assertEquals(HttpStatus.OK, response.getStatusCode());
-    //        assertEquals(produtoRespostaPage.getContent(), response.getBody().getContent());
-    //        verify(produtoListaUseCase).listarComFiltro(filtro, paginacao);
-    //        verify(produtoFiltroInputMapper).paraProdutoFiltro(filtroDTO);
-    //        produtos.forEach(produto -> verify(produtoInputMapper).paraProdutoDTO(produto));
-    //    }
+        @ParameterizedTest
+        @MethodSource("produtoFiltroProvider")
+        @DisplayName("Dado produtos existentes, quando buscar o produto através do filtro, então ele deve ser retornado")
+        void dadoProdutosExistentes_quandoBuscarProdutoAtravesDoFiltro_entaoDeveSerRetornado(
+                ProdutoFiltroRequest filtroDTO,
+                List<ProdutoResposta> produtoRespostas) {
+
+            PageRequest pageable = PageRequest.of(0, 10);
+            PaginacaoResponse paginacao = PaginacaoResponse.from(pageable);
+
+            Pagina<ProdutoResposta> pageProduto = PaginaResponse.<ProdutoResposta>builder()
+                    .conteudo(produtoRespostas)
+                    .build();
+
+            when(produtoController.listarProdutosComFiltro(filtroDTO, paginacao))
+                    .thenReturn(pageProduto);
+
+            ResponseEntity<Pagina<ProdutoResposta>> response =
+                    produtoApi.listarProdutosComFiltro(filtroDTO, pageable);
+
+            assertEquals(HttpStatus.OK, response.getStatusCode());
+            assertEquals(pageProduto.getConteudo(), response.getBody().getConteudo());
+        }
 }
