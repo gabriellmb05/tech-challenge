@@ -1,7 +1,7 @@
 package br.com.on.fiap.core.domain.model;
 
-import br.com.on.fiap.core.domain.exception.CategoriaNaoEncontradaExcecao;
-import br.com.on.fiap.core.domain.exception.message.MessageError;
+import br.com.on.fiap.core.application.exception.CategoriaNaoEncontradaExcecao;
+import br.com.on.fiap.core.application.exception.message.MessageError;
 import java.util.Objects;
 import java.util.stream.Stream;
 

@@ -7,10 +7,11 @@ import static org.mockito.Mockito.when;
 import br.com.on.datapool.*;
 import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacao;
 import br.com.on.fiap.adapter.input.mapper.ProdutoInputMapper;
+import br.com.on.fiap.core.application.twqt.produto.*;
 import br.com.on.fiap.core.application.usecase.produto.*;
 import br.com.on.fiap.core.domain.model.Produto;
 import br.com.on.fiap.core.domain.model.ProdutoResposta;
-import br.com.on.fiap.core.usecase.produto.*;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;

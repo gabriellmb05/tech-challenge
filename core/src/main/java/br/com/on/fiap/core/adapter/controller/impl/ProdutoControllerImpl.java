@@ -2,8 +2,8 @@ package br.com.on.fiap.core.adapter.controller.impl;
 
 import br.com.on.fiap.core.adapter.controller.ProdutoController;
 import br.com.on.fiap.core.adapter.presenter.ProdutoPresenter;
+import br.com.on.fiap.core.application.usecase.produto.*;
 import br.com.on.fiap.core.domain.model.*;
-import br.com.on.fiap.core.usecase.produto.*;
 
 public class ProdutoControllerImpl implements ProdutoController {
 
