@@ -6,7 +6,7 @@ import br.com.on.fiap.core.application.usecase.pagamento.PagamentoAtualizaUseCas
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoValidaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;
 import br.com.on.fiap.core.domain.model.Pagamento;
-import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
+import br.com.on.fiap.core.domain.model.PagamentoResposta;
 
 public class PagamentoControllerImpl implements PagamentoController {
 
@@ -28,7 +28,7 @@ public class PagamentoControllerImpl implements PagamentoController {
     }
 
     @Override
-    public PagamentoRespostaDTO atualizaPagamento(String nrProtocolo) {
+    public PagamentoResposta atualizaPagamento(String nrProtocolo) {
         Pagamento pagamento = pedidoDetalhaUseCase.detalhaPedido(nrProtocolo).getPagamento();
         pagamentoValidaUseCase.validarPagamentoJaRealizado(pagamento, nrProtocolo);
         Pagamento pagamentoAtualizado = pagamentoAtualizaUseCase.atualizaPagamento(pagamento);

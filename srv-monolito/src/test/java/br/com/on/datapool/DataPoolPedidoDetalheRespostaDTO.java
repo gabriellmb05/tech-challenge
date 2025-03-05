@@ -3,7 +3,8 @@ package br.com.on.datapool;
 import br.com.on.fiap.adapter.input.dto.response.PedidoDetalhadoRespostaDTO;
 import br.com.on.fiap.adapter.input.dto.response.ProdutoResponse;
 import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
-import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
+import br.com.on.fiap.core.domain.model.PagamentoResposta;
+import br.com.on.fiap.core.domain.model.ProdutoResposta;
 import br.com.on.fiap.core.domain.model.SituacaoPedido;
 import java.util.List;
 
@@ -13,8 +14,8 @@ public class DataPoolPedidoDetalheRespostaDTO {
             Long id,
             ClienteRespostaDTO cliente,
             SituacaoPedido situacao,
-            List<ProdutoResponse> produtos,
-            PagamentoRespostaDTO pagamento) {
+            List<ProdutoResposta> produtos,
+            PagamentoResposta pagamento) {
         return PedidoDetalhadoRespostaDTO.builder()
                 .id(id)
                 .cliente(cliente)

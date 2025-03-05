@@ -2,13 +2,13 @@ package br.com.on.fiap.core.adapter.presenter.impl;
 
 import br.com.on.fiap.core.adapter.presenter.PagamentoPresenter;
 import br.com.on.fiap.core.domain.model.Pagamento;
-import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
+import br.com.on.fiap.core.domain.model.PagamentoResposta;
 
 public class PagamentoPresenterImpl implements PagamentoPresenter {
 
     @Override
-    public PagamentoRespostaDTO formatar(Pagamento pagamento) {
-        return new PagamentoRespostaDTO(
+    public PagamentoResposta formatar(Pagamento pagamento) {
+        return PagamentoResposta.create(
                 pagamento.getPagId(),
                 pagamento.getVlCompra(),
                 pagamento.getStPagamento(),

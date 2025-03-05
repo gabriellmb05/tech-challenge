@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.input.swagger;
 
-import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
+import br.com.on.fiap.core.domain.model.PagamentoResposta;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -21,9 +21,9 @@ public interface PagamentoApiSwagger {
                         content =
                                 @Content(
                                         mediaType = "application/json",
-                                        schema = @Schema(implementation = PagamentoRespostaDTO.class))),
+                                        schema = @Schema(implementation = PagamentoResposta.class))),
                 @ApiResponse(responseCode = "400", description = "Dados inválidos"),
                 @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
             })
-    ResponseEntity<PagamentoRespostaDTO> atualizaPagamento(String nrProtocolo);
+    ResponseEntity<PagamentoResposta> atualizaPagamento(String nrProtocolo);
 }

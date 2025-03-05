@@ -1,8 +1,9 @@
 package br.com.on.fiap.core.adapter.presenter;
 
 import br.com.on.fiap.core.domain.model.Pagamento;
-import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
+import br.com.on.fiap.core.domain.model.PagamentoResposta;
+
 
 public interface PagamentoPresenter {
-    PagamentoRespostaDTO formatar(Pagamento pagamento);
+    PagamentoResposta formatar(Pagamento pagamento);
 }

@@ -1,8 +1,8 @@
 package br.com.on.fiap.core.adapter.controller;
 
-import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
+import br.com.on.fiap.core.domain.model.PagamentoResposta;
 
 public interface PagamentoController {
 
-    PagamentoRespostaDTO atualizaPagamento(String nrProtocolo);
+    PagamentoResposta atualizaPagamento(String nrProtocolo);
 }
