@@ -5,8 +5,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
-import br.com.on.fiap.core.domain.model.*;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoListaUseCaseImpl;
+import br.com.on.fiap.core.domain.model.*;
 import br.com.on.fiap.datapool.*;
 import java.util.Collections;
 import java.util.List;

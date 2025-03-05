@@ -10,10 +10,7 @@ import br.com.on.fiap.adapter.input.dto.response.PaginaResponse;
 import br.com.on.fiap.adapter.input.dto.response.PaginacaoResponse;
 import br.com.on.fiap.core.adapter.controller.impl.ProdutoControllerImpl;
 import br.com.on.fiap.core.domain.model.Pagina;
-import br.com.on.fiap.core.domain.model.Produto;
-import br.com.on.fiap.core.domain.model.ProdutoFiltro;
 import br.com.on.fiap.core.domain.model.ProdutoResposta;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -25,8 +22,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,9 +45,7 @@ class ProdutoApiTest {
 
     static Stream<Arguments> produtoFiltroProvider() {
         return Stream.of(
-                Arguments.of(
-                        DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
-                        Collections.emptyList()),
+                Arguments.of(DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(), Collections.emptyList()),
                 Arguments.of(
                         DataPoolProdutoFiltroDTO.gerarProdutoXBurguer(),
                         List.of(DataPoolProdutoRespostaDTO.gerarProdutoXBurguer())),
@@ -109,27 +102,24 @@ class ProdutoApiTest {
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 
-        @ParameterizedTest
-        @MethodSource("produtoFiltroProvider")
-        @DisplayName("Dado produtos existentes, quando buscar o produto através do filtro, então ele deve ser retornado")
-        void dadoProdutosExistentes_quandoBuscarProdutoAtravesDoFiltro_entaoDeveSerRetornado(
-                ProdutoFiltroRequest filtroDTO,
-                List<ProdutoResposta> produtoRespostas) {
+    @ParameterizedTest
+    @MethodSource("produtoFiltroProvider")
+    @DisplayName("Dado produtos existentes, quando buscar o produto através do filtro, então ele deve ser retornado")
+    void dadoProdutosExistentes_quandoBuscarProdutoAtravesDoFiltro_entaoDeveSerRetornado(
+            ProdutoFiltroRequest filtroDTO, List<ProdutoResposta> produtoRespostas) {
 
-            PageRequest pageable = PageRequest.of(0, 10);
-            PaginacaoResponse paginacao = PaginacaoResponse.from(pageable);
+        PageRequest pageable = PageRequest.of(0, 10);
+        PaginacaoResponse paginacao = PaginacaoResponse.from(pageable);
 
-            Pagina<ProdutoResposta> pageProduto = PaginaResponse.<ProdutoResposta>builder()
-                    .conteudo(produtoRespostas)
-                    .build();
+        Pagina<ProdutoResposta> pageProduto = PaginaResponse.<ProdutoResposta>builder()
+                .conteudo(produtoRespostas)
+                .build();
 
-            when(produtoController.listarProdutosComFiltro(filtroDTO, paginacao))
-                    .thenReturn(pageProduto);
+        when(produtoController.listarProdutosComFiltro(filtroDTO, paginacao)).thenReturn(pageProduto);
 
-            ResponseEntity<Pagina<ProdutoResposta>> response =
-                    produtoApi.listarProdutosComFiltro(filtroDTO, pageable);
+        ResponseEntity<Pagina<ProdutoResposta>> response = produtoApi.listarProdutosComFiltro(filtroDTO, pageable);
 
-            assertEquals(HttpStatus.OK, response.getStatusCode());
-            assertEquals(pageProduto.getConteudo(), response.getBody().getConteudo());
-        }
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(pageProduto.getConteudo(), response.getBody().getConteudo());
+    }
 }

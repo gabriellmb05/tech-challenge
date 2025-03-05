@@ -1,9 +1,9 @@
 package br.com.on.fiap.core.application.usecase.pedido.impl;
 
 import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
+import br.com.on.fiap.core.application.usecase.pedido.PedidoListaUseCase;
 import br.com.on.fiap.core.domain.model.Pedido;
 import br.com.on.fiap.core.domain.model.PedidoFiltro;
-import br.com.on.fiap.core.application.usecase.pedido.PedidoListaUseCase;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

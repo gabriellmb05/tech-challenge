@@ -2,11 +2,11 @@ package br.com.on.fiap.core.adapter.controller.impl;
 
 import br.com.on.fiap.core.adapter.controller.PagamentoController;
 import br.com.on.fiap.core.adapter.presenter.PagamentoPresenter;
-import br.com.on.fiap.core.domain.model.Pagamento;
-import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoAtualizaUseCase;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoValidaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;
+import br.com.on.fiap.core.domain.model.Pagamento;
+import br.com.on.fiap.core.domain.model.PagamentoRespostaDTO;
 
 public class PagamentoControllerImpl implements PagamentoController {
 

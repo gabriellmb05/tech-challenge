@@ -1,8 +1,8 @@
 package br.com.on.fiap.core.application.usecase.pagamento.impl;
 
 import br.com.on.fiap.core.adapter.gateway.PagamentoGateway;
-import br.com.on.fiap.core.domain.model.Pagamento;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoAtualizaUseCase;
+import br.com.on.fiap.core.domain.model.Pagamento;
 
 public class PagamentoAtualizaUseCaseImpl implements PagamentoAtualizaUseCase {
 

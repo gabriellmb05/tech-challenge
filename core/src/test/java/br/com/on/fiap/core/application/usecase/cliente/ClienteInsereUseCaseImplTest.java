@@ -5,9 +5,9 @@ import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.core.adapter.gateway.ClienteGateway;
 import br.com.on.fiap.core.application.exception.ClienteExistenteExcecao;
+import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteInsereUseCaseImpl;
 import br.com.on.fiap.core.domain.model.Cliente;
 import br.com.on.fiap.core.domain.model.ClienteEntradaDTO;
-import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteInsereUseCaseImpl;
 import br.com.on.fiap.datapool.DataPoolCliente;
 import br.com.on.fiap.datapool.DataPoolClienteEntradaDTO;
 import java.util.Optional;

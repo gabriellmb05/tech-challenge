@@ -2,11 +2,11 @@ package br.com.on.fiap.core.adapter.controller.impl;
 
 import br.com.on.fiap.core.adapter.controller.ClienteController;
 import br.com.on.fiap.core.adapter.presenter.ClientePresenter;
+import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
+import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
 import br.com.on.fiap.core.domain.model.Cliente;
 import br.com.on.fiap.core.domain.model.ClienteEntradaDTO;
 import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
-import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
-import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
 
 public class ClienteControllerImpl implements ClienteController {
 

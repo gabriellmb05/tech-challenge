@@ -1,7 +1,6 @@
 package br.com.on.fiap.infrastructure.handler;
 
 import br.com.on.fiap.core.application.exception.*;
-
 import java.time.LocalDateTime;
 import java.util.Collections;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
