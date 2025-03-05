@@ -9,19 +9,19 @@ import org.springframework.data.domain.Sort.Order;
 
 @Data
 @RequiredArgsConstructor(staticName = "of")
-public class PaginacaoResponse implements Paginacao {
+public class PaginacaoInfo implements Paginacao {
 
     private Integer pagina;
     private Integer tamanhoPagina;
     private Ordenacao ordenacao;
 
-    public static PaginacaoResponse from(Pageable pageable) {
-        PaginacaoResponse response = new PaginacaoResponse();
+    public static PaginacaoInfo from(Pageable pageable) {
+        PaginacaoInfo response = new PaginacaoInfo();
         response.setPagina(pageable.getPageNumber());
         response.setTamanhoPagina(pageable.getPageSize());
 
         Optional<Order> ordem = pageable.getSort().stream().findFirst();
-        ordem.ifPresent(order -> response.setOrdenacao(OrdenacaoResponse.from(order)));
+        ordem.ifPresent(order -> response.setOrdenacao(OrdenacaoInfo.from(order)));
         return response;
     }
 

@@ -8,13 +8,13 @@ import org.springframework.data.domain.Sort.Order;
 
 @Data
 @RequiredArgsConstructor(staticName = "of")
-public class OrdenacaoResponse implements Ordenacao {
+public class OrdenacaoInfo implements Ordenacao {
 
     private String campo;
     private Direcao direcao;
 
-    public static OrdenacaoResponse from(Order order) {
-        OrdenacaoResponse response = new OrdenacaoResponse();
+    public static OrdenacaoInfo from(Order order) {
+        OrdenacaoInfo response = new OrdenacaoInfo();
         response.setCampo(order.getProperty());
 
         Direction direction = order.getDirection();

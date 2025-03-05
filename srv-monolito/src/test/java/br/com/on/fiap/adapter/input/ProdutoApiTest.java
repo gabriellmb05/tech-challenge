@@ -6,8 +6,8 @@ import static org.mockito.Mockito.when;
 import br.com.on.datapool.*;
 import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroRequest;
 import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoRequest;
-import br.com.on.fiap.adapter.input.dto.response.PaginaResponse;
-import br.com.on.fiap.adapter.input.dto.response.PaginacaoResponse;
+import br.com.on.fiap.adapter.input.dto.response.PaginaInfo;
+import br.com.on.fiap.adapter.input.dto.response.PaginacaoInfo;
 import br.com.on.fiap.core.adapter.controller.impl.ProdutoControllerImpl;
 import br.com.on.fiap.core.domain.model.Pagina;
 import br.com.on.fiap.core.domain.model.ProdutoResposta;
@@ -109,11 +109,10 @@ class ProdutoApiTest {
             ProdutoFiltroRequest filtroDTO, List<ProdutoResposta> produtoRespostas) {
 
         PageRequest pageable = PageRequest.of(0, 10);
-        PaginacaoResponse paginacao = PaginacaoResponse.from(pageable);
+        PaginacaoInfo paginacao = PaginacaoInfo.from(pageable);
 
-        Pagina<ProdutoResposta> pageProduto = PaginaResponse.<ProdutoResposta>builder()
-                .conteudo(produtoRespostas)
-                .build();
+        Pagina<ProdutoResposta> pageProduto =
+                PaginaInfo.<ProdutoResposta>builder().conteudo(produtoRespostas).build();
 
         when(produtoController.listarProdutosComFiltro(filtroDTO, paginacao)).thenReturn(pageProduto);
 

@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.output.datasource;
 
-import br.com.on.fiap.adapter.input.dto.response.PaginaResponse;
+import br.com.on.fiap.adapter.input.dto.response.PaginaInfo;
 import br.com.on.fiap.adapter.output.persistence.component.PageableComponent;
 import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
 import br.com.on.fiap.adapter.output.persistence.mapper.ProdutoSaidaMapeador;
@@ -61,12 +61,6 @@ public class ProdutoDataSourceImpl implements ProdutoDataSource {
         Pageable pageable = pageableComponent.criarPageable(paginacao);
         Page<Produto> pageProduto =
                 produtoRepository.buscarComFiltro(filtro, pageable).map(produtoSaidaMapeador::paraProduto);
-        return PaginaResponse.<Produto>builder()
-                .conteudo(pageProduto.getContent())
-                .totalElementos(pageProduto.getTotalElements())
-                .totalPaginas(pageProduto.getTotalPages())
-                .tamanhoPagina(pageProduto.getSize())
-                .paginaAtual(pageProduto.getNumber())
-                .build();
+        return PaginaInfo.create(pageProduto);
     }
 }
