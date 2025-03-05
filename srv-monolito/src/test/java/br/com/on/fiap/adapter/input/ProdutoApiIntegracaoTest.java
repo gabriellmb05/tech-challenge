@@ -232,8 +232,8 @@ class ProdutoApiIntegracaoTest {
     void dadoProdutosExistentes_quandoListarProdutosSemFiltro_entaoDeveRetornarTodosOsProdutos() throws Exception {
         mockMvc.perform(get("/produtos").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").isArray())
-                .andExpect(jsonPath("$.page.totalElements").value(8))
+                .andExpect(jsonPath("$.conteudo").isArray())
+                .andExpect(jsonPath("$.totalElementos").value(8))
                 .andReturn();
     }
 
@@ -246,8 +246,8 @@ class ProdutoApiIntegracaoTest {
             throws Exception {
         mockMvc.perform(get("/produtos?categoria=BEBIDA").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.page.totalElements").value(1))
-                .andExpect(jsonPath("$.content[0].categoria").value("BEBIDA"))
+                .andExpect(jsonPath("$.totalElementos").value(1))
+                .andExpect(jsonPath("$.conteudo[0].categoria").value("BEBIDA"))
                 .andReturn();
     }
 
@@ -260,8 +260,8 @@ class ProdutoApiIntegracaoTest {
             throws Exception {
         mockMvc.perform(get("/produtos?nome=coca-cola lata").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.page.totalElements").value(1))
-                .andExpect(jsonPath("$.content[0].nome").value("coca-cola lata"))
+                .andExpect(jsonPath("$.totalElementos").value(1))
+                .andExpect(jsonPath("$.conteudo[0].nome").value("coca-cola lata"))
                 .andReturn();
     }
 
@@ -274,9 +274,9 @@ class ProdutoApiIntegracaoTest {
             throws Exception {
         mockMvc.perform(get("/produtos?categoria=LANCHE&nome=x-tudo").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.page.totalElements").value(1))
-                .andExpect(jsonPath("$.content[0].categoria").value("LANCHE"))
-                .andExpect(jsonPath("$.content[0].nome").value("x-tudo"))
+                .andExpect(jsonPath("$.totalElementos").value(1))
+                .andExpect(jsonPath("$.conteudo[0].categoria").value("LANCHE"))
+                .andExpect(jsonPath("$.conteudo[0].nome").value("x-tudo"))
                 .andReturn();
     }
 
