@@ -8,8 +8,7 @@ public class DataPoolClienteSolicitacaoDTO {
 
     private static final Faker faker = new Faker();
 
-    private static ClienteRequest construirCliente(
-            String nome, String cpf, String email, LocalDate dataNascimento) {
+    private static ClienteRequest construirCliente(String nome, String cpf, String email, LocalDate dataNascimento) {
         return ClienteRequest.builder()
                 .nome(nome)
                 .cpf(cpf)

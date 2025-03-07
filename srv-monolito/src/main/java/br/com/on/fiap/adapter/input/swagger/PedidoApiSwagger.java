@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.input.swagger;
 
-import br.com.on.fiap.adapter.input.dto.filtro.PedidoFiltroRequest;
 import br.com.on.fiap.adapter.input.dto.entrada.PedidoRequest;
+import br.com.on.fiap.adapter.input.dto.filtro.PedidoFiltroRequest;
 import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
 import br.com.on.fiap.core.application.dto.resposta.PedidoDetalhadoResposta;
 import br.com.on.fiap.core.application.dto.resposta.PedidoResposta;

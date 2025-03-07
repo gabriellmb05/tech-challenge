@@ -21,8 +21,7 @@ public class ClienteApi implements ClienteApiSwagger {
 
     @Override
     @PostMapping
-    public ResponseEntity<ClienteResposta> insereCliente(
-            @Valid @RequestBody ClienteRequest clienteRequest) {
+    public ResponseEntity<ClienteResposta> insereCliente(@Valid @RequestBody ClienteRequest clienteRequest) {
         ClienteResposta clienteResposta = clienteController.insereCliente(clienteRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteResposta);
     }

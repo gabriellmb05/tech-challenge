@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.input;
 
-import br.com.on.fiap.adapter.input.dto.filtro.ProdutoFiltroRequest;
 import br.com.on.fiap.adapter.input.dto.entrada.ProdutoRequest;
+import br.com.on.fiap.adapter.input.dto.filtro.ProdutoFiltroRequest;
 import br.com.on.fiap.adapter.input.dto.resposta.PaginacaoRespostaInfo;
 import br.com.on.fiap.adapter.input.swagger.ProdutoApiSwagger;
 import br.com.on.fiap.core.adapter.controller.ProdutoController;
@@ -44,8 +44,7 @@ public class ProdutoApi implements ProdutoApiSwagger {
 
     @Override
     @PostMapping
-    public ResponseEntity<ProdutoResposta> insereProduto(
-            @Valid @RequestBody ProdutoRequest produtoRequestDTO) {
+    public ResponseEntity<ProdutoResposta> insereProduto(@Valid @RequestBody ProdutoRequest produtoRequestDTO) {
         ProdutoResposta produtoPersistido = produtoController.insereProduto(produtoRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoPersistido);
     }

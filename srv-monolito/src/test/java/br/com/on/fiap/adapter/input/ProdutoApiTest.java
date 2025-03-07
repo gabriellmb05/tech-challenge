@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import br.com.on.datapool.*;
-import br.com.on.fiap.adapter.input.dto.filtro.ProdutoFiltroRequest;
 import br.com.on.fiap.adapter.input.dto.entrada.ProdutoRequest;
+import br.com.on.fiap.adapter.input.dto.filtro.ProdutoFiltroRequest;
 import br.com.on.fiap.adapter.input.dto.resposta.PaginaRespostaInfo;
 import br.com.on.fiap.adapter.input.dto.resposta.PaginacaoRespostaInfo;
 import br.com.on.fiap.core.adapter.controller.impl.ProdutoControllerImpl;
