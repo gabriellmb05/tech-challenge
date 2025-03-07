@@ -1,4 +1,4 @@
-package br.com.on.fiap.adapter.output.persistence.entity.converter;
+package br.com.on.fiap.adapter.output.db.entity.converter;
 
 import br.com.on.fiap.core.domain.SituacaoPagamento;
 import jakarta.persistence.AttributeConverter;

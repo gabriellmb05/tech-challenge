@@ -1,4 +1,4 @@
-package br.com.on.fiap.adapter.output.persistence.component;
+package br.com.on.fiap.adapter.output.db.component;
 
 import br.com.on.fiap.core.application.dto.resposta.Direcao;
 import br.com.on.fiap.core.application.dto.resposta.OrdenacaoResposta;

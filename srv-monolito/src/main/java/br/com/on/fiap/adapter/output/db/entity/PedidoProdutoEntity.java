@@ -1,6 +1,6 @@
-package br.com.on.fiap.adapter.output.persistence.entity;
+package br.com.on.fiap.adapter.output.db.entity;
 
-import br.com.on.fiap.adapter.output.persistence.entity.rel.RelPedId;
+import br.com.on.fiap.adapter.output.db.entity.rel.RelPedId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

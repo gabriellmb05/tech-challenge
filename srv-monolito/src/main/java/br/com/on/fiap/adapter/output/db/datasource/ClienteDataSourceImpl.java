@@ -1,7 +1,7 @@
-package br.com.on.fiap.adapter.output.datasource;
+package br.com.on.fiap.adapter.output.db.datasource;
 
-import br.com.on.fiap.adapter.output.persistence.entity.ClienteEntity;
-import br.com.on.fiap.adapter.output.persistence.repository.ClienteRepository;
+import br.com.on.fiap.adapter.output.db.entity.ClienteEntity;
+import br.com.on.fiap.adapter.output.db.repository.ClienteRepository;
 import br.com.on.fiap.core.adapter.datasource.ClienteDataSource;
 import br.com.on.fiap.core.domain.Cliente;
 import java.util.Optional;

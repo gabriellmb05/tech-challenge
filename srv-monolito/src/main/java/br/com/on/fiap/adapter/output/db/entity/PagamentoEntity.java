@@ -1,7 +1,7 @@
-package br.com.on.fiap.adapter.output.persistence.entity;
+package br.com.on.fiap.adapter.output.db.entity;
 
-import br.com.on.fiap.adapter.output.persistence.entity.converter.SituacaoPagamentoConverter;
-import br.com.on.fiap.adapter.output.persistence.entity.converter.TipoPagamentoConverter;
+import br.com.on.fiap.adapter.output.db.entity.converter.SituacaoPagamentoConverter;
+import br.com.on.fiap.adapter.output.db.entity.converter.TipoPagamentoConverter;
 import br.com.on.fiap.core.domain.Pagamento;
 import br.com.on.fiap.core.domain.SituacaoPagamento;
 import br.com.on.fiap.core.domain.TipoPagamento;

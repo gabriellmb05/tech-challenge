@@ -1,14 +1,14 @@
-package br.com.on.fiap.adapter.output.datasource;
+package br.com.on.fiap.adapter.output.db.datasource;
 
 import br.com.on.fiap.adapter.input.dto.resposta.PaginaRespostaInfo;
-import br.com.on.fiap.adapter.output.persistence.component.PageableComponent;
-import br.com.on.fiap.adapter.output.persistence.entity.PedidoEntity;
-import br.com.on.fiap.adapter.output.persistence.entity.PedidoProdutoEntity;
-import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
-import br.com.on.fiap.adapter.output.persistence.entity.rel.RelPedId;
-import br.com.on.fiap.adapter.output.persistence.repository.PedidoProdutoRepository;
-import br.com.on.fiap.adapter.output.persistence.repository.PedidoRepository;
-import br.com.on.fiap.adapter.output.specification.PedidoSpecification;
+import br.com.on.fiap.adapter.output.db.component.PageableComponent;
+import br.com.on.fiap.adapter.output.db.entity.PedidoEntity;
+import br.com.on.fiap.adapter.output.db.entity.PedidoProdutoEntity;
+import br.com.on.fiap.adapter.output.db.entity.ProdutoEntity;
+import br.com.on.fiap.adapter.output.db.entity.rel.RelPedId;
+import br.com.on.fiap.adapter.output.db.repository.PedidoProdutoRepository;
+import br.com.on.fiap.adapter.output.db.repository.PedidoRepository;
+import br.com.on.fiap.adapter.output.db.specification.PedidoSpecification;
 import br.com.on.fiap.core.adapter.datasource.PedidoDataSource;
 import br.com.on.fiap.core.application.dto.filtro.PedidoFiltroEntrada;
 import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;

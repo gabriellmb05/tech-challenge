@@ -1,7 +1,7 @@
-package br.com.on.fiap.adapter.output.specification;
+package br.com.on.fiap.adapter.output.db.specification;
 
-import br.com.on.fiap.adapter.output.persistence.entity.ClienteEntity;
-import br.com.on.fiap.adapter.output.persistence.entity.PedidoEntity;
+import br.com.on.fiap.adapter.output.db.entity.ClienteEntity;
+import br.com.on.fiap.adapter.output.db.entity.PedidoEntity;
 import br.com.on.fiap.core.application.dto.filtro.PedidoFiltroEntrada;
 import jakarta.persistence.criteria.*;
 import java.time.LocalDateTime;

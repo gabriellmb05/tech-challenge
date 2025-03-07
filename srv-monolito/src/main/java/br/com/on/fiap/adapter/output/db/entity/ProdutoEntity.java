@@ -1,6 +1,6 @@
-package br.com.on.fiap.adapter.output.persistence.entity;
+package br.com.on.fiap.adapter.output.db.entity;
 
-import br.com.on.fiap.adapter.output.persistence.entity.converter.TipoCategoriaConverter;
+import br.com.on.fiap.adapter.output.db.entity.converter.TipoCategoriaConverter;
 import br.com.on.fiap.core.domain.Categoria;
 import br.com.on.fiap.core.domain.Produto;
 import jakarta.persistence.*;

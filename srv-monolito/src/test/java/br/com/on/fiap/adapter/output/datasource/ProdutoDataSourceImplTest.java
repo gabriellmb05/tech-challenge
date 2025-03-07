@@ -5,9 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
-import br.com.on.fiap.adapter.output.persistence.mapper.ProdutoSaidaMapeador;
-import br.com.on.fiap.adapter.output.persistence.repository.ProdutoRepository;
+import br.com.on.fiap.adapter.output.db.datasource.ProdutoDataSourceImpl;
+import br.com.on.fiap.adapter.output.db.entity.ProdutoEntity;
+import br.com.on.fiap.adapter.output.db.mapper.ProdutoSaidaMapeador;
+import br.com.on.fiap.adapter.output.db.repository.ProdutoRepository;
 import br.com.on.fiap.core.domain.Produto;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;

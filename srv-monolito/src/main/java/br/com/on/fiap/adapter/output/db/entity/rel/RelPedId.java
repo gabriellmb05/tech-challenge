@@ -1,4 +1,4 @@
-package br.com.on.fiap.adapter.output.persistence.entity.rel;
+package br.com.on.fiap.adapter.output.db.entity.rel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

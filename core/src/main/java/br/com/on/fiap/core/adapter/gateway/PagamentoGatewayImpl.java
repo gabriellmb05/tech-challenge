@@ -13,11 +13,6 @@ public class PagamentoGatewayImpl implements PagamentoGateway {
     }
 
     @Override
-    public void integracaoEnviaPagamento(Pagamento pagamento) {
-        pagamentoDataSource.integracaoEnviaPagamento(pagamento);
-    }
-
-    @Override
     public Pagamento salvaPagamento(Pagamento pagamento) {
         return pagamentoDataSource.salvaPagamento(pagamento);
     }

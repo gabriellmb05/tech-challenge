@@ -1,6 +1,6 @@
-package br.com.on.fiap.adapter.output.persistence.repository;
+package br.com.on.fiap.adapter.output.db.repository;
 
-import br.com.on.fiap.adapter.output.persistence.entity.PedidoEntity;
+import br.com.on.fiap.adapter.output.db.entity.PedidoEntity;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

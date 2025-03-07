@@ -1,4 +1,4 @@
-package br.com.on.fiap.adapter.output.persistence.entity;
+package br.com.on.fiap.adapter.output.db.entity;
 
 import br.com.on.fiap.core.domain.Cliente;
 import jakarta.persistence.*;

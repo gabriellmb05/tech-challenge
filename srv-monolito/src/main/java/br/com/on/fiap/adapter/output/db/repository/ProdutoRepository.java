@@ -1,6 +1,6 @@
-package br.com.on.fiap.adapter.output.persistence.repository;
+package br.com.on.fiap.adapter.output.db.repository;
 
-import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
+import br.com.on.fiap.adapter.output.db.entity.ProdutoEntity;
 import br.com.on.fiap.core.application.dto.filtro.ProdutoFiltroEntrada;
 import java.util.List;
 import java.util.Optional;

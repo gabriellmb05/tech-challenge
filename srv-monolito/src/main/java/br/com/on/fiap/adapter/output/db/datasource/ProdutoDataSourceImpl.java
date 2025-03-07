@@ -1,9 +1,9 @@
-package br.com.on.fiap.adapter.output.datasource;
+package br.com.on.fiap.adapter.output.db.datasource;
 
 import br.com.on.fiap.adapter.input.dto.resposta.PaginaRespostaInfo;
-import br.com.on.fiap.adapter.output.persistence.component.PageableComponent;
-import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
-import br.com.on.fiap.adapter.output.persistence.repository.ProdutoRepository;
+import br.com.on.fiap.adapter.output.db.component.PageableComponent;
+import br.com.on.fiap.adapter.output.db.entity.ProdutoEntity;
+import br.com.on.fiap.adapter.output.db.repository.ProdutoRepository;
 import br.com.on.fiap.core.adapter.datasource.ProdutoDataSource;
 import br.com.on.fiap.core.application.dto.filtro.ProdutoFiltroEntrada;
 import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
