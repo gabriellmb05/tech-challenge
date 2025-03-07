@@ -1,11 +1,5 @@
 package br.com.on.fiap.infrastructure.config;
 
-import br.com.on.fiap.core.adapter.controller.PedidoController;
-import br.com.on.fiap.core.adapter.controller.impl.PedidoControllerImpl;
-import br.com.on.fiap.core.adapter.datasource.PedidoDataSource;
-import br.com.on.fiap.core.adapter.gateway.PedidoGatewayImpl;
-import br.com.on.fiap.core.adapter.presenter.PedidoPresenter;
-import br.com.on.fiap.core.adapter.presenter.impl.PedidoPresenterImpl;
 import br.com.on.fiap.core.application.gateway.PedidoGateway;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorIdUseCase;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoCriaUseCase;
@@ -15,32 +9,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class PedidoConfig {
+public class PedidoUseCaseBeanConfig {
 
     private final ClienteBuscaPorIdUseCase clienteBuscaPorIdUseCase;
     private final PedidoValidaProdutoUseCase pedidoValidaProdutoUseCase;
     private final PagamentoCriaUseCase pagamentoCriaUseCase;
+    private final PedidoGateway pedidoGateway;
 
-    private final PedidoDataSource pedidoDataSource;
-
-    public PedidoConfig(
+    public PedidoUseCaseBeanConfig(
             ClienteBuscaPorIdUseCase clienteBuscaPorIdUseCase,
             PedidoValidaProdutoUseCase pedidoValidaProdutoUseCase,
             PagamentoCriaUseCase pagamentoCriaUseCase,
-            PedidoDataSource pedidoDataSource) {
+            PedidoGateway pedidoGateway) {
         this.clienteBuscaPorIdUseCase = clienteBuscaPorIdUseCase;
         this.pedidoValidaProdutoUseCase = pedidoValidaProdutoUseCase;
         this.pagamentoCriaUseCase = pagamentoCriaUseCase;
-        this.pedidoDataSource = pedidoDataSource;
-    }
-
-    @Bean
-    public PedidoGateway pedidoGateway() {
-        return new PedidoGatewayImpl(pedidoDataSource);
-    }
-
-    public PedidoPresenter pedidoPresenter() {
-        return new PedidoPresenterImpl();
+        this.pedidoGateway = pedidoGateway;
     }
 
     @Bean
@@ -56,17 +40,22 @@ public class PedidoConfig {
 
     @Bean
     public PedidoListaUseCase pedidoListaUseCase() {
-        return new PedidoListaUseCaseImpl(pedidoGateway());
+        return new PedidoListaUseCaseImpl(pedidoGateway);
     }
 
     @Bean
     public PedidoDetalhaUseCase pedidoDetalhaUseCase() {
-        return new PedidoDetalhaUseCaseImpl(pedidoGateway());
+        return new PedidoDetalhaUseCaseImpl(pedidoGateway);
     }
 
     @Bean
     public PedidoAtualizaUseCase pedidoAtualizaUseCase() {
-        return new PedidoAtualizaUseCaseImpl(pedidoGateway());
+        return new PedidoAtualizaUseCaseImpl(pedidoGateway);
+    }
+
+    @Bean
+    public PedidoSalvaUseCase pedidoSalvaUseCase() {
+        return new PedidoSalvaUseCaseImpl(pedidoGateway);
     }
 
     @Bean
@@ -77,20 +66,5 @@ public class PedidoConfig {
     @Bean
     public PedidoProdutoCriaRelacionamentoUseCase pedidoProdutoCriaRelacionamentoUseCase() {
         return new PedidoProdutoCriaRelacionamentoUseCaseImpl();
-    }
-
-    @Bean
-    public PedidoSalvaUseCase pedidoSalvaUseCase() {
-        return new PedidoSalvaUseCaseImpl(pedidoGateway());
-    }
-
-    @Bean
-    public PedidoController pedidoController() {
-        return new PedidoControllerImpl(
-                pedidoInsereUseCase(),
-                pedidoListaUseCase(),
-                pedidoDetalhaUseCase(),
-                pedidoAtualizaUseCase(),
-                pedidoPresenter());
     }
 }

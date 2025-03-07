@@ -1,11 +1,5 @@
 package br.com.on.fiap.infrastructure.config;
 
-import br.com.on.fiap.core.adapter.controller.PagamentoController;
-import br.com.on.fiap.core.adapter.controller.impl.PagamentoControllerImpl;
-import br.com.on.fiap.core.adapter.datasource.PagamentoDataSource;
-import br.com.on.fiap.core.adapter.gateway.PagamentoGatewayImpl;
-import br.com.on.fiap.core.adapter.presenter.PagamentoPresenter;
-import br.com.on.fiap.core.adapter.presenter.impl.PagamentoPresenterImpl;
 import br.com.on.fiap.core.application.gateway.PagamentoGateway;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoAtualizaUseCase;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoCriaUseCase;
@@ -16,33 +10,21 @@ import br.com.on.fiap.core.application.usecase.pagamento.impl.PagamentoValidaUse
 import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 
 @Configuration
-public class PagamentoConfig {
-
-    private final PagamentoDataSource pagamentoDataSource;
+public class PagamentoUseCaseBeanConfig {
 
     private final PedidoDetalhaUseCase pedidoDetalhaUseCase;
+    private final PagamentoGateway pagamentoGateway;
 
-    public PagamentoConfig(PagamentoDataSource pagamentoDataSource, @Lazy PedidoDetalhaUseCase pedidoDetalhaUseCase) {
-        this.pagamentoDataSource = pagamentoDataSource;
+    public PagamentoUseCaseBeanConfig(PedidoDetalhaUseCase pedidoDetalhaUseCase, PagamentoGateway pagamentoGateway) {
         this.pedidoDetalhaUseCase = pedidoDetalhaUseCase;
-    }
-
-    @Bean
-    public PagamentoGateway pagamentoGateway() {
-        return new PagamentoGatewayImpl(pagamentoDataSource);
-    }
-
-    @Bean
-    public PagamentoPresenter pagamentoPresenter() {
-        return new PagamentoPresenterImpl();
+        this.pagamentoGateway = pagamentoGateway;
     }
 
     @Bean
     public PagamentoAtualizaUseCase pagamentoAtualizaUseCase() {
-        return new PagamentoAtualizaUseCaseImpl(pedidoDetalhaUseCase, pagamentoValidaUseCase(), pagamentoGateway());
+        return new PagamentoAtualizaUseCaseImpl(pedidoDetalhaUseCase, pagamentoValidaUseCase(), pagamentoGateway);
     }
 
     @Bean
@@ -53,10 +35,5 @@ public class PagamentoConfig {
     @Bean
     public PagamentoCriaUseCase pagamentoCriaUseCase() {
         return new PagamentoCriaUseCaseImpl();
-    }
-
-    @Bean
-    public PagamentoController pagamentoController() {
-        return new PagamentoControllerImpl(pagamentoAtualizaUseCase(), pagamentoPresenter());
     }
 }

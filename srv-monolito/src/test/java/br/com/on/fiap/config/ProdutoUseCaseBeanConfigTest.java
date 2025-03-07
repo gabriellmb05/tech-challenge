@@ -8,17 +8,18 @@ import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoAlteraUseCase
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoBuscaPorIdUseCaseImpl;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoDeletaUseCaseImpl;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoInsereUseCaseImpl;
-import br.com.on.fiap.infrastructure.config.ProdutoConfig;
+import br.com.on.fiap.infrastructure.config.ProdutoUseCaseBeanConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-class ProdutoConfigTest {
+class ProdutoUseCaseBeanConfigTest {
 
     @Test
     @DisplayName("Dado a configuração de beans, quando buscar ProdutoPorId, então deve retornar a instância correta")
     void dadoConfiguracaoDeBeans_quandoBuscarProdutoPorId_entaoDeveRetornarInstanciaCorreta() {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProdutoConfig.class);
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(ProdutoUseCaseBeanConfig.class);
         ProdutoBuscaPorIdUseCase bean = context.getBean(ProdutoBuscaPorIdUseCase.class);
 
         assertNotNull(bean);
@@ -28,7 +29,8 @@ class ProdutoConfigTest {
     @Test
     @DisplayName("Dado a configuração de beans, quando inserir Produto, então deve retornar a instância correta")
     void dadoConfiguracaoDeBeans_quandoInserirProduto_entaoDeveRetornarInstanciaCorreta() {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProdutoConfig.class);
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(ProdutoUseCaseBeanConfig.class);
         ProdutoInsereUseCase bean = context.getBean(ProdutoInsereUseCase.class);
 
         assertNotNull(bean);
@@ -38,7 +40,8 @@ class ProdutoConfigTest {
     @Test
     @DisplayName("Dado a configuração de beans, quando alterar Produto, então deve retornar a instância correta")
     void dadoConfiguracaoDeBeans_quandoAlterarProduto_entaoDeveRetornarInstanciaCorreta() {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProdutoConfig.class);
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(ProdutoUseCaseBeanConfig.class);
         ProdutoAlteraUseCase bean = context.getBean(ProdutoAlteraUseCase.class);
 
         assertNotNull(bean);
@@ -48,7 +51,8 @@ class ProdutoConfigTest {
     @Test
     @DisplayName("Dado a configuração de beans, quando deletar Produto, então deve retornar a instância correta")
     void dadoConfiguracaoDeBeans_quandoDeletarProduto_entaoDeveRetornarInstanciaCorreta() {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProdutoConfig.class);
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(ProdutoUseCaseBeanConfig.class);
         ProdutoDeletaUseCase bean = context.getBean(ProdutoDeletaUseCase.class);
 
         assertNotNull(bean);
@@ -58,7 +62,8 @@ class ProdutoConfigTest {
     @Test
     @DisplayName("Dado a configuração de beans, quando listar Produtos, então deve retornar a instância correta")
     void dadoConfiguracaoDeBeans_quandoListarProdutos_entaoDeveRetornarInstanciaCorreta() {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProdutoConfig.class);
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(ProdutoUseCaseBeanConfig.class);
         ProdutoListaUseCase bean = context.getBean(ProdutoListaUseCase.class);
 
         assertNotNull(bean);
