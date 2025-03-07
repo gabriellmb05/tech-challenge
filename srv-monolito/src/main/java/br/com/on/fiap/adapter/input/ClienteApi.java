@@ -1,9 +1,9 @@
 package br.com.on.fiap.adapter.input;
 
-import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
+import br.com.on.fiap.adapter.input.dto.entrada.ClienteRequest;
 import br.com.on.fiap.adapter.input.swagger.ClienteApiSwagger;
 import br.com.on.fiap.core.adapter.controller.ClienteController;
-import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
+import br.com.on.fiap.core.application.dto.resposta.ClienteResposta;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +22,8 @@ public class ClienteApi implements ClienteApiSwagger {
     @Override
     @PostMapping
     public ResponseEntity<ClienteResposta> insereCliente(
-            @Valid @RequestBody ClienteSolicitacaoDTO clienteSolicitacaoDTO) {
-        ClienteResposta clienteResposta = clienteController.insereCliente(clienteSolicitacaoDTO);
+            @Valid @RequestBody ClienteRequest clienteRequest) {
+        ClienteResposta clienteResposta = clienteController.insereCliente(clienteRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteResposta);
     }
 

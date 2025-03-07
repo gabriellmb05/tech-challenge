@@ -1,6 +1,6 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.core.application.dto.filtro.produto.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.filtro.ProdutoFiltroEntrada;
 import br.com.on.fiap.core.domain.Categoria;
 
 public class DataPoolProdutoFiltro {

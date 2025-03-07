@@ -1,7 +1,7 @@
 package br.com.on.fiap.core.adapter.presenter.impl;
 
 import br.com.on.fiap.core.adapter.presenter.CategoriaPresenter;
-import br.com.on.fiap.core.application.dto.resposta.categoria.CategoriaResposta;
+import br.com.on.fiap.core.application.dto.resposta.CategoriaResposta;
 import br.com.on.fiap.core.domain.Categoria;
 import java.util.List;
 

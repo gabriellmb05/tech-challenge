@@ -1,6 +1,6 @@
 package br.com.on.datapool;
 
-import br.com.on.fiap.adapter.input.dto.filter.PedidoFiltroRequest;
+import br.com.on.fiap.adapter.input.dto.filtro.PedidoFiltroRequest;
 import java.time.LocalDate;
 
 public class DataPoolPedidoFiltroDTO {

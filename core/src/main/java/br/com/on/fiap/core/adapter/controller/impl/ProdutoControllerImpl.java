@@ -2,11 +2,11 @@ package br.com.on.fiap.core.adapter.controller.impl;
 
 import br.com.on.fiap.core.adapter.controller.ProdutoController;
 import br.com.on.fiap.core.adapter.presenter.ProdutoPresenter;
-import br.com.on.fiap.core.application.dto.entrada.produto.ProdutoEntrada;
-import br.com.on.fiap.core.application.dto.filtro.produto.ProdutoFiltroEntrada;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.produto.ProdutoResposta;
+import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
+import br.com.on.fiap.core.application.dto.filtro.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
 import br.com.on.fiap.core.application.usecase.produto.*;
 import br.com.on.fiap.core.domain.Produto;
 

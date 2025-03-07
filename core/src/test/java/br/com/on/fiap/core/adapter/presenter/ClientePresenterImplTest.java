@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import br.com.on.fiap.core.adapter.presenter.impl.ClientePresenterImpl;
-import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
+import br.com.on.fiap.core.application.dto.resposta.ClienteResposta;
 import br.com.on.fiap.core.domain.Cliente;
 import br.com.on.fiap.datapool.DataPoolCliente;
 import org.junit.jupiter.api.DisplayName;

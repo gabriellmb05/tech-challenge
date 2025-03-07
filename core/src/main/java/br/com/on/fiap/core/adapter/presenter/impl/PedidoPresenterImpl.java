@@ -1,12 +1,12 @@
 package br.com.on.fiap.core.adapter.presenter.impl;
 
 import br.com.on.fiap.core.adapter.presenter.PedidoPresenter;
-import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
-import br.com.on.fiap.core.application.dto.resposta.pagamento.PagamentoResposta;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
-import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoDetalhadoResposta;
-import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoResposta;
-import br.com.on.fiap.core.application.dto.resposta.produto.ProdutoResposta;
+import br.com.on.fiap.core.application.dto.resposta.ClienteResposta;
+import br.com.on.fiap.core.application.dto.resposta.PagamentoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.PedidoDetalhadoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PedidoResposta;
+import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
 import br.com.on.fiap.core.domain.Pedido;
 import br.com.on.fiap.core.domain.PedidoProduto;
 import java.util.List;

@@ -1,9 +1,9 @@
 package br.com.on.fiap.adapter.input.swagger;
 
-import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroEntradaRequest;
-import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoRequest;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
-import br.com.on.fiap.core.application.dto.resposta.produto.ProdutoResposta;
+import br.com.on.fiap.adapter.input.dto.filtro.ProdutoFiltroRequest;
+import br.com.on.fiap.adapter.input.dto.entrada.ProdutoRequest;
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -31,7 +31,7 @@ public interface ProdutoApiSwagger {
                 @ApiResponse(responseCode = "404", description = "Produtos não encontrados")
             })
     ResponseEntity<PaginaResposta<ProdutoResposta>> listarProdutosComFiltro(
-            ProdutoFiltroEntradaRequest filtro, Pageable pageable);
+            ProdutoFiltroRequest filtro, Pageable pageable);
 
     @Operation(summary = "Insere um novo produto", description = "Insere um novo produto no sistema")
     @ApiResponses(
@@ -39,7 +39,7 @@ public interface ProdutoApiSwagger {
                 @ApiResponse(responseCode = "201", description = "Produto criado"),
                 @ApiResponse(responseCode = "400", description = "Dados inválidos")
             })
-    ResponseEntity<ProdutoResposta> insereProduto(ProdutoSolicitacaoRequest produtoSolicitacaoRequestDTO);
+    ResponseEntity<ProdutoResposta> insereProduto(ProdutoRequest produtoRequestDTO);
 
     @Operation(summary = "Altera um produto", description = "Altera um produto existente no sistema")
     @ApiResponses(
@@ -47,7 +47,7 @@ public interface ProdutoApiSwagger {
                 @ApiResponse(responseCode = "200", description = "Produto alterado"),
                 @ApiResponse(responseCode = "404", description = "Produto não encontrado")
             })
-    ResponseEntity<ProdutoResposta> alteraProduto(Long id, ProdutoSolicitacaoRequest produtoSolicitacaoRequestDTO);
+    ResponseEntity<ProdutoResposta> alteraProduto(Long id, ProdutoRequest produtoRequestDTO);
 
     @Operation(summary = "Deleta um produto", description = "Deleta um produto existente no sistema")
     @ApiResponses(

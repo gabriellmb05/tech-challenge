@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import br.com.on.datapool.*;
-import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroEntradaRequest;
-import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoRequest;
-import br.com.on.fiap.adapter.input.dto.response.PaginaRespostaInfo;
-import br.com.on.fiap.adapter.input.dto.response.PaginacaoRespostaInfo;
+import br.com.on.fiap.adapter.input.dto.filtro.ProdutoFiltroRequest;
+import br.com.on.fiap.adapter.input.dto.entrada.ProdutoRequest;
+import br.com.on.fiap.adapter.input.dto.resposta.PaginaRespostaInfo;
+import br.com.on.fiap.adapter.input.dto.resposta.PaginacaoRespostaInfo;
 import br.com.on.fiap.core.adapter.controller.impl.ProdutoControllerImpl;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
-import br.com.on.fiap.core.application.dto.resposta.produto.ProdutoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -71,9 +71,9 @@ class ProdutoApiTest {
     @MethodSource("produtoDTOProvider")
     @DisplayName("Dado um produto novo, quando inserir o produto, então ele deve ser salvo")
     void dadoProdutoNovo_quandoInserirProduto_entaoDeveSerSalvo(
-            ProdutoResposta produtoResposta, ProdutoSolicitacaoRequest produtoSolicitacaoRequestDTO) {
-        when(produtoController.insereProduto(produtoSolicitacaoRequestDTO)).thenReturn(produtoResposta);
-        ResponseEntity<ProdutoResposta> response = produtoApi.insereProduto(produtoSolicitacaoRequestDTO);
+            ProdutoResposta produtoResposta, ProdutoRequest produtoRequestDTO) {
+        when(produtoController.insereProduto(produtoRequestDTO)).thenReturn(produtoResposta);
+        ResponseEntity<ProdutoResposta> response = produtoApi.insereProduto(produtoRequestDTO);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(produtoResposta, response.getBody());
@@ -83,10 +83,10 @@ class ProdutoApiTest {
     @MethodSource("produtoDTOProvider")
     @DisplayName("Dado um produto existente, quando alterar o produto, então ele deve ser atualizado")
     void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado(
-            ProdutoResposta produtoRespotaDTO, ProdutoSolicitacaoRequest produtoSolicitacaoRequestDTO) {
+            ProdutoResposta produtoRespotaDTO, ProdutoRequest produtoRequestDTO) {
         Long id = produtoRespotaDTO.getId();
-        when(produtoController.alteraProduto(id, produtoSolicitacaoRequestDTO)).thenReturn(produtoRespotaDTO);
-        ResponseEntity<ProdutoResposta> response = produtoApi.alteraProduto(id, produtoSolicitacaoRequestDTO);
+        when(produtoController.alteraProduto(id, produtoRequestDTO)).thenReturn(produtoRespotaDTO);
+        ResponseEntity<ProdutoResposta> response = produtoApi.alteraProduto(id, produtoRequestDTO);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(produtoRespotaDTO, response.getBody());
@@ -106,7 +106,7 @@ class ProdutoApiTest {
     @MethodSource("produtoFiltroProvider")
     @DisplayName("Dado produtos existentes, quando buscar o produto através do filtro, então ele deve ser retornado")
     void dadoProdutosExistentes_quandoBuscarProdutoAtravesDoFiltro_entaoDeveSerRetornado(
-            ProdutoFiltroEntradaRequest filtroDTO, List<ProdutoResposta> produtoRespostas) {
+            ProdutoFiltroRequest filtroDTO, List<ProdutoResposta> produtoRespostas) {
 
         PageRequest pageable = PageRequest.of(0, 10);
         PaginacaoRespostaInfo paginacao = PaginacaoRespostaInfo.from(pageable);

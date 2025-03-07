@@ -7,11 +7,11 @@ import static org.mockito.Mockito.when;
 import br.com.on.datapool.DataPoolClienteEntradaDTO;
 import br.com.on.datapool.DataPoolClienteRespostaDTO;
 import br.com.on.datapool.DataPoolClienteSolicitacaoDTO;
-import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
+import br.com.on.fiap.adapter.input.dto.entrada.ClienteRequest;
 import br.com.on.fiap.adapter.input.mapper.ClienteInputMapper;
 import br.com.on.fiap.core.adapter.controller.ClienteController;
-import br.com.on.fiap.core.application.dto.entrada.cliente.ClienteEntrada;
-import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
+import br.com.on.fiap.core.application.dto.entrada.ClienteEntrada;
+import br.com.on.fiap.core.application.dto.resposta.ClienteResposta;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -50,15 +50,15 @@ class ClienteApiTest {
     @DisplayName("Dado um cliente novo, quando inserir o cliente, então ele deve ser salvo")
     void dadoClienteNovo_quandoInserirCliente_entaoDeveSerSalvo() {
         ClienteEntrada clienteEntrada = DataPoolClienteEntradaDTO.gerarCliente();
-        ClienteSolicitacaoDTO clienteSolicitacaoDTO = DataPoolClienteSolicitacaoDTO.gerarCliente();
+        ClienteRequest clienteRequest = DataPoolClienteSolicitacaoDTO.gerarCliente();
         ClienteResposta clienteResposta = DataPoolClienteRespostaDTO.gerarCliente();
-        when(clienteInputMapper.paraClienteDTO(clienteSolicitacaoDTO)).thenReturn(clienteEntrada);
+        when(clienteInputMapper.paraClienteDTO(clienteRequest)).thenReturn(clienteEntrada);
         when(clienteController.insereCliente(clienteEntrada)).thenReturn(clienteResposta);
 
-        ResponseEntity<ClienteResposta> response = clienteApi.insereCliente(clienteSolicitacaoDTO);
+        ResponseEntity<ClienteResposta> response = clienteApi.insereCliente(clienteRequest);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(clienteResposta, response.getBody());
-        verify(clienteInputMapper).paraClienteDTO(clienteSolicitacaoDTO);
+        verify(clienteInputMapper).paraClienteDTO(clienteRequest);
     }
 }

@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.core.application.dto.filtro.produto.ProdutoFiltroEntrada;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.Direcao;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.filtro.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.Direcao;
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoListaUseCaseImpl;
 import br.com.on.fiap.core.domain.*;
 import br.com.on.fiap.datapool.*;

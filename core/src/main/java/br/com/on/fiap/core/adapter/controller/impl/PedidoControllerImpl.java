@@ -2,12 +2,12 @@ package br.com.on.fiap.core.adapter.controller.impl;
 
 import br.com.on.fiap.core.adapter.controller.PedidoController;
 import br.com.on.fiap.core.adapter.presenter.PedidoPresenter;
-import br.com.on.fiap.core.application.dto.entrada.pedido.PedidoEntrada;
-import br.com.on.fiap.core.application.dto.filtro.pedido.PedidoFiltroEntrada;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoDetalhadoResposta;
-import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoResposta;
+import br.com.on.fiap.core.application.dto.entrada.PedidoEntrada;
+import br.com.on.fiap.core.application.dto.filtro.PedidoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PedidoDetalhadoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PedidoResposta;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoAtualizaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoInsereUseCase;

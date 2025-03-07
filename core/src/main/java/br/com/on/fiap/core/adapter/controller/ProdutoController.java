@@ -1,10 +1,10 @@
 package br.com.on.fiap.core.adapter.controller;
 
-import br.com.on.fiap.core.application.dto.entrada.produto.ProdutoEntrada;
-import br.com.on.fiap.core.application.dto.filtro.produto.ProdutoFiltroEntrada;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.produto.ProdutoResposta;
+import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
+import br.com.on.fiap.core.application.dto.filtro.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
 
 public interface ProdutoController {
 

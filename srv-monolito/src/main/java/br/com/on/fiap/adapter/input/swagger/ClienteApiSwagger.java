@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.input.swagger;
 
-import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
-import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
+import br.com.on.fiap.adapter.input.dto.entrada.ClienteRequest;
+import br.com.on.fiap.core.application.dto.resposta.ClienteResposta;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -26,7 +26,7 @@ public interface ClienteApiSwagger {
                 @ApiResponse(responseCode = "400", description = "Dados inválidos"),
                 @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
             })
-    ResponseEntity<ClienteResposta> insereCliente(ClienteSolicitacaoDTO clienteSolicitacaoDTO);
+    ResponseEntity<ClienteResposta> insereCliente(ClienteRequest clienteRequest);
 
     @Operation(summary = "Busca cliente por CPF", description = "Retorna um cliente pelo seu CPF")
     @ApiResponses(

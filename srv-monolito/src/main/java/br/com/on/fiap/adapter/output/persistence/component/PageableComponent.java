@@ -1,8 +1,8 @@
 package br.com.on.fiap.adapter.output.persistence.component;
 
-import br.com.on.fiap.core.application.dto.resposta.paginacao.Direcao;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.OrdenacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.Direcao;
+import br.com.on.fiap.core.application.dto.resposta.OrdenacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

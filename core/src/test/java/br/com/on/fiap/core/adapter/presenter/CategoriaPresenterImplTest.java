@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import br.com.on.fiap.core.adapter.presenter.impl.CategoriaPresenterImpl;
-import br.com.on.fiap.core.application.dto.resposta.categoria.CategoriaResposta;
+import br.com.on.fiap.core.application.dto.resposta.CategoriaResposta;
 import br.com.on.fiap.core.domain.Categoria;
 import java.util.Arrays;
 import java.util.List;

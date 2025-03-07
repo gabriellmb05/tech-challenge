@@ -1,13 +1,13 @@
 package br.com.on.fiap.adapter.output.datasource;
 
-import br.com.on.fiap.adapter.input.dto.response.PaginaRespostaInfo;
+import br.com.on.fiap.adapter.input.dto.resposta.PaginaRespostaInfo;
 import br.com.on.fiap.adapter.output.persistence.component.PageableComponent;
 import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
 import br.com.on.fiap.adapter.output.persistence.repository.ProdutoRepository;
 import br.com.on.fiap.core.adapter.datasource.ProdutoDataSource;
-import br.com.on.fiap.core.application.dto.filtro.produto.ProdutoFiltroEntrada;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.filtro.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import br.com.on.fiap.core.domain.Produto;
 import java.util.List;
 import java.util.Optional;

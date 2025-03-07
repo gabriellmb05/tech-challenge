@@ -1,8 +1,8 @@
 package br.com.on.fiap.core.application.usecase.produto.impl;
 
-import br.com.on.fiap.core.application.dto.filtro.produto.ProdutoFiltroEntrada;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.filtro.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import br.com.on.fiap.core.application.gateway.ProdutoGateway;
 import br.com.on.fiap.core.application.usecase.produto.ProdutoListaUseCase;
 import br.com.on.fiap.core.domain.Produto;

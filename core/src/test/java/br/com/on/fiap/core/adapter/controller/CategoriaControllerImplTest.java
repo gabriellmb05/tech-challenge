@@ -7,7 +7,7 @@ import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.controller.impl.CategoriaControllerImpl;
 import br.com.on.fiap.core.adapter.presenter.CategoriaPresenter;
-import br.com.on.fiap.core.application.dto.resposta.categoria.CategoriaResposta;
+import br.com.on.fiap.core.application.dto.resposta.CategoriaResposta;
 import br.com.on.fiap.core.application.usecase.categoria.CategoriaBuscaUseCase;
 import br.com.on.fiap.core.domain.Categoria;
 import java.util.Arrays;

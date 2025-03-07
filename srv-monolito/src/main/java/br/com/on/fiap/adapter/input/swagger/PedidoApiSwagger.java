@@ -1,10 +1,10 @@
 package br.com.on.fiap.adapter.input.swagger;
 
-import br.com.on.fiap.adapter.input.dto.filter.PedidoFiltroRequest;
-import br.com.on.fiap.adapter.input.dto.request.PedidoEntradaDTO;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
-import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoDetalhadoResposta;
-import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoResposta;
+import br.com.on.fiap.adapter.input.dto.filtro.PedidoFiltroRequest;
+import br.com.on.fiap.adapter.input.dto.entrada.PedidoRequest;
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.PedidoDetalhadoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PedidoResposta;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -31,7 +31,7 @@ public interface PedidoApiSwagger {
                 @ApiResponse(responseCode = "400", description = "Dados inválidos"),
                 @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
             })
-    ResponseEntity<PedidoResposta> inserePedido(PedidoEntradaDTO pedidoSolicitacaoDTO);
+    ResponseEntity<PedidoResposta> inserePedido(PedidoRequest pedidoSolicitacaoDTO);
 
     @Operation(summary = "Lista pedidos", description = "Retorna uma lista de pedidos de forma paginada")
     @ApiResponses(

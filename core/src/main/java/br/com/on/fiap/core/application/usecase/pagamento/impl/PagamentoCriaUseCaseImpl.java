@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.application.usecase.pagamento.impl;
 
-import br.com.on.fiap.core.application.dto.entrada.pagamento.PagamentoEntrada;
+import br.com.on.fiap.core.application.dto.entrada.PagamentoEntrada;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoCriaUseCase;
 import br.com.on.fiap.core.domain.Pagamento;
 import br.com.on.fiap.core.domain.Produto;

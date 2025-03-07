@@ -1,13 +1,13 @@
 package br.com.on.fiap.adapter.input;
 
-import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroEntradaRequest;
-import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoRequest;
-import br.com.on.fiap.adapter.input.dto.response.PaginacaoRespostaInfo;
+import br.com.on.fiap.adapter.input.dto.filtro.ProdutoFiltroRequest;
+import br.com.on.fiap.adapter.input.dto.entrada.ProdutoRequest;
+import br.com.on.fiap.adapter.input.dto.resposta.PaginacaoRespostaInfo;
 import br.com.on.fiap.adapter.input.swagger.ProdutoApiSwagger;
 import br.com.on.fiap.core.adapter.controller.ProdutoController;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.produto.ProdutoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
@@ -35,7 +35,7 @@ public class ProdutoApi implements ProdutoApiSwagger {
     @Override
     @GetMapping
     public ResponseEntity<PaginaResposta<ProdutoResposta>> listarProdutosComFiltro(
-            @ParameterObject ProdutoFiltroEntradaRequest filtro, Pageable pageable) {
+            @ParameterObject ProdutoFiltroRequest filtro, Pageable pageable) {
         PaginacaoResposta paginacaoResposta = PaginacaoRespostaInfo.from(pageable);
         PaginaResposta<ProdutoResposta> produtoPaginaResposta =
                 produtoController.listarProdutosComFiltro(filtro, paginacaoResposta);
@@ -45,16 +45,16 @@ public class ProdutoApi implements ProdutoApiSwagger {
     @Override
     @PostMapping
     public ResponseEntity<ProdutoResposta> insereProduto(
-            @Valid @RequestBody ProdutoSolicitacaoRequest produtoSolicitacaoRequestDTO) {
-        ProdutoResposta produtoPersistido = produtoController.insereProduto(produtoSolicitacaoRequestDTO);
+            @Valid @RequestBody ProdutoRequest produtoRequestDTO) {
+        ProdutoResposta produtoPersistido = produtoController.insereProduto(produtoRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoPersistido);
     }
 
     @Override
     @PutMapping("/{id}")
     public ResponseEntity<ProdutoResposta> alteraProduto(
-            @PathVariable("id") Long id, @Valid @RequestBody ProdutoSolicitacaoRequest produtoSolicitacaoRequestDTO) {
-        ProdutoResposta produtoAlterado = produtoController.alteraProduto(id, produtoSolicitacaoRequestDTO);
+            @PathVariable("id") Long id, @Valid @RequestBody ProdutoRequest produtoRequestDTO) {
+        ProdutoResposta produtoAlterado = produtoController.alteraProduto(id, produtoRequestDTO);
         return ResponseEntity.ok().body(produtoAlterado);
     }
 

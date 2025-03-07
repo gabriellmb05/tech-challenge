@@ -3,7 +3,7 @@ package br.com.on.fiap.core.application.usecase.cliente;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import br.com.on.fiap.core.application.dto.entrada.cliente.ClienteEntrada;
+import br.com.on.fiap.core.application.dto.entrada.ClienteEntrada;
 import br.com.on.fiap.core.application.exception.ClienteExistenteExcecao;
 import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteInsereUseCaseImpl;
 import br.com.on.fiap.core.domain.Cliente;

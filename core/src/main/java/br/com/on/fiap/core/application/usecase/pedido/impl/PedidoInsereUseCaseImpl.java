@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.application.usecase.pedido.impl;
 
-import br.com.on.fiap.core.application.dto.entrada.pedido.PedidoEntrada;
+import br.com.on.fiap.core.application.dto.entrada.PedidoEntrada;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorIdUseCase;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoCriaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.*;

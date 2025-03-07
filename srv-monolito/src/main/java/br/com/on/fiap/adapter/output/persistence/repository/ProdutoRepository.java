@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.output.persistence.repository;
 
 import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
-import br.com.on.fiap.core.application.dto.filtro.produto.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.filtro.ProdutoFiltroEntrada;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;

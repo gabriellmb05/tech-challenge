@@ -1,9 +1,9 @@
 package br.com.on.fiap.core.adapter.gateway;
 
 import br.com.on.fiap.core.adapter.datasource.ProdutoDataSource;
-import br.com.on.fiap.core.application.dto.filtro.produto.ProdutoFiltroEntrada;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.filtro.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import br.com.on.fiap.core.application.gateway.ProdutoGateway;
 import br.com.on.fiap.core.domain.Produto;
 import java.util.List;

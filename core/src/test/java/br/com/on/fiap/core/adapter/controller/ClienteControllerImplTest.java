@@ -7,8 +7,8 @@ import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.controller.impl.ClienteControllerImpl;
 import br.com.on.fiap.core.adapter.presenter.ClientePresenter;
-import br.com.on.fiap.core.application.dto.entrada.cliente.ClienteEntrada;
-import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
+import br.com.on.fiap.core.application.dto.entrada.ClienteEntrada;
+import br.com.on.fiap.core.application.dto.resposta.ClienteResposta;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
 import br.com.on.fiap.core.domain.Cliente;

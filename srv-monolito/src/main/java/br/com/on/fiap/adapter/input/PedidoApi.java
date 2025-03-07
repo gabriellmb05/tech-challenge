@@ -1,14 +1,14 @@
 package br.com.on.fiap.adapter.input;
 
-import br.com.on.fiap.adapter.input.dto.filter.PedidoFiltroRequest;
-import br.com.on.fiap.adapter.input.dto.request.PedidoEntradaDTO;
-import br.com.on.fiap.adapter.input.dto.response.PaginacaoRespostaInfo;
+import br.com.on.fiap.adapter.input.dto.filtro.PedidoFiltroRequest;
+import br.com.on.fiap.adapter.input.dto.entrada.PedidoRequest;
+import br.com.on.fiap.adapter.input.dto.resposta.PaginacaoRespostaInfo;
 import br.com.on.fiap.adapter.input.swagger.PedidoApiSwagger;
 import br.com.on.fiap.core.adapter.controller.PedidoController;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
-import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoDetalhadoResposta;
-import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PedidoDetalhadoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PedidoResposta;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
@@ -28,7 +28,7 @@ public class PedidoApi implements PedidoApiSwagger {
 
     @Override
     @PostMapping
-    public ResponseEntity<PedidoResposta> inserePedido(@Valid @RequestBody PedidoEntradaDTO pedidoSolicitacaoDTO) {
+    public ResponseEntity<PedidoResposta> inserePedido(@Valid @RequestBody PedidoRequest pedidoSolicitacaoDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoController.inserePedido(pedidoSolicitacaoDTO));
     }
 

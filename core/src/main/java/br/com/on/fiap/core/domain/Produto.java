@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.domain;
 
-import br.com.on.fiap.core.application.dto.entrada.produto.ProdutoEntrada;
+import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
 import java.math.BigDecimal;
 
 public class Produto {

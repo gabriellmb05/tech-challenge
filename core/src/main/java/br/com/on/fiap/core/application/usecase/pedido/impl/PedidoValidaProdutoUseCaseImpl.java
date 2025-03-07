@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.application.usecase.pedido.impl;
 
-import br.com.on.fiap.core.application.dto.entrada.produto.ProdutoQuantidadeEntrada;
+import br.com.on.fiap.core.application.dto.entrada.ProdutoQuantidadeEntrada;
 import br.com.on.fiap.core.application.exception.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.core.application.exception.message.MessageError;
 import br.com.on.fiap.core.application.gateway.ProdutoGateway;
