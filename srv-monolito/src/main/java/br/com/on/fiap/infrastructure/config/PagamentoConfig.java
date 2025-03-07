@@ -16,6 +16,7 @@ import br.com.on.fiap.core.application.usecase.pagamento.impl.PagamentoValidaUse
 import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 @Configuration
 public class PagamentoConfig {
@@ -24,7 +25,7 @@ public class PagamentoConfig {
 
     private final PedidoDetalhaUseCase pedidoDetalhaUseCase;
 
-    public PagamentoConfig(PagamentoDataSource pagamentoDataSource, PedidoDetalhaUseCase pedidoDetalhaUseCase) {
+    public PagamentoConfig(PagamentoDataSource pagamentoDataSource, @Lazy PedidoDetalhaUseCase pedidoDetalhaUseCase) {
         this.pagamentoDataSource = pagamentoDataSource;
         this.pedidoDetalhaUseCase = pedidoDetalhaUseCase;
     }

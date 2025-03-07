@@ -6,15 +6,14 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.*;
 
 @Data
 @Entity
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "TB_PED_PEDIDO")
-@EqualsAndHashCode(cacheStrategy = EqualsAndHashCode.CacheStrategy.LAZY)
 public class PedidoEntity {
 
     private static final String SQ_PED_PEDIDO = "SQ_PED_PEDIDO";
@@ -63,8 +62,8 @@ public class PedidoEntity {
     }
 
     public Pedido toDomain(List<PedidoProduto> pedidoProdutos) {
-        Cliente cliente = this.getCliId().toDomain();
-        Pagamento pagamento = this.getPagId().toDomain();
+        Cliente cliente = Objects.nonNull(this.getCliId()) ? this.getCliId().toDomain() : null;
+        Pagamento pagamento = Objects.nonNull(this.getPagId()) ? this.getPagId().toDomain() : null;
         return new Pedido(
                 this.getPedId(),
                 pedidoProdutos,

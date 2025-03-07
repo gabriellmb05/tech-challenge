@@ -2,6 +2,8 @@ package br.com.on.fiap.adapter.input.dto.response;
 
 import br.com.on.fiap.core.domain.model.Pagina;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +29,19 @@ public class PaginaInfo<K> implements Pagina<K> {
                 .totalPaginas(page.getTotalPages())
                 .tamanhoPagina(page.getSize())
                 .paginaAtual(page.getNumber())
+                .build();
+    }
+
+    @Override
+    public <U> Pagina<U> map(Function<? super K, ? extends U> converter) {
+        List<U> novoConteudo = conteudo.stream().map(converter).collect(Collectors.toList());
+
+        return PaginaInfo.<U>builder()
+                .conteudo(novoConteudo)
+                .totalElementos(totalElementos)
+                .totalPaginas(totalPaginas)
+                .tamanhoPagina(tamanhoPagina)
+                .paginaAtual(paginaAtual)
                 .build();
     }
 }
