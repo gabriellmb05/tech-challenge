@@ -7,7 +7,7 @@ import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.controller.impl.CategoriaControllerImpl;
 import br.com.on.fiap.core.adapter.presenter.CategoriaPresenter;
-import br.com.on.fiap.core.application.dto.resposta.CategoriaRespostaDTO;
+import br.com.on.fiap.core.application.dto.resposta.categoria.CategoriaResposta;
 import br.com.on.fiap.core.application.usecase.categoria.CategoriaBuscaUseCase;
 import br.com.on.fiap.core.domain.Categoria;
 import java.util.Arrays;
@@ -36,14 +36,14 @@ class CategoriaControllerImplTest {
             "Dado um cpf, quando buscar o cliente pelo CPF, então um cliente deve ser retornado no formato esperado")
     void dadoDesejoDeBuscarCategorias_quandoBuscar_entaoCategoriasDevemSerRetornadas() {
         List<Categoria> categorias = Arrays.asList(Categoria.BEBIDA, Categoria.SOBREMESA);
-        CategoriaRespostaDTO categoriaRespostaDTO = new CategoriaRespostaDTO(Arrays.asList("BEBIDA", "SOBREMESA"));
+        CategoriaResposta categoriaResposta = new CategoriaResposta(Arrays.asList("BEBIDA", "SOBREMESA"));
         when(categoriaBuscaUseCase.buscaCategorias()).thenReturn(categorias);
-        when(categoriaPresenter.formatar(categorias)).thenReturn(categoriaRespostaDTO);
+        when(categoriaPresenter.formatar(categorias)).thenReturn(categoriaResposta);
 
-        CategoriaRespostaDTO resultado = categoriaController.buscaCategorias();
+        CategoriaResposta resultado = categoriaController.buscaCategorias();
 
         assertNotNull(resultado);
-        assertEquals(categoriaRespostaDTO, resultado);
+        assertEquals(categoriaResposta, resultado);
         verify(categoriaBuscaUseCase).buscaCategorias();
         verify(categoriaPresenter).formatar(categorias);
     }

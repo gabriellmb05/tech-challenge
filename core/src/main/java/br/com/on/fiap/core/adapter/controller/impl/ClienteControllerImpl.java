@@ -2,8 +2,8 @@ package br.com.on.fiap.core.adapter.controller.impl;
 
 import br.com.on.fiap.core.adapter.controller.ClienteController;
 import br.com.on.fiap.core.adapter.presenter.ClientePresenter;
-import br.com.on.fiap.core.application.dto.entrada.ClienteEntrada;
-import br.com.on.fiap.core.application.dto.resposta.ClienteRespostaDTO;
+import br.com.on.fiap.core.application.dto.entrada.cliente.ClienteEntrada;
+import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
 import br.com.on.fiap.core.domain.Cliente;
@@ -24,13 +24,13 @@ public class ClienteControllerImpl implements ClienteController {
     }
 
     @Override
-    public ClienteRespostaDTO buscaClientePorCpf(String cpf) {
+    public ClienteResposta buscaClientePorCpf(String cpf) {
         Cliente cliente = clienteBuscaPorCpfUseCase.buscar(cpf);
         return clientePresenter.formatar(cliente);
     }
 
     @Override
-    public ClienteRespostaDTO insereCliente(ClienteEntrada clienteEntrada) {
+    public ClienteResposta insereCliente(ClienteEntrada clienteEntrada) {
         Cliente cliente = clienteInsereUseCase.inserir(clienteEntrada);
         return clientePresenter.formatar(cliente);
     }

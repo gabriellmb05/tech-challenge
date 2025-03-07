@@ -1,6 +1,6 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.core.application.dto.entrada.ClienteEntrada;
+import br.com.on.fiap.core.application.dto.entrada.cliente.ClienteEntrada;
 
 public class DataPoolClienteEntradaDTO {
 

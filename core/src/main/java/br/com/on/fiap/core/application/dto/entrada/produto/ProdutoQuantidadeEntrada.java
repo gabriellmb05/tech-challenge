@@ -1,13 +1,13 @@
-package br.com.on.fiap.core.application.dto.entrada;
+package br.com.on.fiap.core.application.dto.entrada.produto;
 
-public interface ProdutoQuantidadeSolicitacao {
+public interface ProdutoQuantidadeEntrada {
 
     Long getIdProduto();
 
     Long getQuantidade();
 
-    static ProdutoQuantidadeSolicitacao create(Long idProduto, Long quantidade) {
-        return new ProdutoQuantidadeSolicitacao() {
+    static ProdutoQuantidadeEntrada create(Long idProduto, Long quantidade) {
+        return new ProdutoQuantidadeEntrada() {
             @Override
             public Long getIdProduto() {
                 return idProduto;

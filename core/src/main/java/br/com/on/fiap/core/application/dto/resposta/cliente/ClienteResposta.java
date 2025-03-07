@@ -1,16 +1,17 @@
-package br.com.on.fiap.core.application.dto.resposta;
+package br.com.on.fiap.core.application.dto.resposta.cliente;
 
+import br.com.on.fiap.core.domain.Cliente;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public final class ClienteSaidaDTO {
+public class ClienteResposta {
     private Long id;
     private String nome;
     private String cpf;
     private String email;
     private LocalDate dataNascimento;
 
-    public ClienteSaidaDTO(Long id, String nome, String cpf, String email, LocalDate dataNascimento) {
+    public ClienteResposta(Long id, String nome, String cpf, String email, LocalDate dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -18,7 +19,12 @@ public final class ClienteSaidaDTO {
         this.dataNascimento = dataNascimento;
     }
 
-    public ClienteSaidaDTO() {}
+    public static ClienteResposta fromDomain(Cliente cliente) {
+        return new ClienteResposta(
+                cliente.getId(), cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getDataNascimento());
+    }
+
+    public ClienteResposta() {}
 
     public Long getId() {
         return id;
@@ -64,7 +70,7 @@ public final class ClienteSaidaDTO {
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (ClienteSaidaDTO) obj;
+        var that = (ClienteResposta) obj;
         return Objects.equals(this.id, that.id)
                 && Objects.equals(this.nome, that.nome)
                 && Objects.equals(this.cpf, that.cpf)
@@ -79,7 +85,7 @@ public final class ClienteSaidaDTO {
 
     @Override
     public String toString() {
-        return "ClienteSaidaDTO[" + "id="
+        return "ClienteRespostaDTO[" + "id="
                 + id + ", " + "nome="
                 + nome + ", " + "cpf="
                 + cpf + ", " + "email="

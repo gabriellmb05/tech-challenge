@@ -1,10 +1,10 @@
 package br.com.on.datapool;
 
-import br.com.on.fiap.adapter.input.dto.request.PagamentoSolicitacaoDTO;
+import br.com.on.fiap.adapter.input.dto.request.PagamentoEntradaDTO;
 
 public class DataPoolPagamentoSolicitacaoDTO {
 
-    public static PagamentoSolicitacaoDTO construirPagamento(Integer tpPagamento) {
-        return PagamentoSolicitacaoDTO.builder().tpPagamento(tpPagamento).build();
+    public static PagamentoEntradaDTO construirPagamento(Integer tpPagamento) {
+        return PagamentoEntradaDTO.builder().tpPagamento(tpPagamento).build();
     }
 }

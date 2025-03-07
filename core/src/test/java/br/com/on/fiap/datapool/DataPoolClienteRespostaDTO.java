@@ -1,13 +1,13 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.core.application.dto.resposta.ClienteRespostaDTO;
+import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
 
 public class DataPoolClienteRespostaDTO {
 
     private DataPoolClienteRespostaDTO() {}
 
-    public static ClienteRespostaDTO clienteExistente(Long id) {
-        ClienteRespostaDTO cliente = new ClienteRespostaDTO();
+    public static ClienteResposta clienteExistente(Long id) {
+        ClienteResposta cliente = new ClienteResposta();
         cliente.setId(id);
         cliente.setNome("Cliente Exemplo");
         cliente.setEmail("cliente@exemplo.com");
@@ -15,8 +15,8 @@ public class DataPoolClienteRespostaDTO {
         return cliente;
     }
 
-    public static ClienteRespostaDTO clienteComCpf(String cpf) {
-        ClienteRespostaDTO cliente = new ClienteRespostaDTO();
+    public static ClienteResposta clienteComCpf(String cpf) {
+        ClienteResposta cliente = new ClienteResposta();
         cliente.setId(1L);
         cliente.setCpf(cpf);
         cliente.setNome("Maria Oliveira");
@@ -24,8 +24,8 @@ public class DataPoolClienteRespostaDTO {
         return cliente;
     }
 
-    public static ClienteRespostaDTO clienteValido() {
-        ClienteRespostaDTO cliente = new ClienteRespostaDTO();
+    public static ClienteResposta clienteValido() {
+        ClienteResposta cliente = new ClienteResposta();
         cliente.setId(1L);
         cliente.setCpf("12345678900");
         cliente.setNome("Carlos Souza");

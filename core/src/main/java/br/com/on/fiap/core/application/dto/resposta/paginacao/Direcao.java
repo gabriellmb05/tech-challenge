@@ -1,4 +1,4 @@
-package br.com.on.fiap.core.application.dto.resposta;
+package br.com.on.fiap.core.application.dto.resposta.paginacao;
 
 public enum Direcao {
     ASC("asc"),

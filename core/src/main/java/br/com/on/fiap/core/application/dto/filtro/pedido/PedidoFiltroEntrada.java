@@ -1,4 +1,4 @@
-package br.com.on.fiap.core.application.dto.entrada;
+package br.com.on.fiap.core.application.dto.filtro.pedido;
 
 import java.time.LocalDate;
 

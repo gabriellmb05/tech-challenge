@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.input.dto.filter;
 
-import br.com.on.fiap.core.application.dto.entrada.PedidoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.filtro.pedido.PedidoFiltroEntrada;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

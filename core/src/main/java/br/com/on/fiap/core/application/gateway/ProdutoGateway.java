@@ -1,8 +1,8 @@
 package br.com.on.fiap.core.application.gateway;
 
-import br.com.on.fiap.core.application.dto.entrada.ProdutoFiltro;
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.filtro.produto.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
 import br.com.on.fiap.core.domain.Produto;
 import java.util.List;
 import java.util.Optional;
@@ -19,5 +19,5 @@ public interface ProdutoGateway {
 
     void deletaProdutoPorId(Long id);
 
-    Pagina<Produto> listarComFiltros(ProdutoFiltro filtro, PaginacaoResposta paginacaoResposta);
+    PaginaResposta<Produto> listarComFiltros(ProdutoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta);
 }

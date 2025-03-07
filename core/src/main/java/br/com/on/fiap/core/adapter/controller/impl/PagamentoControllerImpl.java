@@ -2,7 +2,7 @@ package br.com.on.fiap.core.adapter.controller.impl;
 
 import br.com.on.fiap.core.adapter.controller.PagamentoController;
 import br.com.on.fiap.core.adapter.presenter.PagamentoPresenter;
-import br.com.on.fiap.core.application.dto.resposta.PagamentoResposta;
+import br.com.on.fiap.core.application.dto.resposta.pagamento.PagamentoResposta;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoAtualizaUseCase;
 import br.com.on.fiap.core.domain.Pagamento;
 

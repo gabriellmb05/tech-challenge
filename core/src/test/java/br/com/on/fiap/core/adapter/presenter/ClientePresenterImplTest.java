@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import br.com.on.fiap.core.adapter.presenter.impl.ClientePresenterImpl;
-import br.com.on.fiap.core.application.dto.resposta.ClienteRespostaDTO;
+import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
 import br.com.on.fiap.core.domain.Cliente;
 import br.com.on.fiap.datapool.DataPoolCliente;
 import org.junit.jupiter.api.DisplayName;
@@ -23,7 +23,7 @@ class ClientePresenterImplTest {
     @DisplayName("Dado um objeto de dados de saída, quando formatá-lo, então um objeto formatado deve ser retornado")
     void dadoUmObjetoDeDadosDeSaida_quandoFormatalo_entaoUmObjetoFormatadoDeveSerRetornado() {
         Cliente cliente = DataPoolCliente.clienteValido();
-        ClienteRespostaDTO resultado = clientePresenter.formatar(cliente);
+        ClienteResposta resultado = clientePresenter.formatar(cliente);
 
         assertNotNull(resultado);
         assertEquals(cliente.getCpf(), resultado.getCpf());

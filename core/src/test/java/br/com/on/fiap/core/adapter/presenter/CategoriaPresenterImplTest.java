@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import br.com.on.fiap.core.adapter.presenter.impl.CategoriaPresenterImpl;
-import br.com.on.fiap.core.application.dto.resposta.CategoriaRespostaDTO;
+import br.com.on.fiap.core.application.dto.resposta.categoria.CategoriaResposta;
 import br.com.on.fiap.core.domain.Categoria;
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +24,7 @@ class CategoriaPresenterImplTest {
     @DisplayName("Dado um objeto de dados de saída, quando formatá-lo, então um objeto formatado deve ser retornado")
     void dadoUmObjetoDeDadosDeSaida_quandoFormatalo_entaoUmObjetoFormatadoDeveSerRetornado() {
         List<Categoria> categorias = Arrays.asList(Categoria.values());
-        CategoriaRespostaDTO resultado = categoriaPresenter.formatar(categorias);
+        CategoriaResposta resultado = categoriaPresenter.formatar(categorias);
 
         assertNotNull(resultado);
         assertEquals(Categoria.values().length, resultado.categorias().size());

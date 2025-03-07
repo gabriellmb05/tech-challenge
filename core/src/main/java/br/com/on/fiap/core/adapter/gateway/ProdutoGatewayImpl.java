@@ -1,9 +1,9 @@
 package br.com.on.fiap.core.adapter.gateway;
 
 import br.com.on.fiap.core.adapter.datasource.ProdutoDataSource;
-import br.com.on.fiap.core.application.dto.entrada.ProdutoFiltro;
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.filtro.produto.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
 import br.com.on.fiap.core.application.gateway.ProdutoGateway;
 import br.com.on.fiap.core.domain.Produto;
 import java.util.List;
@@ -43,7 +43,7 @@ public class ProdutoGatewayImpl implements ProdutoGateway {
     }
 
     @Override
-    public Pagina<Produto> listarComFiltros(ProdutoFiltro filtro, PaginacaoResposta paginacaoResposta) {
+    public PaginaResposta<Produto> listarComFiltros(ProdutoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta) {
         return produtoDataSource.listarComFiltros(filtro, paginacaoResposta);
     }
 }

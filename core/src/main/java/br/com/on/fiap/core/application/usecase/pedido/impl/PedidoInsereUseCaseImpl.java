@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.application.usecase.pedido.impl;
 
-import br.com.on.fiap.core.application.dto.entrada.PedidoSolicitacao;
+import br.com.on.fiap.core.application.dto.entrada.pedido.PedidoEntrada;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorIdUseCase;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoCriaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.*;
@@ -32,15 +32,14 @@ public class PedidoInsereUseCaseImpl implements PedidoInsereUseCase {
     }
 
     @Override
-    public Pedido inserePedido(PedidoSolicitacao pedidoSolicitacao) {
-        Cliente cliente = clienteBuscaPorIdUseCase.buscar(pedidoSolicitacao.getCliente());
+    public Pedido inserePedido(PedidoEntrada pedidoEntrada) {
+        Cliente cliente = clienteBuscaPorIdUseCase.buscar(pedidoEntrada.getCliente());
 
-        Map<Produto, Long> produtosValidados =
-                pedidoValidaProdutoUseCase.validarProdutos(pedidoSolicitacao.getProdutos());
+        Map<Produto, Long> produtosValidados = pedidoValidaProdutoUseCase.validarProdutos(pedidoEntrada.getProdutos());
 
         Pagamento pagamento = pagamentoCriaUseCase.criarPagamento(
-                pedidoSolicitacao.getPagamento(), SituacaoPagamento.PENDENTE, produtosValidados);
-        Pedido pedidoSolicitante = pedidoCriaUseCase.criaPedido(pedidoSolicitacao, cliente, pagamento);
+                pedidoEntrada.getPagamento(), SituacaoPagamento.PENDENTE, produtosValidados);
+        Pedido pedidoSolicitante = pedidoCriaUseCase.criaPedido(pedidoEntrada, cliente, pagamento);
         pedidoProdutoCriaRelacionamentoUseCase.criaRelacionamentoProdutoPedido(pedidoSolicitante, produtosValidados);
         return pedidoSalvaUseCase.salvarPedido(pedidoSolicitante);
     }

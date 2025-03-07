@@ -1,9 +1,9 @@
 package br.com.on.fiap.adapter.input.swagger;
 
-import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroRequest;
+import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroEntradaRequest;
 import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoRequest;
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.produto.ProdutoResposta;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -30,7 +30,8 @@ public interface ProdutoApiSwagger {
                 @ApiResponse(responseCode = "200", description = "Produtos encontrados"),
                 @ApiResponse(responseCode = "404", description = "Produtos não encontrados")
             })
-    ResponseEntity<Pagina<ProdutoResposta>> listarProdutosComFiltro(ProdutoFiltroRequest filtro, Pageable pageable);
+    ResponseEntity<PaginaResposta<ProdutoResposta>> listarProdutosComFiltro(
+            ProdutoFiltroEntradaRequest filtro, Pageable pageable);
 
     @Operation(summary = "Insere um novo produto", description = "Insere um novo produto no sistema")
     @ApiResponses(

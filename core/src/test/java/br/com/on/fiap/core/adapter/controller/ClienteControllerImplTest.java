@@ -7,8 +7,8 @@ import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.controller.impl.ClienteControllerImpl;
 import br.com.on.fiap.core.adapter.presenter.ClientePresenter;
-import br.com.on.fiap.core.application.dto.entrada.ClienteEntrada;
-import br.com.on.fiap.core.application.dto.resposta.ClienteRespostaDTO;
+import br.com.on.fiap.core.application.dto.entrada.cliente.ClienteEntrada;
+import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
 import br.com.on.fiap.core.domain.Cliente;
@@ -42,15 +42,15 @@ class ClienteControllerImplTest {
             "Dado um cpf, quando buscar o cliente pelo CPF, então um cliente deve ser retornado no formato esperado")
     void dadoCpf_quandoBuscarClientePorCpf_entaoDeveSerRetornadoClienteFormatado() {
         Cliente cliente = DataPoolCliente.clienteValido();
-        ClienteRespostaDTO clienteRespostaDTO = DataPoolClienteRespostaDTO.clienteValido();
+        ClienteResposta clienteResposta = DataPoolClienteRespostaDTO.clienteValido();
         String cpf = cliente.getCpf();
         when(clienteBuscaPorCpfUseCase.buscar(cpf)).thenReturn(cliente);
-        when(clientePresenter.formatar(cliente)).thenReturn(clienteRespostaDTO);
+        when(clientePresenter.formatar(cliente)).thenReturn(clienteResposta);
 
-        ClienteRespostaDTO resultado = clienteController.buscaClientePorCpf(cpf);
+        ClienteResposta resultado = clienteController.buscaClientePorCpf(cpf);
 
         assertNotNull(resultado);
-        assertEquals(clienteRespostaDTO.getCpf(), resultado.getCpf());
+        assertEquals(clienteResposta.getCpf(), resultado.getCpf());
         verify(clienteBuscaPorCpfUseCase).buscar(cpf);
         verify(clientePresenter).formatar(cliente);
     }
@@ -61,14 +61,14 @@ class ClienteControllerImplTest {
     void dadoObjetoDeDadosDeEntrada_quandoInserir_entaoDeveSerRetornadoNoFormatoEsperado() {
         ClienteEntrada clienteEntrada = DataPoolClienteEntradaDTO.clienteValido();
         Cliente cliente = DataPoolCliente.clienteValido();
-        ClienteRespostaDTO clienteRespostaDTO = DataPoolClienteRespostaDTO.clienteValido();
+        ClienteResposta clienteResposta = DataPoolClienteRespostaDTO.clienteValido();
         when(clienteInsereUseCase.inserir(clienteEntrada)).thenReturn(cliente);
-        when(clientePresenter.formatar(cliente)).thenReturn(clienteRespostaDTO);
+        when(clientePresenter.formatar(cliente)).thenReturn(clienteResposta);
 
-        ClienteRespostaDTO resultado = clienteController.insereCliente(clienteEntrada);
+        ClienteResposta resultado = clienteController.insereCliente(clienteEntrada);
 
         assertNotNull(resultado);
-        assertEquals(clienteRespostaDTO.getCpf(), resultado.getCpf());
+        assertEquals(clienteResposta.getCpf(), resultado.getCpf());
         verify(clienteInsereUseCase).inserir(clienteEntrada);
         verify(clientePresenter).formatar(cliente);
     }

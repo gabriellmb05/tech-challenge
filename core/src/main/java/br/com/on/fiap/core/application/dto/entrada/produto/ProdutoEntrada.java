@@ -1,4 +1,4 @@
-package br.com.on.fiap.core.application.dto.entrada;
+package br.com.on.fiap.core.application.dto.entrada.produto;
 
 import java.math.BigDecimal;
 

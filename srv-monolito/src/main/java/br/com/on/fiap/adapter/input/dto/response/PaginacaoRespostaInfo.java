@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.input.dto.response;
 
-import br.com.on.fiap.core.application.dto.resposta.OrdenacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.OrdenacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
 import java.util.Optional;
 import lombok.*;
 import org.springframework.data.domain.Pageable;

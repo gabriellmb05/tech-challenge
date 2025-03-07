@@ -1,13 +1,13 @@
 package br.com.on.fiap.adapter.input;
 
-import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroRequest;
+import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroEntradaRequest;
 import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoRequest;
 import br.com.on.fiap.adapter.input.dto.response.PaginacaoRespostaInfo;
 import br.com.on.fiap.adapter.input.swagger.ProdutoApiSwagger;
 import br.com.on.fiap.core.adapter.controller.ProdutoController;
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.produto.ProdutoResposta;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
@@ -34,11 +34,12 @@ public class ProdutoApi implements ProdutoApiSwagger {
 
     @Override
     @GetMapping
-    public ResponseEntity<Pagina<ProdutoResposta>> listarProdutosComFiltro(
-            @ParameterObject ProdutoFiltroRequest filtro, Pageable pageable) {
+    public ResponseEntity<PaginaResposta<ProdutoResposta>> listarProdutosComFiltro(
+            @ParameterObject ProdutoFiltroEntradaRequest filtro, Pageable pageable) {
         PaginacaoResposta paginacaoResposta = PaginacaoRespostaInfo.from(pageable);
-        Pagina<ProdutoResposta> produtoPagina = produtoController.listarProdutosComFiltro(filtro, paginacaoResposta);
-        return ResponseEntity.ok().body(produtoPagina);
+        PaginaResposta<ProdutoResposta> produtoPaginaResposta =
+                produtoController.listarProdutosComFiltro(filtro, paginacaoResposta);
+        return ResponseEntity.ok().body(produtoPaginaResposta);
     }
 
     @Override

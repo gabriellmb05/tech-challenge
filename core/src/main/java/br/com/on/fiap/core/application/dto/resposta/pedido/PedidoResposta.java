@@ -1,4 +1,4 @@
-package br.com.on.fiap.core.application.dto.resposta;
+package br.com.on.fiap.core.application.dto.resposta.pedido;
 
 import br.com.on.fiap.core.domain.Pedido;
 import br.com.on.fiap.core.domain.SituacaoPedido;

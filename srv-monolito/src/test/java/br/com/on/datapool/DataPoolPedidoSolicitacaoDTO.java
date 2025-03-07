@@ -1,12 +1,12 @@
 package br.com.on.datapool;
 
-import br.com.on.fiap.adapter.input.dto.request.PedidoSolicitacaoDTO;
+import br.com.on.fiap.adapter.input.dto.request.PedidoEntradaDTO;
 import java.util.List;
 
 public class DataPoolPedidoSolicitacaoDTO {
 
-    public static PedidoSolicitacaoDTO construirPedido() {
-        return PedidoSolicitacaoDTO.builder()
+    public static PedidoEntradaDTO construirPedido() {
+        return PedidoEntradaDTO.builder()
                 .cliente(1L)
                 .produtos(List.of(
                         DataPoolPedidoQuantidadeSolicitacaoDTO.construirProduto(3L, 2L),
@@ -15,8 +15,8 @@ public class DataPoolPedidoSolicitacaoDTO {
                 .build();
     }
 
-    public static PedidoSolicitacaoDTO construirPedidoSemProdutos() {
-        return PedidoSolicitacaoDTO.builder()
+    public static PedidoEntradaDTO construirPedidoSemProdutos() {
+        return PedidoEntradaDTO.builder()
                 .cliente(1L)
                 .pagamento(DataPoolPagamentoSolicitacaoDTO.construirPagamento(1))
                 .build();

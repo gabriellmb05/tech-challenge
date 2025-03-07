@@ -1,7 +1,7 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.core.application.dto.resposta.OrdenacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.OrdenacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
 
 public class DataPoolPaginacao {
 

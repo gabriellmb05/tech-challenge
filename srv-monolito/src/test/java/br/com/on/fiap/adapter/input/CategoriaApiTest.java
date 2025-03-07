@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.controller.impl.CategoriaControllerImpl;
-import br.com.on.fiap.core.application.dto.resposta.CategoriaRespostaDTO;
+import br.com.on.fiap.core.application.dto.resposta.categoria.CategoriaResposta;
 import br.com.on.fiap.core.domain.Categoria;
 import java.util.Arrays;
 import java.util.List;
@@ -31,12 +31,12 @@ class CategoriaApiTest {
     void dadoCategoriasDeProdutos_quandoBuscarCategorias_entaoDevemSerRetornadas() {
         List<String> categoriasEsperadas =
                 Arrays.stream(Categoria.values()).map(Categoria::name).toList();
-        CategoriaRespostaDTO respostaEsperada = new CategoriaRespostaDTO(categoriasEsperadas);
+        CategoriaResposta respostaEsperada = new CategoriaResposta(categoriasEsperadas);
         when(categoriaController.buscaCategorias()).thenReturn(respostaEsperada);
 
-        ResponseEntity<CategoriaRespostaDTO> response = categoriaApi.buscaCategorias();
+        ResponseEntity<CategoriaResposta> response = categoriaApi.buscaCategorias();
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(new CategoriaRespostaDTO(categoriasEsperadas), response.getBody());
+        assertEquals(new CategoriaResposta(categoriasEsperadas), response.getBody());
     }
 }

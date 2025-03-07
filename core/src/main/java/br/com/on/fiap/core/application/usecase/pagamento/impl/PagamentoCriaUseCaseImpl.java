@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.application.usecase.pagamento.impl;
 
-import br.com.on.fiap.core.application.dto.entrada.PagamentoSolicitacao;
+import br.com.on.fiap.core.application.dto.entrada.pagamento.PagamentoEntrada;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoCriaUseCase;
 import br.com.on.fiap.core.domain.Pagamento;
 import br.com.on.fiap.core.domain.Produto;
@@ -13,12 +13,12 @@ public class PagamentoCriaUseCaseImpl implements PagamentoCriaUseCase {
 
     @Override
     public Pagamento criarPagamento(
-            PagamentoSolicitacao pagamentoSolicitacao,
+            PagamentoEntrada pagamentoEntrada,
             SituacaoPagamento situacaoPagamento,
             Map<Produto, Long> valoresProdutos) {
         Pagamento pagamento = new Pagamento();
         pagamento.setStPagamento(situacaoPagamento);
-        pagamento.setTpPagamento(TipoPagamento.deCodigo(pagamentoSolicitacao.getTpPagamento()));
+        pagamento.setTpPagamento(TipoPagamento.deCodigo(pagamentoEntrada.getTpPagamento()));
         pagamento.setVlCompra(calcularValorTotalPedido(valoresProdutos));
         return pagamento;
     }

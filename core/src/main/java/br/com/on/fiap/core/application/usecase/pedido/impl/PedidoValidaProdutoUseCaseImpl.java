@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.application.usecase.pedido.impl;
 
-import br.com.on.fiap.core.application.dto.entrada.ProdutoQuantidadeSolicitacao;
+import br.com.on.fiap.core.application.dto.entrada.produto.ProdutoQuantidadeEntrada;
 import br.com.on.fiap.core.application.exception.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.core.application.exception.message.MessageError;
 import br.com.on.fiap.core.application.gateway.ProdutoGateway;
@@ -19,9 +19,9 @@ public class PedidoValidaProdutoUseCaseImpl implements PedidoValidaProdutoUseCas
     }
 
     @Override
-    public Map<Produto, Long> validarProdutos(List<ProdutoQuantidadeSolicitacao> produtosSolicitados) {
+    public Map<Produto, Long> validarProdutos(List<ProdutoQuantidadeEntrada> produtosSolicitados) {
         List<Long> idsProdutos = produtosSolicitados.stream()
-                .map(ProdutoQuantidadeSolicitacao::getIdProduto)
+                .map(ProdutoQuantidadeEntrada::getIdProduto)
                 .toList();
 
         List<Produto> produtosExistentes = produtoGateway.buscaProdutoPorIdsLista(idsProdutos);
@@ -38,6 +38,6 @@ public class PedidoValidaProdutoUseCaseImpl implements PedidoValidaProdutoUseCas
                                 .orElseThrow(() -> new ProdutoNaoEncontradoExcecao(
                                         MessageError.MSG_ERRO_PRODUTO_NAO_ENCONTRADO.getMensagem(),
                                         solicitacao.getIdProduto())),
-                        ProdutoQuantidadeSolicitacao::getQuantidade));
+                        ProdutoQuantidadeEntrada::getQuantidade));
     }
 }

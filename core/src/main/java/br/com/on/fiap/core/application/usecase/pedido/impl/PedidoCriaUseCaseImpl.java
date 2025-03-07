@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.application.usecase.pedido.impl;
 
-import br.com.on.fiap.core.application.dto.entrada.PedidoSolicitacao;
+import br.com.on.fiap.core.application.dto.entrada.pedido.PedidoEntrada;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoCriaUseCase;
 import br.com.on.fiap.core.domain.Cliente;
 import br.com.on.fiap.core.domain.Pagamento;
@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 public class PedidoCriaUseCaseImpl implements PedidoCriaUseCase {
 
     @Override
-    public Pedido criaPedido(PedidoSolicitacao pedidoSolicitacao, Cliente cliente, Pagamento pagamento) {
+    public Pedido criaPedido(PedidoEntrada pedidoEntrada, Cliente cliente, Pagamento pagamento) {
         LocalDateTime dataHora = LocalDateTime.now();
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);

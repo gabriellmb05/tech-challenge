@@ -1,9 +1,9 @@
-package br.com.on.fiap.core.application.dto.resposta;
+package br.com.on.fiap.core.application.dto.resposta.paginacao;
 
 import java.util.List;
 import java.util.function.Function;
 
-public interface Pagina<T> {
+public interface PaginaResposta<T> {
 
     List<T> getConteudo();
 
@@ -15,5 +15,5 @@ public interface Pagina<T> {
 
     Integer getPaginaAtual();
 
-    <U> Pagina<U> map(Function<? super T, ? extends U> converter);
+    <U> PaginaResposta<U> map(Function<? super T, ? extends U> converter);
 }

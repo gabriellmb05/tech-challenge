@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.input.swagger;
 
 import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
-import br.com.on.fiap.core.application.dto.resposta.ClienteRespostaDTO;
+import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -22,11 +22,11 @@ public interface ClienteApiSwagger {
                         content =
                                 @Content(
                                         mediaType = "application/json",
-                                        schema = @Schema(implementation = ClienteRespostaDTO.class))),
+                                        schema = @Schema(implementation = ClienteResposta.class))),
                 @ApiResponse(responseCode = "400", description = "Dados inválidos"),
                 @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
             })
-    ResponseEntity<ClienteRespostaDTO> insereCliente(ClienteSolicitacaoDTO clienteSolicitacaoDTO);
+    ResponseEntity<ClienteResposta> insereCliente(ClienteSolicitacaoDTO clienteSolicitacaoDTO);
 
     @Operation(summary = "Busca cliente por CPF", description = "Retorna um cliente pelo seu CPF")
     @ApiResponses(
@@ -37,9 +37,9 @@ public interface ClienteApiSwagger {
                         content =
                                 @Content(
                                         mediaType = "application/json",
-                                        schema = @Schema(implementation = ClienteRespostaDTO.class))),
+                                        schema = @Schema(implementation = ClienteResposta.class))),
                 @ApiResponse(responseCode = "404", description = "Cliente não encontrado"),
                 @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
             })
-    ResponseEntity<ClienteRespostaDTO> buscaClientePorCpf(String cpf);
+    ResponseEntity<ClienteResposta> buscaClientePorCpf(String cpf);
 }

@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 import br.com.on.datapool.*;
 import br.com.on.fiap.adapter.input.dto.filter.PedidoFiltroRequest;
 import br.com.on.fiap.adapter.input.mapper.PedidoFiltroInputMapper;
-import br.com.on.fiap.core.application.dto.filtro.PedidoFiltro;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoAtualizaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoListaUseCase;

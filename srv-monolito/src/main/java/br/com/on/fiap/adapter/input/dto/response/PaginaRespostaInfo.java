@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.input.dto.response;
 
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -14,7 +14,7 @@ import org.springframework.data.domain.Page;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaginaInfo<K> implements Pagina<K> {
+public class PaginaRespostaInfo<K> implements PaginaResposta<K> {
 
     private List<K> conteudo;
     private Long totalElementos;
@@ -22,8 +22,8 @@ public class PaginaInfo<K> implements Pagina<K> {
     private Integer tamanhoPagina;
     private Integer paginaAtual;
 
-    public static <K> PaginaInfo<K> create(Page<K> page) {
-        return PaginaInfo.<K>builder()
+    public static <K> PaginaRespostaInfo<K> create(Page<K> page) {
+        return PaginaRespostaInfo.<K>builder()
                 .conteudo(page.getContent())
                 .totalElementos(page.getTotalElements())
                 .totalPaginas(page.getTotalPages())
@@ -33,10 +33,10 @@ public class PaginaInfo<K> implements Pagina<K> {
     }
 
     @Override
-    public <U> Pagina<U> map(Function<? super K, ? extends U> converter) {
+    public <U> PaginaResposta<U> map(Function<? super K, ? extends U> converter) {
         List<U> novoConteudo = conteudo.stream().map(converter).collect(Collectors.toList());
 
-        return PaginaInfo.<U>builder()
+        return PaginaRespostaInfo.<U>builder()
                 .conteudo(novoConteudo)
                 .totalElementos(totalElementos)
                 .totalPaginas(totalPaginas)

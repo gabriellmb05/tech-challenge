@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import br.com.on.datapool.*;
-import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroRequest;
+import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroEntradaRequest;
 import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoRequest;
-import br.com.on.fiap.adapter.input.dto.response.PaginaInfo;
+import br.com.on.fiap.adapter.input.dto.response.PaginaRespostaInfo;
 import br.com.on.fiap.adapter.input.dto.response.PaginacaoRespostaInfo;
 import br.com.on.fiap.core.adapter.controller.impl.ProdutoControllerImpl;
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.produto.ProdutoResposta;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -106,17 +106,19 @@ class ProdutoApiTest {
     @MethodSource("produtoFiltroProvider")
     @DisplayName("Dado produtos existentes, quando buscar o produto através do filtro, então ele deve ser retornado")
     void dadoProdutosExistentes_quandoBuscarProdutoAtravesDoFiltro_entaoDeveSerRetornado(
-            ProdutoFiltroRequest filtroDTO, List<ProdutoResposta> produtoRespostas) {
+            ProdutoFiltroEntradaRequest filtroDTO, List<ProdutoResposta> produtoRespostas) {
 
         PageRequest pageable = PageRequest.of(0, 10);
         PaginacaoRespostaInfo paginacao = PaginacaoRespostaInfo.from(pageable);
 
-        Pagina<ProdutoResposta> pageProduto =
-                PaginaInfo.<ProdutoResposta>builder().conteudo(produtoRespostas).build();
+        PaginaResposta<ProdutoResposta> pageProduto = PaginaRespostaInfo.<ProdutoResposta>builder()
+                .conteudo(produtoRespostas)
+                .build();
 
         when(produtoController.listarProdutosComFiltro(filtroDTO, paginacao)).thenReturn(pageProduto);
 
-        ResponseEntity<Pagina<ProdutoResposta>> response = produtoApi.listarProdutosComFiltro(filtroDTO, pageable);
+        ResponseEntity<PaginaResposta<ProdutoResposta>> response =
+                produtoApi.listarProdutosComFiltro(filtroDTO, pageable);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(pageProduto.getConteudo(), response.getBody().getConteudo());

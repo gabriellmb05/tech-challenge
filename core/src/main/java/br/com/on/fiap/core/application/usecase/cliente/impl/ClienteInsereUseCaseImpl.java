@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.application.usecase.cliente.impl;
 
-import br.com.on.fiap.core.application.dto.entrada.ClienteEntrada;
+import br.com.on.fiap.core.application.dto.entrada.cliente.ClienteEntrada;
 import br.com.on.fiap.core.application.exception.ClienteExistenteExcecao;
 import br.com.on.fiap.core.application.exception.message.MessageError;
 import br.com.on.fiap.core.application.gateway.ClienteGateway;

@@ -1,10 +1,10 @@
 package br.com.on.fiap.core.adapter.controller;
 
-import br.com.on.fiap.core.application.dto.entrada.ClienteEntrada;
-import br.com.on.fiap.core.application.dto.resposta.ClienteRespostaDTO;
+import br.com.on.fiap.core.application.dto.entrada.cliente.ClienteEntrada;
+import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
 
 public interface ClienteController {
-    ClienteRespostaDTO buscaClientePorCpf(String cpf);
+    ClienteResposta buscaClientePorCpf(String cpf);
 
-    ClienteRespostaDTO insereCliente(ClienteEntrada cliente);
+    ClienteResposta insereCliente(ClienteEntrada cliente);
 }

@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.input.dto.request;
 
-import br.com.on.fiap.core.application.dto.entrada.ProdutoQuantidadeSolicitacao;
+import br.com.on.fiap.core.application.dto.entrada.produto.ProdutoQuantidadeEntrada;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PedidoQuantidadeSolicitacaoDTO implements ProdutoQuantidadeSolicitacao {
+public class PedidoQuantidadeEntradaDTO implements ProdutoQuantidadeEntrada {
 
     @NotNull(message = "O produto do pedido é obrigatório") private Long idProduto;
 

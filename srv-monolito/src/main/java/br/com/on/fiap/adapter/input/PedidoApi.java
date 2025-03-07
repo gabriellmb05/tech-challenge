@@ -1,14 +1,14 @@
 package br.com.on.fiap.adapter.input;
 
 import br.com.on.fiap.adapter.input.dto.filter.PedidoFiltroRequest;
-import br.com.on.fiap.adapter.input.dto.request.PedidoSolicitacaoDTO;
+import br.com.on.fiap.adapter.input.dto.request.PedidoEntradaDTO;
 import br.com.on.fiap.adapter.input.dto.response.PaginacaoRespostaInfo;
 import br.com.on.fiap.adapter.input.swagger.PedidoApiSwagger;
 import br.com.on.fiap.core.adapter.controller.PedidoController;
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.PedidoDetalhadoResposta;
-import br.com.on.fiap.core.application.dto.resposta.PedidoResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoDetalhadoResposta;
+import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoResposta;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
@@ -28,18 +28,18 @@ public class PedidoApi implements PedidoApiSwagger {
 
     @Override
     @PostMapping
-    public ResponseEntity<PedidoResposta> inserePedido(@Valid @RequestBody PedidoSolicitacaoDTO pedidoSolicitacaoDTO) {
+    public ResponseEntity<PedidoResposta> inserePedido(@Valid @RequestBody PedidoEntradaDTO pedidoSolicitacaoDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoController.inserePedido(pedidoSolicitacaoDTO));
     }
 
     @Override
     @GetMapping
-    public ResponseEntity<Pagina<PedidoResposta>> listarPedidoComFiltro(
+    public ResponseEntity<PaginaResposta<PedidoResposta>> listarPedidoComFiltro(
             @ParameterObject PedidoFiltroRequest pedidoFiltroRequest, Pageable pageable) {
         PaginacaoResposta paginacaoResposta = PaginacaoRespostaInfo.from(pageable);
-        Pagina<PedidoResposta> pedidoPagina =
+        PaginaResposta<PedidoResposta> pedidoPaginaResposta =
                 pedidoController.listarPedidoComFiltro(pedidoFiltroRequest, paginacaoResposta);
-        return ResponseEntity.ok().body(pedidoPagina);
+        return ResponseEntity.ok().body(pedidoPaginaResposta);
     }
 
     @Override

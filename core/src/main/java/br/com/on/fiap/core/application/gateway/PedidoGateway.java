@@ -1,8 +1,8 @@
 package br.com.on.fiap.core.application.gateway;
 
-import br.com.on.fiap.core.application.dto.entrada.PedidoFiltroEntrada;
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.filtro.pedido.PedidoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
 import br.com.on.fiap.core.domain.Pedido;
 import java.util.Optional;
 
@@ -10,7 +10,7 @@ public interface PedidoGateway {
 
     Optional<Pedido> atualizarPedido(String protocolo);
 
-    Pagina<Pedido> listarComFiltros(PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta);
+    PaginaResposta<Pedido> listarComFiltros(PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta);
 
     Optional<Pedido> detalhaPedido(String protocolo);
 

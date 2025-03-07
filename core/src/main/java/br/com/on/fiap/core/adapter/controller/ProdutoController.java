@@ -1,16 +1,17 @@
 package br.com.on.fiap.core.adapter.controller;
 
-import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
-import br.com.on.fiap.core.application.dto.entrada.ProdutoFiltro;
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
+import br.com.on.fiap.core.application.dto.entrada.produto.ProdutoEntrada;
+import br.com.on.fiap.core.application.dto.filtro.produto.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.produto.ProdutoResposta;
 
 public interface ProdutoController {
 
     ProdutoResposta buscaProdutoPorId(Long id);
 
-    Pagina<ProdutoResposta> listarProdutosComFiltro(ProdutoFiltro filtro, PaginacaoResposta paginacaoResposta);
+    PaginaResposta<ProdutoResposta> listarProdutosComFiltro(
+            ProdutoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta);
 
     ProdutoResposta insereProduto(ProdutoEntrada produtoSolicitacaoDTO);
 

@@ -2,11 +2,11 @@ package br.com.on.fiap.core.adapter.controller.impl;
 
 import br.com.on.fiap.core.adapter.controller.ProdutoController;
 import br.com.on.fiap.core.adapter.presenter.ProdutoPresenter;
-import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
-import br.com.on.fiap.core.application.dto.entrada.ProdutoFiltro;
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
+import br.com.on.fiap.core.application.dto.entrada.produto.ProdutoEntrada;
+import br.com.on.fiap.core.application.dto.filtro.produto.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.produto.ProdutoResposta;
 import br.com.on.fiap.core.application.usecase.produto.*;
 import br.com.on.fiap.core.domain.Produto;
 
@@ -42,9 +42,10 @@ public class ProdutoControllerImpl implements ProdutoController {
     }
 
     @Override
-    public Pagina<ProdutoResposta> listarProdutosComFiltro(ProdutoFiltro filtro, PaginacaoResposta paginacaoResposta) {
-        Pagina<Produto> produtoPagina = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
-        return produtoPresenter.formatar(produtoPagina);
+    public PaginaResposta<ProdutoResposta> listarProdutosComFiltro(
+            ProdutoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta) {
+        PaginaResposta<Produto> produtoPaginaResposta = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
+        return produtoPresenter.formatar(produtoPaginaResposta);
     }
 
     @Override

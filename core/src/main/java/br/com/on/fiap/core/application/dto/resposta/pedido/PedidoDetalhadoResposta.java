@@ -1,5 +1,8 @@
-package br.com.on.fiap.core.application.dto.resposta;
+package br.com.on.fiap.core.application.dto.resposta.pedido;
 
+import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
+import br.com.on.fiap.core.application.dto.resposta.pagamento.PagamentoResposta;
+import br.com.on.fiap.core.application.dto.resposta.produto.ProdutoResposta;
 import br.com.on.fiap.core.domain.SituacaoPedido;
 import java.util.List;
 
@@ -7,7 +10,7 @@ public interface PedidoDetalhadoResposta {
 
     Long getId();
 
-    ClienteRespostaDTO getCliente();
+    ClienteResposta getCliente();
 
     SituacaoPedido getSituacao();
 
@@ -17,7 +20,7 @@ public interface PedidoDetalhadoResposta {
 
     static PedidoDetalhadoResposta create(
             Long id,
-            ClienteRespostaDTO cliente,
+            ClienteResposta cliente,
             SituacaoPedido situacao,
             List<ProdutoResposta> produtos,
             PagamentoResposta pagamento) {
@@ -28,7 +31,7 @@ public interface PedidoDetalhadoResposta {
             }
 
             @Override
-            public ClienteRespostaDTO getCliente() {
+            public ClienteResposta getCliente() {
                 return cliente;
             }
 

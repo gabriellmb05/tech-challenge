@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.output.datasource;
 
-import br.com.on.fiap.adapter.input.dto.response.PaginaInfo;
+import br.com.on.fiap.adapter.input.dto.response.PaginaRespostaInfo;
 import br.com.on.fiap.adapter.output.persistence.component.PageableComponent;
 import br.com.on.fiap.adapter.output.persistence.entity.PedidoEntity;
 import br.com.on.fiap.adapter.output.persistence.entity.PedidoProdutoEntity;
@@ -10,9 +10,9 @@ import br.com.on.fiap.adapter.output.persistence.repository.PedidoProdutoReposit
 import br.com.on.fiap.adapter.output.persistence.repository.PedidoRepository;
 import br.com.on.fiap.adapter.output.persistence.specification.PedidoSpecification;
 import br.com.on.fiap.core.adapter.datasource.PedidoDataSource;
-import br.com.on.fiap.core.application.dto.entrada.PedidoFiltroEntrada;
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.filtro.pedido.PedidoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
 import br.com.on.fiap.core.domain.*;
 import java.util.List;
 import java.util.Map;
@@ -62,12 +62,12 @@ public class PedidoDataSourceImpl implements PedidoDataSource {
 
     @Override
     @Transactional(readOnly = true)
-    public Pagina<Pedido> listarComFiltros(PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta) {
+    public PaginaResposta<Pedido> listarComFiltros(PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta) {
         Pageable pageable = pageableComponent.criarPageable(paginacaoResposta);
         Page<Pedido> pagePedido = pedidoRepository
                 .findAll(PedidoSpecification.filtroPorDataInicioEDataFim(filtro), pageable)
                 .map(pedidoEntity -> pedidoEntity.toDomain(null));
-        return PaginaInfo.create(pagePedido);
+        return PaginaRespostaInfo.create(pagePedido);
     }
 
     @Override

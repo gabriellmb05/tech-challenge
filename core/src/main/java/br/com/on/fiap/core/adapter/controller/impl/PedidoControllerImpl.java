@@ -2,12 +2,12 @@ package br.com.on.fiap.core.adapter.controller.impl;
 
 import br.com.on.fiap.core.adapter.controller.PedidoController;
 import br.com.on.fiap.core.adapter.presenter.PedidoPresenter;
-import br.com.on.fiap.core.application.dto.entrada.PedidoFiltroEntrada;
-import br.com.on.fiap.core.application.dto.entrada.PedidoSolicitacao;
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.PedidoDetalhadoResposta;
-import br.com.on.fiap.core.application.dto.resposta.PedidoResposta;
+import br.com.on.fiap.core.application.dto.entrada.pedido.PedidoEntrada;
+import br.com.on.fiap.core.application.dto.filtro.pedido.PedidoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoDetalhadoResposta;
+import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoResposta;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoAtualizaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoInsereUseCase;
@@ -37,16 +37,17 @@ public class PedidoControllerImpl implements PedidoController {
     }
 
     @Override
-    public PedidoResposta inserePedido(PedidoSolicitacao pedidoSolicitacao) {
-        Pedido pedido = pedidoInsereUseCase.inserePedido(pedidoSolicitacao);
+    public PedidoResposta inserePedido(PedidoEntrada pedidoEntrada) {
+        Pedido pedido = pedidoInsereUseCase.inserePedido(pedidoEntrada);
         return pedidoPresenter.formatar(pedido);
     }
 
     @Override
-    public Pagina<PedidoResposta> listarPedidoComFiltro(
+    public PaginaResposta<PedidoResposta> listarPedidoComFiltro(
             PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta) {
-        Pagina<Pedido> pedidoPagina = pedidoListaUseCase.buscarPedidosComFiltro(filtro, paginacaoResposta);
-        return pedidoPresenter.formatar(pedidoPagina);
+        PaginaResposta<Pedido> pedidoPaginaResposta =
+                pedidoListaUseCase.buscarPedidosComFiltro(filtro, paginacaoResposta);
+        return pedidoPresenter.formatar(pedidoPaginaResposta);
     }
 
     @Override

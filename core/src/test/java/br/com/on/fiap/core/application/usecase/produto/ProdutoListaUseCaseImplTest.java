@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.core.application.dto.entrada.ProdutoFiltro;
-import br.com.on.fiap.core.application.dto.resposta.Direcao;
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.filtro.produto.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.Direcao;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoListaUseCaseImpl;
 import br.com.on.fiap.core.domain.*;
 import br.com.on.fiap.datapool.*;
@@ -32,13 +32,13 @@ class ProdutoListaUseCaseImplTest {
     @Test
     @DisplayName("Dado filtro por categoria, quando listar produtos, então produtos da categoria devem ser retornados")
     void dadoFiltroPorCategoria_quandoListarProdutos_entaoProdutosDaCategoriaDevemSerRetornados() {
-        ProdutoFiltro filtro = DataPoolProdutoFiltro.criarProdutoFiltro(null, Categoria.LANCHE);
+        ProdutoFiltroEntrada filtro = DataPoolProdutoFiltro.criarProdutoFiltro(null, Categoria.LANCHE);
         PaginacaoResposta paginacaoResposta = PaginacaoResposta.create(0, 10, null);
         List<Produto> produtos = DataPoolProduto.produtosComIdsDinamicos(1);
-        Pagina<Produto> produtoPagina = DataPoolPagina.criarPaginacao(produtos, 1L, 0, 10, 0);
-        when(produtoGateway.listarComFiltros(filtro, paginacaoResposta)).thenReturn(produtoPagina);
+        PaginaResposta<Produto> produtoPaginaResposta = DataPoolPagina.criarPaginacao(produtos, 1L, 0, 10, 0);
+        when(produtoGateway.listarComFiltros(filtro, paginacaoResposta)).thenReturn(produtoPaginaResposta);
 
-        Pagina<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
+        PaginaResposta<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
 
         assertEquals(1, result.getTotalElementos());
         assertEquals(Categoria.LANCHE, result.getConteudo().getFirst().getCategoria());
@@ -49,13 +49,13 @@ class ProdutoListaUseCaseImplTest {
     @DisplayName(
             "Dado filtro por categoria e nome, quando listar produtos, então os produtos da categoria e nome devem ser retornados")
     void dadoProdutosExistentes_quandoFiltrarProdutos_entaoDevemSerRetornados() {
-        ProdutoFiltro filtro = DataPoolProdutoFiltro.criarProdutoFiltro("x-burguer", Categoria.LANCHE);
+        ProdutoFiltroEntrada filtro = DataPoolProdutoFiltro.criarProdutoFiltro("x-burguer", Categoria.LANCHE);
         PaginacaoResposta paginacaoResposta = PaginacaoResposta.create(0, 10, null);
         List<Produto> produtos = DataPoolProduto.produtosComIdsDinamicos(10);
-        Pagina<Produto> produtoPagina = DataPoolPagina.criarPaginacao(produtos, 10L, 0, 10, 0);
-        when(produtoGateway.listarComFiltros(filtro, paginacaoResposta)).thenReturn(produtoPagina);
+        PaginaResposta<Produto> produtoPaginaResposta = DataPoolPagina.criarPaginacao(produtos, 10L, 0, 10, 0);
+        when(produtoGateway.listarComFiltros(filtro, paginacaoResposta)).thenReturn(produtoPaginaResposta);
 
-        Pagina<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
+        PaginaResposta<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
         assertEquals(10, result.getTotalElementos());
         verify(produtoGateway).listarComFiltros(filtro, paginacaoResposta);
     }
@@ -63,13 +63,13 @@ class ProdutoListaUseCaseImplTest {
     @Test
     @DisplayName("Dado filtro vazio, quando listar produtos, então todos os produtos devem ser retornados")
     void dadoFiltroVazio_quandoListarProdutos_entaoTodosProdutosDevemSerRetornados() {
-        ProdutoFiltro filtro = DataPoolProdutoFiltro.filtroVazio();
+        ProdutoFiltroEntrada filtro = DataPoolProdutoFiltro.filtroVazio();
         PaginacaoResposta paginacaoResposta = PaginacaoResposta.create(0, 10, null);
         List<Produto> produtos = DataPoolProduto.produtosComIdsDinamicos(2);
-        Pagina<Produto> produtoPagina = DataPoolPagina.criarPaginacao(produtos, 2L, 0, 10, 0);
-        when(produtoGateway.listarComFiltros(filtro, paginacaoResposta)).thenReturn(produtoPagina);
+        PaginaResposta<Produto> produtoPaginaResposta = DataPoolPagina.criarPaginacao(produtos, 2L, 0, 10, 0);
+        when(produtoGateway.listarComFiltros(filtro, paginacaoResposta)).thenReturn(produtoPaginaResposta);
 
-        Pagina<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
+        PaginaResposta<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
 
         assertEquals(2, result.getTotalElementos());
         verify(produtoGateway).listarComFiltros(filtro, paginacaoResposta);
@@ -78,14 +78,14 @@ class ProdutoListaUseCaseImplTest {
     @Test
     @DisplayName("Dado filtro de produto inexistente, quando listar produtos, então nenhuma produto deve ser retornado")
     void dadoFiltroDeProdutoInexistente_quandoListarProdutos_entaoNenhumProdutoDeveSerRetornado() {
-        ProdutoFiltro filtro = DataPoolProdutoFiltro.criarProdutoFiltro("inexistente", Categoria.LANCHE);
+        ProdutoFiltroEntrada filtro = DataPoolProdutoFiltro.criarProdutoFiltro("inexistente", Categoria.LANCHE);
         PaginacaoResposta paginacaoResposta =
                 PaginacaoResposta.create(0, 10, DataPoolOrdenacao.criarOrdenacao("nome", Direcao.ASC));
         List<Produto> produtos = Collections.emptyList();
-        Pagina<Produto> produtoPagina = DataPoolPagina.criarPaginacao(produtos, 0L, 0, 10, 0);
-        when(produtoGateway.listarComFiltros(filtro, paginacaoResposta)).thenReturn(produtoPagina);
+        PaginaResposta<Produto> produtoPaginaResposta = DataPoolPagina.criarPaginacao(produtos, 0L, 0, 10, 0);
+        when(produtoGateway.listarComFiltros(filtro, paginacaoResposta)).thenReturn(produtoPaginaResposta);
 
-        Pagina<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
+        PaginaResposta<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
 
         assertEquals(0, result.getTotalElementos());
         verify(produtoGateway).listarComFiltros(filtro, paginacaoResposta);
@@ -95,14 +95,14 @@ class ProdutoListaUseCaseImplTest {
     @DisplayName(
             "Dado filtro e ordenação, quando listar produtos, então os produtos devem ser retornados na ordem correta")
     void dadoFiltroComOrdenacao_quandoListarProdutos_entaoProdutosDevemSerOrdenados() {
-        ProdutoFiltro filtro = DataPoolProdutoFiltro.criarProdutoFiltro(null, Categoria.LANCHE);
+        ProdutoFiltroEntrada filtro = DataPoolProdutoFiltro.criarProdutoFiltro(null, Categoria.LANCHE);
         PaginacaoResposta paginacaoResposta =
                 DataPoolPaginacao.criarPaginacao(0, 10, DataPoolOrdenacao.criarOrdenacao("nome", Direcao.ASC));
         List<Produto> produtos = DataPoolProduto.produtosComIdsDinamicos(2);
-        Pagina<Produto> produtoPagina = DataPoolPagina.criarPaginacao(produtos, 2L, 0, 10, 0);
-        when(produtoGateway.listarComFiltros(filtro, paginacaoResposta)).thenReturn(produtoPagina);
+        PaginaResposta<Produto> produtoPaginaResposta = DataPoolPagina.criarPaginacao(produtos, 2L, 0, 10, 0);
+        when(produtoGateway.listarComFiltros(filtro, paginacaoResposta)).thenReturn(produtoPaginaResposta);
 
-        Pagina<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
+        PaginaResposta<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
 
         assertEquals(2, result.getTotalElementos());
         verify(produtoGateway).listarComFiltros(filtro, paginacaoResposta);

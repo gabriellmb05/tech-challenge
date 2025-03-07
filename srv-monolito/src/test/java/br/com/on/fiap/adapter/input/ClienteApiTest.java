@@ -10,8 +10,8 @@ import br.com.on.datapool.DataPoolClienteSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.mapper.ClienteInputMapper;
 import br.com.on.fiap.core.adapter.controller.ClienteController;
-import br.com.on.fiap.core.application.dto.entrada.ClienteEntrada;
-import br.com.on.fiap.core.application.dto.resposta.ClienteRespostaDTO;
+import br.com.on.fiap.core.application.dto.entrada.cliente.ClienteEntrada;
+import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,12 +37,12 @@ class ClienteApiTest {
     @DisplayName("Dado um cliente existente, quando buscar o cliente por cpf, então ele deve ser retornado")
     void dadoClienteExistente_quandoBuscarCliente_entaoDeveSerRetornado() {
         String cpf = "43316652616";
-        ClienteRespostaDTO clienteRespostaDTO = DataPoolClienteRespostaDTO.gerarCliente();
-        when(clienteController.buscaClientePorCpf(cpf)).thenReturn(clienteRespostaDTO);
-        ResponseEntity<ClienteRespostaDTO> response = clienteApi.buscaClientePorCpf(cpf);
+        ClienteResposta clienteResposta = DataPoolClienteRespostaDTO.gerarCliente();
+        when(clienteController.buscaClientePorCpf(cpf)).thenReturn(clienteResposta);
+        ResponseEntity<ClienteResposta> response = clienteApi.buscaClientePorCpf(cpf);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(clienteRespostaDTO, response.getBody());
+        assertEquals(clienteResposta, response.getBody());
         verify(clienteController).buscaClientePorCpf(cpf);
     }
 
@@ -51,14 +51,14 @@ class ClienteApiTest {
     void dadoClienteNovo_quandoInserirCliente_entaoDeveSerSalvo() {
         ClienteEntrada clienteEntrada = DataPoolClienteEntradaDTO.gerarCliente();
         ClienteSolicitacaoDTO clienteSolicitacaoDTO = DataPoolClienteSolicitacaoDTO.gerarCliente();
-        ClienteRespostaDTO clienteRespostaDTO = DataPoolClienteRespostaDTO.gerarCliente();
+        ClienteResposta clienteResposta = DataPoolClienteRespostaDTO.gerarCliente();
         when(clienteInputMapper.paraClienteDTO(clienteSolicitacaoDTO)).thenReturn(clienteEntrada);
-        when(clienteController.insereCliente(clienteEntrada)).thenReturn(clienteRespostaDTO);
+        when(clienteController.insereCliente(clienteEntrada)).thenReturn(clienteResposta);
 
-        ResponseEntity<ClienteRespostaDTO> response = clienteApi.insereCliente(clienteSolicitacaoDTO);
+        ResponseEntity<ClienteResposta> response = clienteApi.insereCliente(clienteSolicitacaoDTO);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(clienteRespostaDTO, response.getBody());
+        assertEquals(clienteResposta, response.getBody());
         verify(clienteInputMapper).paraClienteDTO(clienteSolicitacaoDTO);
     }
 }

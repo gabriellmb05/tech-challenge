@@ -3,7 +3,7 @@ package br.com.on.fiap.adapter.input;
 import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.swagger.ClienteApiSwagger;
 import br.com.on.fiap.core.adapter.controller.ClienteController;
-import br.com.on.fiap.core.application.dto.resposta.ClienteRespostaDTO;
+import br.com.on.fiap.core.application.dto.resposta.cliente.ClienteResposta;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,16 +21,16 @@ public class ClienteApi implements ClienteApiSwagger {
 
     @Override
     @PostMapping
-    public ResponseEntity<ClienteRespostaDTO> insereCliente(
+    public ResponseEntity<ClienteResposta> insereCliente(
             @Valid @RequestBody ClienteSolicitacaoDTO clienteSolicitacaoDTO) {
-        ClienteRespostaDTO clienteRespostaDTO = clienteController.insereCliente(clienteSolicitacaoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(clienteRespostaDTO);
+        ClienteResposta clienteResposta = clienteController.insereCliente(clienteSolicitacaoDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteResposta);
     }
 
     @Override
     @GetMapping("/{cpf}")
-    public ResponseEntity<ClienteRespostaDTO> buscaClientePorCpf(@PathVariable("cpf") String cpf) {
-        ClienteRespostaDTO cliente = clienteController.buscaClientePorCpf(cpf);
+    public ResponseEntity<ClienteResposta> buscaClientePorCpf(@PathVariable("cpf") String cpf) {
+        ClienteResposta cliente = clienteController.buscaClientePorCpf(cpf);
         return ResponseEntity.ok().body(cliente);
     }
 }

@@ -1,17 +1,18 @@
 package br.com.on.fiap.core.adapter.controller;
 
-import br.com.on.fiap.core.application.dto.entrada.PedidoFiltroEntrada;
-import br.com.on.fiap.core.application.dto.entrada.PedidoSolicitacao;
-import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
-import br.com.on.fiap.core.application.dto.resposta.PedidoDetalhadoResposta;
-import br.com.on.fiap.core.application.dto.resposta.PedidoResposta;
+import br.com.on.fiap.core.application.dto.entrada.pedido.PedidoEntrada;
+import br.com.on.fiap.core.application.dto.filtro.pedido.PedidoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.paginacao.PaginacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoDetalhadoResposta;
+import br.com.on.fiap.core.application.dto.resposta.pedido.PedidoResposta;
 
 public interface PedidoController {
 
-    PedidoResposta inserePedido(PedidoSolicitacao pedidoSolicitacao);
+    PedidoResposta inserePedido(PedidoEntrada pedidoEntrada);
 
-    Pagina<PedidoResposta> listarPedidoComFiltro(PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta);
+    PaginaResposta<PedidoResposta> listarPedidoComFiltro(
+            PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta);
 
     PedidoDetalhadoResposta detalhaPedido(String protocolo);
 
