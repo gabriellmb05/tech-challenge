@@ -87,6 +87,10 @@ public class PedidoConfig {
     @Bean
     public PedidoController pedidoController() {
         return new PedidoControllerImpl(
-                pedidoInsereUseCase(), pedidoListaUseCase(), pedidoAtualizaUseCase(), pedidoPresenter());
+                pedidoInsereUseCase(),
+                pedidoListaUseCase(),
+                pedidoDetalhaUseCase(),
+                pedidoAtualizaUseCase(),
+                pedidoPresenter());
     }
 }

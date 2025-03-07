@@ -41,9 +41,7 @@ public class PedidoApi implements PedidoApiSwagger {
     @Override
     @GetMapping("/{protocolo}/detalhar")
     public ResponseEntity<PedidoDetalhadoResposta> detalhaPedido(@PathVariable("protocolo") String protocolo) {
-        Pedido pedidoDetalhado = pedidoDetalhaUseCase.detalhaPedido(protocolo);
-        PedidoDetalhadoRespostaDTO pedidoDetalhadoRespostaDTO = pedidoInputMapper.paraPedidoDetalheDTO(pedidoDetalhado);
-        return ResponseEntity.ok(pedidoDetalhadoRespostaDTO);
+        return ResponseEntity.ok(pedidoController.detalhaPedido(protocolo));
     }
 
     @Override
