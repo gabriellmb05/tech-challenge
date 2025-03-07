@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.output.persistence.repository;
 
 import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
-import br.com.on.fiap.core.application.dto.filtro.ProdutoFiltroEntrada;
+import br.com.on.fiap.core.domain.ProdutoFiltro;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -34,5 +34,5 @@ public interface ProdutoRepository extends JpaRepository<ProdutoEntity, Long> {
                                 OR p.tpCategoria = :#{#filtro.categoria}
                         )
                     """)
-    Page<ProdutoEntity> buscarComFiltro(@Param(value = "filtro") ProdutoFiltroEntrada filtro, Pageable page);
+    Page<ProdutoEntity> buscarComFiltro(@Param(value = "filtro") ProdutoFiltro filtro, Pageable page);
 }

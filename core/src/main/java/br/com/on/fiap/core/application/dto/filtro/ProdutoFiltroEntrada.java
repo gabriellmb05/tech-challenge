@@ -1,13 +1,11 @@
 package br.com.on.fiap.core.application.dto.filtro;
 
-import br.com.on.fiap.core.domain.Categoria;
-
 public interface ProdutoFiltroEntrada {
     String getNome();
 
-    Categoria getCategoria();
+    String getCategoria();
 
-    static ProdutoFiltroEntrada create(String nome, Categoria categoria) {
+    static ProdutoFiltroEntrada create(String nome, String categoria) {
         return new ProdutoFiltroEntrada() {
 
             @Override
@@ -16,7 +14,7 @@ public interface ProdutoFiltroEntrada {
             }
 
             @Override
-            public Categoria getCategoria() {
+            public String getCategoria() {
                 return categoria;
             }
         };

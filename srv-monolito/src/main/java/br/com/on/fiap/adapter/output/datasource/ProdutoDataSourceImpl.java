@@ -5,10 +5,10 @@ import br.com.on.fiap.adapter.output.persistence.component.PageableComponent;
 import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
 import br.com.on.fiap.adapter.output.persistence.repository.ProdutoRepository;
 import br.com.on.fiap.core.adapter.datasource.ProdutoDataSource;
-import br.com.on.fiap.core.application.dto.filtro.ProdutoFiltroEntrada;
 import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
 import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import br.com.on.fiap.core.domain.Produto;
+import br.com.on.fiap.core.domain.ProdutoFiltro;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -56,7 +56,7 @@ public class ProdutoDataSourceImpl implements ProdutoDataSource {
     }
 
     @Override
-    public PaginaResposta<Produto> listarComFiltros(ProdutoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta) {
+    public PaginaResposta<Produto> listarComFiltros(ProdutoFiltro filtro, PaginacaoResposta paginacaoResposta) {
         Pageable pageable = pageableComponent.criarPageable(paginacaoResposta);
         Page<Produto> pageProduto =
                 produtoRepository.buscarComFiltro(filtro, pageable).map(ProdutoEntity::toDomain);
