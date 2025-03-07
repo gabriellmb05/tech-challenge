@@ -8,6 +8,7 @@ import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoAlteraUseCase
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoBuscaPorIdUseCaseImpl;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoDeletaUseCaseImpl;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoInsereUseCaseImpl;
+import br.com.on.fiap.infrastructure.config.ProdutoConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

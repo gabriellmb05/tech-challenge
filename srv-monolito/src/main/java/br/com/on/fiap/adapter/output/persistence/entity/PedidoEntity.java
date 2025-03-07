@@ -1,23 +1,20 @@
 package br.com.on.fiap.adapter.output.persistence.entity;
 
 import br.com.on.fiap.adapter.output.persistence.entity.converter.SituacaoPedidoConverter;
-import br.com.on.fiap.core.domain.model.SituacaoPedido;
+import br.com.on.fiap.core.domain.model.*;
 import jakarta.persistence.*;
-import java.security.SecureRandom;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "TB_PED_PEDIDO")
+@EqualsAndHashCode(cacheStrategy = EqualsAndHashCode.CacheStrategy.LAZY)
 public class PedidoEntity {
 
     private static final String SQ_PED_PEDIDO = "SQ_PED_PEDIDO";
@@ -33,7 +30,7 @@ public class PedidoEntity {
     @JoinColumn(name = "CLI_ID", referencedColumnName = "CLI_ID", nullable = false)
     private ClienteEntity cliId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "PAG_ID", referencedColumnName = "PAG_ID", nullable = false)
     private PagamentoEntity pagId;
 
@@ -49,13 +46,32 @@ public class PedidoEntity {
     private LocalDateTime dhPedido;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "pedId", cascade = CascadeType.MERGE, orphanRemoval = true)
+    @OneToMany(mappedBy = "pedId", orphanRemoval = true)
     private List<PedidoProdutoEntity> relPedPro = new ArrayList<>();
 
-    @PrePersist
-    public void gerarProtocolo() {
-        String dataHoraFormatada = this.dhPedido.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-        Integer numeroAleatorio = new SecureRandom().nextInt(Integer.MAX_VALUE) % 10000;
-        this.nmProtocolo = String.format("%s%s%s", dataHoraFormatada, this.pedId, numeroAleatorio);
+    public static PedidoEntity create(Pedido pedido, List<PedidoProdutoEntity> pedidoProdutos) {
+        ClienteEntity cliente = ClienteEntity.fromDomain(pedido.getCliente());
+        PagamentoEntity pagamento = PagamentoEntity.fromDomain(pedido.getPagamento());
+        return new PedidoEntity(
+                pedido.getId(),
+                cliente,
+                pagamento,
+                pedido.getSituacao(),
+                pedido.getProtocolo(),
+                pedido.getDataHora(),
+                pedidoProdutos);
+    }
+
+    public Pedido toDomain(List<PedidoProduto> pedidoProdutos) {
+        Cliente cliente = this.getCliId().toDomain();
+        Pagamento pagamento = this.getPagId().toDomain();
+        return new Pedido(
+                this.getPedId(),
+                pedidoProdutos,
+                cliente,
+                pagamento,
+                this.getStPedido(),
+                this.getNmProtocolo(),
+                this.getDhPedido());
     }
 }

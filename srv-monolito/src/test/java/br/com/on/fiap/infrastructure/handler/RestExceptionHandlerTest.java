@@ -29,7 +29,7 @@ class RestExceptionHandlerTest {
         ProdutoExistenteExcecao ex =
                 new ProdutoExistenteExcecao(MessageError.MSG_ERRO_PRODUTO_JA_CADASTRADO.getMensagem(), 1L);
 
-        ResponseEntity<DetalhesErrosGeraisDTO> response = exceptionHandler.handleProdutoExistenteExcecao(ex, request);
+        ResponseEntity<ErrorApi> response = exceptionHandler.handleProdutoExistenteExcecao(ex, request);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals(
@@ -43,7 +43,7 @@ class RestExceptionHandlerTest {
         ClienteExistenteExcecao ex = new ClienteExistenteExcecao(
                 MessageError.MSG_ERRO_CLIENTE_CPF_JA_CADASTRADO.getMensagem(), "75864522023");
 
-        ResponseEntity<DetalhesErrosGeraisDTO> response = exceptionHandler.handleClienteExistenteExcecao(ex, request);
+        ResponseEntity<ErrorApi> response = exceptionHandler.handleClienteExistenteExcecao(ex, request);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals(
@@ -57,7 +57,7 @@ class RestExceptionHandlerTest {
         ClienteExistenteExcecao ex = new ClienteExistenteExcecao(
                 MessageError.MSG_ERRO_CLIENTE_EMAIL_JA_CADASTRADO.getMensagem(), "teste@gmail.com");
 
-        ResponseEntity<DetalhesErrosGeraisDTO> response = exceptionHandler.handleClienteExistenteExcecao(ex, request);
+        ResponseEntity<ErrorApi> response = exceptionHandler.handleClienteExistenteExcecao(ex, request);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals(
@@ -71,8 +71,7 @@ class RestExceptionHandlerTest {
         ProdutoNaoEncontradoExcecao ex =
                 new ProdutoNaoEncontradoExcecao(MessageError.MSG_ERRO_PRODUTO_NAO_CADASTRADO.getMensagem(), 0L);
 
-        ResponseEntity<DetalhesErrosGeraisDTO> response =
-                exceptionHandler.handleProdutoNaoEncontradoExcecao(ex, request);
+        ResponseEntity<ErrorApi> response = exceptionHandler.handleProdutoNaoEncontradoExcecao(ex, request);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(
@@ -85,8 +84,7 @@ class RestExceptionHandlerTest {
         ClienteNaoEncontradoExcecao ex = new ClienteNaoEncontradoExcecao(
                 MessageError.MSG_ERRO_CLIENTE_NAO_CADASTRADO.getMensagem(), "75864522023");
 
-        ResponseEntity<DetalhesErrosGeraisDTO> response =
-                exceptionHandler.handleClienteNaoEncontradoExcecao(ex, request);
+        ResponseEntity<ErrorApi> response = exceptionHandler.handleClienteNaoEncontradoExcecao(ex, request);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(
@@ -99,7 +97,7 @@ class RestExceptionHandlerTest {
     void dadoExcecaoGenerica_quandoManipulada_entaoDeveRetornarInternalServerError() {
         Exception ex = new Exception("Erro interno da aplicação");
 
-        ResponseEntity<DetalhesErrosGeraisDTO> response = exceptionHandler.handleGlobalException(ex, request);
+        ResponseEntity<ErrorApi> response = exceptionHandler.handleGlobalException(ex, request);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Erro interno da aplicação", response.getBody().getErrors().getFirst());
@@ -111,8 +109,7 @@ class RestExceptionHandlerTest {
         CategoriaNaoEncontradaExcecao ex = new CategoriaNaoEncontradaExcecao(
                 MessageError.MSG_ERRO_PRODUTO_CATEGORIA_NAO_CADASTRADA.getMensagem(), 1L);
 
-        ResponseEntity<DetalhesErrosGeraisDTO> response =
-                exceptionHandler.handleCategoriaNaoEncontradaExcecao(ex, request);
+        ResponseEntity<ErrorApi> response = exceptionHandler.handleCategoriaNaoEncontradaExcecao(ex, request);
 
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals(

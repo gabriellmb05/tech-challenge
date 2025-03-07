@@ -15,36 +15,31 @@ public interface PagamentoResposta {
 
     LocalDateTime getDhPagamento();
 
-    static PagamentoResposta create(
-            Long id,
-            BigDecimal vlCompra,
-            SituacaoPagamento stPagamento,
-            TipoPagamento tpPagamento,
-            LocalDateTime dhPagamento) {
+    static PagamentoResposta create(Pagamento pagamento) {
         return new PagamentoResposta() {
             @Override
             public Long getId() {
-                return id;
+                return pagamento.getPagId();
             }
 
             @Override
             public BigDecimal getVlCompra() {
-                return vlCompra;
+                return pagamento.getVlCompra();
             }
 
             @Override
             public SituacaoPagamento getStPagamento() {
-                return stPagamento;
+                return pagamento.getStPagamento();
             }
 
             @Override
             public TipoPagamento getTpPagamento() {
-                return tpPagamento;
+                return pagamento.getTpPagamento();
             }
 
             @Override
             public LocalDateTime getDhPagamento() {
-                return dhPagamento;
+                return pagamento.getDhPagamento();
             }
         };
     }

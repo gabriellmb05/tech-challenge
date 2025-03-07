@@ -52,7 +52,7 @@ class PedidoInsereUseCaseImplTest {
         when(pagamentoGateway.salvaPagamento(pagamento)).thenReturn(pagamento);
         doNothing().when(pedidoGateway).salvaPedidoPagamento(pedido);
 
-        Pedido pedidoSalvo = pedidoInsereUseCase.inserir(pedido, pagamento);
+        Pedido pedidoSalvo = pedidoInsereUseCase.inserePedido(pedido);
 
         verify(clienteGateway).buscaClientePorId(cliente.getId());
         verify(pedidoGateway).salvaPedido(pedido);
@@ -75,8 +75,8 @@ class PedidoInsereUseCaseImplTest {
 
         when(clienteGateway.buscaClientePorId(cliente.getId())).thenReturn(Optional.empty());
 
-        ClienteNaoEncontradoExcecao exception = assertThrows(
-                ClienteNaoEncontradoExcecao.class, () -> pedidoInsereUseCase.inserir(pedido, new Pagamento()));
+        ClienteNaoEncontradoExcecao exception =
+                assertThrows(ClienteNaoEncontradoExcecao.class, () -> pedidoInsereUseCase.inserePedido(pedido));
 
         assertEquals("Não foi encontrado o Cliente para o id: 999", exception.getMessage());
         verify(clienteGateway).buscaClientePorId(cliente.getId());

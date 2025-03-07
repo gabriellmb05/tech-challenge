@@ -1,13 +1,16 @@
 package br.com.on.fiap.adapter.output.persistence.entity;
 
+import br.com.on.fiap.core.domain.model.Cliente;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "TB_CLI_CLIENTE")
@@ -32,4 +35,13 @@ public class ClienteEntity {
 
     @Column(name = "CLI_DH_NASCIMENTO")
     private LocalDate dhNascimento;
+
+    public static ClienteEntity fromDomain(Cliente cliente) {
+        return new ClienteEntity(
+                cliente.getId(), cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getDataNascimento());
+    }
+
+    public Cliente toDomain() {
+        return new Cliente(cliId, nmNome, nmCpf, nmEmail, dhNascimento);
+    }
 }

@@ -1,11 +1,8 @@
 package br.com.on.fiap.core.application.usecase.pedido;
 
-import br.com.on.fiap.core.domain.model.Pedido;
-import br.com.on.fiap.core.domain.model.PedidoFiltro;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import br.com.on.fiap.core.domain.model.*;
 
 public interface PedidoListaUseCase {
 
-    Page<Pedido> buscarPedidosComFiltro(PedidoFiltro filtro, Pageable pageable);
+    Pagina<Pedido> buscarPedidosComFiltro(PedidoFiltroEntrada filtro, Paginacao paginacao);
 }

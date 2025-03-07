@@ -2,10 +2,7 @@ package br.com.on.fiap.core.application.usecase.pedido.impl;
 
 import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoListaUseCase;
-import br.com.on.fiap.core.domain.model.Pedido;
-import br.com.on.fiap.core.domain.model.PedidoFiltro;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import br.com.on.fiap.core.domain.model.*;
 
 public class PedidoListaUseCaseImpl implements PedidoListaUseCase {
 
@@ -16,7 +13,7 @@ public class PedidoListaUseCaseImpl implements PedidoListaUseCase {
     }
 
     @Override
-    public Page<Pedido> buscarPedidosComFiltro(PedidoFiltro filtro, Pageable pageable) {
-        return pedidoGateway.listarComFiltros(filtro, pageable);
+    public Pagina<Pedido> buscarPedidosComFiltro(PedidoFiltroEntrada filtro, Paginacao paginacao) {
+        return pedidoGateway.listarComFiltros(filtro, paginacao);
     }
 }

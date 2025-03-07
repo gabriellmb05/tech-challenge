@@ -8,11 +8,6 @@ public class PagamentoPresenterImpl implements PagamentoPresenter {
 
     @Override
     public PagamentoResposta formatar(Pagamento pagamento) {
-        return PagamentoResposta.create(
-                pagamento.getPagId(),
-                pagamento.getVlCompra(),
-                pagamento.getStPagamento(),
-                pagamento.getTpPagamento(),
-                pagamento.getDhPagamento());
+        return PagamentoResposta.create(pagamento);
     }
 }

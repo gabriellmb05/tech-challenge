@@ -3,7 +3,6 @@ package br.com.on.fiap.adapter.output.datasource;
 import br.com.on.fiap.adapter.input.dto.response.PaginaInfo;
 import br.com.on.fiap.adapter.output.persistence.component.PageableComponent;
 import br.com.on.fiap.adapter.output.persistence.entity.ProdutoEntity;
-import br.com.on.fiap.adapter.output.persistence.mapper.ProdutoSaidaMapeador;
 import br.com.on.fiap.adapter.output.persistence.repository.ProdutoRepository;
 import br.com.on.fiap.core.adapter.datasource.ProdutoDataSource;
 import br.com.on.fiap.core.domain.model.*;
@@ -18,37 +17,34 @@ public class ProdutoDataSourceImpl implements ProdutoDataSource {
 
     private final ProdutoRepository produtoRepository;
     private final PageableComponent pageableComponent;
-    private final ProdutoSaidaMapeador produtoSaidaMapeador;
 
-    public ProdutoDataSourceImpl(
-            ProdutoRepository produtoRepository,
-            PageableComponent pageableComponent,
-            ProdutoSaidaMapeador produtoSaidaMapeador) {
+    public ProdutoDataSourceImpl(ProdutoRepository produtoRepository, PageableComponent pageableComponent) {
         this.produtoRepository = produtoRepository;
         this.pageableComponent = pageableComponent;
-        this.produtoSaidaMapeador = produtoSaidaMapeador;
     }
 
     @Override
     public Optional<Produto> buscaProdutoPorId(Long id) {
-        return produtoRepository.findById(id).map(produtoSaidaMapeador::paraProduto);
+        return produtoRepository.findById(id).map(ProdutoEntity::toDomain);
     }
 
     @Override
     public List<Produto> buscaProdutoPorIdsLista(List<Long> ids) {
-        return produtoSaidaMapeador.paraListaProdutos(produtoRepository.findByProIdIn(ids));
+        return produtoRepository.findByProIdIn(ids).stream()
+                .map(ProdutoEntity::toDomain)
+                .toList();
     }
 
     @Override
     public Produto salvaProduto(Produto produto) {
-        ProdutoEntity produtoEntity = produtoSaidaMapeador.paraEntidade(produto);
+        ProdutoEntity produtoEntity = ProdutoEntity.fromDomain(produto);
         ProdutoEntity produtoPersistido = produtoRepository.save(produtoEntity);
-        return produtoSaidaMapeador.paraProduto(produtoPersistido);
+        return produtoPersistido.toDomain();
     }
 
     @Override
     public Optional<Produto> buscaProdutoPorNome(String nome) {
-        return produtoRepository.findByNmNome(nome).map(produtoSaidaMapeador::paraProduto);
+        return produtoRepository.findByNmNome(nome).map(ProdutoEntity::toDomain);
     }
 
     @Override
@@ -60,7 +56,7 @@ public class ProdutoDataSourceImpl implements ProdutoDataSource {
     public Pagina<Produto> listarComFiltros(ProdutoFiltro filtro, Paginacao paginacao) {
         Pageable pageable = pageableComponent.criarPageable(paginacao);
         Page<Produto> pageProduto =
-                produtoRepository.buscarComFiltro(filtro, pageable).map(produtoSaidaMapeador::paraProduto);
+                produtoRepository.buscarComFiltro(filtro, pageable).map(ProdutoEntity::toDomain);
         return PaginaInfo.create(pageProduto);
     }
 }

@@ -11,26 +11,26 @@ public interface ProdutoResposta {
 
     BigDecimal getPreco();
 
-    static ProdutoResposta create(Long id, String nome, String categoria, BigDecimal preco) {
+    static ProdutoResposta create(Produto produto) {
         return new ProdutoResposta() {
             @Override
             public Long getId() {
-                return id;
+                return produto.getId();
             }
 
             @Override
             public String getNome() {
-                return nome;
+                return produto.getNome();
             }
 
             @Override
             public String getCategoria() {
-                return categoria;
+                return produto.getCategoria().name();
             }
 
             @Override
             public BigDecimal getPreco() {
-                return preco;
+                return produto.getPreco();
             }
         };
     }

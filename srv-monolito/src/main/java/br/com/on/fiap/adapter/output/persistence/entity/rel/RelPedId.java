@@ -18,4 +18,8 @@ public class RelPedId implements Serializable {
 
     @Column(name = "PRO_ID")
     private Long proId;
+
+    public static RelPedId create(Long pedId, Long proId) {
+        return new RelPedId(pedId, proId);
+    }
 }

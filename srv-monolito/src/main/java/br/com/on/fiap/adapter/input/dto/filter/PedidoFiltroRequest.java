@@ -1,5 +1,6 @@
 package br.com.on.fiap.adapter.input.dto.filter;
 
+import br.com.on.fiap.core.domain.model.PedidoFiltroEntrada;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PedidoFiltroDTO {
+public class PedidoFiltroRequest implements PedidoFiltroEntrada {
 
     private LocalDate dataInicio;
     private LocalDate dataFim;

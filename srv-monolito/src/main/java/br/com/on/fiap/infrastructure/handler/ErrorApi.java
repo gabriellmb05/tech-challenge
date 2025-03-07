@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @Builder
 @AllArgsConstructor
-public class DetalhesErrosGeraisDTO {
+public class ErrorApi {
 
     private int statusCode;
 

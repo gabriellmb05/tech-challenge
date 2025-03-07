@@ -5,7 +5,7 @@ import br.com.on.fiap.core.application.exception.ClienteExistenteExcecao;
 import br.com.on.fiap.core.application.exception.message.MessageError;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
 import br.com.on.fiap.core.domain.model.Cliente;
-import br.com.on.fiap.core.domain.model.ClienteEntradaDTO;
+import br.com.on.fiap.core.domain.model.ClienteEntrada;
 import br.com.on.fiap.core.util.FormatadorCpf;
 
 public class ClienteInsereUseCaseImpl implements ClienteInsereUseCase {
@@ -17,12 +17,12 @@ public class ClienteInsereUseCaseImpl implements ClienteInsereUseCase {
     }
 
     @Override
-    public Cliente inserir(ClienteEntradaDTO clienteEntradaDTO) {
+    public Cliente inserir(ClienteEntrada clienteEntrada) {
         Cliente cliente = new Cliente(
-                clienteEntradaDTO.getCpf(),
-                clienteEntradaDTO.getNome(),
-                clienteEntradaDTO.getEmail(),
-                clienteEntradaDTO.getDataNascimento());
+                clienteEntrada.getCpf(),
+                clienteEntrada.getNome(),
+                clienteEntrada.getEmail(),
+                clienteEntrada.getDataNascimento());
         clienteGateway.buscaClientePorCpf(cliente.getCpf()).ifPresent(p -> {
             throw new ClienteExistenteExcecao(
                     MessageError.MSG_ERRO_CLIENTE_CPF_JA_CADASTRADO.getMensagem(),

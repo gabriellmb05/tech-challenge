@@ -1,0 +1,28 @@
+package br.com.on.fiap.core.application.usecase.pagamento.impl;
+
+import br.com.on.fiap.core.application.usecase.pagamento.PagamentoCriaUseCase;
+import br.com.on.fiap.core.domain.model.*;
+import java.math.BigDecimal;
+import java.util.Map;
+
+public class PagamentoCriaUseCaseImpl implements PagamentoCriaUseCase {
+
+    @Override
+    public Pagamento criarPagamento(
+            PagamentoSolicitacao pagamentoSolicitacao,
+            SituacaoPagamento situacaoPagamento,
+            Map<Produto, Long> valoresProdutos) {
+        Pagamento pagamento = new Pagamento();
+        pagamento.setStPagamento(situacaoPagamento);
+        pagamento.setTpPagamento(TipoPagamento.deCodigo(pagamentoSolicitacao.getTpPagamento()));
+        pagamento.setVlCompra(calcularValorTotalPedido(valoresProdutos));
+        return pagamento;
+    }
+
+    private BigDecimal calcularValorTotalPedido(Map<Produto, Long> valoresProdutos) {
+        return valoresProdutos.entrySet().stream()
+                .map(produtoLongEntry ->
+                        produtoLongEntry.getKey().getPreco().multiply(BigDecimal.valueOf(produtoLongEntry.getValue())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+}

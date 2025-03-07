@@ -1,7 +1,7 @@
 package br.com.on.fiap.datapool;
 
+import br.com.on.fiap.core.domain.model.PedidoProduto;
 import br.com.on.fiap.core.domain.model.Produto;
-import br.com.on.fiap.core.domain.model.RelPedidoProduto;
 import java.util.List;
 import java.util.stream.LongStream;
 
@@ -9,15 +9,15 @@ public class DataPoolRelPedidoProduto {
 
     private DataPoolRelPedidoProduto() {}
 
-    public static RelPedidoProduto relPedidoProdutoComProduto(Long produtoId) {
+    public static PedidoProduto relPedidoProdutoComProduto(Long produtoId) {
         Produto produto = DataPoolProduto.produtoExistente(produtoId);
-        RelPedidoProduto relPedidoProduto = new RelPedidoProduto();
-        relPedidoProduto.setProduto(produto);
-        relPedidoProduto.setQuantidade(10L);
-        return relPedidoProduto;
+        PedidoProduto pedidoProduto = new PedidoProduto();
+        pedidoProduto.setProduto(produto);
+        pedidoProduto.setQuantidade(10L);
+        return pedidoProduto;
     }
 
-    public static List<RelPedidoProduto> relPedidoProdutosComProdutos(int quantidade) {
+    public static List<PedidoProduto> relPedidoProdutosComProdutos(int quantidade) {
         return LongStream.rangeClosed(1L, quantidade)
                 .mapToObj(DataPoolRelPedidoProduto::relPedidoProdutoComProduto)
                 .toList();

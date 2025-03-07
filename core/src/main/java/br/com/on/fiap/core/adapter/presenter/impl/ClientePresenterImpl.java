@@ -8,7 +8,6 @@ public class ClientePresenterImpl implements ClientePresenter {
 
     @Override
     public ClienteRespostaDTO formatar(Cliente cliente) {
-        return new ClienteRespostaDTO(
-                cliente.getId(), cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getDataNascimento());
+        return ClienteRespostaDTO.fromDomain(cliente);
     }
 }

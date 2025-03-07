@@ -6,7 +6,7 @@ import java.util.List;
 public class Pedido {
 
     private Long id;
-    private List<RelPedidoProduto> relPedidoProdutos;
+    private List<PedidoProduto> pedidoProdutos;
     private Cliente cliente;
     private Pagamento pagamento;
     private SituacaoPedido situacao;
@@ -17,14 +17,14 @@ public class Pedido {
 
     public Pedido(
             Long id,
-            List<RelPedidoProduto> relPedidoProdutos,
+            List<PedidoProduto> pedidoProdutos,
             Cliente cliente,
             Pagamento pagamento,
             SituacaoPedido situacao,
             String protocolo,
             LocalDateTime dataHora) {
         this.id = id;
-        this.relPedidoProdutos = relPedidoProdutos;
+        this.pedidoProdutos = pedidoProdutos;
         this.cliente = cliente;
         this.pagamento = pagamento;
         this.situacao = situacao;
@@ -40,12 +40,12 @@ public class Pedido {
         this.id = id;
     }
 
-    public List<RelPedidoProduto> getRelPedidoProdutos() {
-        return relPedidoProdutos;
+    public List<PedidoProduto> getRelPedidoProdutos() {
+        return pedidoProdutos;
     }
 
-    public void setRelPedidoProdutos(List<RelPedidoProduto> relPedidoProdutos) {
-        this.relPedidoProdutos = relPedidoProdutos;
+    public void setRelPedidoProdutos(List<PedidoProduto> pedidoProdutos) {
+        this.pedidoProdutos = pedidoProdutos;
     }
 
     public Cliente getCliente() {

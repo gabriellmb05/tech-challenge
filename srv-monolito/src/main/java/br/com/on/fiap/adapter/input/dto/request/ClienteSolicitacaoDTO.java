@@ -1,5 +1,6 @@
 package br.com.on.fiap.adapter.input.dto.request;
 
+import br.com.on.fiap.core.domain.model.ClienteEntrada;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClienteSolicitacaoDTO {
+public class ClienteSolicitacaoDTO implements ClienteEntrada {
 
     @NotNull(message = "O atributo nome é obrigatório") private String nome;
 

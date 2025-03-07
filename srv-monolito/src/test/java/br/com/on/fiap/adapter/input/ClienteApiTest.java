@@ -10,7 +10,7 @@ import br.com.on.datapool.DataPoolClienteSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.mapper.ClienteInputMapper;
 import br.com.on.fiap.core.adapter.controller.ClienteController;
-import br.com.on.fiap.core.domain.model.ClienteEntradaDTO;
+import br.com.on.fiap.core.domain.model.ClienteEntrada;
 import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,11 +49,11 @@ class ClienteApiTest {
     @Test
     @DisplayName("Dado um cliente novo, quando inserir o cliente, então ele deve ser salvo")
     void dadoClienteNovo_quandoInserirCliente_entaoDeveSerSalvo() {
-        ClienteEntradaDTO clienteEntradaDTO = DataPoolClienteEntradaDTO.gerarCliente();
+        ClienteEntrada clienteEntrada = DataPoolClienteEntradaDTO.gerarCliente();
         ClienteSolicitacaoDTO clienteSolicitacaoDTO = DataPoolClienteSolicitacaoDTO.gerarCliente();
         ClienteRespostaDTO clienteRespostaDTO = DataPoolClienteRespostaDTO.gerarCliente();
-        when(clienteInputMapper.paraClienteDTO(clienteSolicitacaoDTO)).thenReturn(clienteEntradaDTO);
-        when(clienteController.insereCliente(clienteEntradaDTO)).thenReturn(clienteRespostaDTO);
+        when(clienteInputMapper.paraClienteDTO(clienteSolicitacaoDTO)).thenReturn(clienteEntrada);
+        when(clienteController.insereCliente(clienteEntrada)).thenReturn(clienteRespostaDTO);
 
         ResponseEntity<ClienteRespostaDTO> response = clienteApi.insereCliente(clienteSolicitacaoDTO);
 

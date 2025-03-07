@@ -1,10 +1,8 @@
 package br.com.on.fiap.adapter.input;
 
 import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
-import br.com.on.fiap.adapter.input.mapper.ClienteInputMapper;
 import br.com.on.fiap.adapter.input.swagger.ClienteApiSwagger;
 import br.com.on.fiap.core.adapter.controller.ClienteController;
-import br.com.on.fiap.core.domain.model.ClienteEntradaDTO;
 import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -15,11 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("clientes")
 public class ClienteApi implements ClienteApiSwagger {
 
-    private final ClienteInputMapper clienteInputMapper;
     private final ClienteController clienteController;
 
-    public ClienteApi(ClienteInputMapper clienteInputMapper, ClienteController clienteController) {
-        this.clienteInputMapper = clienteInputMapper;
+    public ClienteApi(ClienteController clienteController) {
         this.clienteController = clienteController;
     }
 
@@ -27,8 +23,7 @@ public class ClienteApi implements ClienteApiSwagger {
     @PostMapping
     public ResponseEntity<ClienteRespostaDTO> insereCliente(
             @Valid @RequestBody ClienteSolicitacaoDTO clienteSolicitacaoDTO) {
-        ClienteEntradaDTO clienteEntradaDTO = clienteInputMapper.paraClienteDTO(clienteSolicitacaoDTO);
-        ClienteRespostaDTO clienteRespostaDTO = clienteController.insereCliente(clienteEntradaDTO);
+        ClienteRespostaDTO clienteRespostaDTO = clienteController.insereCliente(clienteSolicitacaoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteRespostaDTO);
     }
 

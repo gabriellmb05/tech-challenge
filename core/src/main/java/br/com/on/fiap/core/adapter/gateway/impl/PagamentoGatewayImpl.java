@@ -21,9 +21,4 @@ public class PagamentoGatewayImpl implements PagamentoGateway {
     public Pagamento salvaPagamento(Pagamento pagamento) {
         return pagamentoDataSource.salvaPagamento(pagamento);
     }
-
-    @Override
-    public Pagamento salvaPagamentoFinalizado(Pagamento pagamento) {
-        return pagamentoDataSource.salvaPagamentoFinalizado(pagamento);
-    }
 }

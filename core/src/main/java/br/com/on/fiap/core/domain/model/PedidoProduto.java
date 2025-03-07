@@ -1,18 +1,18 @@
 package br.com.on.fiap.core.domain.model;
 
-public class RelPedidoProduto {
+public class PedidoProduto {
 
     private Produto produto;
     private Pedido pedido;
     private Long quantidade;
 
-    public RelPedidoProduto(Produto produto, Pedido pedido, Long quantidade) {
+    public PedidoProduto(Produto produto, Pedido pedido, Long quantidade) {
         this.produto = produto;
         this.pedido = pedido;
         this.quantidade = quantidade;
     }
 
-    public RelPedidoProduto() {}
+    public PedidoProduto() {}
 
     public Produto getProduto() {
         return produto;

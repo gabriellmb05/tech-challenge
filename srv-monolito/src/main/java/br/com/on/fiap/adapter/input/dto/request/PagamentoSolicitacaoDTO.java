@@ -1,5 +1,6 @@
 package br.com.on.fiap.adapter.input.dto.request;
 
+import br.com.on.fiap.core.domain.model.PagamentoSolicitacao;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PagamentoSolicitacaoDTO {
+public class PagamentoSolicitacaoDTO implements PagamentoSolicitacao {
 
     @NotNull(message = "O tipo do pagamento deve ser informado") private Integer tpPagamento;
 }

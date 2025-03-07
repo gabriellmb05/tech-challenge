@@ -1,6 +1,5 @@
 package br.com.on.datapool;
 
-import br.com.on.fiap.adapter.input.dto.response.PedidoRespostaDTO;
 import br.com.on.fiap.core.domain.model.SituacaoPedido;
 import java.time.LocalDateTime;
 import java.util.List;

@@ -2,13 +2,8 @@ package br.com.on.fiap.core.adapter.gateway.impl;
 
 import br.com.on.fiap.core.adapter.datasource.PedidoDataSource;
 import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
-import br.com.on.fiap.core.domain.model.Pedido;
-import br.com.on.fiap.core.domain.model.PedidoFiltro;
-import br.com.on.fiap.core.domain.model.RelPedidoProduto;
-import java.util.List;
+import br.com.on.fiap.core.domain.model.*;
 import java.util.Optional;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 public class PedidoGatewayImpl implements PedidoGateway {
 
@@ -24,8 +19,8 @@ public class PedidoGatewayImpl implements PedidoGateway {
     }
 
     @Override
-    public Page<Pedido> listarComFiltros(PedidoFiltro filtro, Pageable page) {
-        return pedidoDataSource.listarComFiltros(filtro, page);
+    public Pagina<Pedido> listarComFiltros(PedidoFiltroEntrada filtro, Paginacao paginacao) {
+        return pedidoDataSource.listarComFiltros(filtro, paginacao);
     }
 
     @Override
@@ -34,17 +29,7 @@ public class PedidoGatewayImpl implements PedidoGateway {
     }
 
     @Override
-    public void salvaPedidoPagamento(Pedido pedido) {
-        pedidoDataSource.salvaPedidoPagamento(pedido);
-    }
-
-    @Override
     public Pedido salvaPedido(Pedido pedido) {
         return pedidoDataSource.salvaPedido(pedido);
-    }
-
-    @Override
-    public void vincularPedido(List<RelPedidoProduto> pedidoProdutos) {
-        pedidoDataSource.vincularPedido(pedidoProdutos);
     }
 }

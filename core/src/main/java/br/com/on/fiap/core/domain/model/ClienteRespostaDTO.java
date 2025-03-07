@@ -18,6 +18,11 @@ public class ClienteRespostaDTO {
         this.dataNascimento = dataNascimento;
     }
 
+    public static ClienteRespostaDTO fromDomain(Cliente cliente) {
+        return new ClienteRespostaDTO(
+                cliente.getId(), cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getDataNascimento());
+    }
+
     public ClienteRespostaDTO() {}
 
     public Long getId() {

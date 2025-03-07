@@ -1,76 +1,46 @@
 package br.com.on.fiap.core.application.usecase.pedido.impl;
 
-import br.com.on.fiap.core.adapter.gateway.ClienteGateway;
-import br.com.on.fiap.core.adapter.gateway.PagamentoGateway;
-import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
-import br.com.on.fiap.core.application.exception.ClienteNaoEncontradoExcecao;
-import br.com.on.fiap.core.application.exception.message.MessageError;
-import br.com.on.fiap.core.application.usecase.pedido.PedidoInsereUseCase;
-import br.com.on.fiap.core.domain.model.Cliente;
-import br.com.on.fiap.core.domain.model.Pagamento;
-import br.com.on.fiap.core.domain.model.Pedido;
-import br.com.on.fiap.core.domain.model.RelPedidoProduto;
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
+import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorIdUseCase;
+import br.com.on.fiap.core.application.usecase.pagamento.PagamentoCriaUseCase;
+import br.com.on.fiap.core.application.usecase.pedido.*;
+import br.com.on.fiap.core.domain.model.*;
+import java.util.Map;
 
 public class PedidoInsereUseCaseImpl implements PedidoInsereUseCase {
 
-    private final ClienteGateway clienteGateway;
-    private final PedidoGateway pedidoGateway;
-    private final PagamentoGateway pagamentoGateway;
+    private final ClienteBuscaPorIdUseCase clienteBuscaPorIdUseCase;
+    private final PedidoValidaProdutoUseCase pedidoValidaProdutoUseCase;
+    private final PedidoCriaUseCase pedidoCriaUseCase;
+    private final PagamentoCriaUseCase pagamentoCriaUseCase;
+    private final PedidoProdutoCriaRelacionamentoUseCase pedidoProdutoCriaRelacionamentoUseCase;
+    private final PedidoSalvaUseCase pedidoSalvaUseCase;
 
     public PedidoInsereUseCaseImpl(
-            ClienteGateway clienteGateway, PedidoGateway pedidoGateway, PagamentoGateway pagamentoGateway) {
-        this.clienteGateway = clienteGateway;
-        this.pedidoGateway = pedidoGateway;
-        this.pagamentoGateway = pagamentoGateway;
+            ClienteBuscaPorIdUseCase clienteBuscaPorIdUseCase,
+            PedidoValidaProdutoUseCase pedidoValidaProdutoUseCase,
+            PedidoCriaUseCase pedidoCriaUseCase,
+            PagamentoCriaUseCase pagamentoCriaUseCase,
+            PedidoProdutoCriaRelacionamentoUseCase pedidoProdutoCriaRelacionamentoUseCase,
+            PedidoSalvaUseCase pedidoSalvaUseCase) {
+        this.clienteBuscaPorIdUseCase = clienteBuscaPorIdUseCase;
+        this.pedidoValidaProdutoUseCase = pedidoValidaProdutoUseCase;
+        this.pedidoCriaUseCase = pedidoCriaUseCase;
+        this.pagamentoCriaUseCase = pagamentoCriaUseCase;
+        this.pedidoProdutoCriaRelacionamentoUseCase = pedidoProdutoCriaRelacionamentoUseCase;
+        this.pedidoSalvaUseCase = pedidoSalvaUseCase;
     }
 
     @Override
-    public Pedido inserir(Pedido pedido, Pagamento pagamento) {
-        Cliente cliente = buscarCliente(pedido);
-        pedido.setCliente(cliente);
-        Pedido pedidoSalvo = salvarPedido(pedido);
-        vincularProdutosAoPedido(pedidoSalvo, pedido.getRelPedidoProdutos());
-        vincularPedidoAoPagamento(pedidoSalvo, pagamento);
-        return pedidoSalvo;
-    }
+    public Pedido inserePedido(PedidoSolicitacao pedidoSolicitacao) {
+        Cliente cliente = clienteBuscaPorIdUseCase.buscar(pedidoSolicitacao.getCliente());
 
-    private Cliente buscarCliente(Pedido pedido) {
-        return clienteGateway
-                .buscaClientePorId(pedido.getCliente().getId())
-                .orElseThrow(() -> new ClienteNaoEncontradoExcecao(
-                        MessageError.MSG_ERRO_CLIENTE_NAO_ENCONTRATO_PARA_ID.getMensagem(),
-                        pedido.getCliente().getId()));
-    }
+        Map<Produto, Long> produtosValidados =
+                pedidoValidaProdutoUseCase.validarProdutos(pedidoSolicitacao.getProdutos());
 
-    private Pedido salvarPedido(Pedido pedido) {
-        return pedidoGateway.salvaPedido(pedido);
-    }
-
-    private void vincularProdutosAoPedido(Pedido pedidoSalvo, List<RelPedidoProduto> pedidoProdutos) {
-        pedidoProdutos.forEach(relPedidoProduto -> relPedidoProduto.setPedido(pedidoSalvo));
-        pedidoSalvo.setRelPedidoProdutos(pedidoProdutos);
-        pedidoGateway.vincularPedido(pedidoSalvo.getRelPedidoProdutos());
-    }
-
-    private void vincularPedidoAoPagamento(Pedido pedidoSalvo, Pagamento pagamento) {
-        pagamento.setVlCompra(definirValorPedido(pedidoSalvo));
-        Pagamento pagamentoSalvo = pagamentoGateway.salvaPagamento(pagamento);
-        pedidoSalvo.setPagamento(pagamentoSalvo);
-        pedidoGateway.salvaPedidoPagamento(pedidoSalvo);
-    }
-
-    private BigDecimal definirValorPedido(Pedido pedidoSalvo) {
-        AtomicReference<BigDecimal> valorPedido = new AtomicReference<>(BigDecimal.ZERO);
-
-        pedidoSalvo
-                .getRelPedidoProdutos()
-                .forEach(rel -> valorPedido.set(valorPedido
-                        .get()
-                        .add(rel.getProduto().getPreco().multiply(BigDecimal.valueOf(rel.getQuantidade())))));
-
-        return valorPedido.get();
+        Pagamento pagamento = pagamentoCriaUseCase.criarPagamento(
+                pedidoSolicitacao.getPagamento(), SituacaoPagamento.PENDENTE, produtosValidados);
+        Pedido pedidoSolicitante = pedidoCriaUseCase.criaPedido(pedidoSolicitacao, cliente, pagamento);
+        pedidoProdutoCriaRelacionamentoUseCase.criaRelacionamentoProdutoPedido(pedidoSolicitante, produtosValidados);
+        return pedidoSalvaUseCase.salvarPedido(pedidoSolicitante);
     }
 }

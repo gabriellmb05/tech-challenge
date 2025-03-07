@@ -15,10 +15,9 @@ import org.springframework.web.context.request.WebRequest;
 public class RestExceptionHandler {
 
     @ExceptionHandler(ExcecaoPadraoAplicacao.class)
-    public ResponseEntity<DetalhesErrosGeraisDTO> handleApplicationExcecaoPadrao(
-            ExcecaoPadraoAplicacao ex, WebRequest request) {
+    public ResponseEntity<ErrorApi> handleApplicationExcecaoPadrao(ExcecaoPadraoAplicacao ex, WebRequest request) {
         return ResponseEntity.badRequest()
-                .body(DetalhesErrosGeraisDTO.builder()
+                .body(ErrorApi.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .timestamp(LocalDateTime.now())
                         .details(request.getDescription(false))
@@ -27,10 +26,9 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<DetalhesErrosGeraisDTO> handleValidationExceptions(
-            MethodArgumentNotValidException ex, WebRequest request) {
+    public ResponseEntity<ErrorApi> handleValidationExceptions(MethodArgumentNotValidException ex, WebRequest request) {
         return ResponseEntity.badRequest()
-                .body(DetalhesErrosGeraisDTO.builder()
+                .body(ErrorApi.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .timestamp(LocalDateTime.now())
                         .details(request.getDescription(false))
@@ -41,10 +39,10 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(CategoriaNaoEncontradaExcecao.class)
-    public ResponseEntity<DetalhesErrosGeraisDTO> handleCategoriaNaoEncontradaExcecao(
+    public ResponseEntity<ErrorApi> handleCategoriaNaoEncontradaExcecao(
             CategoriaNaoEncontradaExcecao ex, WebRequest request) {
         return ResponseEntity.badRequest()
-                .body(DetalhesErrosGeraisDTO.builder()
+                .body(ErrorApi.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .timestamp(LocalDateTime.now())
                         .details(request.getDescription(false))
@@ -53,10 +51,9 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(ProdutoExistenteExcecao.class)
-    public ResponseEntity<DetalhesErrosGeraisDTO> handleProdutoExistenteExcecao(
-            ProdutoExistenteExcecao ex, WebRequest request) {
+    public ResponseEntity<ErrorApi> handleProdutoExistenteExcecao(ProdutoExistenteExcecao ex, WebRequest request) {
         return ResponseEntity.badRequest()
-                .body(DetalhesErrosGeraisDTO.builder()
+                .body(ErrorApi.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .timestamp(LocalDateTime.now())
                         .details(request.getDescription(false))
@@ -65,10 +62,9 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(ClienteExistenteExcecao.class)
-    public ResponseEntity<DetalhesErrosGeraisDTO> handleClienteExistenteExcecao(
-            ClienteExistenteExcecao ex, WebRequest request) {
+    public ResponseEntity<ErrorApi> handleClienteExistenteExcecao(ClienteExistenteExcecao ex, WebRequest request) {
         return ResponseEntity.badRequest()
-                .body(DetalhesErrosGeraisDTO.builder()
+                .body(ErrorApi.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .timestamp(LocalDateTime.now())
                         .details(request.getDescription(false))
@@ -77,10 +73,10 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(ProdutoNaoEncontradoExcecao.class)
-    public ResponseEntity<DetalhesErrosGeraisDTO> handleProdutoNaoEncontradoExcecao(
+    public ResponseEntity<ErrorApi> handleProdutoNaoEncontradoExcecao(
             ProdutoNaoEncontradoExcecao ex, WebRequest request) {
         return new ResponseEntity<>(
-                DetalhesErrosGeraisDTO.builder()
+                ErrorApi.builder()
                         .statusCode(HttpStatus.NOT_FOUND.value())
                         .timestamp(LocalDateTime.now())
                         .details(request.getDescription(false))
@@ -90,10 +86,10 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(ClienteNaoEncontradoExcecao.class)
-    public ResponseEntity<DetalhesErrosGeraisDTO> handleClienteNaoEncontradoExcecao(
+    public ResponseEntity<ErrorApi> handleClienteNaoEncontradoExcecao(
             ClienteNaoEncontradoExcecao ex, WebRequest request) {
         return new ResponseEntity<>(
-                DetalhesErrosGeraisDTO.builder()
+                ErrorApi.builder()
                         .statusCode(HttpStatus.NOT_FOUND.value())
                         .timestamp(LocalDateTime.now())
                         .details(request.getDescription(false))
@@ -103,9 +99,9 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<DetalhesErrosGeraisDTO> handleGlobalException(Exception ex, WebRequest request) {
+    public ResponseEntity<ErrorApi> handleGlobalException(Exception ex, WebRequest request) {
         return ResponseEntity.badRequest()
-                .body(DetalhesErrosGeraisDTO.builder()
+                .body(ErrorApi.builder()
                         .statusCode(HttpStatus.BAD_REQUEST.value())
                         .timestamp(LocalDateTime.now())
                         .details(request.getDescription(false))

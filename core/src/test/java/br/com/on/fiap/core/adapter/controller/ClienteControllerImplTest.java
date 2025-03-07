@@ -10,7 +10,7 @@ import br.com.on.fiap.core.adapter.presenter.ClientePresenter;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
 import br.com.on.fiap.core.domain.model.Cliente;
-import br.com.on.fiap.core.domain.model.ClienteEntradaDTO;
+import br.com.on.fiap.core.domain.model.ClienteEntrada;
 import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
 import br.com.on.fiap.datapool.DataPoolCliente;
 import br.com.on.fiap.datapool.DataPoolClienteEntradaDTO;
@@ -59,17 +59,17 @@ class ClienteControllerImplTest {
     @DisplayName(
             "Dado um objecto de dados de entrada, quando inserir ele, então um objeto de dados de saída deve ser retornado no formato esperado")
     void dadoObjetoDeDadosDeEntrada_quandoInserir_entaoDeveSerRetornadoNoFormatoEsperado() {
-        ClienteEntradaDTO clienteEntradaDTO = DataPoolClienteEntradaDTO.clienteValido();
+        ClienteEntrada clienteEntrada = DataPoolClienteEntradaDTO.clienteValido();
         Cliente cliente = DataPoolCliente.clienteValido();
         ClienteRespostaDTO clienteRespostaDTO = DataPoolClienteRespostaDTO.clienteValido();
-        when(clienteInsereUseCase.inserir(clienteEntradaDTO)).thenReturn(cliente);
+        when(clienteInsereUseCase.inserir(clienteEntrada)).thenReturn(cliente);
         when(clientePresenter.formatar(cliente)).thenReturn(clienteRespostaDTO);
 
-        ClienteRespostaDTO resultado = clienteController.insereCliente(clienteEntradaDTO);
+        ClienteRespostaDTO resultado = clienteController.insereCliente(clienteEntrada);
 
         assertNotNull(resultado);
         assertEquals(clienteRespostaDTO.getCpf(), resultado.getCpf());
-        verify(clienteInsereUseCase).inserir(clienteEntradaDTO);
+        verify(clienteInsereUseCase).inserir(clienteEntrada);
         verify(clientePresenter).formatar(cliente);
     }
 }

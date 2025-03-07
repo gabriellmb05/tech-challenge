@@ -1,4 +1,4 @@
-package br.com.on.fiap.config;
+package br.com.on.fiap.infrastructure.config;
 
 import br.com.on.fiap.core.adapter.controller.ClienteController;
 import br.com.on.fiap.core.adapter.controller.impl.ClienteControllerImpl;
@@ -8,8 +8,10 @@ import br.com.on.fiap.core.adapter.gateway.impl.ClienteGatewayImpl;
 import br.com.on.fiap.core.adapter.presenter.ClientePresenter;
 import br.com.on.fiap.core.adapter.presenter.impl.ClientePresenterImpl;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
+import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorIdUseCase;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
 import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteBuscaPorCpfUseCaseImpl;
+import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteBuscaPorIdUseCaseImpl;
 import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteInsereUseCaseImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,6 +43,11 @@ public class ClienteConfig {
     @Bean
     public ClienteInsereUseCase insereCliente() {
         return new ClienteInsereUseCaseImpl(clienteGateway());
+    }
+
+    @Bean
+    public ClienteBuscaPorIdUseCase clienteBuscaPorIdUseCase() {
+        return new ClienteBuscaPorIdUseCaseImpl(clienteGateway());
     }
 
     @Bean

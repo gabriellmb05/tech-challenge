@@ -2,6 +2,7 @@ package br.com.on.fiap.adapter.output.persistence.entity;
 
 import br.com.on.fiap.adapter.output.persistence.entity.converter.SituacaoPagamentoConverter;
 import br.com.on.fiap.adapter.output.persistence.entity.converter.TipoPagamentoConverter;
+import br.com.on.fiap.core.domain.model.Pagamento;
 import br.com.on.fiap.core.domain.model.SituacaoPagamento;
 import br.com.on.fiap.core.domain.model.TipoPagamento;
 import jakarta.persistence.*;
@@ -39,4 +40,17 @@ public class PagamentoEntity {
 
     @Column(name = "PAG_DH_PAGAMENTO")
     private LocalDateTime dhPagamento;
+
+    public static PagamentoEntity fromDomain(Pagamento pagamento) {
+        return new PagamentoEntity(
+                pagamento.getPagId(),
+                pagamento.getVlCompra(),
+                pagamento.getStPagamento(),
+                pagamento.getTpPagamento(),
+                pagamento.getDhPagamento());
+    }
+
+    public Pagamento toDomain() {
+        return new Pagamento(pagId, stPagamento, vlCompra, tpPagamento, dhPagamento);
+    }
 }
