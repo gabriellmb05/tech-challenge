@@ -10,6 +10,7 @@ import br.com.on.fiap.core.application.usecase.pagamento.impl.PagamentoValidaUse
 import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 @Configuration
 public class PagamentoUseCaseBeanConfig {
@@ -17,7 +18,8 @@ public class PagamentoUseCaseBeanConfig {
     private final PedidoDetalhaUseCase pedidoDetalhaUseCase;
     private final PagamentoGateway pagamentoGateway;
 
-    public PagamentoUseCaseBeanConfig(PedidoDetalhaUseCase pedidoDetalhaUseCase, PagamentoGateway pagamentoGateway) {
+    public PagamentoUseCaseBeanConfig(
+            @Lazy PedidoDetalhaUseCase pedidoDetalhaUseCase, PagamentoGateway pagamentoGateway) {
         this.pedidoDetalhaUseCase = pedidoDetalhaUseCase;
         this.pagamentoGateway = pagamentoGateway;
     }
