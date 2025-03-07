@@ -1,14 +1,14 @@
 package br.com.on.fiap.core.application.dto.resposta;
 
-public interface Paginacao {
+public interface PaginacaoResposta {
     Integer getPagina();
 
     Integer getTamanhoPagina();
 
-    Ordenacao getOrdenacao();
+    OrdenacaoResposta getOrdenacaoResposta();
 
-    static Paginacao create(Integer pagina, Integer tamanhoPagina, Ordenacao ordenacao) {
-        return new Paginacao() {
+    static PaginacaoResposta create(Integer pagina, Integer tamanhoPagina, OrdenacaoResposta ordenacaoResposta) {
+        return new PaginacaoResposta() {
             @Override
             public Integer getPagina() {
                 return pagina;
@@ -20,8 +20,8 @@ public interface Paginacao {
             }
 
             @Override
-            public Ordenacao getOrdenacao() {
-                return ordenacao;
+            public OrdenacaoResposta getOrdenacaoResposta() {
+                return ordenacaoResposta;
             }
         };
     }

@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.application.usecase.pagamento.impl;
 
-import br.com.on.fiap.core.adapter.gateway.PagamentoGateway;
+import br.com.on.fiap.core.application.gateway.PagamentoGateway;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoAtualizaUseCase;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoValidaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;

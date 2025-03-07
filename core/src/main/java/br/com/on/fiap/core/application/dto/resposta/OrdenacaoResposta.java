@@ -1,13 +1,13 @@
 package br.com.on.fiap.core.application.dto.resposta;
 
-public interface Ordenacao {
+public interface OrdenacaoResposta {
 
     String getCampo();
 
     Direcao getDirecao();
 
-    static Ordenacao create(String campo, Direcao direcao) {
-        return new Ordenacao() {
+    static OrdenacaoResposta create(String campo, Direcao direcao) {
+        return new OrdenacaoResposta() {
             @Override
             public String getCampo() {
                 return campo;

@@ -5,7 +5,7 @@ import br.com.on.fiap.core.adapter.presenter.ProdutoPresenter;
 import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
 import br.com.on.fiap.core.application.dto.entrada.ProdutoFiltro;
 import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
 import br.com.on.fiap.core.application.usecase.produto.*;
 import br.com.on.fiap.core.domain.Produto;
@@ -42,8 +42,8 @@ public class ProdutoControllerImpl implements ProdutoController {
     }
 
     @Override
-    public Pagina<ProdutoResposta> listarProdutosComFiltro(ProdutoFiltro filtro, Paginacao paginacao) {
-        Pagina<Produto> produtoPagina = produtoListaUseCase.listarComFiltro(filtro, paginacao);
+    public Pagina<ProdutoResposta> listarProdutosComFiltro(ProdutoFiltro filtro, PaginacaoResposta paginacaoResposta) {
+        Pagina<Produto> produtoPagina = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
         return produtoPresenter.formatar(produtoPagina);
     }
 

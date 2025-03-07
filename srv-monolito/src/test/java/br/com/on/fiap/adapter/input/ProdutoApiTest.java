@@ -7,7 +7,7 @@ import br.com.on.datapool.*;
 import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroRequest;
 import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoRequest;
 import br.com.on.fiap.adapter.input.dto.response.PaginaInfo;
-import br.com.on.fiap.adapter.input.dto.response.PaginacaoInfo;
+import br.com.on.fiap.adapter.input.dto.response.PaginacaoRespostaInfo;
 import br.com.on.fiap.core.adapter.controller.impl.ProdutoControllerImpl;
 import br.com.on.fiap.core.application.dto.resposta.Pagina;
 import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
@@ -109,7 +109,7 @@ class ProdutoApiTest {
             ProdutoFiltroRequest filtroDTO, List<ProdutoResposta> produtoRespostas) {
 
         PageRequest pageable = PageRequest.of(0, 10);
-        PaginacaoInfo paginacao = PaginacaoInfo.from(pageable);
+        PaginacaoRespostaInfo paginacao = PaginacaoRespostaInfo.from(pageable);
 
         Pagina<ProdutoResposta> pageProduto =
                 PaginaInfo.<ProdutoResposta>builder().conteudo(produtoRespostas).build();

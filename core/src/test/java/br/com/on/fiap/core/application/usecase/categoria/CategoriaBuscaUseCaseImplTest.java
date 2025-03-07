@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.core.adapter.gateway.CategoriaGateway;
 import br.com.on.fiap.core.application.usecase.categoria.impl.CategoriaBuscaUseCaseImpl;
 import br.com.on.fiap.core.domain.Categoria;
 import java.util.List;

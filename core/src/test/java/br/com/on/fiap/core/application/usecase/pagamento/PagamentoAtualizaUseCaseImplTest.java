@@ -3,7 +3,6 @@ package br.com.on.fiap.core.application.usecase.pagamento;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import br.com.on.fiap.core.adapter.gateway.PagamentoGateway;
 import br.com.on.fiap.core.application.usecase.pagamento.impl.PagamentoAtualizaUseCaseImpl;
 import br.com.on.fiap.core.domain.Pagamento;
 import br.com.on.fiap.datapool.DataPoolPagamento;

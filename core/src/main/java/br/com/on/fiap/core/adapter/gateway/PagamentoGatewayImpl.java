@@ -1,7 +1,7 @@
-package br.com.on.fiap.core.adapter.gateway.impl;
+package br.com.on.fiap.core.adapter.gateway;
 
 import br.com.on.fiap.core.adapter.datasource.PagamentoDataSource;
-import br.com.on.fiap.core.adapter.gateway.PagamentoGateway;
+import br.com.on.fiap.core.application.gateway.PagamentoGateway;
 import br.com.on.fiap.core.domain.Pagamento;
 
 public class PagamentoGatewayImpl implements PagamentoGateway {

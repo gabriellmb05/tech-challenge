@@ -7,7 +7,7 @@ import br.com.on.fiap.adapter.output.persistence.repository.ProdutoRepository;
 import br.com.on.fiap.core.adapter.datasource.ProdutoDataSource;
 import br.com.on.fiap.core.application.dto.entrada.ProdutoFiltro;
 import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import br.com.on.fiap.core.domain.Produto;
 import java.util.List;
 import java.util.Optional;
@@ -56,8 +56,8 @@ public class ProdutoDataSourceImpl implements ProdutoDataSource {
     }
 
     @Override
-    public Pagina<Produto> listarComFiltros(ProdutoFiltro filtro, Paginacao paginacao) {
-        Pageable pageable = pageableComponent.criarPageable(paginacao);
+    public Pagina<Produto> listarComFiltros(ProdutoFiltro filtro, PaginacaoResposta paginacaoResposta) {
+        Pageable pageable = pageableComponent.criarPageable(paginacaoResposta);
         Page<Produto> pageProduto =
                 produtoRepository.buscarComFiltro(filtro, pageable).map(ProdutoEntity::toDomain);
         return PaginaInfo.create(pageProduto);

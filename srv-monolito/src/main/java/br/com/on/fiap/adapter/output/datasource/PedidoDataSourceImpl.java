@@ -12,7 +12,7 @@ import br.com.on.fiap.adapter.output.persistence.specification.PedidoSpecificati
 import br.com.on.fiap.core.adapter.datasource.PedidoDataSource;
 import br.com.on.fiap.core.application.dto.entrada.PedidoFiltroEntrada;
 import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import br.com.on.fiap.core.domain.*;
 import java.util.List;
 import java.util.Map;
@@ -62,8 +62,8 @@ public class PedidoDataSourceImpl implements PedidoDataSource {
 
     @Override
     @Transactional(readOnly = true)
-    public Pagina<Pedido> listarComFiltros(PedidoFiltroEntrada filtro, Paginacao paginacao) {
-        Pageable pageable = pageableComponent.criarPageable(paginacao);
+    public Pagina<Pedido> listarComFiltros(PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta) {
+        Pageable pageable = pageableComponent.criarPageable(paginacaoResposta);
         Page<Pedido> pagePedido = pedidoRepository
                 .findAll(PedidoSpecification.filtroPorDataInicioEDataFim(filtro), pageable)
                 .map(pedidoEntity -> pedidoEntity.toDomain(null));

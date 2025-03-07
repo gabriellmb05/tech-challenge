@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.core.application.exception.PedidoNaoEncontradoExcecao;
 import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoDetalhaUseCaseImpl;
 import br.com.on.fiap.core.domain.Pedido;

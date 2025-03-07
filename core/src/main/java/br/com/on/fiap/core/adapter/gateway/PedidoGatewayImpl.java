@@ -1,10 +1,10 @@
-package br.com.on.fiap.core.adapter.gateway.impl;
+package br.com.on.fiap.core.adapter.gateway;
 
 import br.com.on.fiap.core.adapter.datasource.PedidoDataSource;
-import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.core.application.dto.entrada.PedidoFiltroEntrada;
 import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
+import br.com.on.fiap.core.application.gateway.PedidoGateway;
 import br.com.on.fiap.core.domain.Pedido;
 import java.util.Optional;
 
@@ -22,8 +22,8 @@ public class PedidoGatewayImpl implements PedidoGateway {
     }
 
     @Override
-    public Pagina<Pedido> listarComFiltros(PedidoFiltroEntrada filtro, Paginacao paginacao) {
-        return pedidoDataSource.listarComFiltros(filtro, paginacao);
+    public Pagina<Pedido> listarComFiltros(PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta) {
+        return pedidoDataSource.listarComFiltros(filtro, paginacaoResposta);
     }
 
     @Override

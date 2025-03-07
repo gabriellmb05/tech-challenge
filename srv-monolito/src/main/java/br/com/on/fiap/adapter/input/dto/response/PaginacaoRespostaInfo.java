@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.input.dto.response;
 
-import br.com.on.fiap.core.application.dto.resposta.Ordenacao;
-import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.application.dto.resposta.OrdenacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import java.util.Optional;
 import lombok.*;
 import org.springframework.data.domain.Pageable;
@@ -9,19 +9,19 @@ import org.springframework.data.domain.Sort.Order;
 
 @Data
 @RequiredArgsConstructor(staticName = "of")
-public class PaginacaoInfo implements Paginacao {
+public class PaginacaoRespostaInfo implements PaginacaoResposta {
 
     private Integer pagina;
     private Integer tamanhoPagina;
-    private Ordenacao ordenacao;
+    private OrdenacaoResposta ordenacaoResposta;
 
-    public static PaginacaoInfo from(Pageable pageable) {
-        PaginacaoInfo response = new PaginacaoInfo();
+    public static PaginacaoRespostaInfo from(Pageable pageable) {
+        PaginacaoRespostaInfo response = new PaginacaoRespostaInfo();
         response.setPagina(pageable.getPageNumber());
         response.setTamanhoPagina(pageable.getPageSize());
 
         Optional<Order> ordem = pageable.getSort().stream().findFirst();
-        ordem.ifPresent(order -> response.setOrdenacao(OrdenacaoInfo.from(order)));
+        ordem.ifPresent(order -> response.setOrdenacaoResposta(OrdenacaoRespostaInfo.from(order)));
         return response;
     }
 
@@ -35,8 +35,7 @@ public class PaginacaoInfo implements Paginacao {
         return tamanhoPagina;
     }
 
-    @Override
-    public Ordenacao getOrdenacao() {
-        return ordenacao;
+    public OrdenacaoResposta getOrdenacaoResposta() {
+        return ordenacaoResposta;
     }
 }

@@ -1,9 +1,9 @@
 package br.com.on.fiap.core.application.usecase.pedido.impl;
 
-import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
 import br.com.on.fiap.core.application.dto.entrada.ProdutoQuantidadeSolicitacao;
 import br.com.on.fiap.core.application.exception.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.core.application.exception.message.MessageError;
+import br.com.on.fiap.core.application.gateway.ProdutoGateway;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoValidaProdutoUseCase;
 import br.com.on.fiap.core.domain.Produto;
 import java.util.List;

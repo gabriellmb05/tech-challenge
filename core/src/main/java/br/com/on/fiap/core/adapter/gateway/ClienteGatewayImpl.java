@@ -1,7 +1,7 @@
-package br.com.on.fiap.core.adapter.gateway.impl;
+package br.com.on.fiap.core.adapter.gateway;
 
 import br.com.on.fiap.core.adapter.datasource.ClienteDataSource;
-import br.com.on.fiap.core.adapter.gateway.ClienteGateway;
+import br.com.on.fiap.core.application.gateway.ClienteGateway;
 import br.com.on.fiap.core.domain.Cliente;
 import java.util.Optional;
 

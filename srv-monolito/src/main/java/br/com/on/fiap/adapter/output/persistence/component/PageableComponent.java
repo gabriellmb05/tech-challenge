@@ -1,8 +1,8 @@
 package br.com.on.fiap.adapter.output.persistence.component;
 
 import br.com.on.fiap.core.application.dto.resposta.Direcao;
-import br.com.on.fiap.core.application.dto.resposta.Ordenacao;
-import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.application.dto.resposta.OrdenacaoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -13,23 +13,23 @@ import org.springframework.stereotype.Component;
 @Component
 public class PageableComponent {
 
-    public Pageable criarPageable(Paginacao paginacao) {
-        PageRequest pageRequest = PageRequest.of(paginacao.getPagina(), paginacao.getTamanhoPagina());
+    public Pageable criarPageable(PaginacaoResposta paginacaoResposta) {
+        PageRequest pageRequest = PageRequest.of(paginacaoResposta.getPagina(), paginacaoResposta.getTamanhoPagina());
 
-        if (paginacao.getOrdenacao() != null) {
-            Sort sort = criarSort(paginacao.getOrdenacao());
+        if (paginacaoResposta.getOrdenacaoResposta() != null) {
+            Sort sort = criarSort(paginacaoResposta.getOrdenacaoResposta());
             pageRequest = pageRequest.withSort(sort);
         }
 
         return pageRequest;
     }
 
-    private Sort criarSort(Ordenacao ordenacao) {
-        return Sort.by(criarOrdem(ordenacao));
+    private Sort criarSort(OrdenacaoResposta ordenacaoResposta) {
+        return Sort.by(criarOrdem(ordenacaoResposta));
     }
 
-    private Order criarOrdem(Ordenacao ordenacao) {
-        return new Order(criarDirecao(ordenacao.getDirecao()), ordenacao.getCampo());
+    private Order criarOrdem(OrdenacaoResposta ordenacaoResposta) {
+        return new Order(criarDirecao(ordenacaoResposta.getDirecao()), ordenacaoResposta.getCampo());
     }
 
     private Direction criarDirecao(Direcao direcao) {

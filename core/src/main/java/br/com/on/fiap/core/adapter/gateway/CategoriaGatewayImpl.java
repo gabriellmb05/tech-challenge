@@ -1,6 +1,6 @@
-package br.com.on.fiap.core.adapter.gateway.impl;
+package br.com.on.fiap.core.adapter.gateway;
 
-import br.com.on.fiap.core.adapter.gateway.CategoriaGateway;
+import br.com.on.fiap.core.application.gateway.CategoriaGateway;
 import br.com.on.fiap.core.domain.Categoria;
 import java.util.Arrays;
 import java.util.List;

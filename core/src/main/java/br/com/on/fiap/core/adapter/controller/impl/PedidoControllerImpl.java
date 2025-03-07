@@ -5,7 +5,7 @@ import br.com.on.fiap.core.adapter.presenter.PedidoPresenter;
 import br.com.on.fiap.core.application.dto.entrada.PedidoFiltroEntrada;
 import br.com.on.fiap.core.application.dto.entrada.PedidoSolicitacao;
 import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import br.com.on.fiap.core.application.dto.resposta.PedidoDetalhadoResposta;
 import br.com.on.fiap.core.application.dto.resposta.PedidoResposta;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoAtualizaUseCase;
@@ -43,8 +43,9 @@ public class PedidoControllerImpl implements PedidoController {
     }
 
     @Override
-    public Pagina<PedidoResposta> listarPedidoComFiltro(PedidoFiltroEntrada filtro, Paginacao paginacao) {
-        Pagina<Pedido> pedidoPagina = pedidoListaUseCase.buscarPedidosComFiltro(filtro, paginacao);
+    public Pagina<PedidoResposta> listarPedidoComFiltro(
+            PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta) {
+        Pagina<Pedido> pedidoPagina = pedidoListaUseCase.buscarPedidosComFiltro(filtro, paginacaoResposta);
         return pedidoPresenter.formatar(pedidoPagina);
     }
 

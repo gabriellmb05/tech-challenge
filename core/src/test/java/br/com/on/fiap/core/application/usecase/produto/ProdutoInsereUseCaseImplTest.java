@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
 import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
 import br.com.on.fiap.core.application.exception.ProdutoExistenteExcecao;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoInsereUseCaseImpl;

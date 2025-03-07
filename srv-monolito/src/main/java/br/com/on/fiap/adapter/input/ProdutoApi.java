@@ -2,11 +2,11 @@ package br.com.on.fiap.adapter.input;
 
 import br.com.on.fiap.adapter.input.dto.filter.ProdutoFiltroRequest;
 import br.com.on.fiap.adapter.input.dto.request.ProdutoSolicitacaoRequest;
-import br.com.on.fiap.adapter.input.dto.response.PaginacaoInfo;
+import br.com.on.fiap.adapter.input.dto.response.PaginacaoRespostaInfo;
 import br.com.on.fiap.adapter.input.swagger.ProdutoApiSwagger;
 import br.com.on.fiap.core.adapter.controller.ProdutoController;
 import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
@@ -36,8 +36,8 @@ public class ProdutoApi implements ProdutoApiSwagger {
     @GetMapping
     public ResponseEntity<Pagina<ProdutoResposta>> listarProdutosComFiltro(
             @ParameterObject ProdutoFiltroRequest filtro, Pageable pageable) {
-        Paginacao paginacao = PaginacaoInfo.from(pageable);
-        Pagina<ProdutoResposta> produtoPagina = produtoController.listarProdutosComFiltro(filtro, paginacao);
+        PaginacaoResposta paginacaoResposta = PaginacaoRespostaInfo.from(pageable);
+        Pagina<ProdutoResposta> produtoPagina = produtoController.listarProdutosComFiltro(filtro, paginacaoResposta);
         return ResponseEntity.ok().body(produtoPagina);
     }
 

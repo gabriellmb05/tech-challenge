@@ -1,8 +1,8 @@
 package br.com.on.fiap.core.application.usecase.pedido.impl;
 
-import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.core.application.exception.PedidoNaoEncontradoExcecao;
 import br.com.on.fiap.core.application.exception.message.MessageError;
+import br.com.on.fiap.core.application.gateway.PedidoGateway;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoAtualizaUseCase;
 import br.com.on.fiap.core.domain.Pedido;
 

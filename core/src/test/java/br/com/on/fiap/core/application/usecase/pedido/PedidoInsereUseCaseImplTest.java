@@ -3,9 +3,6 @@ package br.com.on.fiap.core.application.usecase.pedido;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import br.com.on.fiap.core.adapter.gateway.ClienteGateway;
-import br.com.on.fiap.core.adapter.gateway.PagamentoGateway;
-import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.core.application.exception.ClienteNaoEncontradoExcecao;
 import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoInsereUseCaseImpl;
 import br.com.on.fiap.core.domain.Cliente;

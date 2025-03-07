@@ -3,7 +3,6 @@ package br.com.on.fiap.core.application.usecase.produto;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
 import br.com.on.fiap.core.application.exception.ProdutoNaoEncontradoExcecao;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoDeletaUseCaseImpl;
 import br.com.on.fiap.core.domain.Produto;

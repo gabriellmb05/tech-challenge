@@ -2,11 +2,11 @@ package br.com.on.fiap.adapter.input;
 
 import br.com.on.fiap.adapter.input.dto.filter.PedidoFiltroRequest;
 import br.com.on.fiap.adapter.input.dto.request.PedidoSolicitacaoDTO;
-import br.com.on.fiap.adapter.input.dto.response.PaginacaoInfo;
+import br.com.on.fiap.adapter.input.dto.response.PaginacaoRespostaInfo;
 import br.com.on.fiap.adapter.input.swagger.PedidoApiSwagger;
 import br.com.on.fiap.core.adapter.controller.PedidoController;
 import br.com.on.fiap.core.application.dto.resposta.Pagina;
-import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import br.com.on.fiap.core.application.dto.resposta.PedidoDetalhadoResposta;
 import br.com.on.fiap.core.application.dto.resposta.PedidoResposta;
 import jakarta.validation.Valid;
@@ -36,8 +36,9 @@ public class PedidoApi implements PedidoApiSwagger {
     @GetMapping
     public ResponseEntity<Pagina<PedidoResposta>> listarPedidoComFiltro(
             @ParameterObject PedidoFiltroRequest pedidoFiltroRequest, Pageable pageable) {
-        Paginacao paginacao = PaginacaoInfo.from(pageable);
-        Pagina<PedidoResposta> pedidoPagina = pedidoController.listarPedidoComFiltro(pedidoFiltroRequest, paginacao);
+        PaginacaoResposta paginacaoResposta = PaginacaoRespostaInfo.from(pageable);
+        Pagina<PedidoResposta> pedidoPagina =
+                pedidoController.listarPedidoComFiltro(pedidoFiltroRequest, paginacaoResposta);
         return ResponseEntity.ok().body(pedidoPagina);
     }
 
