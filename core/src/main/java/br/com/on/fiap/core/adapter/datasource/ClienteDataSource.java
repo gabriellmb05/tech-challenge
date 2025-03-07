@@ -1,6 +1,6 @@
 package br.com.on.fiap.core.adapter.datasource;
 
-import br.com.on.fiap.core.domain.model.Cliente;
+import br.com.on.fiap.core.domain.Cliente;
 import java.util.Optional;
 
 public interface ClienteDataSource {

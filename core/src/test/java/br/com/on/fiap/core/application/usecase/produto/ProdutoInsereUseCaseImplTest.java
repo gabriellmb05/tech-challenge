@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
+import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
 import br.com.on.fiap.core.application.exception.ProdutoExistenteExcecao;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoInsereUseCaseImpl;
-import br.com.on.fiap.core.domain.model.Produto;
-import br.com.on.fiap.core.domain.model.ProdutoEntrada;
+import br.com.on.fiap.core.domain.Produto;
 import br.com.on.fiap.datapool.DataPoolProduto;
 import br.com.on.fiap.datapool.DataPoolProdutoEntrada;
 import java.util.Optional;

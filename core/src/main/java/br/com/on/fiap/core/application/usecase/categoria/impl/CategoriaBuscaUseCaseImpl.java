@@ -2,7 +2,7 @@ package br.com.on.fiap.core.application.usecase.categoria.impl;
 
 import br.com.on.fiap.core.adapter.gateway.CategoriaGateway;
 import br.com.on.fiap.core.application.usecase.categoria.CategoriaBuscaUseCase;
-import br.com.on.fiap.core.domain.model.Categoria;
+import br.com.on.fiap.core.domain.Categoria;
 import java.util.List;
 
 public class CategoriaBuscaUseCaseImpl implements CategoriaBuscaUseCase {

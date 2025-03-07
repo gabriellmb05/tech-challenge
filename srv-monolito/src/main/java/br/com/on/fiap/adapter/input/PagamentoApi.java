@@ -2,7 +2,7 @@ package br.com.on.fiap.adapter.input;
 
 import br.com.on.fiap.adapter.input.swagger.PagamentoApiSwagger;
 import br.com.on.fiap.core.adapter.controller.PagamentoController;
-import br.com.on.fiap.core.domain.model.PagamentoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PagamentoResposta;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

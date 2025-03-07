@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.input.dto.request;
 
-import br.com.on.fiap.core.domain.model.PedidoSolicitacao;
-import br.com.on.fiap.core.domain.model.ProdutoQuantidadeSolicitacao;
+import br.com.on.fiap.core.application.dto.entrada.PedidoSolicitacao;
+import br.com.on.fiap.core.application.dto.entrada.ProdutoQuantidadeSolicitacao;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
 import lombok.AllArgsConstructor;

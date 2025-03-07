@@ -1,7 +1,11 @@
 package br.com.on.fiap.core.application.usecase.pagamento.impl;
 
+import br.com.on.fiap.core.application.dto.entrada.PagamentoSolicitacao;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoCriaUseCase;
-import br.com.on.fiap.core.domain.model.*;
+import br.com.on.fiap.core.domain.Pagamento;
+import br.com.on.fiap.core.domain.Produto;
+import br.com.on.fiap.core.domain.SituacaoPagamento;
+import br.com.on.fiap.core.domain.TipoPagamento;
 import java.math.BigDecimal;
 import java.util.Map;
 

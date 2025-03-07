@@ -1,7 +1,7 @@
 package br.com.on.fiap.core.adapter.gateway.impl;
 
 import br.com.on.fiap.core.adapter.gateway.CategoriaGateway;
-import br.com.on.fiap.core.domain.model.Categoria;
+import br.com.on.fiap.core.domain.Categoria;
 import java.util.Arrays;
 import java.util.List;
 

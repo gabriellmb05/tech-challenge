@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.output.persistence.entity;
 
-import br.com.on.fiap.core.domain.model.Cliente;
+import br.com.on.fiap.core.domain.Cliente;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;

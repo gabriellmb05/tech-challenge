@@ -3,7 +3,7 @@ package br.com.on.fiap.adapter.input;
 import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.swagger.ClienteApiSwagger;
 import br.com.on.fiap.core.adapter.controller.ClienteController;
-import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
+import br.com.on.fiap.core.application.dto.resposta.ClienteRespostaDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

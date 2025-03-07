@@ -4,8 +4,8 @@ import br.com.on.fiap.core.adapter.gateway.PagamentoGateway;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoAtualizaUseCase;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoValidaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;
-import br.com.on.fiap.core.domain.model.Pagamento;
-import br.com.on.fiap.core.domain.model.SituacaoPagamento;
+import br.com.on.fiap.core.domain.Pagamento;
+import br.com.on.fiap.core.domain.SituacaoPagamento;
 import java.time.LocalDateTime;
 
 public class PagamentoAtualizaUseCaseImpl implements PagamentoAtualizaUseCase {

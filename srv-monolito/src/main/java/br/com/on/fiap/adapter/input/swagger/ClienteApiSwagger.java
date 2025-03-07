@@ -1,7 +1,7 @@
 package br.com.on.fiap.adapter.input.swagger;
 
 import br.com.on.fiap.adapter.input.dto.request.ClienteSolicitacaoDTO;
-import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
+import br.com.on.fiap.core.application.dto.resposta.ClienteRespostaDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

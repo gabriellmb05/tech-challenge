@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.input.dto.request;
 
-import br.com.on.fiap.core.domain.model.ClienteEntrada;
+import br.com.on.fiap.core.application.dto.entrada.ClienteEntrada;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;

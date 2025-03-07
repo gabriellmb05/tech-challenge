@@ -6,7 +6,7 @@ import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.datasource.ClienteDataSource;
 import br.com.on.fiap.core.adapter.gateway.impl.ClienteGatewayImpl;
-import br.com.on.fiap.core.domain.model.Cliente;
+import br.com.on.fiap.core.domain.Cliente;
 import br.com.on.fiap.datapool.DataPoolCliente;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;

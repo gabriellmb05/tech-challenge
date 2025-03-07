@@ -2,11 +2,17 @@ package br.com.on.fiap.core.adapter.controller.impl;
 
 import br.com.on.fiap.core.adapter.controller.PedidoController;
 import br.com.on.fiap.core.adapter.presenter.PedidoPresenter;
+import br.com.on.fiap.core.application.dto.entrada.PedidoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.entrada.PedidoSolicitacao;
+import br.com.on.fiap.core.application.dto.resposta.Pagina;
+import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.application.dto.resposta.PedidoDetalhadoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PedidoResposta;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoAtualizaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoInsereUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoListaUseCase;
-import br.com.on.fiap.core.domain.model.*;
+import br.com.on.fiap.core.domain.Pedido;
 
 public class PedidoControllerImpl implements PedidoController {
 

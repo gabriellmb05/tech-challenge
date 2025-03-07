@@ -1,6 +1,9 @@
 package br.com.on.fiap.core.adapter.datasource;
 
-import br.com.on.fiap.core.domain.model.*;
+import br.com.on.fiap.core.application.dto.entrada.PedidoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.Pagina;
+import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.domain.Pedido;
 import java.util.Optional;
 
 public interface PedidoDataSource {

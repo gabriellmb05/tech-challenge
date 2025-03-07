@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.input.dto.request;
 
-import br.com.on.fiap.core.domain.model.PagamentoSolicitacao;
+import br.com.on.fiap.core.application.dto.entrada.PagamentoSolicitacao;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

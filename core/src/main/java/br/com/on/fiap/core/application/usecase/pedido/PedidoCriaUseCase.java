@@ -1,9 +1,9 @@
 package br.com.on.fiap.core.application.usecase.pedido;
 
-import br.com.on.fiap.core.domain.model.Cliente;
-import br.com.on.fiap.core.domain.model.Pagamento;
-import br.com.on.fiap.core.domain.model.Pedido;
-import br.com.on.fiap.core.domain.model.PedidoSolicitacao;
+import br.com.on.fiap.core.application.dto.entrada.PedidoSolicitacao;
+import br.com.on.fiap.core.domain.Cliente;
+import br.com.on.fiap.core.domain.Pagamento;
+import br.com.on.fiap.core.domain.Pedido;
 
 public interface PedidoCriaUseCase {
 

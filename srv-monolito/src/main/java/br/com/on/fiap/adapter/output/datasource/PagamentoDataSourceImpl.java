@@ -7,7 +7,7 @@ import br.com.on.fiap.adapter.output.persistence.entity.PagamentoEntity;
 import br.com.on.fiap.adapter.output.persistence.repository.PagamentoRepository;
 import br.com.on.fiap.core.adapter.datasource.PagamentoDataSource;
 import br.com.on.fiap.core.application.exception.message.MessageError;
-import br.com.on.fiap.core.domain.model.Pagamento;
+import br.com.on.fiap.core.domain.Pagamento;
 import br.com.on.fiap.infrastructure.exception.IntegracaoPagamentoExcecao;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;

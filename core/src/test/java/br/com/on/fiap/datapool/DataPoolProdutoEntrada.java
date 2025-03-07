@@ -1,7 +1,7 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.core.domain.model.Categoria;
-import br.com.on.fiap.core.domain.model.ProdutoEntrada;
+import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
+import br.com.on.fiap.core.domain.Categoria;
 import java.math.BigDecimal;
 import net.bytebuddy.utility.RandomString;
 

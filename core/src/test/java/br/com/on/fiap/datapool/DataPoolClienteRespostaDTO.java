@@ -1,6 +1,6 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
+import br.com.on.fiap.core.application.dto.resposta.ClienteRespostaDTO;
 
 public class DataPoolClienteRespostaDTO {
 

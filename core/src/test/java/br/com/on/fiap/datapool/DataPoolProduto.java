@@ -1,7 +1,7 @@
 package br.com.on.fiap.datapool;
 
-import br.com.on.fiap.core.domain.model.Categoria;
-import br.com.on.fiap.core.domain.model.Produto;
+import br.com.on.fiap.core.domain.Categoria;
+import br.com.on.fiap.core.domain.Produto;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.LongStream;

@@ -2,10 +2,10 @@ package br.com.on.fiap.core.adapter.gateway.impl;
 
 import br.com.on.fiap.core.adapter.datasource.ProdutoDataSource;
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
-import br.com.on.fiap.core.domain.model.Pagina;
-import br.com.on.fiap.core.domain.model.Paginacao;
-import br.com.on.fiap.core.domain.model.Produto;
-import br.com.on.fiap.core.domain.model.ProdutoFiltro;
+import br.com.on.fiap.core.application.dto.entrada.ProdutoFiltro;
+import br.com.on.fiap.core.application.dto.resposta.Pagina;
+import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.domain.Produto;
 import java.util.List;
 import java.util.Optional;
 

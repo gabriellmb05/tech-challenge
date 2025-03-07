@@ -1,9 +1,9 @@
 package br.com.on.datapool;
 
-import br.com.on.fiap.core.domain.model.ClienteRespostaDTO;
-import br.com.on.fiap.core.domain.model.PagamentoResposta;
-import br.com.on.fiap.core.domain.model.ProdutoResposta;
-import br.com.on.fiap.core.domain.model.SituacaoPedido;
+import br.com.on.fiap.core.application.dto.resposta.ClienteRespostaDTO;
+import br.com.on.fiap.core.application.dto.resposta.PagamentoResposta;
+import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
+import br.com.on.fiap.core.domain.SituacaoPedido;
 import java.util.List;
 
 public class DataPoolPedidoDetalheRespostaDTO {

@@ -2,9 +2,9 @@ package br.com.on.fiap.core.adapter.controller.impl;
 
 import br.com.on.fiap.core.adapter.controller.CategoriaController;
 import br.com.on.fiap.core.adapter.presenter.CategoriaPresenter;
+import br.com.on.fiap.core.application.dto.resposta.CategoriaRespostaDTO;
 import br.com.on.fiap.core.application.usecase.categoria.CategoriaBuscaUseCase;
-import br.com.on.fiap.core.domain.model.Categoria;
-import br.com.on.fiap.core.domain.model.CategoriaRespostaDTO;
+import br.com.on.fiap.core.domain.Categoria;
 import java.util.List;
 
 public class CategoriaControllerImpl implements CategoriaController {

@@ -1,11 +1,11 @@
 package br.com.on.fiap.core.application.usecase.produto.impl;
 
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
+import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
 import br.com.on.fiap.core.application.exception.ProdutoExistenteExcecao;
 import br.com.on.fiap.core.application.exception.message.MessageError;
 import br.com.on.fiap.core.application.usecase.produto.ProdutoInsereUseCase;
-import br.com.on.fiap.core.domain.model.Produto;
-import br.com.on.fiap.core.domain.model.ProdutoEntrada;
+import br.com.on.fiap.core.domain.Produto;
 import java.util.Optional;
 
 public class ProdutoInsereUseCaseImpl implements ProdutoInsereUseCase {

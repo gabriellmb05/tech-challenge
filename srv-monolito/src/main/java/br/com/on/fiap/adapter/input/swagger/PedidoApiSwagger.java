@@ -2,9 +2,9 @@ package br.com.on.fiap.adapter.input.swagger;
 
 import br.com.on.fiap.adapter.input.dto.filter.PedidoFiltroRequest;
 import br.com.on.fiap.adapter.input.dto.request.PedidoSolicitacaoDTO;
-import br.com.on.fiap.core.domain.model.Pagina;
-import br.com.on.fiap.core.domain.model.PedidoDetalhadoResposta;
-import br.com.on.fiap.core.domain.model.PedidoResposta;
+import br.com.on.fiap.core.application.dto.resposta.Pagina;
+import br.com.on.fiap.core.application.dto.resposta.PedidoDetalhadoResposta;
+import br.com.on.fiap.core.application.dto.resposta.PedidoResposta;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

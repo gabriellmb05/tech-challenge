@@ -7,7 +7,7 @@ import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.gateway.ProdutoGateway;
 import br.com.on.fiap.core.application.exception.ProdutoNaoEncontradoExcecao;
-import br.com.on.fiap.core.domain.model.Pedido;
+import br.com.on.fiap.core.domain.Pedido;
 import br.com.on.fiap.datapool.DataPoolPedido;
 import br.com.on.fiap.datapool.DataPoolProduto;
 import java.util.List;

@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.output.persistence.entity.converter;
 
-import br.com.on.fiap.core.domain.model.TipoPagamento;
+import br.com.on.fiap.core.domain.TipoPagamento;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 import java.util.Objects;

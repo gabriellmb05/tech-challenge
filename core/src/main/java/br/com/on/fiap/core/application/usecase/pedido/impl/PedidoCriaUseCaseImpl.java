@@ -1,7 +1,11 @@
 package br.com.on.fiap.core.application.usecase.pedido.impl;
 
+import br.com.on.fiap.core.application.dto.entrada.PedidoSolicitacao;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoCriaUseCase;
-import br.com.on.fiap.core.domain.model.*;
+import br.com.on.fiap.core.domain.Cliente;
+import br.com.on.fiap.core.domain.Pagamento;
+import br.com.on.fiap.core.domain.Pedido;
+import br.com.on.fiap.core.domain.SituacaoPedido;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

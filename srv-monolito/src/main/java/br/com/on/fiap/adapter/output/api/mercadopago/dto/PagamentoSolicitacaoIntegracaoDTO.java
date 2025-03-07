@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.output.api.mercadopago.dto;
 
-import br.com.on.fiap.core.domain.model.Pagamento;
+import br.com.on.fiap.core.domain.Pagamento;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

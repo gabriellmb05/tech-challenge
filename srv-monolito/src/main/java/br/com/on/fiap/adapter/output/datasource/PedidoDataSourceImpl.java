@@ -10,7 +10,10 @@ import br.com.on.fiap.adapter.output.persistence.repository.PedidoProdutoReposit
 import br.com.on.fiap.adapter.output.persistence.repository.PedidoRepository;
 import br.com.on.fiap.adapter.output.persistence.specification.PedidoSpecification;
 import br.com.on.fiap.core.adapter.datasource.PedidoDataSource;
-import br.com.on.fiap.core.domain.model.*;
+import br.com.on.fiap.core.application.dto.entrada.PedidoFiltroEntrada;
+import br.com.on.fiap.core.application.dto.resposta.Pagina;
+import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.domain.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;

@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.output.persistence.entity.converter;
 
-import br.com.on.fiap.core.domain.model.SituacaoPedido;
+import br.com.on.fiap.core.domain.SituacaoPedido;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 import java.util.Objects;

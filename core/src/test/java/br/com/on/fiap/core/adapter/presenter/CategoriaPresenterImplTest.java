@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import br.com.on.fiap.core.adapter.presenter.impl.CategoriaPresenterImpl;
-import br.com.on.fiap.core.domain.model.Categoria;
-import br.com.on.fiap.core.domain.model.CategoriaRespostaDTO;
+import br.com.on.fiap.core.application.dto.resposta.CategoriaRespostaDTO;
+import br.com.on.fiap.core.domain.Categoria;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

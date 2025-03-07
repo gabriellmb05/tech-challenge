@@ -1,8 +1,8 @@
 package br.com.on.fiap.adapter.output.persistence.entity;
 
 import br.com.on.fiap.adapter.output.persistence.entity.converter.TipoCategoriaConverter;
-import br.com.on.fiap.core.domain.model.Categoria;
-import br.com.on.fiap.core.domain.model.Produto;
+import br.com.on.fiap.core.domain.Categoria;
+import br.com.on.fiap.core.domain.Produto;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;

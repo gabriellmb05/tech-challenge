@@ -2,7 +2,7 @@ package br.com.on.fiap.core.application.usecase.pedido.impl;
 
 import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoSalvaUseCase;
-import br.com.on.fiap.core.domain.model.Pedido;
+import br.com.on.fiap.core.domain.Pedido;
 
 public class PedidoSalvaUseCaseImpl implements PedidoSalvaUseCase {
 

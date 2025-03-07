@@ -1,6 +1,6 @@
 package br.com.on.fiap.adapter.input.dto.request;
 
-import br.com.on.fiap.core.domain.model.ProdutoEntrada;
+import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;

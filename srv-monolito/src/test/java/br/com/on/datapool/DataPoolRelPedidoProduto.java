@@ -1,7 +1,7 @@
 package br.com.on.datapool;
 
-import br.com.on.fiap.core.domain.model.Pedido;
-import br.com.on.fiap.core.domain.model.PedidoProduto;
+import br.com.on.fiap.core.domain.Pedido;
+import br.com.on.fiap.core.domain.PedidoProduto;
 import java.util.List;
 
 public class DataPoolRelPedidoProduto {

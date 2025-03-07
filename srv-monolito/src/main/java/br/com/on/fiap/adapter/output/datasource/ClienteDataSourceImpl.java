@@ -3,7 +3,7 @@ package br.com.on.fiap.adapter.output.datasource;
 import br.com.on.fiap.adapter.output.persistence.entity.ClienteEntity;
 import br.com.on.fiap.adapter.output.persistence.repository.ClienteRepository;
 import br.com.on.fiap.core.adapter.datasource.ClienteDataSource;
-import br.com.on.fiap.core.domain.model.Cliente;
+import br.com.on.fiap.core.domain.Cliente;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
 

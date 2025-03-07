@@ -2,8 +2,13 @@ package br.com.on.fiap.core.adapter.controller.impl;
 
 import br.com.on.fiap.core.adapter.controller.ProdutoController;
 import br.com.on.fiap.core.adapter.presenter.ProdutoPresenter;
+import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
+import br.com.on.fiap.core.application.dto.entrada.ProdutoFiltro;
+import br.com.on.fiap.core.application.dto.resposta.Pagina;
+import br.com.on.fiap.core.application.dto.resposta.Paginacao;
+import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
 import br.com.on.fiap.core.application.usecase.produto.*;
-import br.com.on.fiap.core.domain.model.*;
+import br.com.on.fiap.core.domain.Produto;
 
 public class ProdutoControllerImpl implements ProdutoController {
 

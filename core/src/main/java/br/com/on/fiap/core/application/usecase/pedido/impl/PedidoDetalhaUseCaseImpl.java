@@ -4,7 +4,7 @@ import br.com.on.fiap.core.adapter.gateway.PedidoGateway;
 import br.com.on.fiap.core.application.exception.PedidoNaoEncontradoExcecao;
 import br.com.on.fiap.core.application.exception.message.MessageError;
 import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;
-import br.com.on.fiap.core.domain.model.Pedido;
+import br.com.on.fiap.core.domain.Pedido;
 
 public class PedidoDetalhaUseCaseImpl implements PedidoDetalhaUseCase {
 

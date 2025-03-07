@@ -2,9 +2,9 @@ package br.com.on.fiap.adapter.output.persistence.entity;
 
 import br.com.on.fiap.adapter.output.persistence.entity.converter.SituacaoPagamentoConverter;
 import br.com.on.fiap.adapter.output.persistence.entity.converter.TipoPagamentoConverter;
-import br.com.on.fiap.core.domain.model.Pagamento;
-import br.com.on.fiap.core.domain.model.SituacaoPagamento;
-import br.com.on.fiap.core.domain.model.TipoPagamento;
+import br.com.on.fiap.core.domain.Pagamento;
+import br.com.on.fiap.core.domain.SituacaoPagamento;
+import br.com.on.fiap.core.domain.TipoPagamento;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

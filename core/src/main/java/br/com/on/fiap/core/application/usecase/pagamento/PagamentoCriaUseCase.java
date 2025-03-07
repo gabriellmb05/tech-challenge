@@ -1,9 +1,9 @@
 package br.com.on.fiap.core.application.usecase.pagamento;
 
-import br.com.on.fiap.core.domain.model.Pagamento;
-import br.com.on.fiap.core.domain.model.PagamentoSolicitacao;
-import br.com.on.fiap.core.domain.model.Produto;
-import br.com.on.fiap.core.domain.model.SituacaoPagamento;
+import br.com.on.fiap.core.application.dto.entrada.PagamentoSolicitacao;
+import br.com.on.fiap.core.domain.Pagamento;
+import br.com.on.fiap.core.domain.Produto;
+import br.com.on.fiap.core.domain.SituacaoPagamento;
 import java.util.Map;
 
 public interface PagamentoCriaUseCase {
