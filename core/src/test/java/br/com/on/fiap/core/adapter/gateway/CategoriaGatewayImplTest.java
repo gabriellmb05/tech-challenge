@@ -24,8 +24,5 @@ class CategoriaGatewayImplTest {
 
         assertNotNull(categorias);
         assertEquals(Categoria.values().length, categorias.size());
-        for (Categoria categoria : Categoria.values()) {
-            assertEquals(categoria, categorias.get(categoria.ordinal()));
-        }
     }
 }

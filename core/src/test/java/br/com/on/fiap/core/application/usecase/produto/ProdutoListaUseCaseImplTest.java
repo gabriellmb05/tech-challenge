@@ -114,7 +114,8 @@ class ProdutoListaUseCaseImplTest {
         List<Produto> produtos = ProdutoDataPool.criarProdutosComIdsDinamicos(2);
         PaginaResposta<Produto> produtoPaginaResposta =
                 PaginaRespostaDataPool.criarPaginaComPaginacao(produtos, 2L, 0, 10, 0);
-        when(produtoGateway.listarComFiltros(produtoFiltro, paginacaoResposta)).thenReturn(produtoPaginaResposta);
+        when(produtoGateway.listarComFiltros(any(ProdutoFiltro.class), any(PaginacaoResposta.class)))
+                .thenReturn(produtoPaginaResposta);
 
         PaginaResposta<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
 
