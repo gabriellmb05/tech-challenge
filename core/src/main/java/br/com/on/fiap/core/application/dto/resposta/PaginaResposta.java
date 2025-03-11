@@ -18,8 +18,8 @@ public interface PaginaResposta<T> {
 
     <U> PaginaResposta<U> map(Function<? super T, ? extends U> converter);
 
-    static <T> PaginaResposta<T> create(List<T> conteudo, Long totalElementos, Integer totalPaginas,
-                                        Integer tamanhoPagina, Integer paginaAtual) {
+    static <T> PaginaResposta<T> create(
+            List<T> conteudo, Long totalElementos, Integer totalPaginas, Integer tamanhoPagina, Integer paginaAtual) {
         return new PaginaResposta<>() {
             @Override
             public List<T> getConteudo() {

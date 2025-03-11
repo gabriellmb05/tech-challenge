@@ -1,7 +1,5 @@
 package br.com.on.fiap.core.application.dto.filtro;
 
-import br.com.on.fiap.core.application.dto.entrada.ClienteEntrada;
-
 import java.time.LocalDate;
 
 public interface PedidoFiltroEntrada {

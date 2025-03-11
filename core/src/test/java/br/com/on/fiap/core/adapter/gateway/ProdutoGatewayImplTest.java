@@ -13,12 +13,10 @@ import br.com.on.fiap.core.domain.ProdutoFiltro;
 import br.com.on.fiap.datapool.OrdenacaoDataPool;
 import br.com.on.fiap.datapool.PaginaRespostaDataPool;
 import br.com.on.fiap.datapool.ProdutoDataPool;
-
+import br.com.on.fiap.datapool.ProdutoFiltroDataPool;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
-import br.com.on.fiap.datapool.ProdutoFiltroDataPool;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -50,7 +48,8 @@ class ProdutoGatewayImplTest {
     }
 
     @Test
-    @DisplayName("Dada uma lista de IDs válidos, quando buscar produtos por IDs, então deve retornar a lista de produtos")
+    @DisplayName(
+            "Dada uma lista de IDs válidos, quando buscar produtos por IDs, então deve retornar a lista de produtos")
     void dadaListaIdsValidos_quandoBuscarProdutosPorIds_entaoDeveRetornarListaDeProdutos() {
         List<Long> ids = List.of(1L, 2L, 3L);
         List<Produto> produtos = ProdutoDataPool.criarProdutosComIdsDinamicos(3);
@@ -101,11 +100,14 @@ class ProdutoGatewayImplTest {
     }
 
     @Test
-    @DisplayName("Dado um filtro e uma paginação válidos, quando listar produtos com filtros, então deve retornar a página de produtos")
+    @DisplayName(
+            "Dado um filtro e uma paginação válidos, quando listar produtos com filtros, então deve retornar a página de produtos")
     void dadoFiltroEPaginacaoValidos_quandoListarProdutosComFiltros_entaoDeveRetornarPaginaDeProdutos() {
         ProdutoFiltro filtro = ProdutoFiltroDataPool.criarFiltroVazio();
-        PaginacaoResposta paginacaoResposta = PaginacaoResposta.create(0, 10, OrdenacaoDataPool.criarOrdenacaoPorCampoEDirecao("nome", Direcao.ASC));
-        PaginaResposta<Produto> paginaResposta = PaginaRespostaDataPool.criarPaginaComPaginacao(Collections.emptyList(), 0L, 0, 10, 0);
+        PaginacaoResposta paginacaoResposta =
+                PaginacaoResposta.create(0, 10, OrdenacaoDataPool.criarOrdenacaoPorCampoEDirecao("nome", Direcao.ASC));
+        PaginaResposta<Produto> paginaResposta =
+                PaginaRespostaDataPool.criarPaginaComPaginacao(Collections.emptyList(), 0L, 0, 10, 0);
 
         when(produtoDataSource.listarComFiltros(filtro, paginacaoResposta)).thenReturn(paginaResposta);
 

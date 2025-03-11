@@ -19,7 +19,8 @@ public class PagamentoDataPool {
         return pagamento;
     }
 
-    public static Pagamento criarPagamentoComTipoESituacao(Long id, TipoPagamento tipoPagamento, SituacaoPagamento situacaoPagamento) {
+    public static Pagamento criarPagamentoComTipoESituacao(
+            Long id, TipoPagamento tipoPagamento, SituacaoPagamento situacaoPagamento) {
         Pagamento pagamento = new Pagamento();
         pagamento.setPagId(id);
         pagamento.setVlCompra(BigDecimal.valueOf(200.00));

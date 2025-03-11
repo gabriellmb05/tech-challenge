@@ -9,6 +9,7 @@ import br.com.on.fiap.core.application.gateway.PedidoGateway;
 import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoDetalhaUseCaseImpl;
 import br.com.on.fiap.core.domain.Pedido;
 import br.com.on.fiap.datapool.PedidoDataPool;
+import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,7 +32,7 @@ class PedidoDetalhaUseCaseImplTest {
         String protocolo = "20250118213724238248";
         Pedido pedido = PedidoDataPool.criarPedidoExistente(1L);
 
-        when(pedidoGateway.detalhaPedido(protocolo)).thenReturn(java.util.Optional.of(pedido));
+        when(pedidoGateway.detalhaPedido(protocolo)).thenReturn(Optional.of(pedido));
 
         Pedido result = pedidoDetalhaUseCase.detalhaPedido(protocolo);
 
@@ -45,7 +46,7 @@ class PedidoDetalhaUseCaseImplTest {
     void dadoProtocoloInvalido_quandoDetalharPedido_entaoPedidoNaoEncontradoExcecaoDeveSerLancada() {
         String protocoloInvalido = "PROTOCOLO_INEXISTENTE";
 
-        when(pedidoGateway.detalhaPedido(protocoloInvalido)).thenReturn(java.util.Optional.empty());
+        when(pedidoGateway.detalhaPedido(protocoloInvalido)).thenReturn(Optional.empty());
 
         PedidoNaoEncontradoExcecao exception = assertThrows(
                 PedidoNaoEncontradoExcecao.class, () -> pedidoDetalhaUseCase.detalhaPedido(protocoloInvalido));

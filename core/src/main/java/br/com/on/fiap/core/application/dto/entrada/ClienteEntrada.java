@@ -5,8 +5,11 @@ import java.time.LocalDate;
 public interface ClienteEntrada {
 
     String getNome();
+
     String getCpf();
+
     String getEmail();
+
     LocalDate getDataNascimento();
 
     static ClienteEntrada create(String nome, String cpf, String email, LocalDate dataNascimento) {

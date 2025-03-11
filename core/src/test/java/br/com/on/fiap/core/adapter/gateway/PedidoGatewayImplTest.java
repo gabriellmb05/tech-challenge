@@ -11,10 +11,8 @@ import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
 import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import br.com.on.fiap.core.domain.Pedido;
 import br.com.on.fiap.datapool.*;
-
 import java.util.Collections;
 import java.util.Optional;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,7 +32,7 @@ class PedidoGatewayImplTest {
     @Test
     @DisplayName("Dado um protocolo válido, quando atualizar pedido, então deve retornar o pedido atualizado")
     void dadoProtocoloValido_quandoAtualizarPedido_entaoDeveRetornarPedidoAtualizado() {
-        Pedido pedido = PedidoDataPool.criarPedidoComProdutosValidos();  // Criando um pedido válido com o DataPool
+        Pedido pedido = PedidoDataPool.criarPedidoComProdutosValidos(); // Criando um pedido válido com o DataPool
         String protocolo = pedido.getProtocolo();
         when(pedidoDataSource.atualizarPedido(protocolo)).thenReturn(Optional.of(pedido));
 
@@ -46,12 +44,14 @@ class PedidoGatewayImplTest {
     }
 
     @Test
-    @DisplayName("Dado um filtro e uma paginação válidos, quando listar pedidos, então deve retornar uma página de pedidos")
+    @DisplayName(
+            "Dado um filtro e uma paginação válidos, quando listar pedidos, então deve retornar uma página de pedidos")
     void dadoFiltroEPaginacaoValidos_quandoListarPedidos_entaoDeveRetornarPaginaDePedidos() {
         PedidoFiltroEntrada filtro = PedidoFiltroEntradaDataPool.criarFiltroVazio();
         PaginacaoResposta paginacaoResposta =
                 PaginacaoResposta.create(0, 10, OrdenacaoDataPool.criarOrdenacaoPorCampoEDirecao("nome", Direcao.ASC));
-        PaginaResposta<Pedido> paginaResposta = PaginaRespostaDataPool.criarPaginaComPaginacao(Collections.emptyList(), 0L, 0, 10, 0);
+        PaginaResposta<Pedido> paginaResposta =
+                PaginaRespostaDataPool.criarPaginaComPaginacao(Collections.emptyList(), 0L, 0, 10, 0);
 
         when(pedidoDataSource.listarComFiltros(filtro, paginacaoResposta)).thenReturn(paginaResposta);
 

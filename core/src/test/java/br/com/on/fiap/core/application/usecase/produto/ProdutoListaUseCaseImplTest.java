@@ -40,7 +40,8 @@ class ProdutoListaUseCaseImplTest {
         ProdutoFiltro produtoFiltro = ProdutoFiltroDataPool.criarProdutoFiltro(null, "LANCHE");
         PaginacaoResposta paginacaoResposta = PaginacaoResposta.create(0, 10, null);
         List<Produto> produtos = ProdutoDataPool.criarProdutosComIdsDinamicos(1);
-        PaginaResposta<Produto> produtoPaginaResposta = PaginaRespostaDataPool.criarPaginaComPaginacao(produtos, 1L, 0, 10, 0);
+        PaginaResposta<Produto> produtoPaginaResposta =
+                PaginaRespostaDataPool.criarPaginaComPaginacao(produtos, 1L, 0, 10, 0);
         when(produtoGateway.listarComFiltros(produtoFiltro, paginacaoResposta)).thenReturn(produtoPaginaResposta);
 
         PaginaResposta<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
@@ -58,7 +59,8 @@ class ProdutoListaUseCaseImplTest {
         ProdutoFiltro produtoFiltro = ProdutoFiltroDataPool.criarProdutoFiltro("x-burguer", "LANCHE");
         PaginacaoResposta paginacaoResposta = PaginacaoResposta.create(0, 10, null);
         List<Produto> produtos = ProdutoDataPool.criarProdutosComIdsDinamicos(10);
-        PaginaResposta<Produto> produtoPaginaResposta = PaginaRespostaDataPool.criarPaginaComPaginacao(produtos, 10L, 0, 10, 0);
+        PaginaResposta<Produto> produtoPaginaResposta =
+                PaginaRespostaDataPool.criarPaginaComPaginacao(produtos, 10L, 0, 10, 0);
         when(produtoGateway.listarComFiltros(produtoFiltro, paginacaoResposta)).thenReturn(produtoPaginaResposta);
 
         PaginaResposta<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
@@ -73,7 +75,8 @@ class ProdutoListaUseCaseImplTest {
         ProdutoFiltro produtoFiltro = ProdutoFiltroDataPool.criarFiltroVazio();
         PaginacaoResposta paginacaoResposta = PaginacaoResposta.create(0, 10, null);
         List<Produto> produtos = ProdutoDataPool.criarProdutosComIdsDinamicos(2);
-        PaginaResposta<Produto> produtoPaginaResposta = PaginaRespostaDataPool.criarPaginaComPaginacao(produtos, 2L, 0, 10, 0);
+        PaginaResposta<Produto> produtoPaginaResposta =
+                PaginaRespostaDataPool.criarPaginaComPaginacao(produtos, 2L, 0, 10, 0);
         when(produtoGateway.listarComFiltros(produtoFiltro, paginacaoResposta)).thenReturn(produtoPaginaResposta);
 
         PaginaResposta<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
@@ -90,7 +93,8 @@ class ProdutoListaUseCaseImplTest {
         PaginacaoResposta paginacaoResposta =
                 PaginacaoResposta.create(0, 10, OrdenacaoDataPool.criarOrdenacaoPorCampoEDirecao("nome", Direcao.ASC));
         List<Produto> produtos = Collections.emptyList();
-        PaginaResposta<Produto> produtoPaginaResposta = PaginaRespostaDataPool.criarPaginaComPaginacao(produtos, 0L, 0, 10, 0);
+        PaginaResposta<Produto> produtoPaginaResposta =
+                PaginaRespostaDataPool.criarPaginaComPaginacao(produtos, 0L, 0, 10, 0);
         when(produtoGateway.listarComFiltros(produtoFiltro, paginacaoResposta)).thenReturn(produtoPaginaResposta);
 
         PaginaResposta<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
@@ -105,10 +109,11 @@ class ProdutoListaUseCaseImplTest {
     void dadoFiltroComOrdenacao_quandoListarProdutos_entaoProdutosDevemSerOrdenados() {
         ProdutoFiltroEntrada filtro = ProdutoFiltroEntradaDataPool.criarProdutoFiltro(null, "LANCHE");
         ProdutoFiltro produtoFiltro = ProdutoFiltroDataPool.criarProdutoFiltro(null, "LANCHE");
-        PaginacaoResposta paginacaoResposta =
-                PaginacaoRespostaDataPool.criarPaginacaoComOrdenacao(0, 10, OrdenacaoDataPool.criarOrdenacaoPorCampoEDirecao("nome", Direcao.ASC));
+        PaginacaoResposta paginacaoResposta = PaginacaoRespostaDataPool.criarPaginacaoComOrdenacao(
+                0, 10, OrdenacaoDataPool.criarOrdenacaoPorCampoEDirecao("nome", Direcao.ASC));
         List<Produto> produtos = ProdutoDataPool.criarProdutosComIdsDinamicos(2);
-        PaginaResposta<Produto> produtoPaginaResposta = PaginaRespostaDataPool.criarPaginaComPaginacao(produtos, 2L, 0, 10, 0);
+        PaginaResposta<Produto> produtoPaginaResposta =
+                PaginaRespostaDataPool.criarPaginaComPaginacao(produtos, 2L, 0, 10, 0);
         when(produtoGateway.listarComFiltros(produtoFiltro, paginacaoResposta)).thenReturn(produtoPaginaResposta);
 
         PaginaResposta<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
@@ -122,8 +127,8 @@ class ProdutoListaUseCaseImplTest {
             "Dado uma  categoria inválida no filtro, quando listar os produtos, então uma exceção deve ser lançada")
     void dadoUmaCategoriaInvalida_quandoListarProdutos_entaoUmaExcecaoDeveSerLancada() {
         ProdutoFiltroEntrada filtro = ProdutoFiltroEntradaDataPool.criarProdutoFiltro(null, "INVALIDA");
-        PaginacaoResposta paginacaoResposta =
-                PaginacaoRespostaDataPool.criarPaginacaoComOrdenacao(0, 10, OrdenacaoDataPool.criarOrdenacaoPorCampoEDirecao("nome", Direcao.ASC));
+        PaginacaoResposta paginacaoResposta = PaginacaoRespostaDataPool.criarPaginacaoComOrdenacao(
+                0, 10, OrdenacaoDataPool.criarOrdenacaoPorCampoEDirecao("nome", Direcao.ASC));
 
         CategoriaNaoEncontradaExcecao exception = assertThrows(
                 CategoriaNaoEncontradaExcecao.class,
