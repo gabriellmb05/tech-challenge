@@ -12,9 +12,9 @@ import br.com.on.fiap.core.application.dto.resposta.ClienteResposta;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorCpfUseCase;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteInsereUseCase;
 import br.com.on.fiap.core.domain.Cliente;
-import br.com.on.fiap.datapool.DataPoolCliente;
-import br.com.on.fiap.datapool.DataPoolClienteEntradaDTO;
-import br.com.on.fiap.datapool.DataPoolClienteRespostaDTO;
+import br.com.on.fiap.datapool.ClienteDataPool;
+import br.com.on.fiap.datapool.ClienteEntradaDataPool;
+import br.com.on.fiap.datapool.ClienteRespostaDataPool;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,8 +41,8 @@ class ClienteControllerImplTest {
     @DisplayName(
             "Dado um cpf, quando buscar o cliente pelo CPF, então um cliente deve ser retornado no formato esperado")
     void dadoCpf_quandoBuscarClientePorCpf_entaoDeveSerRetornadoClienteFormatado() {
-        Cliente cliente = DataPoolCliente.clienteValido();
-        ClienteResposta clienteResposta = DataPoolClienteRespostaDTO.clienteValido();
+        Cliente cliente = ClienteDataPool.criarClienteValido();
+        ClienteResposta clienteResposta = ClienteRespostaDataPool.criarClienteValido();
         String cpf = cliente.getCpf();
         when(clienteBuscaPorCpfUseCase.buscar(cpf)).thenReturn(cliente);
         when(clientePresenter.formatar(cliente)).thenReturn(clienteResposta);
@@ -59,9 +59,9 @@ class ClienteControllerImplTest {
     @DisplayName(
             "Dado um objecto de dados de entrada, quando inserir ele, então um objeto de dados de saída deve ser retornado no formato esperado")
     void dadoObjetoDeDadosDeEntrada_quandoInserir_entaoDeveSerRetornadoNoFormatoEsperado() {
-        ClienteEntrada clienteEntrada = DataPoolClienteEntradaDTO.clienteValido();
-        Cliente cliente = DataPoolCliente.clienteValido();
-        ClienteResposta clienteResposta = DataPoolClienteRespostaDTO.clienteValido();
+        ClienteEntrada clienteEntrada = ClienteEntradaDataPool.criarClienteValido();
+        Cliente cliente = ClienteDataPool.criarClienteValido();
+        ClienteResposta clienteResposta = ClienteRespostaDataPool.criarClienteValido();
         when(clienteInsereUseCase.inserir(clienteEntrada)).thenReturn(cliente);
         when(clientePresenter.formatar(cliente)).thenReturn(clienteResposta);
 

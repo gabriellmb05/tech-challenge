@@ -1,81 +1,121 @@
-package br.com.on.fiap.core.application.usecase.pedido;
+package br.com.on.fiap.core.application.usecase.pedido.impl;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-import br.com.on.fiap.core.application.exception.ClienteNaoEncontradoExcecao;
-import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoInsereUseCaseImpl;
-import br.com.on.fiap.core.domain.Cliente;
-import br.com.on.fiap.core.domain.Pagamento;
-import br.com.on.fiap.core.domain.Pedido;
-import br.com.on.fiap.datapool.DataPoolCliente;
-import br.com.on.fiap.datapool.DataPoolPagamento;
-import br.com.on.fiap.datapool.DataPoolPedido;
-import br.com.on.fiap.datapool.DataPoolRelPedidoProduto;
-import java.util.Optional;
+import br.com.on.fiap.core.application.dto.entrada.PedidoEntrada;
+import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorIdUseCase;
+import br.com.on.fiap.core.application.usecase.pagamento.PagamentoCriaUseCase;
+import br.com.on.fiap.core.application.usecase.pedido.*;
+import br.com.on.fiap.core.domain.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+import java.util.Map;
+
 class PedidoInsereUseCaseImplTest {
 
     @Mock
-    private ClienteGateway clienteGateway;
+    private ClienteBuscaPorIdUseCase clienteBuscaPorIdUseCase;
 
     @Mock
-    private PedidoGateway pedidoGateway;
+    private PedidoValidaProdutoUseCase pedidoValidaProdutoUseCase;
 
     @Mock
-    private PagamentoGateway pagamentoGateway;
+    private PedidoCriaUseCase pedidoCriaUseCase;
+
+    @Mock
+    private PagamentoCriaUseCase pagamentoCriaUseCase;
+
+    @Mock
+    private PedidoProdutoCriaRelacionamentoUseCase pedidoProdutoCriaRelacionamentoUseCase;
+
+    @Mock
+    private PedidoSalvaUseCase pedidoSalvaUseCase;
 
     @InjectMocks
     private PedidoInsereUseCaseImpl pedidoInsereUseCase;
 
-    @Test
-    @DisplayName("Dado um pedido válido, quando inserir o pedido, então o pedido deve ser inserido com sucesso")
-    void dadoPedidoValido_quandoInserirPedido_entaoPedidoDeveSerInseridoComSucesso() {
-        Cliente cliente = DataPoolCliente.clienteExistente(1L);
-        Pedido pedido = DataPoolPedido.pedidoComCliente(cliente);
-        Pagamento pagamento = DataPoolPagamento.pagamentoValido();
-        pedido.setRelPedidoProdutos(DataPoolRelPedidoProduto.relPedidoProdutosComProdutos(1));
+    private PedidoEntrada pedidoEntrada;
+    private Cliente cliente;
+    private Map<Produto, Long> produtosValidados;
+    private Pagamento pagamento;
+    private Pedido pedido;
 
-        when(clienteGateway.buscaClientePorId(cliente.getId())).thenReturn(java.util.Optional.of(cliente));
-        when(pedidoGateway.salvaPedido(pedido)).thenReturn(pedido);
-        doNothing().when(pedidoGateway).vincularPedido(pedido.getRelPedidoProdutos());
-        when(pagamentoGateway.salvaPagamento(pagamento)).thenReturn(pagamento);
-        doNothing().when(pedidoGateway).salvaPedidoPagamento(pedido);
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
 
-        Pedido pedidoSalvo = pedidoInsereUseCase.inserePedido(pedido);
-
-        verify(clienteGateway).buscaClientePorId(cliente.getId());
-        verify(pedidoGateway).salvaPedido(pedido);
-        verify(pedidoGateway).vincularPedido(pedido.getRelPedidoProdutos());
-        verify(pagamentoGateway).salvaPagamento(pagamento);
-        verify(pedidoGateway).salvaPedidoPagamento(pedido);
-
-        assertNotNull(pedidoSalvo);
-        assertEquals(cliente.getId(), pedidoSalvo.getCliente().getId());
-        assertEquals(pedido.getRelPedidoProdutos(), pedidoSalvo.getRelPedidoProdutos());
-        assertEquals(pedido.getPagamento(), pedidoSalvo.getPagamento());
+        // Inicialização de objetos necessários para os testes
+        pedidoEntrada = mock(PedidoEntrada.class);
+        cliente = mock(Cliente.class);
+        produtosValidados = mock(Map.class);
+        pagamento = mock(Pagamento.class);
+        pedido = mock(Pedido.class);
     }
 
     @Test
-    @DisplayName(
-            "Dado um pedido com cliente inexistente, quando inserir o pedido, então a exceção ClienteNaoEncontradoExcecao deve ser lançada")
-    void dadoPedidoComClienteInexistente_quandoInserirPedido_entaoClienteNaoEncontradoExcecaoDeveSerLancada() {
-        Cliente cliente = new Cliente(999L);
-        Pedido pedido = DataPoolPedido.pedidoComCliente(cliente);
+    @DisplayName("Quando insere um pedido com sucesso, então o pedido deve ser salvo")
+    void quandoInserePedidoComSucesso_entaoPedidoDeveSerSalvo() {
+        // Configuração dos mocks
+        when(clienteBuscaPorIdUseCase.buscar(any(Long.class))).thenReturn(cliente);
+        when(pedidoValidaProdutoUseCase.validarProdutos(any())).thenReturn(produtosValidados);
+        when(pagamentoCriaUseCase.criarPagamento(any(), any(), any())).thenReturn(pagamento);
+        when(pedidoCriaUseCase.criaPedido(any(), any(), any())).thenReturn(pedido);
+        doNothing().when(pedidoProdutoCriaRelacionamentoUseCase).criaRelacionamentoProdutoPedido(any(), any());
+        when(pedidoSalvaUseCase.salvarPedido(any())).thenReturn(pedido);
 
-        when(clienteGateway.buscaClientePorId(cliente.getId())).thenReturn(Optional.empty());
+        // Chama o método a ser testado
+        Pedido result = pedidoInsereUseCase.inserePedido(pedidoEntrada);
 
-        ClienteNaoEncontradoExcecao exception =
-                assertThrows(ClienteNaoEncontradoExcecao.class, () -> pedidoInsereUseCase.inserePedido(pedido));
+        // Verifica as interações e se o retorno é o esperado
+        verify(clienteBuscaPorIdUseCase).buscar(any(Long.class));
+        verify(pedidoValidaProdutoUseCase).validarProdutos(any());
+        verify(pagamentoCriaUseCase).criarPagamento(any(), any(), any());
+        verify(pedidoCriaUseCase).criaPedido(any(), any(), any());
+        verify(pedidoProdutoCriaRelacionamentoUseCase).criaRelacionamentoProdutoPedido(any(), any());
+        verify(pedidoSalvaUseCase).salvarPedido(any());
 
-        assertEquals("Não foi encontrado o Cliente para o id: 999", exception.getMessage());
-        verify(clienteGateway).buscaClientePorId(cliente.getId());
+        // Verifica se o resultado retornado é o esperado
+        assertEquals(pedido, result);
+    }
+
+    @Test
+    @DisplayName("Dado um erro ao buscar o cliente, então uma exceção deve ser lançada")
+    void dadoErroAoBuscarCliente_quandoInserePedido_entaoUmaExcecaoDeveSerLancada() {
+        // Configuração do mock para erro na busca do cliente
+        when(clienteBuscaPorIdUseCase.buscar(any(Long.class))).thenThrow(new ClienteNaoEncontradoExcecao("Cliente não encontrado"));
+
+        // Chama o método e verifica se a exceção é lançada
+        assertThrows(ClienteNaoEncontradoExcecao.class, () -> pedidoInsereUseCase.inserePedido(pedidoEntrada));
+    }
+
+    @Test
+    @DisplayName("Dado erro na validação de produtos, então uma exceção deve ser lançada")
+    void dadoErroNaValidacaoDeProdutos_quandoInserePedido_entaoUmaExcecaoDeveSerLancada() {
+        // Configuração do mock para erro na validação dos produtos
+        when(clienteBuscaPorIdUseCase.buscar(any(Long.class))).thenReturn(cliente);
+        when(pedidoValidaProdutoUseCase.validarProdutos(any())).thenThrow(new ProdutoNaoValidoExcecao("Produto inválido"));
+
+        // Chama o método e verifica se a exceção é lançada
+        assertThrows(ProdutoNaoValidoExcecao.class, () -> pedidoInsereUseCase.inserePedido(pedidoEntrada));
+    }
+
+    @Test
+    @DisplayName("Dado erro ao salvar o pedido, então uma exceção deve ser lançada")
+    void dadoErroAoSalvarPedido_quandoInserePedido_entaoUmaExcecaoDeveSerLancada() {
+        // Configuração do mock para erro ao salvar o pedido
+        when(clienteBuscaPorIdUseCase.buscar(any(Long.class))).thenReturn(cliente);
+        when(pedidoValidaProdutoUseCase.validarProdutos(any())).thenReturn(produtosValidados);
+        when(pagamentoCriaUseCase.criarPagamento(any(), any(), any())).thenReturn(pagamento);
+        when(pedidoCriaUseCase.criaPedido(any(), any(), any())).thenReturn(pedido);
+        doNothing().when(pedidoProdutoCriaRelacionamentoUseCase).criaRelacionamentoProdutoPedido(any(), any());
+        when(pedidoSalvaUseCase.salvarPedido(any())).thenThrow(new PedidoNaoSalvoExcecao("Erro ao salvar pedido"));
+
+        // Chama o método e verifica se a exceção é lançada
+        assertThrows(PedidoNaoSalvoExcecao.class, () -> pedidoInsereUseCase.inserePedido(pedidoEntrada));
     }
 }

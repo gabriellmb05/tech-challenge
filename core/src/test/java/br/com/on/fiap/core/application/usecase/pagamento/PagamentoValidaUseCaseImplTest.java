@@ -6,7 +6,7 @@ import br.com.on.fiap.core.application.exception.PagamentoJaRealizadoExcecao;
 import br.com.on.fiap.core.application.usecase.pagamento.impl.PagamentoValidaUseCaseImpl;
 import br.com.on.fiap.core.domain.Pagamento;
 import br.com.on.fiap.core.domain.SituacaoPagamento;
-import br.com.on.fiap.datapool.DataPoolPagamento;
+import br.com.on.fiap.datapool.PagamentoDataPool;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,7 +23,7 @@ class PagamentoValidaUseCaseImplTest {
     @DisplayName(
             "Dado um pagamento aprovado com data, quando validar o pagamento, então deve lançar a exceção PagamentoJaRealizadoExcecao")
     void dadoPagamentoAprovadoComData_quandoValidarPagamento_EntaoDeveLancarExcecao() {
-        Pagamento pagamento = DataPoolPagamento.pagamentoValido();
+        Pagamento pagamento = PagamentoDataPool.criarPagamentoValido();
         String nrProtocolo = "123ABC";
 
         assertThrows(
@@ -34,7 +34,7 @@ class PagamentoValidaUseCaseImplTest {
     @Test
     @DisplayName("Dado um pagamento aprovado sem data, quando validar o pagamento, então não deve lançar exceção")
     void dadoPagamentoAprovadoSemData_quandoValidarPagamento_EntaoNaoDeveLancarExcecao() {
-        Pagamento pagamento = DataPoolPagamento.pagamentoValidoSemData();
+        Pagamento pagamento = PagamentoDataPool.criarPagamentoValido();
         String nrProtocolo = "123ABC";
 
         assertDoesNotThrow(() -> pagamentoValidaUseCase.validarPagamentoJaRealizado(pagamento, nrProtocolo));
@@ -43,7 +43,7 @@ class PagamentoValidaUseCaseImplTest {
     @Test
     @DisplayName("Dado um pagamento pendente, quando validar o pagamento, então não deve lançar exceção")
     void dadoPagamentoPendente_quandoValidarPagamento_EntaoNaoDeveLancarExcecao() {
-        Pagamento pagamento = DataPoolPagamento.pagamentoPendente();
+        Pagamento pagamento = PagamentoDataPool.criarPagamentoValido();
         String nrProtocolo = "123ABC";
 
         pagamentoValidaUseCase.validarPagamentoJaRealizado(pagamento, nrProtocolo);

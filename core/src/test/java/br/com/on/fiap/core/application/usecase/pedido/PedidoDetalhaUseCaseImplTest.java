@@ -5,9 +5,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.application.exception.PedidoNaoEncontradoExcecao;
+import br.com.on.fiap.core.application.gateway.PedidoGateway;
 import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoDetalhaUseCaseImpl;
 import br.com.on.fiap.core.domain.Pedido;
-import br.com.on.fiap.datapool.DataPoolPedido;
+import br.com.on.fiap.datapool.PedidoDataPool;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,7 +29,7 @@ class PedidoDetalhaUseCaseImplTest {
     @DisplayName("Dado um protocolo válido, ao detalhar o pedido, o pedido deve ser retornado")
     void dadoProtocoloValido_quandoDetalharPedido_entaoPedidoDeveSerRetornado() {
         String protocolo = "20250118213724238248";
-        Pedido pedido = DataPoolPedido.pedidoExistente(1L);
+        Pedido pedido = PedidoDataPool.criarPedidoExistente(1L);
 
         when(pedidoGateway.detalhaPedido(protocolo)).thenReturn(java.util.Optional.of(pedido));
 

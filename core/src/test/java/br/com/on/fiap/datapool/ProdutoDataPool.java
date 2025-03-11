@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.stream.LongStream;
 import net.bytebuddy.utility.RandomString;
 
-public class DataPoolProduto {
+public class ProdutoDataPool {
 
-    private DataPoolProduto() {}
+    private ProdutoDataPool() {}
 
-    public static Produto produtoExistente(Long id) {
+    public static Produto criarProdutoExistente(Long id) {
         Produto produto = new Produto();
         produto.setId(id);
         produto.setNome(RandomString.make() + id);
@@ -20,7 +20,7 @@ public class DataPoolProduto {
         return produto;
     }
 
-    public static Produto produtoNovo() {
+    public static Produto criarProdutoNovo() {
         Produto produto = new Produto();
         produto.setNome(RandomString.make());
         produto.setCategoria(Categoria.LANCHE);
@@ -28,9 +28,9 @@ public class DataPoolProduto {
         return produto;
     }
 
-    public static List<Produto> produtosComIdsDinamicos(int quantidade) {
+    public static List<Produto> criarProdutosComIdsDinamicos(int quantidade) {
         return LongStream.rangeClosed(1L, quantidade)
-                .mapToObj(DataPoolProduto::produtoExistente)
+                .mapToObj(ProdutoDataPool::criarProdutoExistente)
                 .toList();
     }
 }

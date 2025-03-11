@@ -5,9 +5,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.application.exception.ClienteNaoEncontradoExcecao;
+import br.com.on.fiap.core.application.gateway.ClienteGateway;
 import br.com.on.fiap.core.application.usecase.cliente.impl.ClienteBuscaPorCpfUseCaseImpl;
 import br.com.on.fiap.core.domain.Cliente;
-import br.com.on.fiap.datapool.DataPoolCliente;
+import br.com.on.fiap.datapool.ClienteDataPool;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ class ClienteBuscaPorCpfUseCaseImplTest {
     @DisplayName("Dado um CPF válido, quando buscar cliente, então o cliente deve ser encontrado")
     void dadoCpfValido_quandoBuscarCliente_entaoClienteDeveSerEncontrado() {
         String cpf = "12345678900";
-        Cliente clienteEsperado = DataPoolCliente.clienteComCpf(cpf);
+        Cliente clienteEsperado = ClienteDataPool.criarClienteComCpf(cpf);
         when(clienteGateway.buscaClientePorCpf(cpf)).thenReturn(Optional.of(clienteEsperado));
 
         Cliente cliente = clienteBuscaPorCpfUseCase.buscar(cpf);

@@ -7,13 +7,14 @@ import static org.mockito.Mockito.when;
 import br.com.on.fiap.core.application.exception.PedidoNaoEncontradoExcecao;
 import br.com.on.fiap.core.application.exception.message.MessageError;
 import br.com.on.fiap.core.application.exception.message.MessageManager;
+import br.com.on.fiap.core.application.gateway.PedidoGateway;
 import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoAtualizaUseCaseImpl;
 import br.com.on.fiap.core.domain.Pagamento;
 import br.com.on.fiap.core.domain.Pedido;
 import br.com.on.fiap.core.domain.SituacaoPagamento;
 import br.com.on.fiap.core.domain.TipoPagamento;
-import br.com.on.fiap.datapool.DataPoolPagamento;
-import br.com.on.fiap.datapool.DataPoolPedido;
+import br.com.on.fiap.datapool.PagamentoDataPool;
+import br.com.on.fiap.datapool.PedidoDataPool;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +36,7 @@ class PedidoAtualizaUseCaseImplTest {
     @DisplayName("Dado um pedido existente, ao atualizar, deve retornar o pedido atualizado")
     void dadoPedidoExistente_quandoAtualizarPedido_entaoDeveRetornarPedidoAtualizado() {
         String protocolo = "12345";
-        Pedido pedidoExistente = DataPoolPedido.pedidoComProtocolo(protocolo);
+        Pedido pedidoExistente = PedidoDataPool.criarPedidoComProtocolo(protocolo);
 
         when(pedidoGateway.atualizarPedido(protocolo)).thenReturn(Optional.of(pedidoExistente));
 
@@ -67,10 +68,10 @@ class PedidoAtualizaUseCaseImplTest {
     @DisplayName(
             "Dado um pedido com pagamento existente, ao atualizar, deve retornar o pedido atualizado com pagamento")
     void dadoPedidoComPagamentoExistente_quandoAtualizarPedido_entaoDeveRetornarPedidoAtualizado() {
-        Pagamento pagamento = DataPoolPagamento.pagamentoExistente(1L);
+        Pagamento pagamento = PagamentoDataPool.criarPagamentoExistente(1L);
 
         String protocolo = "12345";
-        Pedido pedidoExistente = DataPoolPedido.pedidoComProtocolo(protocolo);
+        Pedido pedidoExistente = PedidoDataPool.criarPedidoComProtocolo(protocolo);
         pedidoExistente.setPagamento(pagamento);
 
         when(pedidoGateway.atualizarPedido(protocolo)).thenReturn(Optional.of(pedidoExistente));
@@ -88,10 +89,10 @@ class PedidoAtualizaUseCaseImplTest {
             "Dado um pedido com pagamento não efetuado, ao atualizar, deve lançar exceção PedidoNaoEncontradoExcecao")
     void dadoPedidoComPagamentoNaoEfetuado_quandoAtualizarPedido_entaoDeveLancarExcecao() {
         Pagamento pagamento =
-                DataPoolPagamento.pagamentoComTipoESituacao(2L, TipoPagamento.DEBITO, SituacaoPagamento.PENDENTE);
+                PagamentoDataPool.criarPagamentoComTipoESituacao(2L, TipoPagamento.DEBITO, SituacaoPagamento.PENDENTE);
 
         String protocolo = "99999";
-        Pedido pedidoExistente = DataPoolPedido.pedidoComProtocolo(protocolo);
+        Pedido pedidoExistente = PedidoDataPool.criarPedidoComProtocolo(protocolo);
         pedidoExistente.setPagamento(pagamento);
 
         when(pedidoGateway.atualizarPedido(protocolo)).thenReturn(Optional.empty());

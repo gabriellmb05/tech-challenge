@@ -6,9 +6,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.application.exception.ProdutoNaoEncontradoExcecao;
+import br.com.on.fiap.core.application.gateway.ProdutoGateway;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoBuscaPorIdUseCaseImpl;
 import br.com.on.fiap.core.domain.Produto;
-import br.com.on.fiap.datapool.DataPoolProduto;
+import br.com.on.fiap.datapool.ProdutoDataPool;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,7 @@ class ProdutoBuscaPorIdUseCaseImplTest {
     @DisplayName("Dado um produto existente, quando buscar o produto, então ele deve ser retornado")
     void dadoProdutoExistente_quandoBuscarProduto_entaoDeveSerRetornado() {
         Long id = 1L;
-        Produto produto = DataPoolProduto.produtoExistente(id);
+        Produto produto = ProdutoDataPool.criarProdutoExistente(id);
         when(produtoGateway.buscaProdutoPorId(id)).thenReturn(Optional.of(produto));
 
         Produto resultado = produtoBuscaPorIdUseCase.buscar(id);

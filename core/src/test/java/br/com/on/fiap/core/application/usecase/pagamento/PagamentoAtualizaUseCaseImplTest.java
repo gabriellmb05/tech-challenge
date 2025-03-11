@@ -3,9 +3,10 @@ package br.com.on.fiap.core.application.usecase.pagamento;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import br.com.on.fiap.core.application.gateway.PagamentoGateway;
 import br.com.on.fiap.core.application.usecase.pagamento.impl.PagamentoAtualizaUseCaseImpl;
 import br.com.on.fiap.core.domain.Pagamento;
-import br.com.on.fiap.datapool.DataPoolPagamento;
+import br.com.on.fiap.datapool.PagamentoDataPool;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,7 +27,7 @@ class PagamentoAtualizaUseCaseImplTest {
     @DisplayName(
             "Dado um pagamento para atualização, quando atualizar o pagamento, então o pagamento deve ser integrado e salvo")
     void dadoPagamentoParaAtualizacao_quandoAtualizarPagamento_entaoPagamentoDeveSerIntegradoESalvo() {
-        Pagamento pagamento = DataPoolPagamento.pagamentoParaAtualizacao();
+        Pagamento pagamento = PagamentoDataPool.criarPagamentoParaAtualizacao();
 
         pagamentoAtualizaUseCase.atualizaPagamento(pagamento);
 
@@ -38,7 +39,7 @@ class PagamentoAtualizaUseCaseImplTest {
     @DisplayName(
             "Dado um pagamento finalizado, quando atualizar o pagamento, então o pagamento deve ser integrado e salvo")
     void dadoPagamentoFinalizado_quandoAtualizarPagamento_entaoPagamentoDeveSerIntegradoESalvo() {
-        Pagamento pagamento = DataPoolPagamento.pagamentoFinalizado();
+        Pagamento pagamento = PagamentoDataPool.pagamentoFinalizado();
 
         pagamentoAtualizaUseCase.atualizaPagamento(pagamento);
 

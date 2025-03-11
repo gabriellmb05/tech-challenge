@@ -6,11 +6,11 @@ import br.com.on.fiap.core.domain.TipoPagamento;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class DataPoolPagamento {
+public class PagamentoDataPool {
 
-    private DataPoolPagamento() {}
+    private PagamentoDataPool() {}
 
-    public static Pagamento pagamentoExistente(Long id) {
+    public static Pagamento criarPagamentoExistente(Long id) {
         Pagamento pagamento = new Pagamento();
         pagamento.setPagId(id);
         pagamento.setTpPagamento(TipoPagamento.PIX);
@@ -19,8 +19,7 @@ public class DataPoolPagamento {
         return pagamento;
     }
 
-    public static Pagamento pagamentoComTipoESituacao(
-            Long id, TipoPagamento tipoPagamento, SituacaoPagamento situacaoPagamento) {
+    public static Pagamento criarPagamentoComTipoESituacao(Long id, TipoPagamento tipoPagamento, SituacaoPagamento situacaoPagamento) {
         Pagamento pagamento = new Pagamento();
         pagamento.setPagId(id);
         pagamento.setVlCompra(BigDecimal.valueOf(200.00));
@@ -29,7 +28,7 @@ public class DataPoolPagamento {
         return pagamento;
     }
 
-    public static Pagamento pagamentoValido() {
+    public static Pagamento criarPagamentoValido() {
         Pagamento pagamento = new Pagamento();
         pagamento.setPagId(1L);
         pagamento.setStPagamento(SituacaoPagamento.APROVADO);
@@ -39,7 +38,7 @@ public class DataPoolPagamento {
         return pagamento;
     }
 
-    public static Pagamento pagamentoValidoSemData() {
+    public static Pagamento criarPagamentoValidoSemData() {
         Pagamento pagamento = new Pagamento();
         pagamento.setPagId(1L);
         pagamento.setStPagamento(SituacaoPagamento.APROVADO);
@@ -49,7 +48,7 @@ public class DataPoolPagamento {
         return pagamento;
     }
 
-    public static Pagamento pagamentoPendente() {
+    public static Pagamento criarPagamentoPendente() {
         Pagamento pagamento = new Pagamento();
         pagamento.setPagId(3L);
         pagamento.setStPagamento(SituacaoPagamento.PENDENTE);
@@ -59,7 +58,7 @@ public class DataPoolPagamento {
         return pagamento;
     }
 
-    public static Pagamento pagamentoParaAtualizacao() {
+    public static Pagamento criarPagamentoParaAtualizacao() {
         Pagamento pagamento = new Pagamento();
         pagamento.setPagId(1L);
         pagamento.setStPagamento(SituacaoPagamento.PENDENTE);
@@ -69,7 +68,7 @@ public class DataPoolPagamento {
         return pagamento;
     }
 
-    public static Pagamento pagamentoFinalizado() {
+    public static Pagamento criarPagamentoFinalizado() {
         Pagamento pagamento = new Pagamento();
         pagamento.setPagId(2L);
         pagamento.setStPagamento(SituacaoPagamento.APROVADO);

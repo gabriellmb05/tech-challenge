@@ -2,9 +2,9 @@ package br.com.on.fiap.datapool;
 
 import br.com.on.fiap.core.application.dto.filtro.ProdutoFiltroEntrada;
 
-public class DataPoolProdutoEntradaFiltro {
+public class ProdutoFiltroEntradaDataPool {
 
-    private DataPoolProdutoEntradaFiltro() {}
+    private ProdutoFiltroEntradaDataPool() {}
 
     public static ProdutoFiltroEntrada filtroVazio() {
         return criarProdutoFiltro(null, null);

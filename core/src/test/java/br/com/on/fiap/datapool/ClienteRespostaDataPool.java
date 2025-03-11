@@ -2,11 +2,11 @@ package br.com.on.fiap.datapool;
 
 import br.com.on.fiap.core.application.dto.resposta.ClienteResposta;
 
-public class DataPoolClienteRespostaDTO {
+public class ClienteRespostaDataPool {
 
-    private DataPoolClienteRespostaDTO() {}
+    private ClienteRespostaDataPool() {}
 
-    public static ClienteResposta clienteExistente(Long id) {
+    public static ClienteResposta criarClienteExistente(Long id) {
         ClienteResposta cliente = new ClienteResposta();
         cliente.setId(id);
         cliente.setNome("Cliente Exemplo");
@@ -15,7 +15,7 @@ public class DataPoolClienteRespostaDTO {
         return cliente;
     }
 
-    public static ClienteResposta clienteComCpf(String cpf) {
+    public static ClienteResposta criarClienteComCpf(String cpf) {
         ClienteResposta cliente = new ClienteResposta();
         cliente.setId(1L);
         cliente.setCpf(cpf);
@@ -24,7 +24,7 @@ public class DataPoolClienteRespostaDTO {
         return cliente;
     }
 
-    public static ClienteResposta clienteValido() {
+    public static ClienteResposta criarClienteValido() {
         ClienteResposta cliente = new ClienteResposta();
         cliente.setId(1L);
         cliente.setCpf("12345678900");

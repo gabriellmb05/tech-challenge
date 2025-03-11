@@ -2,11 +2,11 @@ package br.com.on.fiap.datapool;
 
 import br.com.on.fiap.core.domain.ProdutoFiltro;
 
-public class DataPoolProdutoFiltro {
+public class ProdutoFiltroDataPool {
 
-    private DataPoolProdutoFiltro() {}
+    private ProdutoFiltroDataPool() {}
 
-    public static ProdutoFiltro filtroVazio() {
+    public static ProdutoFiltro criarFiltroVazio() {
         return criarProdutoFiltro(null, null);
     }
 

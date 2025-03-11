@@ -6,7 +6,7 @@ import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.datasource.ClienteDataSource;
 import br.com.on.fiap.core.domain.Cliente;
-import br.com.on.fiap.datapool.DataPoolCliente;
+import br.com.on.fiap.datapool.ClienteDataPool;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,7 @@ class ClienteGatewayImplTest {
     @Test
     @DisplayName("Dado um CPF válido, quando buscar cliente por CPF, então deve retornar o cliente")
     void dadoCpfValido_quandoBuscarClientePorCpf_entaoDeveRetornarCliente() {
-        Cliente cliente = DataPoolCliente.clienteValido();
+        Cliente cliente = ClienteDataPool.criarClienteValido();
         String cpf = cliente.getCpf();
         when(clienteDataSource.findByNmCpf(cpf)).thenReturn(Optional.of(cliente));
 
@@ -41,7 +41,7 @@ class ClienteGatewayImplTest {
     @Test
     @DisplayName("Dado um ID válido, quando buscar cliente por ID, então deve retornar o cliente")
     void dadoIdValido_quandoBuscarClientePorId_entaoDeveRetornarCliente() {
-        Cliente cliente = DataPoolCliente.clienteValido();
+        Cliente cliente = ClienteDataPool.criarClienteValido();
         Long id = cliente.getId();
         when(clienteDataSource.findById(id)).thenReturn(Optional.of(cliente));
 
@@ -55,7 +55,7 @@ class ClienteGatewayImplTest {
     @Test
     @DisplayName("Dado um email válido, quando buscar cliente por email, então deve retornar o cliente")
     void dadoEmailValido_quandoBuscarClientePorEmail_entaoDeveRetornarCliente() {
-        Cliente cliente = DataPoolCliente.clienteValido();
+        Cliente cliente = ClienteDataPool.criarClienteValido();
         String email = cliente.getEmail();
         when(clienteDataSource.findByNmEmail(email)).thenReturn(Optional.of(cliente));
 
@@ -69,7 +69,7 @@ class ClienteGatewayImplTest {
     @Test
     @DisplayName("Dado um cliente válido, quando salvar cliente, então deve retornar o cliente salvo")
     void dadoClienteValido_quandoSalvarCliente_entaoDeveRetornarClienteSalvo() {
-        Cliente cliente = DataPoolCliente.clienteValido();
+        Cliente cliente = ClienteDataPool.criarClienteValido();
         when(clienteDataSource.persist(cliente)).thenReturn(cliente);
 
         Cliente resultado = clienteGateway.salvaCliente(cliente);

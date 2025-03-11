@@ -2,11 +2,11 @@ package br.com.on.fiap.datapool;
 
 import br.com.on.fiap.core.domain.Cliente;
 
-public class DataPoolCliente {
+public class ClienteDataPool {
 
-    private DataPoolCliente() {}
+    private ClienteDataPool() {}
 
-    public static Cliente clienteExistente(Long id) {
+    public static Cliente criarClienteExistente(Long id) {
         Cliente cliente = new Cliente();
         cliente.setId(id);
         cliente.setNome("Cliente Exemplo");
@@ -15,7 +15,7 @@ public class DataPoolCliente {
         return cliente;
     }
 
-    public static Cliente clienteComCpf(String cpf) {
+    public static Cliente criarClienteComCpf(String cpf) {
         Cliente cliente = new Cliente();
         cliente.setId(1L);
         cliente.setCpf(cpf);
@@ -24,7 +24,7 @@ public class DataPoolCliente {
         return cliente;
     }
 
-    public static Cliente clienteValido() {
+    public static Cliente criarClienteValido() {
         Cliente cliente = new Cliente();
         cliente.setId(1L);
         cliente.setCpf("12345678900");
@@ -33,7 +33,7 @@ public class DataPoolCliente {
         return cliente;
     }
 
-    public static Cliente clienteValidoSemId() {
+    public static Cliente criarClienteValidoSemId() {
         Cliente cliente = new Cliente();
         cliente.setCpf("12345678900");
         cliente.setNome("Carlos Souza");

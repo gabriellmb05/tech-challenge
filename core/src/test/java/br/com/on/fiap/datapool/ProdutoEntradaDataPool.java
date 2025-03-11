@@ -5,11 +5,11 @@ import br.com.on.fiap.core.domain.Categoria;
 import java.math.BigDecimal;
 import net.bytebuddy.utility.RandomString;
 
-public class DataPoolProdutoEntrada {
+public class ProdutoEntradaDataPool {
 
-    private DataPoolProdutoEntrada() {}
+    private ProdutoEntradaDataPool() {}
 
-    public static ProdutoEntrada produtoExistente(Long id) {
+    public static ProdutoEntrada criarProdutoEntradaExistente(Long id) {
         return criarProdutoEntrada((RandomString.make() + id), Categoria.LANCHE.name(), BigDecimal.ONE);
     }
 

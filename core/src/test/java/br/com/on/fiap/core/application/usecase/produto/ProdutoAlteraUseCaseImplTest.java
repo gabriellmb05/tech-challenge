@@ -5,10 +5,11 @@ import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
 import br.com.on.fiap.core.application.exception.ProdutoNaoEncontradoExcecao;
+import br.com.on.fiap.core.application.gateway.ProdutoGateway;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoAlteraUseCaseImpl;
 import br.com.on.fiap.core.domain.Produto;
-import br.com.on.fiap.datapool.DataPoolProduto;
-import br.com.on.fiap.datapool.DataPoolProdutoEntrada;
+import br.com.on.fiap.datapool.ProdutoDataPool;
+import br.com.on.fiap.datapool.ProdutoEntradaDataPool;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,10 +31,10 @@ class ProdutoAlteraUseCaseImplTest {
     @DisplayName("Dado um produto existente, quando alterar o produto, então ele deve ser atualizado")
     void dadoProdutoExistente_quandoAlterarProduto_entaoDeveSerAtualizado() {
         Long id = 1L;
-        Produto produto = DataPoolProduto.produtoExistente(id);
-        ProdutoEntrada produtoEntrada = DataPoolProdutoEntrada.produtoExistente(id);
+        Produto produto = ProdutoDataPool.criarProdutoExistente(id);
+        ProdutoEntrada produtoEntrada = ProdutoEntradaDataPool.criarProdutoEntradaExistente(id);
 
-        Produto produtoAlterado = DataPoolProduto.produtoExistente(id);
+        Produto produtoAlterado = ProdutoDataPool.criarProdutoExistente(id);
         produtoAlterado.setNome("Produto Alterado");
 
         when(produtoGateway.buscaProdutoPorId(id)).thenReturn(Optional.of(produto));
@@ -51,8 +52,8 @@ class ProdutoAlteraUseCaseImplTest {
     @DisplayName("Dado um produto não existente, quando alterar o produto, então deve lançar uma exceção")
     void dadoProdutoNaoExistente_quandoAlterarProduto_entaoDeveLancarExcecao() {
         Long id = 1L;
-        Produto produto = DataPoolProduto.produtoExistente(id);
-        ProdutoEntrada produtoEntrada = DataPoolProdutoEntrada.produtoExistente(id);
+        Produto produto = ProdutoDataPool.criarProdutoExistente(id);
+        ProdutoEntrada produtoEntrada = ProdutoEntradaDataPool.criarProdutoEntradaExistente(id);
 
         when(produtoGateway.buscaProdutoPorId(id)).thenReturn(Optional.empty());
 

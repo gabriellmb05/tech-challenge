@@ -6,10 +6,11 @@ import static org.mockito.Mockito.*;
 
 import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
 import br.com.on.fiap.core.application.exception.ProdutoExistenteExcecao;
+import br.com.on.fiap.core.application.gateway.ProdutoGateway;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoInsereUseCaseImpl;
 import br.com.on.fiap.core.domain.Produto;
-import br.com.on.fiap.datapool.DataPoolProduto;
-import br.com.on.fiap.datapool.DataPoolProdutoEntrada;
+import br.com.on.fiap.datapool.ProdutoDataPool;
+import br.com.on.fiap.datapool.ProdutoEntradaDataPool;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,8 +31,8 @@ class ProdutoInsereUseCaseImplTest {
     @Test
     @DisplayName("Dado um produto novo, quando inserir o produto, então ele deve ser salvo")
     void dadoProdutoNovo_quandoInserirProduto_entaoDeveSerSalvo() {
-        Produto produto = DataPoolProduto.produtoNovo();
-        ProdutoEntrada produtoEntrada = DataPoolProdutoEntrada.criarProdutoEntrada(
+        Produto produto = ProdutoDataPool.criarProdutoNovo();
+        ProdutoEntrada produtoEntrada = ProdutoEntradaDataPool.criarProdutoEntrada(
                 produto.getNome(), produto.getCategoria().name(), produto.getPreco());
 
         when(produtoGateway.buscaProdutoPorNome(produtoEntrada.getNome())).thenReturn(Optional.empty());
@@ -47,8 +48,8 @@ class ProdutoInsereUseCaseImplTest {
     @Test
     @DisplayName("Dado um produto existente, quando inserir o produto, então deve lançar uma exceção")
     void dadoProdutoExistente_quandoInserirProduto_entaoDeveLancarExcecao() {
-        Produto produto = DataPoolProduto.produtoNovo();
-        ProdutoEntrada produtoEntrada = DataPoolProdutoEntrada.criarProdutoEntrada(
+        Produto produto = ProdutoDataPool.criarProdutoNovo();
+        ProdutoEntrada produtoEntrada = ProdutoEntradaDataPool.criarProdutoEntrada(
                 produto.getNome(), produto.getCategoria().name(), produto.getPreco());
         when(produtoGateway.buscaProdutoPorNome(produtoEntrada.getNome())).thenReturn(Optional.of(produto));
 
