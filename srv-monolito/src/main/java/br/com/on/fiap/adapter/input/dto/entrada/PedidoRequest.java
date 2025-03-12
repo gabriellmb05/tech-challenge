@@ -4,6 +4,7 @@ import br.com.on.fiap.core.application.dto.entrada.PedidoEntrada;
 import br.com.on.fiap.core.application.dto.entrada.ProdutoQuantidadeEntrada;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,6 @@ public class PedidoRequest implements PedidoEntrada {
 
     @Override
     public List<ProdutoQuantidadeEntrada> getProdutos() {
-        return List.copyOf(produtos);
+        return Objects.nonNull(produtos) ? List.copyOf(produtos) : null;
     }
 }

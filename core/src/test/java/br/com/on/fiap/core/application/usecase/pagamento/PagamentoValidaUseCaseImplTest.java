@@ -23,27 +23,23 @@ class PagamentoValidaUseCaseImplTest {
     @DisplayName(
             "Dado um pagamento aprovado com data, quando validar o pagamento, então deve lançar a exceção PagamentoJaRealizadoExcecao")
     void dadoPagamentoAprovadoComData_quandoValidarPagamento_EntaoDeveLancarExcecao() {
-        Pagamento pagamento = PagamentoDataPool.criarPagamentoValido();
-        String nrProtocolo = "123ABC";
-
         assertThrows(
                 PagamentoJaRealizadoExcecao.class,
-                () -> pagamentoValidaUseCase.validarPagamentoJaRealizado(pagamento, nrProtocolo));
+                () -> pagamentoValidaUseCase.validarPagamentoJaRealizado(
+                        PagamentoDataPool.criarPagamentoValido(), "123ABC"));
     }
 
     @Test
     @DisplayName("Dado um pagamento aprovado sem data, quando validar o pagamento, então não deve lançar exceção")
     void dadoPagamentoAprovadoSemData_quandoValidarPagamento_EntaoNaoDeveLancarExcecao() {
-        Pagamento pagamento = PagamentoDataPool.criarPagamentoValido();
-        String nrProtocolo = "123ABC";
-
-        assertDoesNotThrow(() -> pagamentoValidaUseCase.validarPagamentoJaRealizado(pagamento, nrProtocolo));
+        assertDoesNotThrow(() -> pagamentoValidaUseCase.validarPagamentoJaRealizado(
+                PagamentoDataPool.criarPagamentoValidoSemData(), "123ABC"));
     }
 
     @Test
     @DisplayName("Dado um pagamento pendente, quando validar o pagamento, então não deve lançar exceção")
     void dadoPagamentoPendente_quandoValidarPagamento_EntaoNaoDeveLancarExcecao() {
-        Pagamento pagamento = PagamentoDataPool.criarPagamentoValido();
+        Pagamento pagamento = PagamentoDataPool.criarPagamentoPendente();
         String nrProtocolo = "123ABC";
 
         pagamentoValidaUseCase.validarPagamentoJaRealizado(pagamento, nrProtocolo);

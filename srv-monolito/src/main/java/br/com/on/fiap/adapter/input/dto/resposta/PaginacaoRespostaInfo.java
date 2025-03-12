@@ -3,7 +3,8 @@ package br.com.on.fiap.adapter.input.dto.resposta;
 import br.com.on.fiap.core.application.dto.resposta.OrdenacaoResposta;
 import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import java.util.Optional;
-import lombok.*;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Order;
 

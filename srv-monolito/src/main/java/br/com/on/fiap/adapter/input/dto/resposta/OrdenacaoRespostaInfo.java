@@ -2,7 +2,8 @@ package br.com.on.fiap.adapter.input.dto.resposta;
 
 import br.com.on.fiap.core.application.dto.resposta.Direcao;
 import br.com.on.fiap.core.application.dto.resposta.OrdenacaoResposta;
-import lombok.*;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 

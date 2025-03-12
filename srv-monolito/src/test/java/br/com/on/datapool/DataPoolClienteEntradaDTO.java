@@ -6,6 +6,6 @@ import java.time.LocalDate;
 public class DataPoolClienteEntradaDTO {
 
     public static ClienteEntrada gerarCliente() {
-        return new ClienteEntrada("43316652616", "Elmo Cameron", "lectus@yahoo.edu", LocalDate.now());
+        return ClienteEntrada.create("43316652616", "Elmo Cameron", "lectus@yahoo.edu", LocalDate.now());
     }
 }

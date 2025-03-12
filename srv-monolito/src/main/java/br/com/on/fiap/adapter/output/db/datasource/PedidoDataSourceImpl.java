@@ -11,7 +11,8 @@ import br.com.on.fiap.core.adapter.datasource.PedidoDataSource;
 import br.com.on.fiap.core.application.dto.filtro.PedidoFiltroEntrada;
 import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
 import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
-import br.com.on.fiap.core.domain.*;
+import br.com.on.fiap.core.domain.Pedido;
+import br.com.on.fiap.core.domain.SituacaoPedido;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -57,13 +58,13 @@ public class PedidoDataSourceImpl implements PedidoDataSource {
         Pageable pageable = pageableComponent.criarPageable(paginacaoResposta);
         Page<Pedido> pagePedido = pedidoRepository
                 .findAll(PedidoSpecification.filtroPorDataInicioEDataFim(filtro), pageable)
-                .map(pedidoEntity -> pedidoEntity.toDomain(null));
+                .map(pedidoMapper::toDomain);
         return PaginaRespostaInfo.create(pagePedido);
     }
 
     @Override
     public Optional<Pedido> detalhaPedido(String protocolo) {
-        return pedidoRepository.findByNmProtocolo(protocolo).map(pedidoEntity -> pedidoEntity.toDomain(null));
+        return pedidoRepository.findByNmProtocolo(protocolo).map(pedidoMapper::toDomain);
     }
 
     @Override

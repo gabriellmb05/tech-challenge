@@ -73,8 +73,8 @@ class PedidoApiIntegracaoTest {
         criarPedido();
         mockMvc.perform(get("/pedidos").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").isArray())
-                .andExpect(jsonPath("$.page.totalElements").value(1))
+                .andExpect(jsonPath("$.conteudo").isArray())
+                .andExpect(jsonPath("$.totalElementos").value(1))
                 .andReturn();
     }
 
@@ -109,7 +109,7 @@ class PedidoApiIntegracaoTest {
         criarPedido();
         mockMvc.perform(get("/pedidos").param("status", "PENDENTE").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content", hasSize(1)))
+                .andExpect(jsonPath("$.conteudo", hasSize(1)))
                 .andReturn();
     }
 

@@ -45,6 +45,17 @@ public class PedidoDataPool {
         return pedido;
     }
 
+    public static Pedido criarPedidoComProtocoloPagamentoValido(String protocolo) {
+        Pedido pedido = new Pedido();
+        pedido.setProtocolo(protocolo);
+        pedido.setDataHora(LocalDateTime.now());
+        pedido.setSituacao(SituacaoPedido.REALIZADO);
+        pedido.setCliente(ClienteDataPool.criarClienteExistente(1L));
+        pedido.setPagamento(PagamentoDataPool.criarPagamentoValido());
+        pedido.setRelPedidoProdutos(List.of(PedidoProdutoDataPool.criarPedidoProdutoComProduto(1L)));
+        return pedido;
+    }
+
     public static Pedido criarPedidoComCliente(Cliente cliente) {
         Pedido pedido = new Pedido();
         pedido.setId(1L);

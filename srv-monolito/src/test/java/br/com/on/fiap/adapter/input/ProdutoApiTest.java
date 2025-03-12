@@ -3,7 +3,9 @@ package br.com.on.fiap.adapter.input;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import br.com.on.datapool.*;
+import br.com.on.datapool.DataPoolProdutoFiltroDTO;
+import br.com.on.datapool.DataPoolProdutoRespostaDTO;
+import br.com.on.datapool.DataPoolProdutoSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.dto.entrada.ProdutoRequest;
 import br.com.on.fiap.adapter.input.dto.filtro.ProdutoFiltroRequest;
 import br.com.on.fiap.adapter.input.dto.resposta.PaginaRespostaInfo;

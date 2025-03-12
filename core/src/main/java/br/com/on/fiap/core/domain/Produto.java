@@ -2,6 +2,7 @@ package br.com.on.fiap.core.domain;
 
 import br.com.on.fiap.core.application.dto.entrada.ProdutoEntrada;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Produto {
     private Long id;
@@ -20,6 +21,26 @@ public class Produto {
         this.nome = nome;
         this.categoria = categoria;
         this.preco = preco;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Produto produto = (Produto) o;
+        return Objects.equals(getId(), produto.getId())
+                && Objects.equals(getNome(), produto.getNome())
+                && getCategoria() == produto.getCategoria()
+                && Objects.equals(getPreco(), produto.getPreco());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hashCode(getId());
+        result = 31 * result + Objects.hashCode(getNome());
+        result = 31 * result + Objects.hashCode(getCategoria());
+        result = 31 * result + Objects.hashCode(getPreco());
+        return result;
     }
 
     public Long getId() {
