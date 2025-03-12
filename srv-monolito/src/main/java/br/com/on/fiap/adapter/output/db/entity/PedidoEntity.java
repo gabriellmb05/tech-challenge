@@ -3,7 +3,9 @@ package br.com.on.fiap.adapter.output.db.entity;
 import br.com.on.fiap.adapter.output.db.entity.converter.SituacaoPedidoConverter;
 import br.com.on.fiap.core.domain.*;
 import jakarta.persistence.*;
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -72,5 +74,12 @@ public class PedidoEntity {
                 this.getStPedido(),
                 this.getNmProtocolo(),
                 this.getDhPedido());
+    }
+
+    @PrePersist
+    public void gerarProtocolo() {
+        String dataHoraFormatada = this.dhPedido.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        Integer numeroAleatorio = new SecureRandom().nextInt(Integer.MAX_VALUE) % 10000;
+        this.nmProtocolo = String.format("%s%s%s", dataHoraFormatada, this.pedId, numeroAleatorio);
     }
 }

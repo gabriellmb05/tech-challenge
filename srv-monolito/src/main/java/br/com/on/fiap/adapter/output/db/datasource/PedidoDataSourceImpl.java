@@ -57,13 +57,13 @@ public class PedidoDataSourceImpl implements PedidoDataSource {
         Pageable pageable = pageableComponent.criarPageable(paginacaoResposta);
         Page<Pedido> pagePedido = pedidoRepository
                 .findAll(PedidoSpecification.filtroPorDataInicioEDataFim(filtro), pageable)
-                .map(pedidoEntity -> pedidoEntity.toDomain(null));
+                .map(pedidoMapper::toDomain);
         return PaginaRespostaInfo.create(pagePedido);
     }
 
     @Override
     public Optional<Pedido> detalhaPedido(String protocolo) {
-        return pedidoRepository.findByNmProtocolo(protocolo).map(pedidoEntity -> pedidoEntity.toDomain(null));
+        return pedidoRepository.findByNmProtocolo(protocolo).map(pedidoMapper::toDomain);
     }
 
     @Override
