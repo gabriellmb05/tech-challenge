@@ -8,6 +8,8 @@ import br.com.on.fiap.adapter.output.db.component.PageableComponent;
 import br.com.on.fiap.adapter.output.db.datasource.ProdutoDataSourceImpl;
 import br.com.on.fiap.adapter.output.db.repository.ProdutoRepository;
 import br.com.on.fiap.core.adapter.datasource.ProdutoDataSource;
+import br.com.on.fiap.core.adapter.gateway.ProdutoGatewayImpl;
+import br.com.on.fiap.core.application.gateway.ProdutoGateway;
 import br.com.on.fiap.core.application.usecase.produto.*;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoAlteraUseCaseImpl;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoBuscaPorIdUseCaseImpl;
@@ -28,6 +30,7 @@ class ProdutoUseCaseBeanConfigTest {
         context.registerBean(
                 ProdutoDataSource.class,
                 () -> new ProdutoDataSourceImpl(mock(ProdutoRepository.class), mock(PageableComponent.class)));
+        context.registerBean(ProdutoGateway.class, () -> new ProdutoGatewayImpl(mock(ProdutoDataSource.class)));
         context.register(ProdutoUseCaseBeanConfig.class);
         context.refresh();
     }
