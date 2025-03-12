@@ -1,13 +1,13 @@
-package br.com.on.fiap.adapter.output.datasource;
+package br.com.on.fiap.adapter.output.api.datasource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import br.com.on.fiap.adapter.output.db.component.PageableComponent;
 import br.com.on.fiap.adapter.output.db.datasource.ProdutoDataSourceImpl;
 import br.com.on.fiap.adapter.output.db.entity.ProdutoEntity;
-import br.com.on.fiap.adapter.output.db.mapper.ProdutoSaidaMapeador;
 import br.com.on.fiap.adapter.output.db.repository.ProdutoRepository;
 import br.com.on.fiap.core.domain.Produto;
 import java.util.Optional;
@@ -25,7 +25,7 @@ class ProdutoDataSourceImplTest {
     private ProdutoRepository produtoRepository;
 
     @Mock
-    private ProdutoSaidaMapeador produtoSaidaMapeador;
+    private PageableComponent pageableComponent;
 
     @InjectMocks
     private ProdutoDataSourceImpl produtoDataSource;
@@ -37,14 +37,12 @@ class ProdutoDataSourceImplTest {
         ProdutoEntity produtoEntity = new ProdutoEntity();
         Produto produto = new Produto();
         when(produtoRepository.findById(id)).thenReturn(Optional.of(produtoEntity));
-        when(produtoSaidaMapeador.paraProduto(produtoEntity)).thenReturn(produto);
 
         Optional<Produto> resultado = produtoDataSource.buscaProdutoPorId(id);
 
         assertTrue(resultado.isPresent());
         assertEquals(produto, resultado.get());
         verify(produtoRepository).findById(id);
-        verify(produtoSaidaMapeador).paraProduto(produtoEntity);
     }
 
     @Test
@@ -54,16 +52,12 @@ class ProdutoDataSourceImplTest {
         ProdutoEntity produtoEntity = new ProdutoEntity();
         ProdutoEntity produtoPersistidoEntidade = new ProdutoEntity();
         Produto produtoPersistido = new Produto();
-        when(produtoSaidaMapeador.paraEntidade(produto)).thenReturn(produtoEntity);
         when(produtoRepository.save(produtoEntity)).thenReturn(produtoPersistidoEntidade);
-        when(produtoSaidaMapeador.paraProduto(produtoPersistidoEntidade)).thenReturn(produtoPersistido);
 
         Produto resultado = produtoDataSource.salvaProduto(produto);
 
         assertEquals(produtoPersistido, resultado);
-        verify(produtoSaidaMapeador).paraEntidade(produto);
         verify(produtoRepository).save(produtoEntity);
-        verify(produtoSaidaMapeador).paraProduto(produtoPersistidoEntidade);
     }
 
     @Test
@@ -73,14 +67,12 @@ class ProdutoDataSourceImplTest {
         ProdutoEntity produtoEntity = new ProdutoEntity();
         Produto produto = new Produto();
         when(produtoRepository.findByNmNome(nome)).thenReturn(Optional.of(produtoEntity));
-        when(produtoSaidaMapeador.paraProduto(produtoEntity)).thenReturn(produto);
 
         Optional<Produto> resultado = produtoDataSource.buscaProdutoPorNome(nome);
 
         assertTrue(resultado.isPresent());
         assertEquals(produto, resultado.get());
         verify(produtoRepository).findByNmNome(nome);
-        verify(produtoSaidaMapeador).paraProduto(produtoEntity);
     }
 
     @Test

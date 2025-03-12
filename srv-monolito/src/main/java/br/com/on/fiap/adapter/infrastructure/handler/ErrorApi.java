@@ -1,4 +1,4 @@
-package br.com.on.fiap.infrastructure.handler;
+package br.com.on.fiap.adapter.infrastructure.handler;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;

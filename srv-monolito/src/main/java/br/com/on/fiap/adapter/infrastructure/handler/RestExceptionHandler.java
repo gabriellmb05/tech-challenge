@@ -1,4 +1,4 @@
-package br.com.on.fiap.infrastructure.handler;
+package br.com.on.fiap.adapter.infrastructure.handler;
 
 import br.com.on.fiap.core.application.exception.*;
 import java.time.LocalDateTime;

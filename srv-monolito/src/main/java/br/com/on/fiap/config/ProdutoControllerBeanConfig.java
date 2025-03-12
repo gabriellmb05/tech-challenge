@@ -1,4 +1,4 @@
-package br.com.on.fiap.infrastructure.config;
+package br.com.on.fiap.config;
 
 import br.com.on.fiap.core.adapter.controller.ProdutoController;
 import br.com.on.fiap.core.adapter.controller.impl.ProdutoControllerImpl;

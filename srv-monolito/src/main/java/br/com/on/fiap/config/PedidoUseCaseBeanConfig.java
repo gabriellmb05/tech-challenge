@@ -1,4 +1,4 @@
-package br.com.on.fiap.infrastructure.config;
+package br.com.on.fiap.config;
 
 import br.com.on.fiap.core.application.gateway.PedidoGateway;
 import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorIdUseCase;
