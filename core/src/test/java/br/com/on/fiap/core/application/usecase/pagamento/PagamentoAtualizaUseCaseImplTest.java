@@ -11,10 +11,7 @@ import br.com.on.fiap.core.application.usecase.pedido.PedidoDetalhaUseCase;
 import br.com.on.fiap.core.domain.Pagamento;
 import br.com.on.fiap.core.domain.Pedido;
 import br.com.on.fiap.core.domain.SituacaoPagamento;
-import br.com.on.fiap.core.domain.TipoPagamento;
-import br.com.on.fiap.datapool.PagamentoDataPool;
 import br.com.on.fiap.datapool.PedidoDataPool;
-import java.time.LocalDateTime;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -64,16 +61,15 @@ class PagamentoAtualizaUseCaseImplTest {
     void quandoPagamentoJaRealizado_entaoDeveLancarExcecao() {
         String nrProtocolo = "12345";
 
-        Pagamento pagamento =
-                PagamentoDataPool.criarPagamentoComTipoESituacao(1L, TipoPagamento.PIX, SituacaoPagamento.APROVADO);
-        pagamento.setDhPagamento(LocalDateTime.now());
-
-        Pedido pedido = PedidoDataPool.criarPedidoExistente(1L);
-        pedido.setPagamento(pagamento);
-
+        Pedido pedido = PedidoDataPool.criarPedidoComProtocoloPagamentoValido(nrProtocolo);
+        when(pedidoDetalhaUseCase.detalhaPedido(nrProtocolo)).thenReturn(pedido);
+        doThrow(PagamentoJaRealizadoExcecao.class)
+                .when(pagamentoValidaUseCase)
+                .validarPagamentoJaRealizado(any(), any());
         assertThrows(PagamentoJaRealizadoExcecao.class, () -> pagamentoAtualizaUseCase.atualizaPagamento(nrProtocolo));
 
         verify(pedidoDetalhaUseCase).detalhaPedido(nrProtocolo);
-        verifyNoInteractions(pagamentoValidaUseCase, pagamentoIntegracaoGateway, pagamentoGateway);
+        verify(pagamentoValidaUseCase).validarPagamentoJaRealizado(pedido.getPagamento(), nrProtocolo);
+        verifyNoInteractions(pagamentoIntegracaoGateway, pagamentoGateway);
     }
 }
