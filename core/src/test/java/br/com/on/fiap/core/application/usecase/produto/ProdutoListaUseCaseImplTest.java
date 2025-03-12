@@ -15,7 +15,6 @@ import br.com.on.fiap.core.application.gateway.ProdutoGateway;
 import br.com.on.fiap.core.application.usecase.produto.impl.ProdutoListaUseCaseImpl;
 import br.com.on.fiap.core.domain.*;
 import br.com.on.fiap.datapool.*;
-import java.util.Collections;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -66,8 +65,7 @@ class ProdutoListaUseCaseImplTest {
             "Dado filtro por categoria e nome, quando listar produtos, então os produtos da categoria e nome devem ser retornados")
     void dadoProdutosExistentes_quandoFiltrarProdutos_entaoDevemSerRetornados() {
         ProdutoFiltro produtoFiltro = criarProdutoFiltro("x-burguer");
-        PaginaResposta<Produto> produtoPaginaResposta = criarPaginaResposta(10L);
-        when(produtoGateway.listarComFiltros(produtoFiltro, paginacaoResposta)).thenReturn(produtoPaginaResposta);
+        when(produtoGateway.listarComFiltros(produtoFiltro, paginacaoResposta)).thenReturn(criarPaginaResposta(10L));
 
         PaginaResposta<Produto> result =
                 produtoListaUseCase.listarComFiltro(criarFiltro("x-burguer"), paginacaoResposta);
@@ -91,12 +89,11 @@ class ProdutoListaUseCaseImplTest {
     @Test
     @DisplayName("Dado filtro de produto inexistente, quando listar produtos, então nenhuma produto deve ser retornado")
     void dadoFiltroDeProdutoInexistente_quandoListarProdutos_entaoNenhumProdutoDeveSerRetornado() {
-        ProdutoFiltroEntrada filtro = criarFiltro("inexistente");
         ProdutoFiltro produtoFiltro = criarProdutoFiltro("inexistente");
-        when(produtoGateway.listarComFiltros(produtoFiltro, paginacaoResposta))
-                .thenReturn(PaginaRespostaDataPool.criarPaginaComPaginacao(Collections.emptyList(), 0L, 0, 10, 0));
+        when(produtoGateway.listarComFiltros(produtoFiltro, paginacaoResposta)).thenReturn(criarPaginaResposta(0L));
 
-        PaginaResposta<Produto> result = produtoListaUseCase.listarComFiltro(filtro, paginacaoResposta);
+        PaginaResposta<Produto> result =
+                produtoListaUseCase.listarComFiltro(criarFiltro("inexistente"), paginacaoResposta);
 
         assertEquals(0, result.getTotalElementos());
         verify(produtoGateway).listarComFiltros(produtoFiltro, paginacaoResposta);
