@@ -53,7 +53,7 @@ public class PagamentoDataPool {
         Pagamento pagamento = new Pagamento();
         pagamento.setPagId(3L);
         pagamento.setStPagamento(SituacaoPagamento.PENDENTE);
-        pagamento.setVlCompra(new BigDecimal("50.00"));
+        pagamento.setVlCompra(new BigDecimal(50));
         pagamento.setTpPagamento(TipoPagamento.DEBITO);
         pagamento.setDhPagamento(null);
         return pagamento;
