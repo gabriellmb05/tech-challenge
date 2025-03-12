@@ -1,5 +1,7 @@
 package br.com.on.fiap.datapool;
 
+import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
+import br.com.on.fiap.core.application.dto.resposta.ProdutoResposta;
 import br.com.on.fiap.core.domain.Categoria;
 import br.com.on.fiap.core.domain.Produto;
 import java.math.BigDecimal;
@@ -32,5 +34,17 @@ public class ProdutoDataPool {
         return LongStream.rangeClosed(1L, quantidade)
                 .mapToObj(ProdutoDataPool::criarProdutoExistente)
                 .toList();
+    }
+
+    public static PaginaResposta<Produto> criarPaginaRespostaProdutosValida() {
+        List<Produto> produtos = criarProdutosComIdsDinamicos(2);
+        return PaginaResposta.create(produtos, 2L, 1, 10, 1);
+    }
+
+    public static PaginaResposta<ProdutoResposta> criarPaginaRespostaProdutosFormatada() {
+        List<ProdutoResposta> produtoRespostas = criarProdutosComIdsDinamicos(2).stream()
+                .map(ProdutoResposta::create)
+                .toList();
+        return PaginaResposta.create(produtoRespostas, 2L, 1, 10, 1);
     }
 }
