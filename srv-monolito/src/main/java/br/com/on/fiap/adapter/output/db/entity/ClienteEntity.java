@@ -40,6 +40,6 @@ public class ClienteEntity {
     }
 
     public Cliente toDomain() {
-        return new Cliente(cliId, nmNome, nmCpf, nmEmail, dhNascimento);
+        return new Cliente(cliId, nmCpf, nmNome, nmEmail, dhNascimento);
     }
 }
