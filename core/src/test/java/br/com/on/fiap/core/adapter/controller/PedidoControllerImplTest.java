@@ -1,7 +1,9 @@
 package br.com.on.fiap.core.adapter.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import br.com.on.fiap.core.adapter.controller.impl.PedidoControllerImpl;
 import br.com.on.fiap.core.adapter.presenter.PedidoPresenter;

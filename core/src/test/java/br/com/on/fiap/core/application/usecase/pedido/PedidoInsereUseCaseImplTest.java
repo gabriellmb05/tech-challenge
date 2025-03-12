@@ -11,14 +11,17 @@ import br.com.on.fiap.core.application.usecase.cliente.ClienteBuscaPorIdUseCase;
 import br.com.on.fiap.core.application.usecase.pagamento.PagamentoCriaUseCase;
 import br.com.on.fiap.core.application.usecase.pedido.impl.PedidoInsereUseCaseImpl;
 import br.com.on.fiap.core.domain.*;
-import br.com.on.fiap.datapool.*;
+import br.com.on.fiap.datapool.ClienteDataPool;
+import br.com.on.fiap.datapool.PagamentoDataPool;
+import br.com.on.fiap.datapool.ProdutoDataPool;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
