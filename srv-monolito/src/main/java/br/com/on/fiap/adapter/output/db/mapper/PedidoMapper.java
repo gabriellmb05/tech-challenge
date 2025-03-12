@@ -36,7 +36,8 @@ public class PedidoMapper {
                 .stream()
                 .map(entry -> {
                     ProdutoEntity produtoEntity = ProdutoEntity.fromDomain(entry.getKey());
-                    return PedidoProdutoEntity.create(new RelPedId(null, produtoEntity.getProId()), null, produtoEntity, entry.getValue());
+                    return PedidoProdutoEntity.create(
+                            new RelPedId(null, produtoEntity.getProId()), null, produtoEntity, entry.getValue());
                 })
                 .collect(Collectors.toList());
 
