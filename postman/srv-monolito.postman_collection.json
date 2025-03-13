@@ -1,9 +1,9 @@
 {
   "info": {
-    "_postman_id": "3a7013b1-b629-44c5-ab49-b18efcde2fb3",
+    "_postman_id": "6e096bc6-0d95-4955-9424-f64e74a152f6",
     "name": "srv-monolito",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "40946856"
+    "_exporter_id": "2007320"
   },
   "item": [
     {
@@ -764,7 +764,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"valor\": 2000,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"vlCompra\": 2,\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
+                  "raw": "{\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -790,7 +790,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"cliente\": 2,\r\n    \"valor\": 2000,\r\n    \"pagamento\": {\r\n        \"vlCompra\": 2,\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
+                  "raw": "{\r\n    \"cliente\": 2,\r\n    \"pagamento\": {\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -816,7 +816,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"cliente\": 2,\r\n    \"valor\": 2000,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ]\r\n}",
+                  "raw": "{\r\n    \"cliente\": 2,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ]\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -842,7 +842,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"cliente\": 2,\r\n    \"valor\": 2000,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 33,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"vlCompra\": 2,\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
+                  "raw": "{\r\n    \"cliente\": 2,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 33,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -868,7 +868,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"cliente\": 233,\r\n    \"valor\": 2000,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"vlCompra\": 2,\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
+                  "raw": "{\r\n    \"cliente\": 233,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -925,7 +925,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"cliente\": 2,\r\n    \"valor\": 2000,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 3,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 2,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"vlCompra\": 2,\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
+                  "raw": "{\r\n    \"cliente\": 2,\r\n    \"produtos\": [\r\n        {\r\n            \"idProduto\": 1,\r\n            \"quantidade\": 2\r\n        },\r\n        {\r\n            \"idProduto\": 8,\r\n            \"quantidade\": 2\r\n        }\r\n    ],\r\n    \"pagamento\": {\r\n        \"tpPagamento\": 1\r\n    }\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -997,13 +997,13 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{BASE_URL}}/pedidos/2025011918301535717/detalhar",
+                  "raw": "{{BASE_URL}}/pedidos/20250312202858115034/detalhar",
                   "host": [
                     "{{BASE_URL}}"
                   ],
                   "path": [
                     "pedidos",
-                    "2025011918301535717",
+                    "20250312202858115034",
                     "detalhar"
                   ],
                   "query": [
@@ -1023,13 +1023,13 @@
                 "method": "PUT",
                 "header": [],
                 "url": {
-                  "raw": "{{BASE_URL}}/pedidos/2025011918301535717",
+                  "raw": "{{BASE_URL}}/pedidos/20250312202858115034",
                   "host": [
                     "{{BASE_URL}}"
                   ],
                   "path": [
                     "pedidos",
-                    "2025011918301535717"
+                    "20250312202858115034"
                   ]
                 }
               },
@@ -1087,13 +1087,13 @@
                 "method": "PUT",
                 "header": [],
                 "url": {
-                  "raw": "{{BASE_URL}}/pagamentos/202501191836074416",
+                  "raw": "{{BASE_URL}}/pagamentos/20250312202858115034",
                   "host": [
                     "{{BASE_URL}}"
                   ],
                   "path": [
                     "pagamentos",
-                    "202501191836074416"
+                    "20250312202858115034"
                   ]
                 }
               },
@@ -1110,13 +1110,13 @@
                 "method": "PUT",
                 "header": [],
                 "url": {
-                  "raw": "{{BASE_URL}}/pagamentos/202501191836074416",
+                  "raw": "{{BASE_URL}}/pagamentos/20250312202858115034",
                   "host": [
                     "{{BASE_URL}}"
                   ],
                   "path": [
                     "pagamentos",
-                    "202501191836074416"
+                    "20250312202858115034"
                   ]
                 }
               },
@@ -1150,11 +1150,12 @@
                   }
                 },
                 "url": {
-                  "raw": "{{IT_PAGAMENTOS}}/payments",
+                  "raw": "{{IT_PAGAMENTOS}}/api/payments",
                   "host": [
                     "{{IT_PAGAMENTOS}}"
                   ],
                   "path": [
+                    "api",
                     "payments"
                   ]
                 }

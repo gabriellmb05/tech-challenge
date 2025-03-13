@@ -11,7 +11,7 @@ public class ProdutoPresenterImpl implements ProdutoPresenter {
         return ProdutoResposta.create(produto);
     }
 
-    @Override
+
     public PaginaResposta<ProdutoResposta> formatar(PaginaResposta<Produto> obj) {
         return obj.map(this::formatar);
     }

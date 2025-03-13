@@ -21,9 +21,9 @@ public class PedidoPresenterImpl implements PedidoPresenter {
     public PedidoDetalhadoResposta formatarDetalhado(Pedido pedido) {
         ClienteResposta cliente = ClienteResposta.fromDomain(pedido.getCliente());
 
-        List<ProdutoResposta> produtos = pedido.getRelPedidoProdutos().stream()
-                .map(PedidoProduto::getProduto)
-                .map(ProdutoResposta::create)
+
+        List<ProdutoQuantidade> produtos = pedido.getRelPedidoProdutos().stream()
+                .map(ProdutoQuantidade::create)
                 .toList();
 
         PagamentoResposta pagamento = PagamentoResposta.create(pedido.getPagamento());

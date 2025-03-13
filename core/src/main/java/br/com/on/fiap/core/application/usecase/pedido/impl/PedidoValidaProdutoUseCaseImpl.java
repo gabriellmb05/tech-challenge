@@ -27,8 +27,9 @@ public class PedidoValidaProdutoUseCaseImpl implements PedidoValidaProdutoUseCas
         List<Produto> produtosExistentes = produtoGateway.buscaProdutoPorIdsLista(idsProdutos);
 
         if (produtosExistentes.size() != idsProdutos.size()) {
+            List<Integer> idsFaltantes = buscaIdsFaltantes(idsProdutos, produtosExistentes);
             throw new ProdutoNaoEncontradoExcecao(
-                    MessageError.MSG_ERRO_PRODUTO_NAO_ENCONTRADO.getMensagem(), idsProdutos);
+                    MessageError.MSG_ERRO_PRODUTO_NAO_ENCONTRADO.getMensagem(), idsFaltantes);
         }
         return produtosSolicitados.stream()
                 .collect(Collectors.toMap(
@@ -39,5 +40,13 @@ public class PedidoValidaProdutoUseCaseImpl implements PedidoValidaProdutoUseCas
                                         MessageError.MSG_ERRO_PRODUTO_NAO_ENCONTRADO.getMensagem(),
                                         solicitacao.getIdProduto())),
                         ProdutoQuantidadeEntrada::getQuantidade));
+    }
+
+    private List<Integer> buscaIdsFaltantes(List<Long> idsProdutos, List<Produto> produtosExistentes) {
+        return idsProdutos.stream()
+                .filter(id -> produtosExistentes.stream()
+                        .noneMatch(produto -> produto.getId().equals(id)))
+                .map(Long::intValue)
+                .toList();
     }
 }

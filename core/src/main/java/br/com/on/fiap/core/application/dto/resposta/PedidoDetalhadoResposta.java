@@ -11,7 +11,7 @@ public interface PedidoDetalhadoResposta {
 
     SituacaoPedido getSituacao();
 
-    List<ProdutoResposta> getProdutos();
+    List<ProdutoQuantidade> getProdutos();
 
     PagamentoResposta getPagamento();
 
@@ -19,7 +19,7 @@ public interface PedidoDetalhadoResposta {
             Long id,
             ClienteResposta cliente,
             SituacaoPedido situacao,
-            List<ProdutoResposta> produtos,
+            List<ProdutoQuantidade> produtos,
             PagamentoResposta pagamento) {
         return new PedidoDetalhadoResposta() {
             @Override
@@ -38,7 +38,7 @@ public interface PedidoDetalhadoResposta {
             }
 
             @Override
-            public List<ProdutoResposta> getProdutos() {
+            public List<ProdutoQuantidade> getProdutos() {
                 return produtos;
             }
 
