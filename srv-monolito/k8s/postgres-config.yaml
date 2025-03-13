@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  labels:
+    group: db
+data:
+  resources.requests.cpu: "500m"
+  resources.requests.memory: "128Mi"
