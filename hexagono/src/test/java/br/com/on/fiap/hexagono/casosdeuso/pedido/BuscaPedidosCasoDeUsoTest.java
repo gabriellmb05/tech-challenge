@@ -38,7 +38,7 @@ class BuscaPedidosCasoDeUsoTest {
             "Dado um filtro com data de início e fim, ao buscar pedidos, os pedidos devem ser filtrados pelo período")
     void dadoFiltroComDataInicioEDataFim_quandoBuscarPedidos_entaoPedidosDevemSerFiltradosPorPeriodo() {
         LocalDate dataInicio = LocalDate.of(2025, 1, 1);
-        LocalDate dataFim = LocalDate.of(2025, 1, 31);
+        LocalDate dataFim = LocalDate.of(2025, 12, 31);
         PedidoFiltro filtro = DataPoolPedidoFiltro.pedidoFiltroComPeriodo(dataInicio, dataFim);
 
         Pageable pageable = PageRequest.of(0, 10);
