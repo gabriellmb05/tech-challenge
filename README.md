@@ -40,9 +40,9 @@ projeto:
 
 | Variável               | Descrição                           |
 |------------------------|-------------------------------------|
-| `DB_NAME`              | Nome do banco de dados              |
-| `DB_USER`              | Usuário do banco de dados           |
-| `DB_PASSWORD`          | Senha do banco de dados             |
+| `POSTGRES_DB`              | Nome do banco de dados              |
+| `POSTGRES_USER`              | Usuário do banco de dados           |
+| `POSTGRES_PASSWORD`          | Senha do banco de dados             |
 | `DB_URL`               | URL de conexão com o banco de dados |
 | `DB_DRIVER_CLASS_NAME` | Classe do driver do banco de dados  |
 | `FLYWAY_ENABLE`        | Habilita ou desabilita o Flyway     |
@@ -52,14 +52,24 @@ projeto:
 Exemplo de configuração do arquivo `.env`:
 
 ```dotenv
-DB_NAME=tech-challenge
-DB_USER=tech-challenge
-DB_PASSWORD=tech-challenge
-DB_URL=jdbc:postgresql://localhost:5432/tech-challenge
+POSTGRES_DB=tech-challenge
+POSTGRES_USER=tech-challenge
+POSTGRES_PASSWORD=tech-challenge
+DB_URL=jdbc:postgresql://db:5432/tech-challenge
 DB_DRIVER_CLASS_NAME=org.postgresql.Driver
 FLYWAY_ENABLE=true
 LOG_LEVEL_ROOT=INFO
-IT_PAGAMENTO=http://localhost:8081/api
+IT_PAGAMENTO=http://mercadopagofake:8081/api
+```
+
+## Construir e Rodar os Contêineres
+
+Execute os seguintes comandos para construir e iniciar os contêineres Docker:
+```shell
+mvn spotless:apply
+```
+```shell
+docker-compose up --build
 ```
 
 ## Documentação da API
@@ -67,14 +77,6 @@ IT_PAGAMENTO=http://localhost:8081/api
 ![Swagger](documentacao/swagger.svg)
 
 A documentação da API pode ser acessada através do Swagger em `http://localhost:8080/documentacao.html`.
-
-## Construir e Rodar os Contêineres
-
-Execute os seguintes comandos para construir e iniciar os contêineres Docker:
-
-```shell
-docker-compose up --build
-```
 
 ## Formatação de Código
 
@@ -106,3 +108,51 @@ mvn clean test
 
 O relatório gerado estará localizado na pasta `target/site/jacoco/index.html` Para visualizar o relatório, basta abrir
 esse arquivo em um navegador:
+
+___
+
+## 🚀 Como Aplicar no Kubernetes
+
+### 1️⃣ Crie um namespace (opcional):
+```sh
+export NAMESPACE=tech-challenge
+
+kubectl create namespace $NAMESPACE
+```
+
+### 2️⃣ Aplique os arquivos YAML:
+```sh
+
+# Configurando SECRETS"
+kubectl apply -f tech-challenge/srv-monolito/k8s/secrets.yaml -n $NAMESPACE
+
+# Configurando CONFIGS
+kubectl apply -f tech-challenge/srv-monolito/k8s/postgres-config.yaml -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito-config.yaml -n $NAMESPACE
+kubectl apply -f mock_payment/mercadopago_fake/k8s/mercadopagofake-config.yaml -n $NAMESPACE
+
+# Configurando mapeamento de pastas para o banco de dados
+mkdir -p docker/osdsk8s/postgres-data
+
+# Configurando DEPLOYMENTS
+kubectl apply -f tech-challenge/srv-monolito/k8s/postgres-deployment.yaml -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito-deployment.yaml -n $NAMESPACE
+kubectl apply -f mock_payment/mercadopago_fake/k8s/mercadopagofake-deployment.yaml -n $NAMESPACE
+
+# Configurando SERVICES
+kubectl apply -f tech-challenge/srv-monolito/k8s/postgres-service.yaml -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito-service.yaml -n $NAMESPACE
+kubectl apply -f mock_payment/mercadopago_fake/k8s/mercadopagofake-service.yaml -n $NAMESPACE
+
+```
+
+### 3️⃣ Verifique os pods e serviços:
+```sh
+kubectl get all -n $NAMESPACE
+```
+___
+
+## 📜 Licença
+
+Este projeto está sob a licença MIT.
+___

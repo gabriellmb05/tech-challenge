@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+    group: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+        type: db
+    spec:
+      volumes:
+        - name: "postgres-storage"
+          hostPath:
+            path: "/Users/samuel.rosa/git/samuelrosacv/docker/osdsk8s/postgres-data"
+            type: Directory
+      containers:
+        - name: postgres
+          image: postgres:16
+          envFrom:
+            - configMapRef:
+               name: postgres-config
+            - secretRef:
+                name: secrets
+          ports:
+            - containerPort: 5432
+          env: 
+            - name:  POSTGRES_DB 
+              valueFrom: 
+                secretKeyRef: 
+                  name:  secrets
+                  key:  POSTGRES_DB 
+            - name:  POSTGRES_USER 
+              valueFrom: 
+                secretKeyRef: 
+                  name:  secrets 
+                  key:  POSTGRES_USER 
+            - name:  POSTGRES_PASSWORD 
+              valueFrom: 
+                secretKeyRef:
+                  name:  secrets
+                  key:  POSTGRES_PASSWORD 
+          volumeMounts:                 # indicates which Volume (from spec.template.spec.volumes) should be used
+            - name: postgres-storage                # name of the Volume
+              mountPath: /var/lib/postgresql/data   # path inside the container
