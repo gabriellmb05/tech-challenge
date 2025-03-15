@@ -20,10 +20,12 @@ jobs:
         run: mvn test
       - name: Generate JaCoCo Badge
         id: jacoco
-        uses: cicirello/jacoco-badge-generator@v2.0.1
+        uses: cicirello/jacoco-badge-generator@v2
         with:
           generate-branches-badge: true
-          jacoco-csv-file: hexagono/target/site/jacoco/jacoco.csv
+          jacoco-csv-file: > 
+            hexagono/target/site/jacoco/jacoco.csv
+            srv-monolito/target/site/jacoco/jacoco.csv
       - name: Log coverage percentage
         run: |
           echo "coverage = ${{steps.jacoco.outputs.coverage}}"
