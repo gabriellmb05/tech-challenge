@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: srv-monolito
-        image: samuelrosacv/tech-challenge:v2 # Substitua isso
+        image: gabriellmb05/tech-challenge:latest # Substitua isso
         resources:
           requests:
             memory: "512Mi"
