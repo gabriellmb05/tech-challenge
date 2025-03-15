@@ -21,6 +21,9 @@ jobs:
       - name: Generate JaCoCo Badge
         id: jacoco
         uses: cicirello/jacoco-badge-generator@v2.0.1
+        with:
+          generate-branches-badge: true
+          jacoco-csv-file: svr-monolito/target/site/jacoco/jacoco.csv
       - name: Log coverage percentage
         run: |
           echo "coverage = ${{steps.jacoco.outputs.coverage}}"
@@ -29,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
-          path: target/site/jacoco
+          path: svr-monolito/target/site/jacoco
 
   code-analisys:
     needs: unit-test
