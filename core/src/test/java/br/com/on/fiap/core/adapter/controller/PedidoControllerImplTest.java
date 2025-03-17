@@ -112,7 +112,8 @@ class PedidoControllerImplTest {
                 1L,
                 ClienteResposta.fromDomain(ClienteDataPool.criarClienteValido()),
                 SituacaoPedido.REALIZADO,
-                Collections.singletonList(ProdutoQuantidade.create(PedidoProdutoDataPool.criarPedidoProdutoComProduto(1L))),
+                Collections.singletonList(
+                        ProdutoQuantidade.create(PedidoProdutoDataPool.criarPedidoProdutoComProduto(1L))),
                 PagamentoResposta.create(PagamentoDataPool.criarPagamentoValido()));
 
         when(pedidoDetalhaUseCase.detalhaPedido(protocolo)).thenReturn(pedido);

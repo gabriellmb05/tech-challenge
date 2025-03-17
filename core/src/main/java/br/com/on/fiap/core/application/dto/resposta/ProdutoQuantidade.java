@@ -3,8 +3,6 @@ package br.com.on.fiap.core.application.dto.resposta;
 import br.com.on.fiap.core.domain.PedidoProduto;
 import br.com.on.fiap.core.domain.Produto;
 
-import java.math.BigDecimal;
-
 public interface ProdutoQuantidade {
     Integer getQuantidade();
 

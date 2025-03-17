@@ -3,7 +3,6 @@ package br.com.on.fiap.core.adapter.presenter.impl;
 import br.com.on.fiap.core.adapter.presenter.PedidoPresenter;
 import br.com.on.fiap.core.application.dto.resposta.*;
 import br.com.on.fiap.core.domain.Pedido;
-import br.com.on.fiap.core.domain.PedidoProduto;
 import java.util.List;
 
 public class PedidoPresenterImpl implements PedidoPresenter {
@@ -20,7 +19,6 @@ public class PedidoPresenterImpl implements PedidoPresenter {
     @Override
     public PedidoDetalhadoResposta formatarDetalhado(Pedido pedido) {
         ClienteResposta cliente = ClienteResposta.fromDomain(pedido.getCliente());
-
 
         List<ProdutoQuantidade> produtos = pedido.getRelPedidoProdutos().stream()
                 .map(ProdutoQuantidade::create)
