@@ -26,8 +26,11 @@ spring:
             readTimeout: 10000
             loggerLevel: basic
 springdoc:
+  writer-with-order-by-keys: true
   swagger-ui:
     path: /documentacao.html
+    operationsSorter: method
+    tagsSorter: alpha
   api-docs:
     path: /documentacao
 info:
