@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: srv-monolito-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: srv-monolito
+  template:
+    metadata:
+      labels:
+        app: srv-monolito
+    spec:
+      containers:
+      - name: srv-monolito
+        image: gabriellmb05/tech-challenge:latest # Substitua isso
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "20m"
+        ports:
+          - containerPort: 8080
+  #      livenessProbe:
+  #        httpGet:
+  #          path: /
+  #          port: 8080
+  #        periodSeconds: 30
+  #        initialDelaySeconds: 30
+  #        readinessProbe:
+  #          httpGet:
+  #            path: /
+  #            port: 8080
+  #          periodSeconds: 30
+  #          initialDelaySeconds: 30
+        env:
+          - name:  DB_URL
+            valueFrom:
+              configMapKeyRef:
+                name:  srv-monolito-config
+                key:  DB_URL
+          - name:  DB_DRIVER_CLASS_NAME
+            valueFrom:
+              configMapKeyRef:
+                name:  srv-monolito-config
+                key:  DB_DRIVER_CLASS_NAME
+          - name:  FLYWAY_ENABLE
+            valueFrom:
+              configMapKeyRef:
+                name:  srv-monolito-config
+                key:  FLYWAY_ENABLE
+          - name:  LOG_LEVEL_ROOT
+            valueFrom:
+              configMapKeyRef:
+                name:  srv-monolito-config
+                key:  LOG_LEVEL_ROOT
+          - name:  IT_PAGAMENTO
+            valueFrom:
+              configMapKeyRef:
+                name:  srv-monolito-config
+                key:  IT_PAGAMENTO
+          - name:  POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                name:  secrets
+                key:  POSTGRES_DB
+          - name:  POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name:  secrets
+                key:  POSTGRES_USER
+          - name:  POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name:  secrets
+                key:  POSTGRES_PASSWORD

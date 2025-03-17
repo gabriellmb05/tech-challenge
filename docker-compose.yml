@@ -10,9 +10,9 @@ services:
     networks:
       - app-network
     environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
   srv_monolito:
     build:
@@ -27,13 +27,15 @@ services:
     depends_on:
       - db
 
-  srv-mercadopagofake:
+  mercadopagofake:
     image: maxsuelsbr/mercadopago_fake:0.0.1
     container_name: mercadopago_fake_container
     environment:
       - SERVER_PORT=8081
     ports:
-      - "8081:8080"
+      - "8081:8081"
+    networks:
+      - app-network
     restart: always
 
 networks:
