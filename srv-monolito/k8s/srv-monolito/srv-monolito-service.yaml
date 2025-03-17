@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: srv-monolito-service
+spec:
+  selector:
+    app: srv-monolito
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort # ou NodePort, LoadBalancer se precisar expor externamente
