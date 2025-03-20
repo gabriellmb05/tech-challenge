@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mercadopagofake-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mercadopagofake
+  template:
+    metadata:
+      labels:
+        app: mercadopagofake
+    spec:
+      containers:
+      - name: mercadopagofake-container
+        image: maxsuelsbr/mercadopago_fake:0.0.1 # Substitua isso
+        ports:
+          - containerPort: 8081
+        env:
+          - name: SERVER_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: mercadopagofake-config
+                key: SERVER_PORT
+  #      livenessProbe:
+  #        httpGet:
+  #          path: /
+  #          port: 8080
+  #        periodSeconds: 30
+  #        initialDelaySeconds: 30
+  #        readinessProbe:
+  #          httpGet:
+  #            path: /
+  #            port: 8080
+  #          periodSeconds: 30
+  #          initialDelaySeconds: 30
