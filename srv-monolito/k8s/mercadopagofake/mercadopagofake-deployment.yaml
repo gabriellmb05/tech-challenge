@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mercadopagofake-container
-        image: maxsuelsbr/mercadopago_fake:0.0.1 # Substitua isso
+        image: samuelrosacv/mercadopago_fake:v1 # Substitua isso
         ports:
           - containerPort: 8081
         env:
