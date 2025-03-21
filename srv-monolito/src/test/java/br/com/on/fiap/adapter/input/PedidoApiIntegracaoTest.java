@@ -153,6 +153,11 @@ class PedidoApiIntegracaoTest {
         mockMvc.perform(put("/pedidos/{protocolo}", protocolo).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.protocolo").value(protocolo))
+                .andExpect(jsonPath("$.situacao").value("PRONTO"));
+
+        mockMvc.perform(put("/pedidos/{protocolo}", protocolo).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.protocolo").value(protocolo))
                 .andExpect(jsonPath("$.situacao").value("FINALIZADO"));
     }
 }

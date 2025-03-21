@@ -7,7 +7,8 @@ public enum SituacaoPedido {
     REALIZADO(1, 1),
     APROVADO(2, 2),
     EM_PREPARACAO(3, 3),
-    FINALIZADO(4, 4);
+    PRONTO(4, 4),
+    FINALIZADO(5, 5);
 
     private final Integer codigo;
     private final Integer ordem;
