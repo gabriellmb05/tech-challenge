@@ -26,7 +26,7 @@ A aplicação segue a arquitetura limpa, respeitando as quatro camadas proposta 
 O projeto java está separado em dois módulos, um chamado core que contém as 3 camadas mais internas da arquitetura limpa (entity, use cases e interface adapters). 
 O outro módulo chamado de srv-monolito representa a camada mais externa da arquitetura limpa (frameworks and drivers). Abaixo imagem representando como o projeto foi estruturado para respeitar as 4 camadas..
 
-![Arquitetura Limpa](documentacao/clean_architecture.png.png)
+![Arquitetura Limpa](documentacao/clean_architecture.png)
 
 ## Pré-requisitos
 
