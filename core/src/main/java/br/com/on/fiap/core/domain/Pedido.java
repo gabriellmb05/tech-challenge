@@ -12,6 +12,7 @@ public class Pedido {
     private SituacaoPedido situacao;
     private String protocolo;
     private LocalDateTime dataHora;
+    private LocalDateTime dataHoraAtualizacao;
 
     public Pedido() {}
 
@@ -22,7 +23,8 @@ public class Pedido {
             Pagamento pagamento,
             SituacaoPedido situacao,
             String protocolo,
-            LocalDateTime dataHora) {
+            LocalDateTime dataHora,
+            LocalDateTime dataHoraAtualizacao) {
         this.id = id;
         this.pedidoProdutos = pedidoProdutos;
         this.cliente = cliente;
@@ -30,6 +32,7 @@ public class Pedido {
         this.situacao = situacao;
         this.protocolo = protocolo;
         this.dataHora = dataHora;
+        this.dataHoraAtualizacao = dataHoraAtualizacao;
     }
 
     public Long getId() {
@@ -86,5 +89,21 @@ public class Pedido {
 
     public void setDataHora(LocalDateTime dataHora) {
         this.dataHora = dataHora;
+    }
+
+    public List<PedidoProduto> getPedidoProdutos() {
+        return pedidoProdutos;
+    }
+
+    public void setPedidoProdutos(List<PedidoProduto> pedidoProdutos) {
+        this.pedidoProdutos = pedidoProdutos;
+    }
+
+    public LocalDateTime getDataHoraAtualizacao() {
+        return dataHoraAtualizacao;
+    }
+
+    public void setDataHoraAtualizacao(LocalDateTime dataHoraAtualizacao) {
+        this.dataHoraAtualizacao = dataHoraAtualizacao;
     }
 }
