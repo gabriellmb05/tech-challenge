@@ -14,6 +14,8 @@ public interface PedidoController {
     PaginaResposta<PedidoResposta> listarPedidoComFiltro(
             PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta);
 
+    PaginaResposta<PedidoResposta> listarPedidoComFiltro(PaginacaoResposta paginacaoResposta);
+
     PedidoDetalhadoResposta detalhaPedido(String protocolo);
 
     PedidoResposta atualizarPedido(String protocolo);

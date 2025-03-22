@@ -42,6 +42,14 @@ public interface PedidoApiSwagger {
     ResponseEntity<PaginaResposta<PedidoResposta>> listarPedidoComFiltro(
             PedidoFiltroRequest pedidoFiltroRequest, Pageable pageable);
 
+    @Operation(summary = "Lista pedidos", description = "Retorna uma lista de pedidos de forma paginada com ordenação")
+    @ApiResponses(
+            value = {
+                @ApiResponse(responseCode = "200", description = "Pedidos encontrados"),
+                @ApiResponse(responseCode = "404", description = "Pedidos não encontrados")
+            })
+    ResponseEntity<PaginaResposta<PedidoResposta>> listarPedido(Pageable pageable);
+
     @Operation(summary = "Detalha um pedido", description = "Retorna os detalhes de um pedido específico")
     @ApiResponses(
             value = {

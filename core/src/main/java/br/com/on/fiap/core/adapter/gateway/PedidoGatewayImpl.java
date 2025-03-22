@@ -35,4 +35,9 @@ public class PedidoGatewayImpl implements PedidoGateway {
     public Pedido salvaPedido(Pedido pedido) {
         return pedidoDataSource.salvaPedido(pedido);
     }
+
+    @Override
+    public PaginaResposta<Pedido> listarComFiltros(PaginacaoResposta paginacaoResposta) {
+        return pedidoDataSource.listarComFiltros(paginacaoResposta);
+    }
 }

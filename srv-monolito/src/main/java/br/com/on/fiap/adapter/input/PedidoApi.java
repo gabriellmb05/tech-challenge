@@ -43,6 +43,14 @@ public class PedidoApi implements PedidoApiSwagger {
     }
 
     @Override
+    @GetMapping(value = "/ordenar")
+    public ResponseEntity<PaginaResposta<PedidoResposta>> listarPedido(Pageable pageable) {
+        PaginacaoResposta paginacaoResposta = PaginacaoRespostaInfo.from(pageable);
+        PaginaResposta<PedidoResposta> pedidoPaginaResposta = pedidoController.listarPedidoComFiltro(paginacaoResposta);
+        return ResponseEntity.ok().body(pedidoPaginaResposta);
+    }
+
+    @Override
     @GetMapping("/{protocolo}/detalhar")
     public ResponseEntity<PedidoDetalhadoResposta> detalhaPedido(@PathVariable("protocolo") String protocolo) {
         return ResponseEntity.ok(pedidoController.detalhaPedido(protocolo));
