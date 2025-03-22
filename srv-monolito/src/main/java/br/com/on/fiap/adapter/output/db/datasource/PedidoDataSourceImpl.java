@@ -66,6 +66,7 @@ public class PedidoDataSourceImpl implements PedidoDataSource {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public PaginaResposta<Pedido> listarComFiltros(PaginacaoResposta paginacaoResposta) {
         Pageable pageable = pageableComponent.criarPageable(paginacaoResposta);
         Page<Pedido> pagePedido = pedidoRepository

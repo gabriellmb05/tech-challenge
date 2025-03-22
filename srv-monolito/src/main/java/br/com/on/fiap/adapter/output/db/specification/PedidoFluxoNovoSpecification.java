@@ -7,6 +7,8 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class PedidoFluxoNovoSpecification {
 
+    public static final String ST_PEDIDO = "stPedido";
+
     private PedidoFluxoNovoSpecification() {}
 
     public static Specification<PedidoEntity> filtrar() {
@@ -22,23 +24,18 @@ public class PedidoFluxoNovoSpecification {
 
     private static Predicate excluirPedidosFinalizados(
             Root<PedidoEntity> root, CriteriaBuilder builder, Predicate predicate) {
-        return builder.and(predicate, builder.notEqual(root.get("stPedido"), 5));
+        return builder.and(predicate, builder.notEqual(root.get(ST_PEDIDO), 5));
     }
 
     private static void adicionarOrdenacao(CriteriaQuery<?> query, CriteriaBuilder builder, Root<PedidoEntity> root) {
         List<Order> ordenacoes = List.of(
                 builder.desc(builder.selectCase()
-                        .when(builder.equal(root.get("stPedido"), "Pronto"), 1)
-                        .when(builder.equal(root.get("stPedido"), "Em Preparação"), 2)
-                        .when(builder.equal(root.get("stPedido"), "Recebido"), 3)
+                        .when(builder.equal(root.get(ST_PEDIDO), 4), 4)
+                        .when(builder.equal(root.get(ST_PEDIDO), 3), 3)
+                        .when(builder.equal(root.get(ST_PEDIDO), 2), 2)
+                        .when(builder.equal(root.get(ST_PEDIDO), 1), 1)
                         .otherwise(4)),
-                builder.desc(root.get("dhPedido")));
+                builder.asc(root.get("dhAtualizacaoPedido")));
         query.orderBy(ordenacoes);
     }
-
-    //    REALIZADO(1, 1),
-    //    APROVADO(2, 2),
-    //    EM_PREPARACAO(3, 3),
-    //    PRONTO(4, 4),
-    //    FINALIZADO(5, 5);
 }
