@@ -7,4 +7,4 @@ data:
   DB_DRIVER_CLASS_NAME: "org.postgresql.Driver"
   FLYWAY_ENABLE: "true"
   LOG_LEVEL_ROOT: "INFO"
-  IT_PAGAMENTO: "http://mercadopagofake:8081/api"
+  IT_PAGAMENTO: "http://mercadopagofake-service:8081/api"

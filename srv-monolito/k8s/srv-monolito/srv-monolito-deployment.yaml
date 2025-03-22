@@ -15,24 +15,20 @@ spec:
       containers:
       - name: srv-monolito
         image: gabriellmb05/tech-challenge:latest # Substitua isso
-        resources:
-          requests:
-            memory: "512Mi"
-            cpu: "20m"
         ports:
           - containerPort: 8080
-  #      livenessProbe:
-  #        httpGet:
-  #          path: /
-  #          port: 8080
-  #        periodSeconds: 30
-  #        initialDelaySeconds: 30
-  #        readinessProbe:
-  #          httpGet:
-  #            path: /
-  #            port: 8080
-  #          periodSeconds: 30
-  #          initialDelaySeconds: 30
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 30
+          initialDelaySeconds: 45
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 30
+          initialDelaySeconds: 45
         env:
           - name:  DB_URL
             valueFrom:
