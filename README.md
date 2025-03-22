@@ -78,7 +78,7 @@ Para execução do fluxo completo no kubernetes, é necessário subir a infraest
 sendo o srv-monolito o serviço criado para desenvolver o desafio do tech-challenge e o mercadopagofake um serviço mock para simular o pagamento com o mercado pago.
 Para facilitar o provisionamento da infraestrutura, os arquivos YAML estão disponíveis na pasta k8s de cada recurso.
 
-### 1️⃣ Crie um namespace (opcional):
+### 1️⃣ - Crie um namespace (opcional):
 ```sh
 export NAMESPACE=tech-challenge
 
@@ -110,10 +110,62 @@ kubectl apply -f tech-challenge/srv-monolito/k8s/mercadopagofake -n $NAMESPACE
 kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito -n $NAMESPACE
 ```
 
-### 7️⃣ Verifique os pods e serviços:
+### 7️⃣ - Verifique os pods e serviços:
 ```sh
 kubectl get all -n $NAMESPACE
 ```
+___
+
+## Criando Dashboard:
+O Kubernetes Dashboard é uma UI de propósito geral, baseada na web, para clusters Kubernetes. Ele permite que os usuários gerenciem aplicativos em execução no cluster e solucionem problemas, bem como gerenciem o próprio cluster.
+Veja mais em no repositório do [github dashboard](https://github.com/kubernetes/dashboard?tab=readme-ov-file).
+
+### 1️⃣ - Adiciona o repositório kubernetes-dashboard
+```sh
+helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+```
+
+### 2️⃣ - Deploy do Helm Chart
+```sh
+helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard --version 7.5.0
+```
+
+### 3️⃣ - Criação do NAMESPACE kubernetes-dashboard
+```sh
+kubectl create namespace kubernetes-dashboard
+```
+
+
+### 4️⃣ - Criação da Service Account
+```sh
+kubectl apply -f tech-challenge/srv-monolito/k8s/dashboard/dashboard-adminuser.yaml
+```
+
+
+### 5️⃣ - Criação da ClusterRoleBinding
+```sh
+kubectl apply -f tech-challenge/srv-monolito/k8s/dashboard/cluster-role-binding.yaml 
+```
+
+
+### 6️⃣ - Criação de secret para Token definitivo
+```sh
+kubectl apply -f tech-challenge/srv-monolito/k8s/dashboard/secret.yaml 
+```
+
+
+### 7️⃣ - Criação do Token de autenticação
+```sh
+kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d
+```
+
+
+### 8️⃣ - Para acessar o Dashboard
+```sh
+kubectl port-forward -n kubernetes-dashboard svc/kubernetes-dashboard-kong-proxy 8443:443
+```
+
+Agora, é só acessar o dashboard em [http://localhost:8443](http://localhost:8443), inserir o token e pronto!
 ___
 
 ## 📜 Licença
