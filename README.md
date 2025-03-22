@@ -113,43 +113,100 @@ ___
 
 ## 🚀 Como Aplicar no Kubernetes
 
-### 1️⃣ Crie um namespace (opcional):
+### 1 - Crie um namespace (opcional):
 ```sh
 export NAMESPACE=tech-challenge
 
 kubectl create namespace $NAMESPACE
 ```
 
-### 2️⃣ Aplique os arquivos YAML:
+### 2 - Aplique os arquivos YAML:
 ```sh
 
-# Configurando SECRETS"
-kubectl apply -f tech-challenge/srv-monolito/k8s/secrets.yaml -n $NAMESPACE
+# Configurando SECRETS
+kubectl apply -f tech-challenge/srv-monolito/k8s/secrets/secrets.yaml -n $NAMESPACE
 
-# Configurando CONFIGS
+# Configurando METRICAS
+kubectl apply -f tech-challenge/srv-monolito/k8s/metricas/clusterrolebinding.yaml -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/metricas/role.yaml -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/metricas/rolebinding.yaml -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/metricas/serviceaccount.yaml -n $NAMESPACE
+
+#Configurando POSTGRES
 kubectl apply -f tech-challenge/srv-monolito/k8s/postgres-config.yaml -n $NAMESPACE
-kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito-config.yaml -n $NAMESPACE
-kubectl apply -f mock_payment/mercadopago_fake/k8s/mercadopagofake-config.yaml -n $NAMESPACE
-
-# Configurando mapeamento de pastas para o banco de dados
-mkdir -p docker/osdsk8s/postgres-data
-
-# Configurando DEPLOYMENTS
-kubectl apply -f tech-challenge/srv-monolito/k8s/postgres-deployment.yaml -n $NAMESPACE
-kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito-deployment.yaml -n $NAMESPACE
-kubectl apply -f mock_payment/mercadopago_fake/k8s/mercadopagofake-deployment.yaml -n $NAMESPACE
-
-# Configurando SERVICES
 kubectl apply -f tech-challenge/srv-monolito/k8s/postgres-service.yaml -n $NAMESPACE
-kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito-service.yaml -n $NAMESPACE
-kubectl apply -f mock_payment/mercadopago_fake/k8s/mercadopagofake-service.yaml -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/postgres-deployment.yaml -n $NAMESPACE
+
+# Configurando MERCADOPAGO_FAKE
+kubectl apply -f tech-challenge/srv-monolito/k8s/mercadopagofake/k8s/hpa.yaml -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/mercadopagofake/k8s/mercadopagofake-config.yaml -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/mercadopagofake/k8s/mercadopagofake-deployment.yaml -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/mercadopagofake/k8s/mercadopagofake-service.yaml -n $NAMESPACE
+
+# Configurando SRV-MONOLITO
+kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito/hpa.yaml -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito/srv-monolito-config.yaml -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito/srv-monolito-deployment.yaml -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito/srv-monolito-service.yaml -n $NAMESPACE
 
 ```
 
-### 3️⃣ Verifique os pods e serviços:
+### 3 - Verifique os pods e serviços:
 ```sh
 kubectl get all -n $NAMESPACE
 ```
+___
+
+## Criando Dashboard:
+O Kubernetes Dashboard é uma UI de propósito geral, baseada na web, para clusters Kubernetes. Ele permite que os usuários gerenciem aplicativos em execução no cluster e solucionem problemas, bem como gerenciem o próprio cluster.
+Veja mais em no repositório do [github dashboard](https://github.com/kubernetes/dashboard?tab=readme-ov-file).
+
+### 1 - Adiciona o repositório kubernetes-dashboard
+```sh
+helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+```
+
+### 2 - Deploy do Helm Chart
+```sh
+helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard --version 7.5.0
+```
+
+### 3 - Criação do NAMESPACE kubernetes-dashboard
+```sh
+kubectl create namespace kubernetes-dashboard
+```
+
+
+### 4 - Criação da Service Account
+```sh
+kubectl apply -f tech-challenge/srv-monolito/k8s/dashboard/dashboard-adminuser.yaml
+```
+
+
+### 5 - Criação da ClusterRoleBinding
+```sh
+kubectl apply -f tech-challenge/srv-monolito/k8s/dashboard/cluster-role-binding.yaml 
+```
+
+
+### 6 - Criação de secret para Token definitivo
+```sh
+kubectl apply -f tech-challenge/srv-monolito/k8s/dashboard/secret.yaml 
+```
+
+
+### 7 - Criação do Token de autenticação
+```sh
+kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d
+```
+
+
+### 8 - Para acessar o Dashboard
+```sh
+kubectl port-forward -n kubernetes-dashboard svc/kubernetes-dashboard-kong-proxy 8443:443
+```
+
+Agora, é só acessar o dashboard em [http://localhost:8443](http://localhost:8443), inserir o token e pronto!
 ___
 
 ## 📜 Licença
