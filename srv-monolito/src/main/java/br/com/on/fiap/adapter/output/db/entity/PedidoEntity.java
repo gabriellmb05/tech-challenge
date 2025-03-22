@@ -81,7 +81,8 @@ public class PedidoEntity {
                 pagamento,
                 this.getStPedido(),
                 this.getNmProtocolo(),
-                this.getDhPedido(), this.getDhAtualizacaoPedido());
+                this.getDhPedido(),
+                this.getDhAtualizacaoPedido());
     }
 
     @PrePersist

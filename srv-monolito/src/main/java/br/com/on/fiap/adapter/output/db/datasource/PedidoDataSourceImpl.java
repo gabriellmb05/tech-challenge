@@ -14,7 +14,6 @@ import br.com.on.fiap.core.application.dto.resposta.PaginaResposta;
 import br.com.on.fiap.core.application.dto.resposta.PaginacaoResposta;
 import br.com.on.fiap.core.domain.Pedido;
 import br.com.on.fiap.core.domain.SituacaoPedido;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
