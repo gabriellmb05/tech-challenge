@@ -12,6 +12,7 @@ a modularidade interna para facilitar a evolução e escalabilidade.
 ![Maven](documentacao/apache_maven.svg)
 ![Docker](documentacao/docker.svg)
 ![Postgres](documentacao/postgres.svg)
+![Kubernetes](documentacao/kubernetes.svg)
 
 ## Estrutura do Projeto
 
@@ -170,5 +171,5 @@ ___
 
 ## 📜 Licença
 
-Este projeto está sob a licença MIT.
+Este projeto está sob [Licença MIT](LICENSE.md).
 ___
