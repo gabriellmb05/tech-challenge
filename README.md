@@ -2,8 +2,8 @@
 
 ## Visão Geral
 
-Este projeto é uma aplicação Java utilizando Maven para gerenciamento de dependências. A aplicação segue uma arquitetura
-hexagonal e é estruturada de forma modular, com múltiplos serviços para gerenciar funcionalidades distintas. A aplicação
+Este projeto é uma aplicação Java utilizando Maven para gerenciamento de dependências. A aplicação segue os princípios da arquitetura
+limpa e é estruturada de forma modular, com múltiplos serviços para gerenciar funcionalidades distintas. A aplicação
 está organizada de forma monolítica, com todos os serviços interligados em um único projeto, mas ainda assim respeitando
 a modularidade interna para facilitar a evolução e escalabilidade.
 
@@ -15,62 +15,24 @@ a modularidade interna para facilitar a evolução e escalabilidade.
 
 ## Estrutura do Projeto
 
-| Módulo         | Descrição                                                                  |
-|----------------|----------------------------------------------------------------------------|
-| `hexagono`     | Contém a lógica de negócio e interfaces, seguindo a arquitetura hexagonal. |
-| `srv-monolito` | Módulo monolítico que integra todos os serviços e funcionalidades.         |
+| Módulo         | Descrição                                                                          |
+|----------------|------------------------------------------------------------------------------------|
+| `core`         | Contém a lógica de negócio e interfaces, seguindo os princípios arquitetura limpa. |
+| `srv-monolito` | Módulo monolítico que possui as dependências com as bibliotecas e frameworks.      |
 
 ## Arquitetura
 
-A aplicação segue a arquitetura hexagonal (também chamada de "Ports and Adapters"), onde a lógica de negócio (núcleo) é
-isolada da comunicação com o mundo externo (banco de dados, interfaces de usuário, APIs externas).
+A aplicação segue a arquitetura limpa, respeitando as quatro camadas proposta pelo Robert Cecil Martin. 
+O projeto java está separado em dois módulos, um chamado core que contém as 3 camadas mais internas da arquitetura limpa (entity, use cases e interface adapters). 
+O outro módulo chamado de srv-monolito representa a camada mais externa da arquitetura limpa (frameworks and drivers). Abaixo imagem representando como o projeto foi estruturado para respeitar as 4 camadas..
 
-![Arquitetura Hexagonal](documentacao/hexagonal_architecture.png)
+![Arquitetura Limpa](documentacao/clean_architecture.png.png)
 
 ## Pré-requisitos
 
 - Java 21
 - Maven 3.9.9
 - Docker
-
-## Configuração de Variáveis de Ambiente
-
-Certifique-se de configurar o arquivo `.env` com as seguintes variáveis de ambiente antes de construir e executar o
-projeto:
-
-| Variável               | Descrição                           |
-|------------------------|-------------------------------------|
-| `POSTGRES_DB`              | Nome do banco de dados              |
-| `POSTGRES_USER`              | Usuário do banco de dados           |
-| `POSTGRES_PASSWORD`          | Senha do banco de dados             |
-| `DB_URL`               | URL de conexão com o banco de dados |
-| `DB_DRIVER_CLASS_NAME` | Classe do driver do banco de dados  |
-| `FLYWAY_ENABLE`        | Habilita ou desabilita o Flyway     |
-| `LOG_LEVEL_ROOT`       | Nível de log da aplicação           |
-| `IT_PAGAMENTO`         | Integração com api-pagamentos       |
-
-Exemplo de configuração do arquivo `.env`:
-
-```dotenv
-POSTGRES_DB=tech-challenge
-POSTGRES_USER=tech-challenge
-POSTGRES_PASSWORD=tech-challenge
-DB_URL=jdbc:postgresql://db:5432/tech-challenge
-DB_DRIVER_CLASS_NAME=org.postgresql.Driver
-FLYWAY_ENABLE=true
-LOG_LEVEL_ROOT=INFO
-IT_PAGAMENTO=http://mercadopagofake:8081/api
-```
-
-## Construir e Rodar os Contêineres
-
-Execute os seguintes comandos para construir e iniciar os contêineres Docker:
-```shell
-mvn spotless:apply
-```
-```shell
-docker-compose up --build
-```
 
 ## Documentação da API
 
@@ -111,7 +73,10 @@ esse arquivo em um navegador:
 
 ___
 
-## 🚀 Como Aplicar no Kubernetes
+## 🚀 Como subir a infraestrutura no Kubernetes
+Para execução do fluxo completo no kubernetes, é necessário subir a infraestrutura de banco de dados e os dois serviços srv-monolito e mercadopagofake, 
+sendo o srv-monolito o serviço criado para desenvolver o desafio do tech-challenge e o mercadopagofake um serviço mock para simular o pagamento com o mercado pago.
+Para facilitar o provisionamento da infraestrutura, os arquivos YAML estão disponíveis na pasta k8s de cada recurso.
 
 ### 1️⃣ Crie um namespace (opcional):
 ```sh
@@ -120,33 +85,32 @@ export NAMESPACE=tech-challenge
 kubectl create namespace $NAMESPACE
 ```
 
-### 2️⃣ Aplique os arquivos YAML:
+### 2️⃣ Executar o script para criação das secrets:
 ```sh
-
-# Configurando SECRETS"
-kubectl apply -f tech-challenge/srv-monolito/k8s/secrets.yaml -n $NAMESPACE
-
-# Configurando CONFIGS
-kubectl apply -f tech-challenge/srv-monolito/k8s/postgres-config.yaml -n $NAMESPACE
-kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito-config.yaml -n $NAMESPACE
-kubectl apply -f mock_payment/mercadopago_fake/k8s/mercadopagofake-config.yaml -n $NAMESPACE
-
-# Configurando mapeamento de pastas para o banco de dados
-mkdir -p docker/osdsk8s/postgres-data
-
-# Configurando DEPLOYMENTS
-kubectl apply -f tech-challenge/srv-monolito/k8s/postgres-deployment.yaml -n $NAMESPACE
-kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito-deployment.yaml -n $NAMESPACE
-kubectl apply -f mock_payment/mercadopago_fake/k8s/mercadopagofake-deployment.yaml -n $NAMESPACE
-
-# Configurando SERVICES
-kubectl apply -f tech-challenge/srv-monolito/k8s/postgres-service.yaml -n $NAMESPACE
-kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito-service.yaml -n $NAMESPACE
-kubectl apply -f mock_payment/mercadopago_fake/k8s/mercadopagofake-service.yaml -n $NAMESPACE
-
+kubectl apply -f tech-challenge/srv-monolito/k8s/secrets -n $NAMESPACE
 ```
 
-### 3️⃣ Verifique os pods e serviços:
+### 3️⃣ Executar os script para habilitar as métricas do cluster kubernetes:
+```sh
+kubectl apply -f tech-challenge/srv-monolito/k8s/metricas -n $NAMESPACE
+```
+
+### 4️⃣ Executar os script para provisionar o banco de dados:
+```sh
+kubectl apply -f tech-challenge/srv-monolito/k8s/postgres -n $NAMESPACE
+```
+
+### 5️⃣ Executar os script para provisionar o serviço merdacopagofake:
+```sh
+kubectl apply -f tech-challenge/srv-monolito/k8s/mercadopagofake -n $NAMESPACE
+```
+
+### 6️⃣ Executar os script para provisionar o serviço srv-monolito:
+```sh
+kubectl apply -f tech-challenge/srv-monolito/k8s/srv-monolito -n $NAMESPACE
+```
+
+### 7️⃣ Verifique os pods e serviços:
 ```sh
 kubectl get all -n $NAMESPACE
 ```
