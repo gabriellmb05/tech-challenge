@@ -23,6 +23,10 @@ spec:
       containers:
         - name: postgres
           image: postgres:16
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
           envFrom:
             - configMapRef:
                name: postgres-config
@@ -33,12 +37,12 @@ spec:
           readinessProbe:
             tcpSocket:
               port: 5432
-            initialDelaySeconds: 40
+            initialDelaySeconds: 15
             periodSeconds: 30
           livenessProbe:
             tcpSocket:
               port: 5432
-            initialDelaySeconds: 40
+            initialDelaySeconds: 15
             periodSeconds: 30
           env: 
             - name:  POSTGRES_DB 
