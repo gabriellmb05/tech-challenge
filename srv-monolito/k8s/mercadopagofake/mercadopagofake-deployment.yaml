@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mercadopagofake-container
-        image: samuelrosacv/mercadopago_fake:v1 # Substitua isso
+        image: tgobmdev/mercadopago_fake:v1
         ports:
           - containerPort: 8081
         env:
@@ -23,15 +23,15 @@ spec:
               configMapKeyRef:
                 name: mercadopagofake-config
                 key: SERVER_PORT
-  #      livenessProbe:
-  #        httpGet:
-  #          path: /
-  #          port: 8080
-  #        periodSeconds: 30
-  #        initialDelaySeconds: 30
-  #        readinessProbe:
-  #          httpGet:
-  #            path: /
-  #            port: 8080
-  #          periodSeconds: 30
-  #          initialDelaySeconds: 30
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8081
+          periodSeconds: 30
+          initialDelaySeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8081
+          periodSeconds: 30
+          initialDelaySeconds: 30
