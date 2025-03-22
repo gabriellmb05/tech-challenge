@@ -37,7 +37,6 @@ public interface PedidoApiSwagger {
     @ApiResponses(
             value = {
                 @ApiResponse(responseCode = "200", description = "Pedidos encontrados"),
-                @ApiResponse(responseCode = "404", description = "Pedidos não encontrados")
             })
     ResponseEntity<PaginaResposta<PedidoResposta>> listarPedidoComFiltro(
             PedidoFiltroRequest pedidoFiltroRequest, Pageable pageable);
@@ -46,7 +45,6 @@ public interface PedidoApiSwagger {
     @ApiResponses(
             value = {
                 @ApiResponse(responseCode = "200", description = "Pedidos encontrados"),
-                @ApiResponse(responseCode = "404", description = "Pedidos não encontrados")
             })
     ResponseEntity<PaginaResposta<PedidoResposta>> listarPedido(Pageable pageable);
 
