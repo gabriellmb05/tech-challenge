@@ -91,19 +91,7 @@ public class Pedido {
         this.dataHora = dataHora;
     }
 
-    public List<PedidoProduto> getPedidoProdutos() {
-        return pedidoProdutos;
-    }
-
-    public void setPedidoProdutos(List<PedidoProduto> pedidoProdutos) {
-        this.pedidoProdutos = pedidoProdutos;
-    }
-
     public LocalDateTime getDataHoraAtualizacao() {
         return dataHoraAtualizacao;
-    }
-
-    public void setDataHoraAtualizacao(LocalDateTime dataHoraAtualizacao) {
-        this.dataHoraAtualizacao = dataHoraAtualizacao;
     }
 }
