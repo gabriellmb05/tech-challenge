@@ -51,6 +51,12 @@ public class PedidoControllerImpl implements PedidoController {
     }
 
     @Override
+    public PaginaResposta<PedidoResposta> listarPedidoComFiltro(PaginacaoResposta paginacaoResposta) {
+        PaginaResposta<Pedido> pedidoPaginaResposta = pedidoListaUseCase.buscarPedidosComFiltro(paginacaoResposta);
+        return pedidoPresenter.formatar(pedidoPaginaResposta);
+    }
+
+    @Override
     public PedidoDetalhadoResposta detalhaPedido(String protocolo) {
         Pedido pedido = pedidoDetalhaUseCase.detalhaPedido(protocolo);
         return pedidoPresenter.formatarDetalhado(pedido);

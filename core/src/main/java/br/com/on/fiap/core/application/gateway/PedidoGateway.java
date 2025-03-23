@@ -15,4 +15,6 @@ public interface PedidoGateway {
     Optional<Pedido> detalhaPedido(String protocolo);
 
     Pedido salvaPedido(Pedido pedido);
+
+    PaginaResposta<Pedido> listarComFiltros(PaginacaoResposta paginacaoResposta);
 }

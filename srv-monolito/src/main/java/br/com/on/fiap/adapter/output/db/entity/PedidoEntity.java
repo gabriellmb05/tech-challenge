@@ -49,6 +49,10 @@ public class PedidoEntity {
     @Column(name = "PED_DH_PEDIDO", nullable = false)
     private LocalDateTime dhPedido;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "PED_DH_ATUALIZACAO_PEDIDO")
+    private LocalDateTime dhAtualizacaoPedido;
+
     @ToString.Exclude
     @OneToMany(mappedBy = "pedId", orphanRemoval = true)
     private List<PedidoProdutoEntity> relPedPro = new ArrayList<>();
@@ -63,6 +67,7 @@ public class PedidoEntity {
                 pedido.getSituacao(),
                 pedido.getProtocolo(),
                 pedido.getDataHora(),
+                pedido.getDataHoraAtualizacao(),
                 pedidoProdutos);
     }
 
@@ -76,7 +81,8 @@ public class PedidoEntity {
                 pagamento,
                 this.getStPedido(),
                 this.getNmProtocolo(),
-                this.getDhPedido());
+                this.getDhPedido(),
+                this.getDhAtualizacaoPedido());
     }
 
     @PrePersist

@@ -28,7 +28,7 @@ services:
       - db
 
   mercadopagofake:
-    image: maxsuelsbr/mercadopago_fake:0.0.1
+    image: tgobmdev/mercadopago_fake:v1
     container_name: mercadopago_fake_container
     environment:
       - SERVER_PORT=8081

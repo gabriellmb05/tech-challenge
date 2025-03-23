@@ -14,6 +14,8 @@ public interface PedidoResposta {
 
     LocalDateTime getDataHora();
 
+    LocalDateTime getDataHoraAtualizacao();
+
     static PedidoResposta create(Pedido pedido) {
         return new PedidoResposta() {
             @Override
@@ -34,6 +36,11 @@ public interface PedidoResposta {
             @Override
             public LocalDateTime getDataHora() {
                 return pedido.getDataHora();
+            }
+
+            @Override
+            public LocalDateTime getDataHoraAtualizacao() {
+                return pedido.getDataHoraAtualizacao();
             }
         };
     }

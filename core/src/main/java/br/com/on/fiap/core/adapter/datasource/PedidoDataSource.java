@@ -11,6 +11,8 @@ public interface PedidoDataSource {
 
     PaginaResposta<Pedido> listarComFiltros(PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta);
 
+    PaginaResposta<Pedido> listarComFiltros(PaginacaoResposta paginacaoResposta);
+
     Optional<Pedido> detalhaPedido(String protocolo);
 
     Pedido salvaPedido(Pedido pedido);

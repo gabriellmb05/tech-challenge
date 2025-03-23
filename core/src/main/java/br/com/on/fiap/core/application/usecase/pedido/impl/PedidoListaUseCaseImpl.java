@@ -20,4 +20,9 @@ public class PedidoListaUseCaseImpl implements PedidoListaUseCase {
             PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta) {
         return pedidoGateway.listarComFiltros(filtro, paginacaoResposta);
     }
+
+    @Override
+    public PaginaResposta<Pedido> buscarPedidosComFiltro(PaginacaoResposta paginacaoResposta) {
+        return pedidoGateway.listarComFiltros(paginacaoResposta);
+    }
 }
