@@ -139,10 +139,10 @@ class PedidoApiIntegracaoTest {
         MvcResult resultadoPrimeiraConsulta = buscarOrdenadoEValidarSituacoes(tamanhoLote, "REALIZADO", "REALIZADO", "REALIZADO");
 
         // Atualiza o primeiro pedido para a situação "APROVADO" e valida a nova ordem
-        atualizarPedidoEValidarOrdem(tamanhoLote, resultadoPrimeiraConsulta, 0, "APROVADO", "REALIZADO", "REALIZADO");
+        atualizarPedidoEValidarOrdem(tamanhoLote, resultadoPrimeiraConsulta, 1, "APROVADO", "REALIZADO", "REALIZADO");
 
         // Atualiza o segundo pedido para a situação "APROVADO" e valida a nova ordem
-        atualizarPedidoEValidarOrdem(tamanhoLote, resultadoPrimeiraConsulta, 1, "APROVADO", "APROVADO", "REALIZADO");
+        atualizarPedidoEValidarOrdem(tamanhoLote, resultadoPrimeiraConsulta, 2, "APROVADO", "APROVADO", "REALIZADO");
 
         // Atualiza novamente o segundo pedido para a situação "EM_PREPARACAO" e valida a nova ordem
         atualizarPedidoEValidarOrdem(tamanhoLote, resultadoPrimeiraConsulta, 1, "EM_PREPARACAO", "APROVADO", "REALIZADO");
