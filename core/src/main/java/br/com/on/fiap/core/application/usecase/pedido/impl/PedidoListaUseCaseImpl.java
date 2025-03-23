@@ -25,4 +25,5 @@ public class PedidoListaUseCaseImpl implements PedidoListaUseCase {
     public PaginaResposta<Pedido> buscarPedidosComFiltro(PaginacaoResposta paginacaoResposta) {
         return pedidoGateway.listarComFiltros(paginacaoResposta);
     }
+
 }
