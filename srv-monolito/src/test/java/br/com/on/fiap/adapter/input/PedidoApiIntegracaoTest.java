@@ -1,11 +1,21 @@
 package br.com.on.fiap.adapter.input;
 
+import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import br.com.on.datapool.DataPoolPagamentoSolicitacaoDTO;
 import br.com.on.datapool.DataPoolPedidoQuantidadeSolicitacaoDTO;
 import br.com.on.datapool.DataPoolPedidoSolicitacaoDTO;
 import br.com.on.fiap.adapter.input.dto.entrada.PedidoQuantidadeRequest;
 import br.com.on.fiap.adapter.input.dto.entrada.PedidoRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -19,17 +29,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
-
-import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -130,13 +129,16 @@ class PedidoApiIntegracaoTest {
     @Test
     @Order(6)
     @Transactional
-    @DisplayName("Dado pedidos existentes, quando buscar ordenado os pedidos, então eles devem ser retornados seguindo as regras de ordenação")
-    void dadoPedidosExistentes_quandoBuscarOrdenadoOsPedido_entaoDevemSerRetornadosSeguindoRegrasOrdenacao() throws Exception {
+    @DisplayName(
+            "Dado pedidos existentes, quando buscar ordenado os pedidos, então eles devem ser retornados seguindo as regras de ordenação")
+    void dadoPedidosExistentes_quandoBuscarOrdenadoOsPedido_entaoDevemSerRetornadosSeguindoRegrasOrdenacao()
+            throws Exception {
         int tamanhoLote = 3;
         criarPedidosEmLote(tamanhoLote);
 
-        //Busca inicial dos pedidos recém criados
-        MvcResult resultadoPrimeiraConsulta = buscarOrdenadoEValidarSituacoes(tamanhoLote, "REALIZADO", "REALIZADO", "REALIZADO");
+        // Busca inicial dos pedidos recém criados
+        MvcResult resultadoPrimeiraConsulta =
+                buscarOrdenadoEValidarSituacoes(tamanhoLote, "REALIZADO", "REALIZADO", "REALIZADO");
 
         // Atualiza o primeiro pedido para a situação "APROVADO" e valida a nova ordem
         atualizarPedidoEValidarOrdem(tamanhoLote, resultadoPrimeiraConsulta, 1, "APROVADO", "REALIZADO", "REALIZADO");
@@ -145,7 +147,8 @@ class PedidoApiIntegracaoTest {
         atualizarPedidoEValidarOrdem(tamanhoLote, resultadoPrimeiraConsulta, 2, "APROVADO", "APROVADO", "REALIZADO");
 
         // Atualiza novamente o segundo pedido para a situação "EM_PREPARACAO" e valida a nova ordem
-        atualizarPedidoEValidarOrdem(tamanhoLote, resultadoPrimeiraConsulta, 1, "EM_PREPARACAO", "APROVADO", "REALIZADO");
+        atualizarPedidoEValidarOrdem(
+                tamanhoLote, resultadoPrimeiraConsulta, 1, "EM_PREPARACAO", "APROVADO", "REALIZADO");
     }
 
     private MvcResult buscarOrdenadoEValidarSituacoes(int tamanho, String... situacoesEsperadas) throws Exception {
@@ -161,9 +164,12 @@ class PedidoApiIntegracaoTest {
                 .andReturn();
     }
 
-    private void atualizarPedidoEValidarOrdem(int tamanhoLote, MvcResult resultadoPrimeiraConsulta,
-                                              int indicePedidoCriado, String... situacoesEsperadas) throws Exception {
-        mockMvc.perform(put("/pedidos/{protocolo}", obterProtocoloDoRetorno(resultadoPrimeiraConsulta, indicePedidoCriado))
+    private void atualizarPedidoEValidarOrdem(
+            int tamanhoLote, MvcResult resultadoPrimeiraConsulta, int indicePedidoCriado, String... situacoesEsperadas)
+            throws Exception {
+        mockMvc.perform(put(
+                                "/pedidos/{protocolo}",
+                                obterProtocoloDoRetorno(resultadoPrimeiraConsulta, indicePedidoCriado))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
@@ -220,11 +226,12 @@ class PedidoApiIntegracaoTest {
 
     private void criarPedidosEmLote(int qtdPedidosNoLote) throws Exception {
         for (int i = 0; i < qtdPedidosNoLote; i++) {
-            PedidoQuantidadeRequest pedido = DataPoolPedidoQuantidadeSolicitacaoDTO.construirProduto(ThreadLocalRandom.current().nextLong(1, 4),
+            PedidoQuantidadeRequest pedido = DataPoolPedidoQuantidadeSolicitacaoDTO.construirProduto(
+                    ThreadLocalRandom.current().nextLong(1, 4),
                     ThreadLocalRandom.current().nextLong(1, 10));
 
-            PedidoRequest pedidoRequest = DataPoolPedidoSolicitacaoDTO.construirPedidoComParametros(1L,
-                    Collections.singletonList(pedido), DataPoolPagamentoSolicitacaoDTO.construirPagamento(3));
+            PedidoRequest pedidoRequest = DataPoolPedidoSolicitacaoDTO.construirPedidoComParametros(
+                    1L, Collections.singletonList(pedido), DataPoolPagamentoSolicitacaoDTO.construirPagamento(3));
 
             mockMvc.perform(post("/pedidos")
                             .contentType(MediaType.APPLICATION_JSON)
@@ -235,8 +242,9 @@ class PedidoApiIntegracaoTest {
     }
 
     private String obterProtocoloDoRetorno(MvcResult postResult, int posicao) throws Exception {
-        List<LinkedHashMap<String, String>> conteudo =
-                (List<LinkedHashMap<String, String>>) new ObjectMapper().readValue(postResult.getResponse().getContentAsString(), Map.class).get("conteudo");
+        List<LinkedHashMap<String, String>> conteudo = (List<LinkedHashMap<String, String>>) new ObjectMapper()
+                .readValue(postResult.getResponse().getContentAsString(), Map.class)
+                .get("conteudo");
 
         return conteudo.get(posicao).get("protocolo");
     }

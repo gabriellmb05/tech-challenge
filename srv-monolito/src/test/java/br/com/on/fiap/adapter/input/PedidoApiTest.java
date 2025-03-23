@@ -77,7 +77,8 @@ class PedidoApiTest {
     }
 
     @Test
-    @DisplayName("Dado pedidos existentes, quando buscar ordenado os pedidos, então eles devem ser retornados seguindo as regras de ordenação")
+    @DisplayName(
+            "Dado pedidos existentes, quando buscar ordenado os pedidos, então eles devem ser retornados seguindo as regras de ordenação")
     void dadoPedidosExistentes_quandoBuscarOrdenadoOsPedido_entaoDevemSerRetornadosSeguindoRegrasOrdenacao() {
         Pageable paginacao = PageRequest.of(0, 10);
         PaginaResposta<PedidoResposta> pedidoPaginaResposta = PaginaResposta.create(null, null, null, null, null);

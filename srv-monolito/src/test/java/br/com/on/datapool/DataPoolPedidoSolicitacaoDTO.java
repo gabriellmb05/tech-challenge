@@ -17,8 +17,8 @@ public class DataPoolPedidoSolicitacaoDTO {
                 .build();
     }
 
-    public static PedidoRequest construirPedidoComParametros(Long idCliente, List<PedidoQuantidadeRequest> produtos,
-                                                             PagamentoRequest pagamento) {
+    public static PedidoRequest construirPedidoComParametros(
+            Long idCliente, List<PedidoQuantidadeRequest> produtos, PagamentoRequest pagamento) {
         return PedidoRequest.builder()
                 .cliente(idCliente)
                 .produtos(produtos)
