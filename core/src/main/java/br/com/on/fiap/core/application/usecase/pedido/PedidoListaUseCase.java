@@ -8,4 +8,6 @@ import br.com.on.fiap.core.domain.Pedido;
 public interface PedidoListaUseCase {
 
     PaginaResposta<Pedido> buscarPedidosComFiltro(PedidoFiltroEntrada filtro, PaginacaoResposta paginacaoResposta);
+
+    PaginaResposta<Pedido> buscarPedidosComFiltro(PaginacaoResposta paginacaoResposta);
 }
