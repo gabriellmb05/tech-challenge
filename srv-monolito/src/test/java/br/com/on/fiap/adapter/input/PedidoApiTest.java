@@ -18,6 +18,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -80,7 +81,7 @@ class PedidoApiTest {
     @DisplayName(
             "Dado pedidos existentes, quando buscar ordenado os pedidos, então eles devem ser retornados seguindo as regras de ordenação")
     void dadoPedidosExistentes_quandoBuscarOrdenadoOsPedido_entaoDevemSerRetornadosSeguindoRegrasOrdenacao() {
-        Pageable paginacao = PageRequest.of(0, 10);
+        Pageable paginacao = PageRequest.of(0, 10, Sort.by(Sort.Order.asc("nome")));
         PaginaResposta<PedidoResposta> pedidoPaginaResposta = PaginaResposta.create(null, null, null, null, null);
 
         when(pedidoController.listarPedidoComFiltro(Mockito.any())).thenReturn(pedidoPaginaResposta);
