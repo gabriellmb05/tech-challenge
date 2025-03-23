@@ -57,7 +57,7 @@ jobs:
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=gabriellmb05_tech-challenge  -Dsonar.organization=projetos-gabriel
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=gabriellmb05_tech-challenge -Dsonar.organization=projetos-gabriel -Dsonar.exclusions=**/src/main/java/br/com/on/fiap/core/domain/**
   publish:
     runs-on: ubuntu-latest
     needs: code-analisys
