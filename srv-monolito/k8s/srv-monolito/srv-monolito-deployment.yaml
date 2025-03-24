@@ -17,6 +17,10 @@ spec:
         image: gabriellmb05/tech-challenge:latest # Substitua isso
         ports:
           - containerPort: 8080
+        resources:
+          requests:
+            cpu: 100m
+            memory: 500Mi
         livenessProbe:
           httpGet:
             path: /actuator/health
