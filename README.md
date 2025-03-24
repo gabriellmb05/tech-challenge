@@ -79,6 +79,10 @@ Para execução do fluxo completo no kubernetes, é necessário subir a infraest
 sendo o srv-monolito o serviço criado para desenvolver o desafio do tech-challenge e o mercadopagofake um serviço mock para simular o pagamento com o mercado pago.
 Para facilitar o provisionamento da infraestrutura, os arquivos YAML estão disponíveis na pasta k8s de cada recurso.
 
+<p align="center" width="100%">
+    <img width="70%" src="documentacao/deployment.svg"> 
+</p>
+
 ### 1️⃣ - Crie um namespace (opcional):
 ```sh
 export NAMESPACE=tech-challenge
@@ -93,7 +97,7 @@ kubectl apply -f tech-challenge/srv-monolito/k8s/secrets -n $NAMESPACE
 
 ### 3️⃣ Executar os script para habilitar as métricas do cluster kubernetes:
 ```sh
-kubectl apply -f tech-challenge/srv-monolito/k8s/metricas -n $NAMESPACE
+kubectl apply -f tech-challenge/srv-monolito/k8s/metricas
 ```
 
 ### 4️⃣ Executar os script para provisionar o banco de dados:
