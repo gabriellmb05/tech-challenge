@@ -15,6 +15,10 @@ spec:
       containers:
       - name: mercadopagofake-container
         image: tgobmdev/mercadopago_fake:v1
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
         ports:
           - containerPort: 8081
         env:

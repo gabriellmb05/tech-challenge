@@ -14,7 +14,11 @@ spec:
     spec:
       containers:
       - name: srv-monolito
-        image: gabriellmb05/tech-challenge:latest # Substitua isso
+        image: gabriellmb05/tech-challenge:latest
+        resources:
+          requests:
+            memory: "1024Mi"
+            cpu: "250m"
         ports:
           - containerPort: 8080
         livenessProbe:
